@@ -1,0 +1,11 @@
+D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\BLL\bin\Debug\BLL.dll
+D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\BLL\bin\Debug\BLL.pdb
+D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\BLL\bin\Debug\DAL.dll
+D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\BLL\bin\Debug\DTO.dll
+D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\BLL\bin\Debug\DAL.pdb
+D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\BLL\bin\Debug\DTO.pdb
+D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\BLL\obj\Debug\BLL.csproj.Up2Date
+D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\BLL\obj\Debug\BLL.dll
+D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\BLL\obj\Debug\BLL.pdb

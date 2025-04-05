@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="ClinicManagement.SidebarItems.popUpDoctor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ClinicManagement.SidebarItems"
+             mc:Ignorable="d" 
+                          xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                d:DesignHeight="450" d:DesignWidth="335">
+    <!--animate the user control-->
+    <UserControl.Style>
+        <Style>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Duration="00:00:02" From="0" To="1"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <Trigger Property="FrameworkElement.Visibility" Value="Collapsed">
+                    <Setter Property="FrameworkElement.Opacity" Value="0"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
+    <StackPanel Background="White">
+
+
+        <Border Margin="30" Width="150" Height="150" CornerRadius="80" BorderThickness="1" BorderBrush="Gray">
+            <Border.Background>
+                <ImageBrush ImageSource="/img/doctor.jpg"/>
+            </Border.Background>
+        </Border>
+
+        <TextBlock Text="Tran Thi Bich La" HorizontalAlignment="Center" Margin="0 10 0 0" Foreground="Gray" FontSize="18" FontWeight="Bold"/>
+        <TextBlock Text="Bác sĩ chuyên khoa nội" FontSize="13" Foreground="Gray" HorizontalAlignment="Center" Opacity="0.8"/>
+        <TextBlock Text="Lắng nghe cơ thể bạn – Chăm sóc tận tâm, khỏe mạnh dài lâu!" FontSize="8" Foreground="Gray" HorizontalAlignment="Center" Opacity="0.8"/>
+
+        <StackPanel Margin="20" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Margin="0 3">
+                <Icon:PackIconMaterial Kind="Calendar" Foreground="Gray"/>
+                <TextBlock Text="Ngày sinh: 18/10/1980" Margin="10 0" Foreground="Gray"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 3">
+                <Icon:PackIconMaterial Kind="GenderMaleFemale" Foreground="Gray"/>
+                <TextBlock Text="Giới tính: Nữ" Margin="10 0" Foreground="Gray"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 3">
+                <Icon:PackIconMaterial Kind="CardAccountDetails" Foreground="Gray"/>
+                <TextBlock Text="CCCD: 051305009832" Margin="10 0" Foreground="Gray"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 3">
+                <Icon:PackIconMaterial Kind="MapMarker" Foreground="Gray"/>
+                <TextBlock Text="Địa chỉ: 123 Đường ABC, TP. Hồ Chí Minh" Margin="10 0" Foreground="Gray"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 3">
+                <Icon:PackIconMaterial Kind="Phone" Foreground="Gray"/>
+                <TextBlock Text="Số điện thoại: 0333-429-390" Margin="10 0" Foreground="Gray"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 3">
+                <Icon:PackIconMaterial Kind="Email" Foreground="Gray"/>
+                <TextBlock Text="Email: 23520827@gm.uit.edu.vn" Margin="10 0" Foreground="Gray"/>
+            </StackPanel>
+        </StackPanel>
+
+
+    </StackPanel>
+
+</UserControl>
