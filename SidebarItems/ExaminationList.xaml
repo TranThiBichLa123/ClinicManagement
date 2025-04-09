@@ -63,54 +63,109 @@
         <!-- Show ngày khám và số lượng bệnh nhân đã tiếp nhận -->
         <Grid Grid.Row="2">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 20, 0, 15">
-                <Grid Width="150" Margin="40 0 0 0">
-                    <Button x:Name="btn_addPatientToExam"  Click="btn_addPatientToExam_Click"
-                            materialDesign:ButtonAssist.CornerRadius="25"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                            ToolTip="MaterialDesignRaisedDarkButton with Round Corners">
-                        <TextBlock Text="Thêm bệnh nhân" />
-                    </Button>
-                </Grid>
-                <Grid Width="150" Margin="40 0 0 0">
-                    <Button x:Name="btn_deletePatientFromExam" Click="btn_deletePatientFromExam_Click"
-                            materialDesign:ButtonAssist.CornerRadius="25"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                            ToolTip="MaterialDesignRaisedDarkButton with Round Corners" >
-                        <TextBlock Text="Xóa bệnh nhân" />
-                    </Button>
-                    <Popup x:Name="AddPatientPopup" Placement="Center" StaysOpen="False" IsOpen="False">
-                        <Border Background="White" BorderBrush="#29A3EC" BorderThickness="2" Padding="10"
-                                Width="500" Height="300">
-                            <StackPanel>
-                                <Border Width="300" CornerRadius="0,0,20,20">
-                                    <Border.Background>
-                                        <LinearGradientBrush StartPoint="0, 0.5" EndPoint="1, 0.5">
-                                            <GradientStop Color="#29A3EC" Offset="0"/>
-                                            <GradientStop Color="#FFADDCFB" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </Border.Background>
-                                    <TextBlock Text="Tiếp Nhận Bệnh Nhân" HorizontalAlignment="Center" Width="1000"
-                                               FontSize="28" TextAlignment="Center"
-                                               FontWeight="Bold" Opacity="0.995"/>
-                                </Border>
-                                
-                                <TextBox x:Name="txtPatientID" Width="200" Height="30" Margin="0,10"/>
-                                <Button Content="Thêm" Width="100" Height="30" Click="AddPatientPopup_Click"/>
+                <Button x:Name="btn_addPatientToExam"  Click="btn_addPatientToExam_Click"
+                        materialDesign:ButtonAssist.CornerRadius="25"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
+                        Content="Thêm hồ sơ tiếp nhận">
+                </Button>
+                <Popup x:Name="AddPatientPopup" Placement="Absolute" StaysOpen="False" IsOpen="False">
+                    <Border Background="White" BorderBrush="#29A3EC" BorderThickness="2" Width="400" Height="250">
+                        <StackPanel>
+                            <Border Width="350" CornerRadius="0,0,20,20">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0, 0.5" EndPoint="1, 0.5">
+                                        <GradientStop Color="#29A3EC" Offset="0"/>
+                                        <GradientStop Color="#FFADDCFB" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <TextBlock Text="Tiếp Nhận Bệnh Nhân" HorizontalAlignment="Center"
+                                            FontSize="28" TextAlignment="Center"
+                                            FontWeight="Bold" Opacity="0.995"/>
+                            </Border>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 30 0 0">
+                                <TextBlock Text="Ngày khám:" VerticalAlignment="Center"
+                                        FontSize="16" FontWeight="DemiBold" FontFamily="Calibri"/>
+                                <Label x:Name="lblNgayHienTai"/>
                             </StackPanel>
-                        </Border>
-                    </Popup>
-                </Grid>
-                <Grid Width="150" Margin="40 0 0 0">
-                    <Button x:Name="btn_editPatientFromExam" Click="btn_editPatientFromExam_Click"
-                            materialDesign:ButtonAssist.CornerRadius="25"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                            ToolTip="MaterialDesignRaisedDarkButton with Round Corners">
-                        <TextBlock Text="Sửa bệnh nhân" />
-                    </Button>
-                </Grid>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
+                                <TextBlock Text="Mã Bệnh Nhân:" FontSize="16" FontWeight="DemiBold" FontFamily="Calibri"/>
+                                <TextBox x:Name="tbMaBN" Text="" Width="150" Margin="10 0 0 0"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
+                                <TextBlock Text="Mã Nhân viên:" FontSize="16" FontWeight="DemiBold" FontFamily="Calibri"/>
+                                <TextBox x:Name="tbMaNV" Text ="" Width="150" Margin="10 0 0 0"/>
+                            </StackPanel>
+                            
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 30 0 0">
+                                <Button x:Name="btnHuy" Content="Hủy" Width="100" Height="30"
+                                        Margin="0 0 10 0" Click="btnHuy_Click" />
+                                <Button x:Name="btnXacNhan" Content="Thêm" Width="100" Height="30"
+                                        Margin="0 0 10 0" Click="btnXacNhan_Click" />
+                            </StackPanel>
+                        </StackPanel >
+                    </Border>
+                </Popup>
+
+                <Button x:Name="btn_deletePatientFromExam" Click="btn_deletePatientFromExam_Click"
+                        materialDesign:ButtonAssist.CornerRadius="25"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        ToolTip="MaterialDesignRaisedDarkButton with Round Corners" 
+                        Margin="30 0 0 0" Content="Xóa hồ sơ tiếp nhận">
+                </Button>
+
+                <Button x:Name="btn_editPatientFromExam" Click="btn_editPatientFromExam_Click"
+                        materialDesign:ButtonAssist.CornerRadius="25"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
+                        Margin="30 0 0 0" Content="Sửa hồ sơ tiếp nhận">
+                </Button>
+                <Popup x:Name="EditPatientPopup" Placement="Absolute" StaysOpen="False" IsOpen="False">
+                    <Border Background="White" BorderBrush="#29A3EC" BorderThickness="2" Width="400" Height="250">
+                        <StackPanel>
+                            <Border Width="350" CornerRadius="0,0,20,20">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0, 0.5" EndPoint="1, 0.5">
+                                        <GradientStop Color="#29A3EC" Offset="0"/>
+                                        <GradientStop Color="#FFADDCFB" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <TextBlock Text="Sửa Hồ Sơ Tiếp Nhận" HorizontalAlignment="Center"
+                            FontSize="28" TextAlignment="Center"
+                            FontWeight="Bold" Opacity="0.995"/>
+                            </Border>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 30 0 0">
+                                <TextBlock Text="Ngày khám:" VerticalAlignment="Center"
+                        FontSize="16" FontWeight="DemiBold" FontFamily="Calibri"/>
+                                <Label x:Name="lblEditNgayHienTai"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
+                                <TextBlock Text="Mã Bệnh Nhân:" FontSize="16" FontWeight="DemiBold" FontFamily="Calibri"/>
+                                <TextBox x:Name="tbEditMaBN" Width="150" Margin="10 0 0 0"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
+                                <TextBlock Text="Mã Nhân viên:" FontSize="16" FontWeight="DemiBold" FontFamily="Calibri"/>
+                                <TextBox x:Name="tbEditMaNV" Width="150" Margin="10 0 0 0"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 30 0 0">
+                                <Button x:Name="btnEditHuy" Content="Hủy" Width="100" Height="30"
+                                        Margin="0 0 10 0" Click="btnEditHuy_Click" />
+                                <Button x:Name="btnEditXacNhan" Content="Thêm" Width="100" Height="30"
+                                                Margin="0 0 10 0" Click="btnEditXacNhan_Click" />
+                            </StackPanel>
+                        </StackPanel >
+                    </Border>
+                </Popup>
             </StackPanel>
         </Grid>
 
@@ -119,14 +174,16 @@
       ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
       CellStyle="{DynamicResource DataGridCellStyle1}"
       Style="{DynamicResource DataGridStyle1}"
-      Margin="20 10 20 10" Width="900" Height="550">
+      Margin="20 10 20 10" Width="990" Height="550">
             <!-- Thêm margin để không dính sát -->
             <DataGrid.Columns>
                 <DataGridTextColumn Header="STT" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding STT}"/>
+                <DataGridTextColumn Header="Mã BN" Binding="{Binding ID_BenhNhan}" IsReadOnly="True" Width="0.5*"/>
                 <DataGridTextColumn Header="Họ tên BN" Binding="{Binding HoTenBN}" IsReadOnly="True" Width="*"/>
                 <DataGridTextColumn Header="Ngày sinh" Binding="{Binding NgaySinh}" IsReadOnly="True" Width="*"/>
                 <DataGridTextColumn Header="Giới tính" Binding="{Binding GioiTinh}" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="CCCD" Binding="{Binding CCCD}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Thời gian tiếp nhận" Binding="{Binding ThoiGianTiepNhan}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Nhân viên tiếp nhận" Binding="{Binding ID_NhanVien}" IsReadOnly="True" Width="*" Visibility="Hidden"/>
                 <DataGridTemplateColumn Header="Tạo/Xem phiếu khám" IsReadOnly="True" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
