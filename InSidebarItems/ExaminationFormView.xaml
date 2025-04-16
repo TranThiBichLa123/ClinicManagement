@@ -48,7 +48,7 @@
                     <ColumnDefinition Width="2.3*"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Margin="40 40 0 10" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <StackPanel Margin="40 20 0 10" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <!-- Mã PK + Ngày khám -->
                     <StackPanel Orientation="Horizontal" Height="35">
                         <TextBlock Text="Mã phiếu khám:" FontSize="16" FontWeight="Black" VerticalAlignment="Center"/>
@@ -145,11 +145,11 @@
                 </GroupBox.BorderBrush>
 
                 <DataGrid x:Name="dgToaThuoc" AutoGenerateColumns="False"
-          RowStyle="{DynamicResource DataGridRowStyle1}"
-          ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
-          CellStyle="{DynamicResource DataGridCellStyle1}"
-          Style="{DynamicResource DataGridStyle1}"
-          Margin="0,10,0,33" Height="200">
+                          RowStyle="{DynamicResource DataGridRowStyle1}"
+                          ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                          CellStyle="{DynamicResource DataGridCellStyle1}"
+                          Style="{DynamicResource DataGridStyle1}"
+                          Margin="0,10,0,10" Height="200">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Tên thuốc" Binding="{Binding TenThuoc}" IsReadOnly="True" Width="2*"/>
                         <DataGridTextColumn Header="Đơn vị tính" Binding="{Binding TenDVT}" IsReadOnly="True" Width="1.6*"/>

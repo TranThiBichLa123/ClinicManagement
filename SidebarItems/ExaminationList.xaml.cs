@@ -187,7 +187,7 @@ namespace ClinicManagement.SidebarItems
                     SqlCommand cmd = new SqlCommand(query, con);
                     cmd.Parameters.AddWithValue("@ID_BenhNhan", maBN);
                     cmd.Parameters.AddWithValue("@ID_NhanVien", maNV);
-                    cmd.Parameters.AddWithValue("@ThoiGianTiepNhan", thoiDiem);
+                    cmd.Parameters.AddWithValue("@ThoiGianTiepNhan", thoiDiemTiepNhan);
                     int rowsAffected = cmd.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
