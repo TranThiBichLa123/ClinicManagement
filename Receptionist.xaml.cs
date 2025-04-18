@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 
@@ -15,6 +16,18 @@ namespace ClinicManagement
             Account = userEmail;
 
         }
+
+        private void LoadUserControl(UserControl userControl)
+        {
+            // Kiểm tra Border có chứa phần tử con hay không
+            if (fContainer.Child != null)
+            {
+                fContainer.Child = null; // Xóa nội dung cũ
+            }
+
+            fContainer.Child = userControl; // Gán UserControl vào Border
+        }
+
         private void BG_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Tg_Btn.IsChecked = false;
@@ -133,7 +146,7 @@ namespace ClinicManagement
 
         private void btnDashboard_Click(object sender, RoutedEventArgs e)
         {
-
+            LoadUserControl(new SidebarItems.PatientList());
         }
     }
 }

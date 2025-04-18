@@ -61,7 +61,7 @@ HorizontalAlignment="Center"/>
 
                         </Button>
                         <Button x:Name="btnDashboard" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnDashboard_MouseEnter" MouseLeave="btnDashboard_MouseLeave" Click="btnDashboard_Click">
-                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource dashboard}" IconWidth="16" Text="Dashboard" VerticalAlignment="Center"/>
+                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource dashboard}" IconWidth="16" Text="Patient" VerticalAlignment="Center"/>
                         </Button>
                         <Button x:Name="btnProducts" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnProducts_MouseEnter" MouseLeave="btnProducts_MouseLeave">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource products}" IconWidth="16" Text="Products" VerticalAlignment="Center"/>
