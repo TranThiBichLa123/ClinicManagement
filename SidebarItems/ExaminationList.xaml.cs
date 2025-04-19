@@ -42,10 +42,9 @@ namespace ClinicManagement.SidebarItems
         {
             string querry = @"
                                 SELECT 
-                                    BN.ID_BenhNhan, BN.HoTenBN, BN.NgaySinh, BN.GioiTinh, TN.ThoiGianTiepNhan, TN.ID_NhanVien
+                                    BN.ID_BenhNhan, BN.HoTenBN, CAST(BN.NgaySinh AS DATE) AS NgaySinh, BN.GioiTinh, TN.ID_TiepNhan, TN.NgayTN, TN.CaTN, TN.ID_NhanVien
                                 FROM DANHSACHTIEPNHAN TN JOIN BENHNHAN BN ON TN.ID_BenhNhan = BN.ID_BenhNhan
-                                WHERE TN.Is_Deleted = 0 AND CAST (TN.ThoiGianTiepNhan AS DATE) = @NgayKham
-                                ORDER BY TN.ThoiGianTiepNhan ASC
+                                WHERE TN.Is_Deleted = 0 AND TN.NgayTN = @NgayKham
                             ";
             string QDquerry = "SELECT GiaTri FROM QUI_DINH WHERE TenQuiDinh = 'SoLuongPhieuKhamToiDa'";
 
@@ -67,34 +66,20 @@ namespace ClinicManagement.SidebarItems
 
                     // Cột tạm ẩn để kiểm tra có phiếu khám hay chưa
                     dt.Columns.Add("DaCoPhieuKham", typeof(bool));
-                    dt.Columns.Add("ThoiGianKhamBenh", typeof(DateTime));
+                    dt.Columns.Add("TrangThai", typeof(string));
 
                     foreach (DataRow row in dt.Rows)
                     {
-                        string idBenhNhan = row["ID_BenhNhan"].ToString();
-                        DateTime thoiGian = (DateTime)row["ThoiGianTiepNhan"];
+                        int idTiepNhan = (int) row["ID_TiepNhan"];
 
-                        string checkQuery = "SELECT COUNT(*) FROM PHIEUKHAM WHERE ID_BenhNhan = @ID_BenhNhan AND ThoiGianTiepNhan = @NgayKham";
+                        string checkQuery = "SELECT COUNT(*) FROM PHIEUKHAM WHERE ID_TiepNhan = @ID_TiepNhan AND Is_Deleted = 0";
 
                         using (SqlCommand checkCmd = new SqlCommand(checkQuery, con))
                         {
-                            checkCmd.Parameters.AddWithValue("@ID_BenhNhan", idBenhNhan);
-                            checkCmd.Parameters.AddWithValue("@NgayKham", thoiGian);
+                            checkCmd.Parameters.AddWithValue("@ID_TiepNhan", idTiepNhan);
                             int count = (int)checkCmd.ExecuteScalar();
                             row["DaCoPhieuKham"] = count > 0;
-                        }
-
-                        // Nếu có phiếu khám thì lấy thời gian khám
-                        if ((bool)row["DaCoPhieuKham"])
-                        {
-                            string phieuKhamQuery = "SELECT NgayKham FROM PHIEUKHAM WHERE ID_BenhNhan = @ID_BenhNhan AND ThoiGianTiepNhan = @NgayKham";
-                            using (SqlCommand phieuKhamCmd = new SqlCommand(phieuKhamQuery, con))
-                            {
-                                phieuKhamCmd.Parameters.AddWithValue("@ID_BenhNhan", idBenhNhan);
-                                phieuKhamCmd.Parameters.AddWithValue("@NgayKham", thoiGian);
-                                DateTime thoiGianKham = (DateTime)phieuKhamCmd.ExecuteScalar();
-                                row["ThoiGianKhamBenh"] = thoiGianKham;
-                            }
+                            row["TrangThai"] = count > 0 ? "Đã khám" : "Chưa khám";
                         }
                     }
 
@@ -154,11 +139,12 @@ namespace ClinicManagement.SidebarItems
         private void btn_addPatientToExam_Click(object sender, RoutedEventArgs e)
         {
             thoiDiemTiepNhan = DateTime.Now;
-            lblNgayHienTai.Content = thoiDiemTiepNhan.ToString("dd/MM/yyyy HH:mm");
+            lblNgayHienTai.Content = thoiDiemTiepNhan.ToString("dd/MM/yyyy");
             AddPatientPopup.IsOpen = true;
 
             tbMaBN.Text = "";
             tbMaNV.Text = "";
+            tbCaTN.Text = "";
             AddPatientPopup.HorizontalOffset = 500;
             AddPatientPopup.VerticalOffset = 300;
         }
@@ -171,6 +157,7 @@ namespace ClinicManagement.SidebarItems
         {
             string maBN = tbMaBN.Text.Trim();
             string maNV = tbMaNV.Text.Trim();
+            string caTN = tbCaTN.Text.Trim();
 
             if (string.IsNullOrEmpty(maBN) || string.IsNullOrEmpty(maNV))
             {
@@ -183,11 +170,12 @@ namespace ClinicManagement.SidebarItems
                 try
                 {
                     con.Open();
-                    string query = "INSERT INTO DANHSACHTIEPNHAN (ID_BenhNhan, ID_NhanVien, ThoiGianTiepNhan) VALUES (@ID_BenhNhan, @ID_NhanVien, @ThoiGianTiepNhan)";
+                    string query = "INSERT INTO DANHSACHTIEPNHAN (ID_BenhNhan, ID_NhanVien, NgayTN, CaTN) VALUES (@ID_BenhNhan, @ID_NhanVien, @NgayTN, @CaTN)";
                     SqlCommand cmd = new SqlCommand(query, con);
                     cmd.Parameters.AddWithValue("@ID_BenhNhan", maBN);
                     cmd.Parameters.AddWithValue("@ID_NhanVien", maNV);
-                    cmd.Parameters.AddWithValue("@ThoiGianTiepNhan", thoiDiemTiepNhan);
+                    cmd.Parameters.AddWithValue("@NgayTN", thoiDiemTiepNhan.Date);
+                    cmd.Parameters.AddWithValue("@CaTN", caTN);
                     int rowsAffected = cmd.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
@@ -231,8 +219,13 @@ namespace ClinicManagement.SidebarItems
 
             string editIdBenhNhan = selectedRow["ID_BenhNhan"].ToString();
             string editIdNhanVien = selectedRow["ID_NhanVien"].ToString();
+            string editCaTN = selectedRow["CaTN"].ToString();
+            string editNgayTN = selectedRow["NgayTN"].ToString();
+
             tbEditMaBN.Text = editIdBenhNhan;
             tbEditMaNV.Text = editIdNhanVien;
+            tbEditCaTN.Text = editCaTN;
+
             EditPatientPopup.HorizontalOffset = 500;
             EditPatientPopup.VerticalOffset = 300;
         }
@@ -243,10 +236,14 @@ namespace ClinicManagement.SidebarItems
             var selectedRow = dgTiepNhan.SelectedItem as DataRowView;
 
             string editIdBenhNhan = selectedRow["ID_BenhNhan"].ToString();
-            DateTime editThoiGianTiepNhan = (DateTime)selectedRow["ThoiGianTiepNhan"];
+            DateTime editNgayTiepNhan = (DateTime)selectedRow["NgayTN"];
+            string editCaTN = selectedRow["CaTN"].ToString();
+            string editIDNhanVien = selectedRow["ID_NhanVien"].ToString();
 
             string maBN = tbEditMaBN.Text.Trim();
             string maNV = tbEditMaNV.Text.Trim();
+            string caTN = tbEditCaTN.Text.Trim();
+            DateTime ngayTN = thoiDiemTiepNhan.Date;
 
             if (string.IsNullOrEmpty(maBN) || string.IsNullOrEmpty(maNV))
             {
@@ -259,13 +256,18 @@ namespace ClinicManagement.SidebarItems
                 try
                 {
                     con.Open();
-                    string query = "UPDATE DANHSACHTIEPNHAN SET ID_BenhNhan = @ID_BenhNhan, ID_NhanVien = @ID_NhanVien, ThoiGianTiepNhan = @ThoiGianTiepNhan WHERE ID_BenhNhan = @editIdBenhNhan AND ThoiGianTiepNhan = @editThoiGianTiepNhan";
+                    string query = @"UPDATE DANHSACHTIEPNHAN SET ID_BenhNhan = @ID_BenhNhan, ID_NhanVien = @ID_NhanVien, NgayTN = @NgayTN, CaTN = @CaTN 
+                                    WHERE ID_BenhNhan = @editIdBenhNhan AND NgayTN = @editNgayTN AND CaTN = @editCaTN AND ID_NhanVien = @editIDNhanVien";
+
                     SqlCommand cmd = new SqlCommand(query, con);
                     cmd.Parameters.AddWithValue("@ID_BenhNhan", maBN);
                     cmd.Parameters.AddWithValue("@ID_NhanVien", maNV);
-                    cmd.Parameters.AddWithValue("@ThoiGianTiepNhan", thoiDiem);
-                    cmd.Parameters.AddWithValue("@editThoiGianTiepNhan", editThoiGianTiepNhan);
+                    cmd.Parameters.AddWithValue("@CaTN", caTN);
+                    cmd.Parameters.AddWithValue("@NgayTN", ngayTN);
+                    cmd.Parameters.AddWithValue("@editNgayTN", editNgayTiepNhan);
+                    cmd.Parameters.AddWithValue("@editCaTN", editCaTN);
                     cmd.Parameters.AddWithValue("@editIdBenhNhan", editIdBenhNhan);
+                    cmd.Parameters.AddWithValue("@editIDNhanVien", editIDNhanVien);
 
                     int rowsAffected = cmd.ExecuteNonQuery();
                     if (rowsAffected > 0)
@@ -308,17 +310,22 @@ namespace ClinicManagement.SidebarItems
             if (result != MessageBoxResult.Yes)
                 return;
 
-            string idBenhNhan = selectedRow["ID_BenhNhan"].ToString();
-            DateTime thoiGianTiepNhan = (DateTime)selectedRow["ThoiGianTiepNhan"];
+            string delIdBenhNhan = selectedRow["ID_BenhNhan"].ToString();
+            DateTime delNgayTiepNhan = (DateTime)selectedRow["NgayTN"];
+            string delCaTN = selectedRow["CaTN"].ToString();
+            string delIDNhanVien = selectedRow["ID_NhanVien"].ToString();
 
             // Kết nối database
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string querry = "UPDATE DANHSACHTIEPNHAN SET Is_Deleted = 1 WHERE ID_BenhNhan = @ID_BenhNhan AND ThoiGianTiepNhan = @thoiGianTiepNhan";
+                string querry = @"UPDATE DANHSACHTIEPNHAN SET Is_Deleted = 1 WHERE ID_BenhNhan = @ID_BenhNhan AND NgayTN = @NgayTN
+                                    AND CaTN = @CaTN AND ID_NhanVien = @IDNhanVien";
 
                 SqlCommand cmd = new SqlCommand(querry, conn);
-                cmd.Parameters.AddWithValue("@ID_BenhNhan", idBenhNhan);
-                cmd.Parameters.AddWithValue("@thoiGianTiepNhan", thoiGianTiepNhan);
+                cmd.Parameters.AddWithValue("@ID_BenhNhan", delIdBenhNhan);
+                cmd.Parameters.AddWithValue("@NgayTN", delNgayTiepNhan);
+                cmd.Parameters.AddWithValue("@CaTN", delCaTN);
+                cmd.Parameters.AddWithValue("@IDNhanVien", delIDNhanVien);
                 try
                 {
                     conn.Open();
@@ -349,11 +356,10 @@ namespace ClinicManagement.SidebarItems
             var btn = sender as Button;
             if (btn?.DataContext is DataRowView row)
             {
-                string idBenhNhan = row["ID_BenhNhan"].ToString();
-                DateTime thoiGianTiepNhan = (DateTime)row["ThoiGianTiepNhan"];
-
+                int idTN = (int) row["ID_TiepNhan"];
+                string idBN = row["ID_BenhNhan"].ToString();
                 // → Ở đây bạn có thể truyền ID vào ExaminationForm
-                ExaminationForm form = new ExaminationForm(idBenhNhan, thoiGianTiepNhan);
+                ExaminationForm form = new ExaminationForm(idBN, idTN);
                 form.RenderTransform = new TranslateTransform();
 
                 // Gán vào container
@@ -403,9 +409,9 @@ namespace ClinicManagement.SidebarItems
             if (btn?.DataContext is DataRowView row)
             {
                 string idBenhNhan = row["ID_BenhNhan"].ToString();
-                DateTime thoiDiemKham = (DateTime)row["ThoiGianKhamBenh"];
+                int idTN = (int)row["ID_TiepNhan"];
                 // → Ở đây bạn có thể truyền ID vào ExaminationForm
-                ExaminationFormView form = new ExaminationFormView(idBenhNhan, thoiDiemKham);
+                ExaminationFormView form = new ExaminationFormView(idBenhNhan, idTN);
                 form.RenderTransform = new TranslateTransform();
 
                 // Gán vào container

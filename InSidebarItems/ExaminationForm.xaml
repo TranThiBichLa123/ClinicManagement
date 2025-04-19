@@ -36,7 +36,7 @@
                     <Button x:Name="btnExit" Background="Transparent" BorderBrush="Transparent" Height="42" Width="60" Click="btnExit_Click">
                         <materialDesign:PackIcon Kind="Backburger" Height="21" Width="auto" VerticalContentAlignment="Center"/>
                     </Button>
-                    <TextBlock Text="TẠO PHIẾU KHÁM" FontSize="24" FontWeight="Bold" Margin="0 0 0 0" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="tblTitle" Text="TẠO PHIẾU KHÁM" FontSize="24" FontWeight="Bold" Margin="0 0 0 0" VerticalAlignment="Center"/>
                 </StackPanel>
 
             </Border>
@@ -62,8 +62,10 @@
 
                     <StackPanel Orientation="Horizontal" Margin="0 10  0 0" >
                         <TextBlock Text="Chuẩn đoán bệnh: " FontSize="16" FontWeight="Black"/>
-                        <ComboBox x:Name="cboLoaiBenh" Width="473" Height="30" Padding="5" FontSize="16"
+                        <ComboBox x:Name="cboLoaiBenh" Width="200" Height="30" Padding="5" FontSize="16"
                         DisplayMemberPath="TenLoaiBenh" SelectedValuePath="ID_LoaiBenh" FontWeight="DemiBold"/>
+                        <TextBlock Text="Ca khám:" Margin="30 0 10 0" FontSize="16" FontWeight="Black"/>
+                        <TextBox x:Name="txtCaKham" Width="161" Height="30" Padding="5" FontSize="16" Margin="0 0 30 0" FontWeight="DemiBold"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0 10  0 0" >

@@ -43,20 +43,20 @@
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5.4*"/>
-                    <ColumnDefinition Width="2.3*"/>
-                    <ColumnDefinition Width="2.3*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Margin="40 20 0 10" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <StackPanel Margin="40 10 50 0" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <!-- Mã PK + Ngày khám -->
                     <StackPanel Orientation="Horizontal" Height="35">
                         <TextBlock Text="Mã phiếu khám:" FontSize="16" FontWeight="Black" VerticalAlignment="Center"/>
                         <Border Width="70" Height="35" CornerRadius="5" BorderThickness="3" BorderBrush="#29A3EC" Margin="5 -0 0 0">
                             <Label x:Name="lblMaPK" Content="" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" FontWeight="DemiBold"/>
                         </Border>
-                        <TextBlock Text="Ngày khám:" FontSize="16" FontWeight="Black" VerticalAlignment="Center" Margin="20 0 0 0"/>
-                        <Border Width="250" Height="35" CornerRadius="5" BorderThickness="3" BorderBrush="#29A3EC" Margin="5 0 0 0">
+                        <TextBlock Text="Ca khám:" FontSize="16" FontWeight="Black" VerticalAlignment="Center" Margin="20 0 0 0"/>
+                        <Border Width="250" Height="35" CornerRadius="5" BorderThickness="3" BorderBrush="#29A3EC" Margin="27 0 0 0">
                             <Label x:Name="lblNgayKham" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontWeight="DemiBold"/>
                         </Border>
                     </StackPanel>
@@ -71,7 +71,7 @@
                             <Label x:Name="lblHoTenBN" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontWeight="DemiBold"/>
                         </Border>
                     </StackPanel>
-                    <!-- Mã + Tên Bệnh nhân -->
+                    <!-- Triệu chứng -->
                     <StackPanel Orientation="Horizontal" Height="35" Margin="0 10 0 0">
                         <TextBlock Text="Triệu chứng:" FontSize="16" FontWeight="Black" VerticalAlignment="Center"/>
                         <Border Width="439" Height="35" CornerRadius="5" BorderThickness="3" BorderBrush="#29A3EC" Margin="32 0 0 0">
@@ -85,11 +85,20 @@
                             <Label x:Name="lblChuanDoan" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontWeight="DemiBold"/>
                         </Border>
                     </StackPanel>
+                    <!-- Sửa + Xóa PK -->
+                    <StackPanel Orientation="Horizontal" Height="35" Margin="0 10 0 0" HorizontalAlignment="Center">
+                        <Button x:Name="btnXoaPK" Content="Xóa Phiếu" Click="btnXoaPK_Click" Background="#FF0B55" BorderBrush="Transparent"/>
+                        <fa:IconImage Icon="TrashAlt" Foreground="#FF0B55" Width="24" Height="24" Margin="5 0 40 0"
+                                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Button x:Name="btnSuaPK" Content="Sửa Phiếu" Click="btnSuaPK_Click" Margin="40 0 0 0" Background="#077A7D" BorderBrush="Transparent"/>
+                        <fa:IconImage Icon="PencilAlt" Foreground="#077A7D" Width="24" Height="24" Margin="5 0 0 0"
+                                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </StackPanel>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Vertical">
                     <Border Grid.Row="0" BorderThickness="2" CornerRadius="5"
-                        Margin="0 20 0 0" HorizontalAlignment="Center"
+                        Margin="0 20 20 0" HorizontalAlignment="Center"
                             Width="240" Height="220">
                         <Border.BorderBrush>
                             <LinearGradientBrush>
