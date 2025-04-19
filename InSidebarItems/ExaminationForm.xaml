@@ -129,9 +129,9 @@
                   Margin="0,10,0,33" Height="180">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Tên thuốc" Binding="{Binding TenThuoc}" IsReadOnly="True" Width="2*"/>
-                        <DataGridTextColumn Header="Đơn vị tính" Binding="{Binding TenDVT}" IsReadOnly="True" Width="2*"/>
+                        <DataGridTextColumn Header="Đơn vị tính" Binding="{Binding DonViTinh}" IsReadOnly="True" Width="2*"/>
                         <DataGridTextColumn Header="Số lượng" Binding="{Binding SoLuong, Mode=TwoWay}" IsReadOnly="True" Width="2*" />
-                        <DataGridTextColumn Header="Cách dùng" Binding="{Binding MoTaCachDung}" IsReadOnly="True" Width="2*"/>
+                        <DataGridTextColumn Header="Cách dùng" Binding="{Binding MoTa}" IsReadOnly="True" Width="2*"/>
                         <DataGridTextColumn Header="Đơn giá" Binding="{Binding DonGiaBan}" IsReadOnly="True" Width="2*"/>
                     </DataGrid.Columns>
                 </DataGrid>

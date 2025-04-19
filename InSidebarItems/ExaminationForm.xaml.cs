@@ -33,6 +33,8 @@ namespace ClinicManagement.InSidebarItems
         {
             public string ID_Thuoc { get; set; }
             public decimal DonGiaBan { get; set; }
+            public string MoTa { get; set; }
+            public string DonViTinh { get; set; }
             public string TenThuoc { get; set; }
             public int SoLuong { get; set; } = 1;
         }
@@ -82,9 +84,10 @@ namespace ClinicManagement.InSidebarItems
             this.idPhieuKham = idPK;
 
             LoadLoaiBenh();
-            LoadThuoc();
-            LoadPhieuKham(idPK);
             
+            LoadPhieuKham(idPK);
+
+            LoadThuoc();
         }
         private void LoadLoaiBenh()
         {
@@ -160,6 +163,8 @@ namespace ClinicManagement.InSidebarItems
                     {
                         ID_Thuoc = row["ID_Thuoc"].ToString(),
                         TenThuoc = row["TenThuoc"].ToString(),
+                        DonViTinh = row["TenDVT"].ToString(),
+                        MoTa = row["MoTaCachDung"].ToString(),
                         DonGiaBan = Convert.ToDecimal(row["DonGiaBan_LucMua"]),
                         SoLuong = Convert.ToInt32(row["SoLuong"])
                     });
@@ -187,7 +192,13 @@ namespace ClinicManagement.InSidebarItems
             string ten = selectedThuoc["TenThuoc"].ToString();
             decimal donGiaBan = Convert.ToDecimal(selectedThuoc["DonGiaBan"]);
             int soLuongTon = Convert.ToInt32(selectedThuoc["SoLuongTon"]);
-
+            string querryAddThuoc = @"SELECT TenDVT, MoTaCachDung, TienThuoc FROM
+                                            DVT JOIN THUOC ON THUOC.ID_DVT = DVT.ID_DVT
+                                                JOIN TOATHUOC ON TOATHUOC.ID_Thuoc = THUOC.ID_Thuoc
+                                                JOIN CACHDUNG ON CACHDUNG.ID_CachDung = THUOC.ID_CachDung
+                                            WHERE TOATHUOC.ID_Thuoc = @ID";
+            string tenDVT = null;
+            string MoTa = null;
             if (soLuong > soLuongTon)
             {
                 MessageBox.Show($"Số lượng vượt quá tồn kho ({soLuongTon}).");
@@ -207,10 +218,27 @@ namespace ClinicManagement.InSidebarItems
             }
             else
             {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(querryAddThuoc, conn);
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        tenDVT = reader["TenDVT"].ToString();
+                        MoTa = reader["MoTaCachDung"].ToString();
+                    }
+                    reader.Close();
+
+                }
+
                 danhSachThuoc.Add(new ThuocDaChon
                 {
                     ID_Thuoc = id,
                     TenThuoc = ten,
+                    DonViTinh = tenDVT,
+                    MoTa = MoTa,
                     DonGiaBan = donGiaBan,
                     SoLuong = soLuong
                 });
