@@ -25,6 +25,8 @@ namespace ClinicManagement.InSidebarItems
     public partial class ExaminationFormView : UserControl
     {
         private string idBenhNhan;
+        private int Thang;
+        private int Nam;
         private int idTiepNhan;
         private int idPK;
         private string connectionString = "Data Source=LAPTOP-2FUIJHRN;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
@@ -35,6 +37,23 @@ namespace ClinicManagement.InSidebarItems
             this.idBenhNhan = idBenhNhan;
             this.idTiepNhan = idTiepNhan;
             lblMaBN.Content = idBenhNhan;
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                DateTime ngayTN = DateTime.MinValue;
+                con.Open();
+                string querry = "SELECT NgayTN FROM DANHSACHTIEPNHAN WHERE ID_TiepNhan = @id_TiepNhan";
+                SqlCommand cmd = new SqlCommand(querry, con);
+                cmd.Parameters.AddWithValue("@id_TiepNhan", idTiepNhan); // Corrected parameter name
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    ngayTN = (DateTime)reader["NgayTN"];
+                }
+                reader.Close();
+                Thang = ngayTN.Month;
+                Nam = ngayTN.Year;
+            }
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -180,15 +199,7 @@ namespace ClinicManagement.InSidebarItems
                     {
                         MessageBox.Show("Đã xóa phiếu khám và các toa thuốc tương ứng.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                        // Gọi stored procedure cập nhật báo cáo sử dụng thuốc (nếu muốn)
-                        //using (SqlConnection con = new SqlConnection(connectionString))
-                        //{
-                        //    con.Open();
-                        //    SqlCommand cmd = new SqlCommand("sp_CapNhatBaoCaoSuDungThuoc", con);
-                        //    cmd.CommandType = CommandType.StoredProcedure;
-                        //    cmd.ExecuteNonQuery();
-                        //}
-                        // Tạo hiệu ứng slide-out sang phải cho form hiện tại
+                        //Tạo hiệu ứng slide-out sang phải cho form hiện tại
 
                         var currentTransform = new TranslateTransform();
                         this.RenderTransform = currentTransform;

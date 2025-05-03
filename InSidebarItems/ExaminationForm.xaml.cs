@@ -40,6 +40,8 @@ namespace ClinicManagement.InSidebarItems
         }
 
         private int idTiepNhan;
+        private int Thang;
+        private int Nam;
         private string idBenhNhan;
         private int? idPhieuKham = null;
         private string connectionString = "Data Source=LAPTOP-2FUIJHRN;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
@@ -53,6 +55,24 @@ namespace ClinicManagement.InSidebarItems
             this.idTiepNhan = idTiepNhan;
             txtMaBenhNhan.Text = idBenhNhan;
 
+            
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                DateTime ngayTN = DateTime.MinValue;
+                con.Open();
+                string querry = "SELECT NgayTN FROM DANHSACHTIEPNHAN WHERE ID_TiepNhan = @id_TiepNhan";
+                SqlCommand cmd = new SqlCommand(querry, con);
+                cmd.Parameters.AddWithValue("@id_TiepNhan", idTiepNhan); // Corrected parameter name
+                SqlDataReader reader = cmd.ExecuteReader();
+                while(reader.Read())
+                {
+                    ngayTN = (DateTime)reader["NgayTN"];
+                }
+                reader.Close();
+                Thang = ngayTN.Month;
+                Nam = ngayTN.Year;
+            }
+            
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 con.Open();
@@ -303,6 +323,18 @@ namespace ClinicManagement.InSidebarItems
                     cmd.Parameters.AddWithValue("@ID_PhieuKham", idPhieuKham);
                     cmd.ExecuteNonQuery();
                 }
+
+                // Cập nhật báo cáo sử dụng thuốc sau khi xóa
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    SqlCommand cmdBaoCao = new SqlCommand("TaoBaoCaoSuDungThuoc", con);
+                    cmdBaoCao.CommandType = CommandType.StoredProcedure;
+
+                    cmdBaoCao.Parameters.AddWithValue("@Thang", Thang);
+                    cmdBaoCao.Parameters.AddWithValue("@Nam", Nam);
+                    cmdBaoCao.ExecuteNonQuery();
+                }
             }
 
             // ======= LƯU THÔNG TIN TOA THUỐC =======
@@ -323,14 +355,6 @@ namespace ClinicManagement.InSidebarItems
                 }
             }
 
-            // Gọi stored procedure cập nhật báo cáo sử dụng thuốc (nếu muốn)
-            //using (SqlConnection con = new SqlConnection(connectionString))
-            //{
-            //    con.Open();
-            //    SqlCommand cmd = new SqlCommand("sp_CapNhatBaoCaoSuDungThuoc", con);
-            //    cmd.CommandType = CommandType.StoredProcedure;
-            //    cmd.ExecuteNonQuery();
-            //}
             // Tạo hiệu ứng slide-out sang phải cho form hiện tại
 
             MessageBox.Show("Lưu thành công thông tin khám bệnh và toa thuốc.");

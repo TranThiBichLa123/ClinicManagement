@@ -46,7 +46,7 @@ namespace ClinicManagement.SidebarItems
                                 FROM DANHSACHTIEPNHAN TN JOIN BENHNHAN BN ON TN.ID_BenhNhan = BN.ID_BenhNhan
                                 WHERE TN.Is_Deleted = 0 AND TN.NgayTN = @NgayKham
                             ";
-            string QDquerry = "SELECT GiaTri FROM QUI_DINH WHERE TenQuiDinh = 'SoLuongPhieuKhamToiDa'";
+            string QDquerry = "SELECT GiaTri FROM QUI_DINH WHERE TenQuiDinh = 'SoLuongTiepNhanToiDa'";
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -56,7 +56,8 @@ namespace ClinicManagement.SidebarItems
                     SqlDataAdapter adapter = new SqlDataAdapter(querry, con);
                     adapter.SelectCommand.Parameters.AddWithValue("@NgayKham", ThoiDiemDangXet.Date);
                     SqlCommand cmd = new SqlCommand(QDquerry, con);
-                    var SLBNMax = cmd.ExecuteScalar();
+                    var result = cmd.ExecuteScalar();
+                    var SLBNMax = Convert.ToInt32(result).ToString();
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
 

@@ -150,7 +150,12 @@ namespace ClinicManagement
 
         private void btnExamination_Click(object sender, RoutedEventArgs e)
         {
-            LoadUserControl(new ExaminationList());
+            // Correcting the issue by clearing the child of the Border control  
+            fContainer.Child = null;
+
+            // Tạo và gán UserControl mới
+            var examList = new ExaminationList();
+            fContainer.Child = examList;
         }
     }
 }
