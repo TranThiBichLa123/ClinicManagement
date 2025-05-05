@@ -14,14 +14,19 @@ namespace ClinicManagement.Converters
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             string text = values[0] as string;
-            bool isFocused = (bool)values[1];
+            bool isFocused = values.Length > 1 && values[1] is bool b && b;
 
-            return string.IsNullOrWhiteSpace(text) && !isFocused ? Visibility.Visible : Visibility.Collapsed;
+            return string.IsNullOrWhiteSpace(text) && !isFocused
+                ? Visibility.Visible
+                : Visibility.Collapsed;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
-            => throw new NotImplementedException();
+        {
+            throw new NotImplementedException();
+        }
     }
+
 
 
 }

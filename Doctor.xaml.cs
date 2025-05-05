@@ -8,7 +8,7 @@ namespace ClinicManagement
 {
     public partial class Doctor : Window
     {
-        private void LoadUserControl(UserControl userControl)
+        public void LoadUserControl(UserControl userControl)
         {
             // Kiểm tra Border có chứa phần tử con hay không
             if (fContainer.Child != null)
@@ -77,8 +77,9 @@ namespace ClinicManagement
 
         private void btnBilling_Click(object sender, RoutedEventArgs e)
         {
-            LoadUserControl(new InvoiceList());
+            LoadUserControl(new InvoiceList(this));
         }
+
 
 
 

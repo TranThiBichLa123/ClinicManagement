@@ -121,3 +121,5 @@ D:\QL_PHONGMACHTU\bin\Debug\MaterialDesignThemes.Wpf.pdb
 D:\QL_PHONGMACHTU\bin\Debug\MaterialDesignThemes.Wpf.xml
 D:\QL_PHONGMACHTU\obj\Debug\SidebarItems\InvoiceList.g.cs
 D:\QL_PHONGMACHTU\obj\Debug\SidebarItems\InvoiceList.baml
+D:\QL_PHONGMACHTU\obj\Debug\SidebarItems\EditBill.g.cs
+D:\QL_PHONGMACHTU\obj\Debug\SidebarItems\EditBill.baml
