@@ -75,7 +75,12 @@ namespace ClinicManagement
 
         }
 
-       
+        private void btnBilling_Click(object sender, RoutedEventArgs e)
+        {
+            LoadUserControl(new InvoiceList());
+        }
+
+
 
         private void btnPointOfSale_MouseLeave(object sender, MouseEventArgs e)
         {

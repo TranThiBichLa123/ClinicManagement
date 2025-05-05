@@ -150,7 +150,7 @@ namespace ClinicManagement
 
         private void btnExamination_Click(object sender, RoutedEventArgs e)
         {
-            LoadUserControl(new ExaminationList());
+           
         }
     }
 }

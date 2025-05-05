@@ -1,18 +1,20 @@
 ﻿
-FD:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\App.xaml;;
-FD:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\Assets\Icons.xaml;;
-FD:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\Cashier.xaml;;
-FD:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\Controls\MenuItem.xaml;;
-FD:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\Controls\MenuItemPopup.xaml;;
-FD:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\Doctor.xaml;;
-FD:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\Receptionist.xaml;;
-FD:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\SidebarItems\DashBoard.xaml;;
-FD:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\SidebarItems\ForgotPassword.xaml;;
-FD:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\SidebarItems\Login.xaml;;
-FD:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\SidebarItems\NewPassword.xaml;;
-FD:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\SidebarItems\Patient.xaml;;
-FD:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\SidebarItems\popUpDoctor.xaml;;
-FD:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\SidebarItems\ProfileWindow.xaml;;
-FD:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\SidebarItems\RecoveryPasswordWindow.xaml;;
-FD:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\SidebarItems\ResetPassword.xaml;;
+FD:\QL_PHONGMACHTU\App.xaml;;
+FD:\QL_PHONGMACHTU\Assets\Icons.xaml;;
+FD:\QL_PHONGMACHTU\Cashier.xaml;;
+FD:\QL_PHONGMACHTU\Controls\MenuItem.xaml;;
+FD:\QL_PHONGMACHTU\Controls\MenuItemPopup.xaml;;
+FD:\QL_PHONGMACHTU\Doctor.xaml;;
+FD:\QL_PHONGMACHTU\Receptionist.xaml;;
+FD:\QL_PHONGMACHTU\SidebarItems\CreateBill.xaml;;
+FD:\QL_PHONGMACHTU\SidebarItems\DashBoard.xaml;;
+FD:\QL_PHONGMACHTU\SidebarItems\ForgotPassword.xaml;;
+FD:\QL_PHONGMACHTU\SidebarItems\InvoiceList.xaml;;
+FD:\QL_PHONGMACHTU\SidebarItems\Login.xaml;;
+FD:\QL_PHONGMACHTU\SidebarItems\NewPassword.xaml;;
+FD:\QL_PHONGMACHTU\SidebarItems\Patient.xaml;;
+FD:\QL_PHONGMACHTU\SidebarItems\popUpDoctor.xaml;;
+FD:\QL_PHONGMACHTU\SidebarItems\ProfileWindow.xaml;;
+FD:\QL_PHONGMACHTU\SidebarItems\RecoveryPasswordWindow.xaml;;
+FD:\QL_PHONGMACHTU\SidebarItems\ResetPassword.xaml;;
 
