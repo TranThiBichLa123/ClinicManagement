@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "D:\\QL_PHONGMACHTU\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|d:\\ql_phongmachtu\\sidebaritems\\invoicelist.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\invoicelist.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\QL_PHONGMACHTU\\sidebaritems\\invoicelist.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\invoicelist.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|d:\\ql_phongmachtu\\sidebaritems\\editbill.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\QL_PHONGMACHTU\\sidebaritems\\dashboard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\dashboard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\QL_PHONGMACHTU\\sidebaritems\\editbill.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\editbill.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|d:\\ql_phongmachtu\\sidebaritems\\invoicelist.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\invoicelist.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\QL_PHONGMACHTU\\doctor.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -31,7 +35,7 @@
       "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|d:\\ql_phongmachtu\\sidebaritems\\editbill.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\QL_PHONGMACHTU\\sidebaritems\\editbill.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\editbill.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
@@ -51,10 +55,6 @@
       "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:controls\\menuitempopup.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\QL_PHONGMACHTU\\sidebaritems\\dashboard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\dashboard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\QL_PHONGMACHTU\\sidebaritems\\createbill.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\createbill.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
@@ -71,7 +71,7 @@
       "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|d:\\ql_phongmachtu\\assets\\icons.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\QL_PHONGMACHTU\\assets\\icons.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:assets\\icons.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
@@ -248,18 +248,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Doctor.xaml",
-              "DocumentMoniker": "D:\\QL_PHONGMACHTU\\Doctor.xaml",
-              "RelativeDocumentMoniker": "Doctor.xaml",
-              "ToolTip": "D:\\QL_PHONGMACHTU\\Doctor.xaml",
-              "RelativeToolTip": "Doctor.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-27T06:25:56.563Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "Doctor.xaml.cs",
               "DocumentMoniker": "D:\\QL_PHONGMACHTU\\Doctor.xaml.cs",
               "RelativeDocumentMoniker": "Doctor.xaml.cs",
@@ -267,12 +255,11 @@
               "RelativeToolTip": "Doctor.xaml.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAAAwwBUAAAA1AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-27T06:50:25.971Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-27T06:50:25.971Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "InvoiceList.xaml",
               "DocumentMoniker": "D:\\QL_PHONGMACHTU\\SidebarItems\\InvoiceList.xaml",
               "RelativeDocumentMoniker": "SidebarItems\\InvoiceList.xaml",
@@ -284,28 +271,27 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "InvoiceList.xaml.cs",
               "DocumentMoniker": "D:\\QL_PHONGMACHTU\\SidebarItems\\InvoiceList.xaml.cs",
               "RelativeDocumentMoniker": "SidebarItems\\InvoiceList.xaml.cs",
               "ToolTip": "D:\\QL_PHONGMACHTU\\SidebarItems\\InvoiceList.xaml.cs",
               "RelativeToolTip": "SidebarItems\\InvoiceList.xaml.cs",
-              "ViewState": "AQIAAFcAAAAAAAAAAAAAwGUAAAAYAAAA",
+              "ViewState": "AQIAAFYAAAAAAAAAAAAwwGQAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-05T08:34:24.257Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "EditBill.xaml",
               "DocumentMoniker": "D:\\QL_PHONGMACHTU\\SidebarItems\\EditBill.xaml",
               "RelativeDocumentMoniker": "SidebarItems\\EditBill.xaml",
               "ToolTip": "D:\\QL_PHONGMACHTU\\SidebarItems\\EditBill.xaml",
               "RelativeToolTip": "SidebarItems\\EditBill.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-05T14:39:45.002Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T14:39:45.002Z"
             },
             {
               "$type": "Document",
@@ -315,14 +301,14 @@
               "RelativeDocumentMoniker": "SidebarItems\\EditBill.xaml.cs",
               "ToolTip": "D:\\QL_PHONGMACHTU\\SidebarItems\\EditBill.xaml.cs",
               "RelativeToolTip": "SidebarItems\\EditBill.xaml.cs",
-              "ViewState": "AQIAAEsAAAAAAAAAAAAAwF8AAAANAAAA",
+              "ViewState": "AQIAABsAAAAAAAAAAAAmwF8AAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-05T14:55:17.571Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "App.config",
               "DocumentMoniker": "D:\\QL_PHONGMACHTU\\App.config",
               "RelativeDocumentMoniker": "App.config",
@@ -330,12 +316,11 @@
               "RelativeToolTip": "App.config",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-05-05T04:13:35.899Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T04:13:35.899Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Cashier.xaml.cs",
               "DocumentMoniker": "D:\\QL_PHONGMACHTU\\Cashier.xaml.cs",
               "RelativeDocumentMoniker": "Cashier.xaml.cs",
@@ -343,56 +328,75 @@
               "RelativeToolTip": "Cashier.xaml.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAABIAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T03:43:56.697Z",
+              "WhenOpened": "2025-05-05T03:43:56.697Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DashBoard.xaml.cs",
+              "DocumentMoniker": "D:\\QL_PHONGMACHTU\\SidebarItems\\DashBoard.xaml.cs",
+              "RelativeDocumentMoniker": "SidebarItems\\DashBoard.xaml.cs",
+              "ToolTip": "D:\\QL_PHONGMACHTU\\SidebarItems\\DashBoard.xaml.cs",
+              "RelativeToolTip": "SidebarItems\\DashBoard.xaml.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-27T17:21:38.088Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 5,
+              "Title": "Doctor.xaml",
+              "DocumentMoniker": "D:\\QL_PHONGMACHTU\\Doctor.xaml",
+              "RelativeDocumentMoniker": "Doctor.xaml",
+              "ToolTip": "D:\\QL_PHONGMACHTU\\Doctor.xaml",
+              "RelativeToolTip": "Doctor.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-27T06:25:56.563Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "ResetPassword.xaml",
               "DocumentMoniker": "D:\\QL_PHONGMACHTU\\SidebarItems\\ResetPassword.xaml",
               "RelativeDocumentMoniker": "SidebarItems\\ResetPassword.xaml",
               "ToolTip": "D:\\QL_PHONGMACHTU\\SidebarItems\\ResetPassword.xaml",
               "RelativeToolTip": "SidebarItems\\ResetPassword.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-05T04:36:20.082Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-05T04:36:20.082Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "ProfileWindow.xaml",
               "DocumentMoniker": "D:\\QL_PHONGMACHTU\\SidebarItems\\ProfileWindow.xaml",
               "RelativeDocumentMoniker": "SidebarItems\\ProfileWindow.xaml",
               "ToolTip": "D:\\QL_PHONGMACHTU\\SidebarItems\\ProfileWindow.xaml",
               "RelativeToolTip": "SidebarItems\\ProfileWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-05T02:09:49.833Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-05T02:09:49.833Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "MenuItem.xaml",
               "DocumentMoniker": "D:\\QL_PHONGMACHTU\\Controls\\MenuItem.xaml",
               "RelativeDocumentMoniker": "Controls\\MenuItem.xaml",
               "ToolTip": "D:\\QL_PHONGMACHTU\\Controls\\MenuItem.xaml",
               "RelativeToolTip": "Controls\\MenuItem.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-27T06:27:15.78Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-27T06:27:15.78Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "MenuItemPopup.xaml",
               "DocumentMoniker": "D:\\QL_PHONGMACHTU\\Controls\\MenuItemPopup.xaml",
               "RelativeDocumentMoniker": "Controls\\MenuItemPopup.xaml",
               "ToolTip": "D:\\QL_PHONGMACHTU\\Controls\\MenuItemPopup.xaml",
               "RelativeToolTip": "Controls\\MenuItemPopup.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-27T06:28:08.337Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-27T06:28:08.337Z"
             },
             {
               "$type": "Document",
@@ -450,8 +454,7 @@
               "ToolTip": "D:\\QL_PHONGMACHTU\\SidebarItems\\CreateBill.xaml",
               "RelativeToolTip": "SidebarItems\\CreateBill.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-17T07:00:29.182Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T07:00:29.182Z"
             },
             {
               "$type": "Document",
@@ -507,8 +510,7 @@
               "RelativeToolTip": "SidebarItems\\CreateBill.xaml.cs",
               "ViewState": "AQIAAKQAAAAAAAAAAAAcwLkAAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T03:22:08.967Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T03:22:08.967Z"
             },
             {
               "$type": "Document",
@@ -519,8 +521,7 @@
               "ToolTip": "D:\\QL_PHONGMACHTU\\SidebarItems\\ForgotPassword.xaml",
               "RelativeToolTip": "SidebarItems\\ForgotPassword.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-28T08:35:58.122Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-28T08:35:58.122Z"
             },
             {
               "$type": "Document",
@@ -567,19 +568,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "DashBoard.xaml.cs",
-              "DocumentMoniker": "D:\\QL_PHONGMACHTU\\SidebarItems\\DashBoard.xaml.cs",
-              "RelativeDocumentMoniker": "SidebarItems\\DashBoard.xaml.cs",
-              "ToolTip": "D:\\QL_PHONGMACHTU\\SidebarItems\\DashBoard.xaml.cs",
-              "RelativeToolTip": "SidebarItems\\DashBoard.xaml.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-27T17:21:38.088Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 16,
               "Title": "Login.xaml",
               "DocumentMoniker": "D:\\QL_PHONGMACHTU\\SidebarItems\\Login.xaml",
@@ -587,8 +575,7 @@
               "ToolTip": "D:\\QL_PHONGMACHTU\\SidebarItems\\Login.xaml",
               "RelativeToolTip": "SidebarItems\\Login.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-28T08:26:27.532Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-28T08:26:27.532Z"
             },
             {
               "$type": "Document",
@@ -645,8 +632,7 @@
               "RelativeToolTip": "Converters\\SearchHintVisibilityConverter.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T09:28:37.768Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T09:28:37.768Z"
             },
             {
               "$type": "Document",

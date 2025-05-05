@@ -110,13 +110,13 @@
                   AlternatingRowBackground="#F8F8F8">
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Mã HĐ" Binding="{Binding MaHoaDon}" Width="80"/>
-                <DataGridTextColumn Header="Mã phiếu khám" Binding="{Binding MaPhieuKham}" Width="120"/>
-                <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding MaNhanVien}" Width="120"/>
-                <DataGridTextColumn Header="Ngày lập hóa đơn" Binding="{Binding NgayLap, StringFormat='dd/MM/yyyy'}" Width="120"/>
-                <DataGridTextColumn Header="Tiền khám" Binding="{Binding TienKham, StringFormat=N0}" Width="100"/>
-                <DataGridTextColumn Header="Tiền thuốc" Binding="{Binding TienThuoc, StringFormat=N0}" Width="100"/>
-                <DataGridTextColumn Header="Tổng tiền" Binding="{Binding TongTien, StringFormat=N0}" Width="120"/>
+                <DataGridTextColumn Header="Mã HĐ" Binding="{Binding MaHoaDon}" Width="*"/>
+                <DataGridTextColumn Header="Mã phiếu khám" Binding="{Binding MaPhieuKham}" Width="*"/>
+                <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding MaNhanVien}" Width="*"/>
+                <DataGridTextColumn Header="Ngày lập hóa đơn" Binding="{Binding NgayLap, StringFormat='dd/MM/yyyy'}" Width="*"/>
+                <DataGridTextColumn Header="Tiền khám" Binding="{Binding TienKham, StringFormat=N0}" Width="*"/>
+                <DataGridTextColumn Header="Tiền thuốc" Binding="{Binding TienThuoc, StringFormat=N0}" Width="*"/>
+                <DataGridTextColumn Header="Tổng tiền" Binding="{Binding TongTien, StringFormat=N0}" Width="*"/>
 
                 <!-- Cột Sửa -->
                 <DataGridTemplateColumn Header="Sửa" Width="80">
