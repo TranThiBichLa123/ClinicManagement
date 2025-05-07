@@ -1,6 +1,8 @@
-﻿using System.Windows;
+﻿using ClinicManagement.SidebarItems;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Controls;
 
 
 namespace ClinicManagement
@@ -84,7 +86,7 @@ namespace ClinicManagement
 
         }
 
-        private void btnProducts_MouseEnter(object sender, MouseEventArgs e)
+        private void btnExamination_MouseEnter(object sender, MouseEventArgs e)
         {
 
         }
@@ -99,7 +101,7 @@ namespace ClinicManagement
 
         }
 
-        private void btnProducts_MouseLeave(object sender, MouseEventArgs e)
+        private void btnExamination_MouseLeave(object sender, MouseEventArgs e)
         {
 
         }

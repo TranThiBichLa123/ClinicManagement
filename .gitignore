@@ -1,0 +1,29 @@
+
+# Visual Studio settings
+.vs/
+*.suo
+*.user
+*.cache
+
+# Build output
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+
+# WPF temporary/generated files
+*.baml
+*.g.cs
+*.g.i.cs
+
+# NuGet
+*.nupkg
+packages/
+project.lock.json
+
+# Logs and temp
+*.log
+*.tmp
+*.db
+*.bak
