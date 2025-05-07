@@ -80,6 +80,11 @@ namespace ClinicManagement
         {
 
         }
+        private void btnBilling_Click(object sender, RoutedEventArgs e)
+        {
+            fContainer.Child = new SidebarItems.CreateBill();
+        }
+
 
         private void btnSetting_MouseEnter(object sender, MouseEventArgs e)
         {
