@@ -91,7 +91,7 @@ namespace ClinicManagement.SidebarItems
         {
             if (textBoxPassword1.Text == textBoxPassword2.Text)
             {
-                SqlConnection con = new SqlConnection("Data Source=LAPTOP-MSDUJDE8\\MSSQLMYSERVER;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;Encrypt=True;TrustServerCertificate=True");
+                SqlConnection con = new SqlConnection("Data Source=LAPTOP-2FUIJHRN;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;Encrypt=True;TrustServerCertificate=True");
                 /*SqlCommand cmd = new SqlCommand(@"UPDATE TAIKHOAN 
 SET 
     Email = @Email, 
@@ -105,7 +105,7 @@ cmd.Parameters.AddWithValue("@Password", textBoxPassword1.Text);
 cmd.Parameters.AddWithValue("@RoleId", 2); // hoặc bạn lấy từ combobox/dropdown
 cmd.Parameters.AddWithValue("@Status", true); // hoặc false tùy trạng thái
 */
-                SqlCommand cmd = new SqlCommand(@"UPDATE TAIKHOAN 
+                SqlCommand cmd = new SqlCommand(@"UPDATE NHANVIEN 
 SET 
     Email = @Email, 
     MatKhau = @Password  
