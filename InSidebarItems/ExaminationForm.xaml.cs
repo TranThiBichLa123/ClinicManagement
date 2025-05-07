@@ -33,22 +33,46 @@ namespace ClinicManagement.InSidebarItems
         {
             public string ID_Thuoc { get; set; }
             public decimal DonGiaBan { get; set; }
+            public string MoTa { get; set; }
+            public string DonViTinh { get; set; }
             public string TenThuoc { get; set; }
             public int SoLuong { get; set; } = 1;
         }
 
+        private int idTiepNhan;
+        private int Thang;
+        private int Nam;
         private string idBenhNhan;
-        private DateTime thoiGianTiepNhan;
+        private int? idPhieuKham = null;
         private string connectionString = "Data Source=LAPTOP-2FUIJHRN;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
         private ObservableCollection<ThuocDaChon> danhSachThuoc = new ObservableCollection<ThuocDaChon>();
 
-        public ExaminationForm(string idBenhNhan, DateTime thoiGianTiepNhan)
+        public ExaminationForm(string idBenhNhan, int idTiepNhan)
         {
             InitializeComponent();
+            tblTitle.Text = "Tạo Phiếu Khám";
             this.idBenhNhan = idBenhNhan;
-            this.thoiGianTiepNhan = thoiGianTiepNhan;
+            this.idTiepNhan = idTiepNhan;
             txtMaBenhNhan.Text = idBenhNhan;
 
+            
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                DateTime ngayTN = DateTime.MinValue;
+                con.Open();
+                string querry = "SELECT NgayTN FROM DANHSACHTIEPNHAN WHERE ID_TiepNhan = @id_TiepNhan";
+                SqlCommand cmd = new SqlCommand(querry, con);
+                cmd.Parameters.AddWithValue("@id_TiepNhan", idTiepNhan); // Corrected parameter name
+                SqlDataReader reader = cmd.ExecuteReader();
+                while(reader.Read())
+                {
+                    ngayTN = (DateTime)reader["NgayTN"];
+                }
+                reader.Close();
+                Thang = ngayTN.Month;
+                Nam = ngayTN.Year;
+            }
+            
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 con.Open();
@@ -68,6 +92,21 @@ namespace ClinicManagement.InSidebarItems
 
             LoadLoaiBenh();
             dgThuocDaChon.ItemsSource = danhSachThuoc;
+            LoadThuoc();
+        }
+
+        public ExaminationForm(string idBN, int idTN, int idPK)
+        {
+            InitializeComponent();
+            tblTitle.Text = "Sửa Phiếu Khám";
+            this.idBenhNhan = idBN;
+            this.idTiepNhan= idTN;
+            this.idPhieuKham = idPK;
+
+            LoadLoaiBenh();
+            
+            LoadPhieuKham(idPK);
+
             LoadThuoc();
         }
         private void LoadLoaiBenh()
@@ -104,6 +143,56 @@ namespace ClinicManagement.InSidebarItems
             }
         }
 
+        private void LoadPhieuKham(int idPhieuKham)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = @"SELECT TN.ID_BenhNhan, HoTenBN, TrieuChung, ID_LoaiBenh, CaKham, NgayTN 
+                                    FROM PHIEUKHAM PK JOIN DANHSACHTIEPNHAN TN ON PK.ID_TiepNhan = TN.ID_TiepNhan
+                                                      JOIN BENHNHAN BN ON BN.ID_BenhNhan = TN.ID_BenhNhan
+                                    WHERE ID_PhieuKham = @ID_PhieuKham AND PK.Is_Deleted = 0";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@ID_PhieuKham", idPhieuKham);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    txtTrieuChung.Text = reader["TrieuChung"].ToString();
+                    txtCaKham.Text = reader["CaKham"].ToString();
+                    txtMaBenhNhan.Text = idBenhNhan.ToString();
+                    txtTenBenhNhan.Text = reader["HoTenBN"].ToString();
+                    cboLoaiBenh.SelectedValue = reader["ID_LoaiBenh"];
+                }
+                reader.Close();
+
+                // Load danh sách thuốc trong toa thuốc và chuyển sang ObservableCollection
+                string querry2 = @"SELECT CT.ID_Thuoc, TenThuoc, TenDVT, SoLuong, MoTaCachDung, DonGiaBan_LucMua, TienThuoc
+                                       FROM PHIEUKHAM PK JOIN TOATHUOC CT ON PK.ID_PhieuKham = CT.ID_PhieuKham JOIN THUOC T ON CT.ID_Thuoc = T.ID_Thuoc
+                                                        JOIN DVT ON DVT.ID_DVT = T.ID_DVT JOIN CACHDUNG C ON C.ID_CachDung = T.ID_CachDUng
+                                       WHERE PK.ID_PhieuKham = @ID_PhieuKham";
+                SqlDataAdapter adapter = new SqlDataAdapter(querry2, conn);
+                adapter.SelectCommand.Parameters.AddWithValue("@ID_PhieuKham", idPhieuKham);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+
+                // ======= Sửa đoạn này để chuyển DataTable thành ObservableCollection =======
+                danhSachThuoc.Clear();
+                foreach (DataRow row in dt.Rows)
+                {
+                    danhSachThuoc.Add(new ThuocDaChon
+                    {
+                        ID_Thuoc = row["ID_Thuoc"].ToString(),
+                        TenThuoc = row["TenThuoc"].ToString(),
+                        DonViTinh = row["TenDVT"].ToString(),
+                        MoTa = row["MoTaCachDung"].ToString(),
+                        DonGiaBan = Convert.ToDecimal(row["DonGiaBan_LucMua"]),
+                        SoLuong = Convert.ToInt32(row["SoLuong"])
+                    });
+                }
+                dgThuocDaChon.ItemsSource = danhSachThuoc;
+            }
+        }
+
         private void btnThemThuoc_Click(object sender, RoutedEventArgs e)
         {
             if (cboThuoc.SelectedItem == null)
@@ -123,7 +212,13 @@ namespace ClinicManagement.InSidebarItems
             string ten = selectedThuoc["TenThuoc"].ToString();
             decimal donGiaBan = Convert.ToDecimal(selectedThuoc["DonGiaBan"]);
             int soLuongTon = Convert.ToInt32(selectedThuoc["SoLuongTon"]);
-
+            string querryAddThuoc = @"SELECT TenDVT, MoTaCachDung, TienThuoc FROM
+                                            DVT JOIN THUOC ON THUOC.ID_DVT = DVT.ID_DVT
+                                                JOIN TOATHUOC ON TOATHUOC.ID_Thuoc = THUOC.ID_Thuoc
+                                                JOIN CACHDUNG ON CACHDUNG.ID_CachDung = THUOC.ID_CachDung
+                                            WHERE TOATHUOC.ID_Thuoc = @ID";
+            string tenDVT = null;
+            string MoTa = null;
             if (soLuong > soLuongTon)
             {
                 MessageBox.Show($"Số lượng vượt quá tồn kho ({soLuongTon}).");
@@ -143,10 +238,27 @@ namespace ClinicManagement.InSidebarItems
             }
             else
             {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(querryAddThuoc, conn);
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        tenDVT = reader["TenDVT"].ToString();
+                        MoTa = reader["MoTaCachDung"].ToString();
+                    }
+                    reader.Close();
+
+                }
+
                 danhSachThuoc.Add(new ThuocDaChon
                 {
                     ID_Thuoc = id,
                     TenThuoc = ten,
+                    DonViTinh = tenDVT,
+                    MoTa = MoTa,
                     DonGiaBan = donGiaBan,
                     SoLuong = soLuong
                 });
@@ -158,64 +270,96 @@ namespace ClinicManagement.InSidebarItems
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            DateTime thoiGianKham = DateTime.Now;
-            string query = "INSERT INTO PHIEUKHAM (ID_BenhNhan, ThoiGianTiepNhan, TrieuChung, ID_LoaiBenh, NgayKham) VALUES (@ID_BenhNhan, @ThoiGianTiepNhan, @TrieuChung, @ID_LoaiBenh, @NgayKham); SELECT SCOPE_IDENTITY();";
-            int idPhieuKham;
-            using (SqlConnection con = new SqlConnection(connectionString))
+            if (string.IsNullOrWhiteSpace(txtCaKham.Text) || string.IsNullOrWhiteSpace(txtTrieuChung.Text) || cboLoaiBenh.SelectedValue == null)
             {
-                con.Open();
-                SqlCommand cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@ID_BenhNhan", idBenhNhan);
-                cmd.Parameters.AddWithValue("@NgayKham", thoiGianKham);
-                cmd.Parameters.Add("@ThoiGianTiepNhan", SqlDbType.DateTime).Value = thoiGianTiepNhan;
-                cmd.Parameters.AddWithValue("@TrieuChung", txtTrieuChung.Text.Trim());
-                cmd.Parameters.AddWithValue("@ID_LoaiBenh", cboLoaiBenh.SelectedValue);
-                // Thực thi lệnh và lấy ID vừa tạo
-                object result = cmd.ExecuteScalar();
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin.");
+                return;
             }
 
-
-
-            //Lấy ID_PhieuKham vừa tạo
-            string getIDquerry = "SELECT ID_PhieuKham FROM PHIEUKHAM WHERE ID_BenhNhan = @idBenhNhan AND NgayKham = @ngayKham";
-            using (SqlConnection con = new SqlConnection(connectionString))
+            if (idPhieuKham == null)
             {
-                con.Open();
-                SqlCommand cmd = new SqlCommand(getIDquerry, con);
-                cmd.Parameters.AddWithValue("@idBenhNhan", idBenhNhan);
-                cmd.Parameters.AddWithValue("@ngayKham", thoiGianKham);
-                idPhieuKham = (int)cmd.ExecuteScalar();
-            }    
+                // ======= CHẾ ĐỘ THÊM MỚI =======
+                string query = @"INSERT INTO PHIEUKHAM (ID_TiepNhan, CaKham, TrieuChung, ID_LoaiBenh) 
+                         VALUES (@ID_TiepNhan, @CaKham, @TrieuChung, @ID_LoaiBenh); 
+                         SELECT SCOPE_IDENTITY();";
 
-
-            // Lưu thông tin thuốc vào bảng TOATHUOC
-            foreach (var thuoc in danhSachThuoc)
-            {
-                string queryInsert = "INSERT INTO TOATHUOC (ID_PhieuKham, ID_Thuoc, DonGiaBan_LucMua, SoLuong) VALUES (@ID_PhieuKham, @ID_Thuoc, @donGiaBan, @SoLuong); ";
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
-                    SqlCommand cmd = new SqlCommand(queryInsert, con);
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@ID_TiepNhan", idTiepNhan);
+                    cmd.Parameters.AddWithValue("@CaKham", txtCaKham.Text.Trim());
+                    cmd.Parameters.AddWithValue("@TrieuChung", txtTrieuChung.Text.Trim());
+                    cmd.Parameters.AddWithValue("@ID_LoaiBenh", cboLoaiBenh.SelectedValue);
+
+                    object result = cmd.ExecuteScalar();
+                    idPhieuKham = Convert.ToInt32(result);
+                }
+            }
+            else
+            {
+                // ======= CHẾ ĐỘ CHỈNH SỬA =======
+                string updateQuery = @"UPDATE PHIEUKHAM 
+                               SET CaKham = @CaKham, TrieuChung = @TrieuChung, ID_LoaiBenh = @ID_LoaiBenh 
+                               WHERE ID_PhieuKham = @ID_PhieuKham";
+
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(updateQuery, con);
+                    cmd.Parameters.AddWithValue("@CaKham", txtCaKham.Text.Trim());
+                    cmd.Parameters.AddWithValue("@TrieuChung", txtTrieuChung.Text.Trim());
+                    cmd.Parameters.AddWithValue("@ID_LoaiBenh", cboLoaiBenh.SelectedValue);
+                    cmd.Parameters.AddWithValue("@ID_PhieuKham", idPhieuKham);
+                    cmd.ExecuteNonQuery();
+                }
+
+                // Xoá toa thuốc cũ trước khi thêm lại
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    string querryDelToaThuoc = @"DELETE FROM TOATHUOC WHERE ID_PhieuKham = @ID_PhieuKham";
+                    SqlCommand cmd = new SqlCommand(querryDelToaThuoc, con);
+                    cmd.Parameters.AddWithValue("@ID_PhieuKham", idPhieuKham);
+                    cmd.ExecuteNonQuery();
+                }
+
+                // Cập nhật báo cáo sử dụng thuốc sau khi xóa
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    SqlCommand cmdBaoCao = new SqlCommand("TaoBaoCaoSuDungThuoc", con);
+                    cmdBaoCao.CommandType = CommandType.StoredProcedure;
+
+                    cmdBaoCao.Parameters.AddWithValue("@Thang", Thang);
+                    cmdBaoCao.Parameters.AddWithValue("@Nam", Nam);
+                    cmdBaoCao.ExecuteNonQuery();
+                }
+            }
+
+            // ======= LƯU THÔNG TIN TOA THUỐC =======
+            foreach (var thuoc in danhSachThuoc)
+            {
+                string insertThuoc = @"INSERT INTO TOATHUOC (ID_PhieuKham, ID_Thuoc, DonGiaBan_LucMua, SoLuong) 
+                               VALUES (@ID_PhieuKham, @ID_Thuoc, @DonGiaBan, @SoLuong)";
+
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(insertThuoc, con);
                     cmd.Parameters.AddWithValue("@ID_PhieuKham", idPhieuKham);
                     cmd.Parameters.AddWithValue("@ID_Thuoc", thuoc.ID_Thuoc);
-                    cmd.Parameters.AddWithValue("@donGiaBan", thuoc.DonGiaBan); 
+                    cmd.Parameters.AddWithValue("@DonGiaBan", thuoc.DonGiaBan);
                     cmd.Parameters.AddWithValue("@SoLuong", thuoc.SoLuong);
                     cmd.ExecuteNonQuery();
                 }
             }
 
-            // Gọi stored procedure cập nhật báo cáo sử dụng thuốc (nếu muốn)
-            using (SqlConnection con = new SqlConnection(connectionString))
-            {
-                con.Open();
-                SqlCommand cmd = new SqlCommand("sp_CapNhatBaoCaoSuDungThuoc", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.ExecuteNonQuery();
-            }
+            // Tạo hiệu ứng slide-out sang phải cho form hiện tại
 
             MessageBox.Show("Lưu thành công thông tin khám bệnh và toa thuốc.");
 
-            // Tạo hiệu ứng slide-out sang phải cho form hiện tại
+            // ======= Animation Slide Out + Load ExaminationList =======
             var currentTransform = new TranslateTransform();
             this.RenderTransform = currentTransform;
 
@@ -227,14 +371,13 @@ namespace ClinicManagement.InSidebarItems
                 EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
             };
 
-            // Khi slideOut xong, thay thế bằng ExaminationList
             slideOut.Completed += (s, _) =>
             {
                 var parent = this.Parent as Border;
                 if (parent != null)
                 {
                     var list = new SidebarItems.ExaminationList();
-                    list.RenderTransform = new TranslateTransform { X = -this.ActualWidth }; // Bắt đầu từ bên trái
+                    list.RenderTransform = new TranslateTransform { X = -this.ActualWidth };
 
                     parent.Child = list;
 
@@ -250,9 +393,7 @@ namespace ClinicManagement.InSidebarItems
                 }
             };
 
-            // Bắt đầu animation ra ngoài
             currentTransform.BeginAnimation(TranslateTransform.XProperty, slideOut);
-
         }
 
         private void cboThuoc_SelectionChanged(object sender, SelectionChangedEventArgs e)

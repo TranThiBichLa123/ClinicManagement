@@ -61,7 +61,7 @@ HorizontalAlignment="Center"/>
 
                         </Button>
                         <Button x:Name="btnDashboard" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnDashboard_MouseEnter" MouseLeave="btnDashboard_MouseLeave" Click="btnDashboard_Click">
-                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource dashboard}" IconWidth="16" Text="Dashboard" VerticalAlignment="Center"/>
+                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource dashboard}" IconWidth="16" Text="Patient" VerticalAlignment="Center"/>
                         </Button>
                         <!--Tiếp nhận bệnh nhân -->
                         <Button x:Name="btnExamination" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnExamination_MouseEnter" MouseLeave="btnExamination_MouseLeave" Click="btnExamination_Click" >

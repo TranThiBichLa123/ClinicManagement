@@ -1,5 +1,6 @@
 ﻿using ClinicManagement.SidebarItems;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Controls;
 
@@ -17,6 +18,7 @@ namespace ClinicManagement
             Account = userEmail;
 
         }
+
         private void LoadUserControl(UserControl userControl)
         {
             // Kiểm tra Border có chứa phần tử con hay không
@@ -24,6 +26,7 @@ namespace ClinicManagement
             {
                 fContainer.Child = null; // Xóa nội dung cũ
             }
+
             fContainer.Child = userControl; // Gán UserControl vào Border
         }
 
@@ -145,12 +148,7 @@ namespace ClinicManagement
 
         private void btnDashboard_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void btnExamination_Click(object sender, RoutedEventArgs e)
-        {
-           
+            LoadUserControl(new SidebarItems.PatientList());
         }
     }
 }
