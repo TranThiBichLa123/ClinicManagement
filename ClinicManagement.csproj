@@ -127,6 +127,9 @@
     <Compile Include="SidebarItems\ResetPassword.xaml.cs">
       <DependentUpon>ResetPassword.xaml</DependentUpon>
     </Compile>
+   <Compile Include="InSidebarItems\ExaminationForm.xaml">
+      <DependentUpon>ExaminationForm.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\MenuItem.xaml.cs">
