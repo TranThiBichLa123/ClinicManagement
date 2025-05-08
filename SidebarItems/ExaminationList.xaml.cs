@@ -71,7 +71,9 @@ namespace ClinicManagement.SidebarItems
 
                     foreach (DataRow row in dt.Rows)
                     {
+
                         int idTiepNhan = (int) row["ID_TiepNhan"];
+
 
                         string checkQuery = "SELECT COUNT(*) FROM PHIEUKHAM WHERE ID_TiepNhan = @ID_TiepNhan AND Is_Deleted = 0";
 
@@ -357,7 +359,9 @@ namespace ClinicManagement.SidebarItems
             var btn = sender as Button;
             if (btn?.DataContext is DataRowView row)
             {
+
                 int idTN = (int) row["ID_TiepNhan"];
+
                 string idBN = row["ID_BenhNhan"].ToString();
                 // → Ở đây bạn có thể truyền ID vào ExaminationForm
                 ExaminationForm form = new ExaminationForm(idBN, idTN);

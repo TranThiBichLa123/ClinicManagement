@@ -1,6 +1,5 @@
 ﻿using ClinicManagement.SidebarItems;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Controls;
 
@@ -149,6 +148,16 @@ namespace ClinicManagement
         private void btnDashboard_Click(object sender, RoutedEventArgs e)
         {
             LoadUserControl(new SidebarItems.PatientList());
+        }
+
+        private void btnExamination_Click(object sender, RoutedEventArgs e)
+        {
+            // Correcting the issue by clearing the child of the Border control  
+            fContainer.Child = null;
+
+            // Tạo và gán UserControl mới
+            var examList = new ExaminationList();
+            fContainer.Child = examList;
         }
     }
 }

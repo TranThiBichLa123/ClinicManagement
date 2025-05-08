@@ -21,10 +21,7 @@ using System.Windows.Media.Animation;
 
 namespace ClinicManagement.InSidebarItems
 {
-    /// <summary>
-    /// Interaction logic for ExaminationForm.xaml
-    /// </summary>
-    
+  
 
 
     public partial class ExaminationForm : UserControl
@@ -55,7 +52,7 @@ namespace ClinicManagement.InSidebarItems
             this.idTiepNhan = idTiepNhan;
             txtMaBenhNhan.Text = idBenhNhan;
 
-            
+
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 DateTime ngayTN = DateTime.MinValue;
@@ -64,7 +61,9 @@ namespace ClinicManagement.InSidebarItems
                 SqlCommand cmd = new SqlCommand(querry, con);
                 cmd.Parameters.AddWithValue("@id_TiepNhan", idTiepNhan); // Corrected parameter name
                 SqlDataReader reader = cmd.ExecuteReader();
-                while(reader.Read())
+
+                while (reader.Read())
+
                 {
                     ngayTN = (DateTime)reader["NgayTN"];
                 }
@@ -72,7 +71,7 @@ namespace ClinicManagement.InSidebarItems
                 Thang = ngayTN.Month;
                 Nam = ngayTN.Year;
             }
-            
+
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 con.Open();
@@ -100,6 +99,7 @@ namespace ClinicManagement.InSidebarItems
             InitializeComponent();
             tblTitle.Text = "Sửa Phiếu Khám";
             this.idBenhNhan = idBN;
+
             this.idTiepNhan= idTN;
             this.idPhieuKham = idPK;
 
@@ -398,7 +398,7 @@ namespace ClinicManagement.InSidebarItems
 
         private void cboThuoc_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+
             if (cboThuoc.SelectedItem is DataRowView selectedThuoc)
             {
                 string duongDanAnh = "";
@@ -421,7 +421,7 @@ namespace ClinicManagement.InSidebarItems
                 txtSoLuong.Focus();
                 txtSoLuong.SelectAll();
             }
-            
+
         }
 
         private void btnXoaThuoc_Click(object sender, RoutedEventArgs e)
@@ -552,4 +552,6 @@ namespace ClinicManagement.InSidebarItems
             }
         }
     }
+
 }
+

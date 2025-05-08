@@ -193,7 +193,7 @@ namespace ClinicManagement.InSidebarItems
 
                     SqlCommand cmd = new SqlCommand(querry, conn);
                     cmd.Parameters.AddWithValue("@ID_PhieuKham", this.idPK);
-                    
+
                     int rowsAffected = cmd.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
@@ -247,8 +247,10 @@ namespace ClinicManagement.InSidebarItems
                 {
                     MessageBox.Show("Lỗi:\n" + ex.Message, "Lỗi khi xóa", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                
-            }    
+
+
+            }
+
         }
 
         private void btnSuaPK_Click(object sender, RoutedEventArgs e)
@@ -298,8 +300,10 @@ namespace ClinicManagement.InSidebarItems
 
             // Animate current control ra trái
             currentTransform.BeginAnimation(TranslateTransform.XProperty, slideOut);
-           
+
+
         }
     }
-    
+
 }
+
