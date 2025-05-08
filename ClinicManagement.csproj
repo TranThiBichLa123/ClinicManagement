@@ -77,11 +77,23 @@
     <Compile Include="Cashier.xaml.cs">
       <DependentUpon>Cashier.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InSidebarItems\ExaminationForm.xaml.cs">
+      <DependentUpon>ExaminationForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InSidebarItems\ExaminationFormView.xaml.cs">
+      <DependentUpon>ExaminationFormView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InSidebarItems\PatientExaminationList.xaml.cs">
+      <DependentUpon>PatientExaminationList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Receptionist.xaml.cs">
       <DependentUpon>Receptionist.xaml</DependentUpon>
     </Compile>
     <Compile Include="SidebarItems\DashBoard.xaml.cs">
       <DependentUpon>DashBoard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SidebarItems\ExaminationList.xaml.cs">
+      <DependentUpon>ExaminationList.xaml</DependentUpon>
     </Compile>
     <Compile Include="SidebarItems\ForgotPassword.xaml.cs">
       <DependentUpon>ForgotPassword.xaml</DependentUpon>
@@ -94,6 +106,9 @@
     </Compile>
     <Compile Include="SidebarItems\Patient.xaml.cs">
       <DependentUpon>Patient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SidebarItems\PatientList.xaml.cs">
+      <DependentUpon>PatientList.xaml</DependentUpon>
     </Compile>
     <Compile Include="SidebarItems\popUpDoctor.xaml.cs">
       <DependentUpon>popUpDoctor.xaml</DependentUpon>
@@ -168,6 +183,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="InSidebarItems\ExaminationForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="InSidebarItems\ExaminationFormView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="InSidebarItems\PatientExaminationList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Receptionist.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -175,6 +202,10 @@
     <Page Include="SidebarItems\DashBoard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SidebarItems\ExaminationList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="SidebarItems\ForgotPassword.xaml">
       <SubType>Designer</SubType>
@@ -191,6 +222,10 @@
     <Page Include="SidebarItems\Patient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SidebarItems\PatientList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="SidebarItems\popUpDoctor.xaml">
       <SubType>Designer</SubType>
