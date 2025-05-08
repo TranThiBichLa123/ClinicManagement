@@ -1,0 +1,4 @@
+# Bỏ folder tạm
+bin/
+obj/
+.vs/
