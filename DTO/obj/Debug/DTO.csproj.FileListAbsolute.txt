@@ -4,3 +4,9 @@ D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\DTO\ob
 D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
 D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\DTO\obj\Debug\DTO.dll
 D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\DTO\obj\Debug\DTO.pdb
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\DTO\bin\Debug\DTO.dll
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\DTO\bin\Debug\DTO.pdb
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\DTO\obj\Debug\DTO.csproj.AssemblyReference.cache
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\DTO\obj\Debug\DTO.dll
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\DTO\obj\Debug\DTO.pdb
