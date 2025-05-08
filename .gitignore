@@ -1,4 +1,15 @@
-# Bỏ folder tạm
+# Ignore folders
 bin/
 obj/
 .vs/
+
+# Ignore files
+*.dll
+*.exe
+*.pdb
+*.suo
+*.user
+*.cache
+*.g.cs
+*.g.i.cs
+*.baml
