@@ -40,8 +40,6 @@ namespace ClinicManagement.InSidebarItems
         }
 
         private int idTiepNhan;
-        private int Thang;
-        private int Nam;
         private string idBenhNhan;
         private int? idPhieuKham = null;
         private string connectionString = "Data Source=LAPTOP-2FUIJHRN;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
@@ -69,8 +67,6 @@ namespace ClinicManagement.InSidebarItems
                     ngayTN = (DateTime)reader["NgayTN"];
                 }
                 reader.Close();
-                Thang = ngayTN.Month;
-                Nam = ngayTN.Year;
             }
 
             using (SqlConnection con = new SqlConnection(connectionString))
@@ -322,18 +318,6 @@ namespace ClinicManagement.InSidebarItems
                     SqlCommand cmd = new SqlCommand(querryDelToaThuoc, con);
                     cmd.Parameters.AddWithValue("@ID_PhieuKham", idPhieuKham);
                     cmd.ExecuteNonQuery();
-                }
-
-                // Cập nhật báo cáo sử dụng thuốc sau khi xóa
-                using (SqlConnection con = new SqlConnection(connectionString))
-                {
-                    con.Open();
-                    SqlCommand cmdBaoCao = new SqlCommand("TaoBaoCaoSuDungThuoc", con);
-                    cmdBaoCao.CommandType = CommandType.StoredProcedure;
-
-                    cmdBaoCao.Parameters.AddWithValue("@Thang", Thang);
-                    cmdBaoCao.Parameters.AddWithValue("@Nam", Nam);
-                    cmdBaoCao.ExecuteNonQuery();
                 }
             }
 

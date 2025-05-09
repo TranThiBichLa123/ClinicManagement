@@ -25,8 +25,6 @@ namespace ClinicManagement.InSidebarItems
     public partial class ExaminationFormView : UserControl
     {
         private string idBenhNhan;
-        private int Thang;
-        private int Nam;
         private int idTiepNhan;
         private int idPK;
         private string connectionString = "Data Source=LAPTOP-2FUIJHRN;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
@@ -51,8 +49,6 @@ namespace ClinicManagement.InSidebarItems
                     ngayTN = (DateTime)reader["NgayTN"];
                 }
                 reader.Close();
-                Thang = ngayTN.Month;
-                Nam = ngayTN.Year;
             }
 
             using (SqlConnection con = new SqlConnection(connectionString))
@@ -182,66 +178,77 @@ namespace ClinicManagement.InSidebarItems
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string querry = @"UPDATE PHIEUKHAM SET Is_Deleted = 1 WHERE ID_PhieuKham = @ID_PhieuKham";
-                string querry2 = @"DELETE FROM TOATHUOC WHERE ID_PhieuKham = @ID_PhieuKham";
+                string check = @"SELECT * FROM HOADON WHERE ID_PhieuKham = @ID_PhieuKham";
                 try
                 {
                     conn.Open();
-                    SqlCommand cmd2 = new SqlCommand(querry2, conn);
-                    cmd2.Parameters.AddWithValue("@ID_PhieuKham", this.idPK);
-                    cmd2.ExecuteNonQuery();
-
-                    SqlCommand cmd = new SqlCommand(querry, conn);
-                    cmd.Parameters.AddWithValue("@ID_PhieuKham", this.idPK);
-
-                    int rowsAffected = cmd.ExecuteNonQuery();
-                    if (rowsAffected > 0)
+                    SqlCommand checkcmd = new SqlCommand(check, conn);
+                    checkcmd.Parameters.AddWithValue("@ID_PhieuKham", this.idPK);
+                    object rowAffected = checkcmd.ExecuteScalar();
+                    if (rowAffected != null)
                     {
-                        MessageBox.Show("Đã xóa phiếu khám và các toa thuốc tương ứng.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                        //Tạo hiệu ứng slide-out sang phải cho form hiện tại
-
-                        var currentTransform = new TranslateTransform();
-                        this.RenderTransform = currentTransform;
-
-                        var slideOut = new DoubleAnimation
-                        {
-                            From = 0,
-                            To = this.ActualWidth,
-                            Duration = TimeSpan.FromMilliseconds(300),
-                            EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
-                        };
-
-                        // Khi slideOut xong, thay thế bằng ExaminationList
-                        slideOut.Completed += (s, _) =>
-                        {
-                            var parent = this.Parent as Border;
-                            if (parent != null)
-                            {
-                                var list = new SidebarItems.ExaminationList();
-                                list.RenderTransform = new TranslateTransform { X = -this.ActualWidth }; // Bắt đầu từ bên trái
-
-                                parent.Child = list;
-
-                                var slideIn = new DoubleAnimation
-                                {
-                                    From = -this.ActualWidth,
-                                    To = 0,
-                                    Duration = TimeSpan.FromMilliseconds(300),
-                                    EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
-                                };
-
-                                (list.RenderTransform as TranslateTransform).BeginAnimation(TranslateTransform.XProperty, slideIn);
-                            }
-                        };
-
-                        // Bắt đầu animation ra ngoài
-                        currentTransform.BeginAnimation(TranslateTransform.XProperty, slideOut);
+                        MessageBox.Show("Phiếu khám đã được xuất hóa đơn, không thể xóa!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     else
                     {
-                        MessageBox.Show("Không tìm thấy bệnh nhân cần xóa.", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
+                        string querry = @"UPDATE PHIEUKHAM SET Is_Deleted = 1 WHERE ID_PhieuKham = @ID_PhieuKham";
+                        string querry2 = @"DELETE FROM TOATHUOC WHERE ID_PhieuKham = @ID_PhieuKham";
+                        SqlCommand cmd2 = new SqlCommand(querry2, conn);
+                        cmd2.Parameters.AddWithValue("@ID_PhieuKham", this.idPK);
+                        cmd2.ExecuteNonQuery();
+
+                        SqlCommand cmd = new SqlCommand(querry, conn);
+                        cmd.Parameters.AddWithValue("@ID_PhieuKham", this.idPK);
+
+                        int Affected = cmd.ExecuteNonQuery();
+                        if (Affected > 0)
+                        {
+                            MessageBox.Show("Đã xóa phiếu khám và các toa thuốc tương ứng.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                            //Tạo hiệu ứng slide-out sang phải cho form hiện tại
+
+                            var currentTransform = new TranslateTransform();
+                            this.RenderTransform = currentTransform;
+
+                            var slideOut = new DoubleAnimation
+                            {
+                                From = 0,
+                                To = this.ActualWidth,
+                                Duration = TimeSpan.FromMilliseconds(300),
+                                EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
+                            };
+
+                            // Khi slideOut xong, thay thế bằng ExaminationList
+                            slideOut.Completed += (s, _) =>
+                            {
+                                var parent = this.Parent as Border;
+                                if (parent != null)
+                                {
+                                    var list = new SidebarItems.ExaminationList();
+                                    list.RenderTransform = new TranslateTransform { X = -this.ActualWidth }; // Bắt đầu từ bên trái
+
+                                    parent.Child = list;
+
+                                    var slideIn = new DoubleAnimation
+                                    {
+                                        From = -this.ActualWidth,
+                                        To = 0,
+                                        Duration = TimeSpan.FromMilliseconds(300),
+                                        EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
+                                    };
+
+                                    (list.RenderTransform as TranslateTransform).BeginAnimation(TranslateTransform.XProperty, slideIn);
+                                }
+                            };
+
+                            // Bắt đầu animation ra ngoài
+                            currentTransform.BeginAnimation(TranslateTransform.XProperty, slideOut);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Không tìm thấy bệnh nhân cần xóa.", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
+                    }    
                 }
                 catch (Exception ex)
                 {
@@ -257,48 +264,75 @@ namespace ClinicManagement.InSidebarItems
             string idBN = this.idBenhNhan;
             int idTN = this.idTiepNhan;
             // → Ở đây bạn có thể truyền ID vào ExaminationForm
-            ExaminationForm form = new ExaminationForm(idBN, idTN, idPK);
-            form.RenderTransform = new TranslateTransform();
+            var result = MessageBox.Show("Bạn có chắc chắn muốn sửa phiếu khám này?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result != MessageBoxResult.Yes)
+                return;
 
-            // Gán vào container
-            var parent = this.Parent as Border;
-            if (parent == null) return;
-
-            // Tạo Storyboard để animate "this" ra trái
-            var slideOut = new DoubleAnimation
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                From = 0,
-                To = -this.ActualWidth,
-                Duration = TimeSpan.FromMilliseconds(300),
-                EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
-            };
+                string check = @"SELECT * FROM HOADON WHERE ID_PhieuKham = @ID_PhieuKham";
+                try
+                {
+                    conn.Open();
+                    SqlCommand checkcmd = new SqlCommand(check, conn);
+                    checkcmd.Parameters.AddWithValue("@ID_PhieuKham", this.idPK);
+                    object rowAffected = checkcmd.ExecuteScalar();
+                    if (rowAffected != null)
+                    {
+                        MessageBox.Show("Phiếu khám đã được xuất hóa đơn, không thể sửa!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else
+                    {
+                        ExaminationForm form = new ExaminationForm(idBN, idTN, idPK);
+                        form.RenderTransform = new TranslateTransform();
 
-            // Tạo animation cho UserControl mới đi vào từ bên phải
-            var slideIn = new DoubleAnimation
-            {
-                From = this.ActualWidth,
-                To = 0,
-                Duration = TimeSpan.FromMilliseconds(300),
-                EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
-            };
+                        // Gán vào container
+                        var parent = this.Parent as Border;
+                        if (parent == null) return;
 
-            // Bắt đầu animation
-            var currentTransform = new TranslateTransform();
-            this.RenderTransform = currentTransform;
+                        // Tạo Storyboard để animate "this" ra trái
+                        var slideOut = new DoubleAnimation
+                        {
+                            From = 0,
+                            To = -this.ActualWidth,
+                            Duration = TimeSpan.FromMilliseconds(300),
+                            EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
+                        };
 
-            slideOut.Completed += (s, _) =>
-            {
-                // Khi slideOut xong thì thay content
-                parent.Child = form;
+                        // Tạo animation cho UserControl mới đi vào từ bên phải
+                        var slideIn = new DoubleAnimation
+                        {
+                            From = this.ActualWidth,
+                            To = 0,
+                            Duration = TimeSpan.FromMilliseconds(300),
+                            EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
+                        };
 
-                // Animate slide-in
-                var newTransform = form.RenderTransform as TranslateTransform;
-                newTransform.BeginAnimation(TranslateTransform.XProperty, slideIn);
-            };
+                        // Bắt đầu animation
+                        var currentTransform = new TranslateTransform();
+                        this.RenderTransform = currentTransform;
 
-            // Animate current control ra trái
-            currentTransform.BeginAnimation(TranslateTransform.XProperty, slideOut);
+                        slideOut.Completed += (s, _) =>
+                        {
+                            // Khi slideOut xong thì thay content
+                            parent.Child = form;
 
+                            // Animate slide-in
+                            var newTransform = form.RenderTransform as TranslateTransform;
+                            newTransform.BeginAnimation(TranslateTransform.XProperty, slideIn);
+                        };
+
+                        // Animate current control ra trái
+                        currentTransform.BeginAnimation(TranslateTransform.XProperty, slideOut);
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi:\n" + ex.Message, "Lỗi khi sửa", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+            }
         }
     }
 

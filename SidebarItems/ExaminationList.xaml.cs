@@ -139,15 +139,61 @@ namespace ClinicManagement.SidebarItems
 
         private void btn_addPatientToExam_Click(object sender, RoutedEventArgs e)
         {
-            thoiDiemTiepNhan = DateTime.Now;
-            lblNgayHienTai.Content = thoiDiemTiepNhan.ToString("dd/MM/yyyy");
-            AddPatientPopup.IsOpen = true;
+            DateTime selectedDate = (DateTime)dpNgayKham.SelectedDate;
+            DateTime now = DateTime.Now;
+            if(selectedDate.Date < now.Date)
+            {
+                MessageBox.Show("Không thể tiếp nhận từ quá khứ!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (selectedDate.Date > now.Date)
+            {
+                MessageBox.Show("Không thể tiếp nhận tới tương lai!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            string querry = @"
+                                SELECT COUNT(*)
+                                FROM DANHSACHTIEPNHAN TN JOIN BENHNHAN BN ON TN.ID_BenhNhan = BN.ID_BenhNhan
+                                WHERE TN.Is_Deleted = 0 AND TN.NgayTN = @NgayKham
+                            ";
+            string QDquerry = "SELECT GiaTri FROM QUI_DINH WHERE TenQuiDinh = 'SoLuongTiepNhanToiDa'";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    SqlCommand checkcmd = new SqlCommand(querry, conn);
+                    checkcmd.Parameters.AddWithValue("@NgayKham", selectedDate.Date);
+                    object result = checkcmd.ExecuteScalar();
+                    int rowCount = Convert.ToInt32(result);
 
-            tbMaBN.Text = "";
-            tbMaNV.Text = "";
-            tbCaTN.Text = "";
-            AddPatientPopup.HorizontalOffset = 500;
-            AddPatientPopup.VerticalOffset = 300;
+                    SqlCommand cmd = new SqlCommand(QDquerry, conn);
+                    var _result = cmd.ExecuteScalar();
+                    var SLBNMax = Convert.ToInt32(_result);
+
+                    if (rowCount == SLBNMax)
+                    {
+                        MessageBox.Show("Đã đủ số lượng bệnh nhân tiếp nhận tối đa trong ngày, không thể tiếp nhận thêm!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else
+                    {
+                        thoiDiemTiepNhan = selectedDate;
+                        lblNgayHienTai.Content = thoiDiemTiepNhan.ToString("dd/MM/yyyy");
+                        AddPatientPopup.IsOpen = true;
+
+                        tbMaBN.Text = "";
+                        tbMaNV.Text = "";
+                        tbCaTN.Text = "";
+                        AddPatientPopup.HorizontalOffset = 500;
+                        AddPatientPopup.VerticalOffset = 300;
+                    }    
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi:\n" + ex.Message, "Lỗi khi sửa", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+  
         }
         private void btnHuy_Click(object sender, RoutedEventArgs e)
         {
@@ -215,20 +261,42 @@ namespace ClinicManagement.SidebarItems
             var result = MessageBox.Show("Bạn có chắc chắn muốn sửa hồ sơ này?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result != MessageBoxResult.Yes)
                 return;
+            using(SqlConnection conn = new SqlConnection(connectionString))
+            {
+                int idTN = (int)selectedRow["ID_TiepNhan"];
+                string check = @"SELECT * FROM PHIEUKHAM WHERE ID_TiepNhan = @ID_TiepNhan";
+                try
+                {
+                    conn.Open();
+                    SqlCommand checkcmd = new SqlCommand(check, conn);
+                    checkcmd.Parameters.AddWithValue("@ID_TiepNhan", idTN);
+                    object rowAffected = checkcmd.ExecuteScalar();
+                    if (rowAffected != null)
+                    {
+                        MessageBox.Show("Bệnh nhân này đã được khám, không thể chỉnh sửa!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else
+                    {
+                        EditPatientPopup.IsOpen = true;
 
-            EditPatientPopup.IsOpen = true;
+                        string editIdBenhNhan = selectedRow["ID_BenhNhan"].ToString();
+                        string editIdNhanVien = selectedRow["ID_NhanVien"].ToString();
+                        string editCaTN = selectedRow["CaTN"].ToString();
+                        string editNgayTN = selectedRow["NgayTN"].ToString();
 
-            string editIdBenhNhan = selectedRow["ID_BenhNhan"].ToString();
-            string editIdNhanVien = selectedRow["ID_NhanVien"].ToString();
-            string editCaTN = selectedRow["CaTN"].ToString();
-            string editNgayTN = selectedRow["NgayTN"].ToString();
+                        tbEditMaBN.Text = editIdBenhNhan;
+                        tbEditMaNV.Text = editIdNhanVien;
+                        tbEditCaTN.Text = editCaTN;
 
-            tbEditMaBN.Text = editIdBenhNhan;
-            tbEditMaNV.Text = editIdNhanVien;
-            tbEditCaTN.Text = editCaTN;
-
-            EditPatientPopup.HorizontalOffset = 500;
-            EditPatientPopup.VerticalOffset = 300;
+                        EditPatientPopup.HorizontalOffset = 500;
+                        EditPatientPopup.VerticalOffset = 300;
+                    }    
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi:\n" + ex.Message, "Lỗi khi xóa", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
 
         private void btnEditXacNhan_Click(object sender, RoutedEventArgs e)
@@ -319,30 +387,42 @@ namespace ClinicManagement.SidebarItems
             // Kết nối database
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string querry = @"UPDATE DANHSACHTIEPNHAN SET Is_Deleted = 1 WHERE ID_BenhNhan = @ID_BenhNhan AND NgayTN = @NgayTN
-                                    AND CaTN = @CaTN AND ID_NhanVien = @IDNhanVien";
+                int idTN = (int)selectedRow["ID_TiepNhan"];
+                string check = @"SELECT * FROM PHIEUKHAM WHERE ID_TiepNhan = @ID_TiepNhan AND Is_Deleted = 0";
 
-                SqlCommand cmd = new SqlCommand(querry, conn);
-                cmd.Parameters.AddWithValue("@ID_BenhNhan", delIdBenhNhan);
-                cmd.Parameters.AddWithValue("@NgayTN", delNgayTiepNhan);
-                cmd.Parameters.AddWithValue("@CaTN", delCaTN);
-                cmd.Parameters.AddWithValue("@IDNhanVien", delIDNhanVien);
                 try
                 {
                     conn.Open();
-                    int rowsAffected = cmd.ExecuteNonQuery();
-                    if (rowsAffected > 0)
+                    SqlCommand checkcmd = new SqlCommand(check, conn);
+                    checkcmd.Parameters.AddWithValue("@ID_TiepNhan", idTN);
+                    object rowAffected = checkcmd.ExecuteScalar();
+                    if (rowAffected != null)
                     {
-                        MessageBox.Show("Đã xóa bệnh nhân khỏi danh sách tiếp nhận.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                        if (dpNgayKham.SelectedDate.HasValue)
-                            LoadDSTiepNhan(dpNgayKham.SelectedDate.Value);
-                        //LoadDSTiepNhan(thoiDiem); // Gọi lại để refresh danh sách
+                        MessageBox.Show("Bệnh nhân này đã được khám, không thể xóa!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     else
                     {
-                        MessageBox.Show("Không tìm thấy bệnh nhân cần xóa.", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
+                        string querry = @"UPDATE DANHSACHTIEPNHAN SET Is_Deleted = 1 WHERE ID_BenhNhan = @ID_BenhNhan AND NgayTN = @NgayTN
+                                    AND CaTN = @CaTN AND ID_NhanVien = @IDNhanVien";
+                        SqlCommand cmd = new SqlCommand(querry, conn);
+                        cmd.Parameters.AddWithValue("@ID_BenhNhan", delIdBenhNhan);
+                        cmd.Parameters.AddWithValue("@NgayTN", delNgayTiepNhan);
+                        cmd.Parameters.AddWithValue("@CaTN", delCaTN);
+                        cmd.Parameters.AddWithValue("@IDNhanVien", delIDNhanVien);
+                        int Affected = cmd.ExecuteNonQuery();
+                        if (Affected > 0)
+                        {
+                            MessageBox.Show("Đã xóa bệnh nhân khỏi danh sách tiếp nhận.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                            if (dpNgayKham.SelectedDate.HasValue)
+                                LoadDSTiepNhan(dpNgayKham.SelectedDate.Value);
+                            //LoadDSTiepNhan(thoiDiem); // Gọi lại để refresh danh sách
+                        }
+                        else
+                        {
+                            MessageBox.Show("Không tìm thấy bệnh nhân cần xóa.", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
+                    }    
                 }
                 catch (Exception ex)
                 {
