@@ -64,16 +64,16 @@ HorizontalAlignment="Center"/>
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource dashboard}" IconWidth="16" Text="Dashboard" VerticalAlignment="Center"/>
                         </Button>
                         <Button x:Name="btnProducts" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnProducts_MouseEnter" MouseLeave="btnProducts_MouseLeave">
-                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource products}" IconWidth="16" Text="Products" VerticalAlignment="Center"/>
+                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource pillIcon}" IconWidth="16" Text="Products" VerticalAlignment="Center"/>
                         </Button>
-                        <Button x:Name="btnProductStock" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnProductStock_MouseEnter" MouseLeave="btnProductStock_MouseLeave">
-                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource products}" IconWidth="16" Text="Product Stock" VerticalAlignment="Center"/>
+                        <Button x:Name="btnDrug" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="Drug_MouseEnter" MouseLeave="Drug_MouseLeave" Click="btnDrug_Click">
+                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource pillIcon}" IconWidth="16" Text="Drug" VerticalAlignment="Center" />
                         </Button>
                         <Button x:Name="btnOrderList" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnOrderList_MouseEnter" MouseLeave="btnOrderList_MouseLeave">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource email}" IconWidth="16" Text="Order List" VerticalAlignment="Center"/>
                         </Button>
-                        <Button x:Name="btnBilling" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnBilling_MouseEnter" MouseLeave="btnBilling_MouseLeave">
-                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource billing}" IconWidth="16" Text="Billing" VerticalAlignment="Center"/>
+                        <Button x:Name="btnBilling" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnBilling_MouseEnter" MouseLeave="btnBilling_MouseLeave" Click="btnSetting_Click">
+                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource settings}" IconWidth="16" Text="Billing" VerticalAlignment="Center" />
                         </Button>
                         
                        

@@ -23,7 +23,7 @@ namespace BLL
             DataTable result = accAccess.GetUserWithRole(acc);
             if (result.Rows.Count > 0)
             {
-                userRole = result.Rows[0]["ID_VaiTro"].ToString();
+                userRole = result.Rows[0]["ID_NHOM"].ToString();
                 return "success";  // Đăng nhập thành công
             }
             return "invalid_login";  // Nếu không tìm thấy người dùng
@@ -34,7 +34,7 @@ namespace BLL
 
         public DataTable GetTaiKhoan()
         {
-            string query = "SELECT * FROM TAIKHOAN"; // Ví dụ
+            string query = "SELECT * FROM NHANVIEN"; // Ví dụ
             return dbAccess.GetData(query);
         }
     }

@@ -7,12 +7,12 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using DTO;
 namespace DAL
 {
     public class DatabaseAccess
     {
-        protected readonly string connectionString = @"Data Source=LAPTOP-MSDUJDE8\MSSQLMYSERVER;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
+        protected readonly string connectionString = @"Data Source=LAPTOP-MSDUJDE8\MSSQLSERVER01;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;TrustServerCertificate=True";
 
         protected IDbConnection CreateConnection()
         {

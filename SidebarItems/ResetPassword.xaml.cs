@@ -53,32 +53,37 @@ namespace ClinicManagement.SidebarItems
 //-----------------------------------------------------------------------------------------------------------------------------
         private void passwordBox2_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (passwordBox2.Password.Length > 0)
-                textBlockHint2.Visibility = Visibility.Collapsed; // Ẩn gợi ý khi có mật khẩu
-            else
-                textBlockHint2.Visibility = Visibility.Visible; // Hiện gợi ý khi ô trống
+            if (textBoxPassword2.Visibility == Visibility.Visible)
+            {
+                textBoxPassword2.Text = passwordBox2.Password;
+            }
 
+            textBlockHint2.Visibility = string.IsNullOrEmpty(passwordBox2.Password) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private void textBox2_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (textBoxPassword2.Text.Length > 0)
-                textBlockHint2.Visibility = Visibility.Collapsed; // Ẩn gợi ý khi có mật khẩu
-            else
-                textBlockHint2.Visibility = Visibility.Visible; // Hiện gợi ý khi ô trống
 
+            if (passwordBox2.Visibility == Visibility.Visible)
+            {
+                passwordBox2.Password = textBoxPassword2.Text;
+            }
+
+            textBlockHint2.Visibility = string.IsNullOrEmpty(textBoxPassword2.Text) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private void TogglePasswordVisibility2_Click(object sender, RoutedEventArgs e)
         {
             if (passwordBox2.Visibility == Visibility.Visible)
             {
+                // Hiện password (bằng TextBox)
                 textBoxPassword2.Text = passwordBox2.Password;
                 passwordBox2.Visibility = Visibility.Collapsed;
                 textBoxPassword2.Visibility = Visibility.Visible;
             }
             else
             {
+                // Ẩn password (bằng PasswordBox)
                 passwordBox2.Password = textBoxPassword2.Text;
                 passwordBox2.Visibility = Visibility.Visible;
                 textBoxPassword2.Visibility = Visibility.Collapsed;
@@ -91,7 +96,7 @@ namespace ClinicManagement.SidebarItems
         {
             if (textBoxPassword1.Text == textBoxPassword2.Text)
             {
-                SqlConnection con = new SqlConnection("Data Source=LAPTOP-MSDUJDE8\\MSSQLMYSERVER;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;Encrypt=True;TrustServerCertificate=True");
+                SqlConnection con = new SqlConnection("Data Source=LAPTOP-MSDUJDE8\\MSSQLSERVER01;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;TrustServerCertificate=True");
                 /*SqlCommand cmd = new SqlCommand(@"UPDATE TAIKHOAN 
 SET 
     Email = @Email, 
@@ -105,7 +110,7 @@ cmd.Parameters.AddWithValue("@Password", textBoxPassword1.Text);
 cmd.Parameters.AddWithValue("@RoleId", 2); // hoặc bạn lấy từ combobox/dropdown
 cmd.Parameters.AddWithValue("@Status", true); // hoặc false tùy trạng thái
 */
-                SqlCommand cmd = new SqlCommand(@"UPDATE TAIKHOAN 
+                SqlCommand cmd = new SqlCommand(@"UPDATE NHANVIEN 
 SET 
     Email = @Email, 
     MatKhau = @Password  

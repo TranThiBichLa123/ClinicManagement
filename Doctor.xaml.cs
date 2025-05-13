@@ -19,7 +19,7 @@ namespace ClinicManagement
             fContainer.Child = userControl; // Gán UserControl vào Border
         }
         private string Account;
-        public Doctor() { } // ✅ constructor mặc định
+        public Doctor() { } //  constructor mặc định
         public Doctor(string userEmail)
         {
             InitializeComponent();
@@ -163,24 +163,9 @@ namespace ClinicManagement
 
         }
 
-        private void btnProductStock_MouseEnter(object sender, MouseEventArgs e)
-        {
-            if (Tg_Btn.IsChecked == false)
-            {
-                Popup.PlacementTarget = btnProductStock;
-                Popup.Placement = PlacementMode.Right;
-                Popup.IsOpen = true;
-                Header.PopupText.Text = "Product Stock";
-            }
+       
 
-        }
-
-        private void btnProductStock_MouseLeave(object sender, MouseEventArgs e)
-        {
-            Popup.Visibility = Visibility.Collapsed;
-            Popup.IsOpen = false;
-
-        }
+        
 
         private void btnProducts_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -223,6 +208,44 @@ namespace ClinicManagement
 
                 this.Close(); 
             }
+        }
+
+        private void Drug_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Popup.Visibility = Visibility.Collapsed;
+            Popup.IsOpen = false;
+
+        }
+
+        private void Drug_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (Tg_Btn.IsChecked == false)
+            {
+                Popup.PlacementTarget = btnDrug;
+                Popup.Placement = PlacementMode.Right;
+                Popup.IsOpen = true;
+                Header.PopupText.Text = "Drug";
+            }
+        }
+
+        private void MenuItem_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+       
+        private void btnDrug_Click(object sender, RoutedEventArgs e)
+        {
+            LoadUserControl(new DrugView());
+
+        }
+
+
+        private void btnSetting_Click(object sender, RoutedEventArgs e)
+        {
+            LoadUserControl(new Setting());
+
+
         }
     }
 }

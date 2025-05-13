@@ -74,6 +74,7 @@
               Margin="10">
             <!-- Thêm margin để không dính sát -->
             <DataGrid.Columns>
+                <!-- checkbox in each row -->
                 <DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
                     <DataGridCheckBoxColumn.HeaderTemplate>
                         <DataTemplate>
@@ -81,6 +82,7 @@
                         </DataTemplate>
                     </DataGridCheckBoxColumn.HeaderTemplate>
                 </DataGridCheckBoxColumn>
+                
                 <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Number}"/>
                 <DataGridTemplateColumn Header="Patient Name" IsReadOnly="True" Width="*">
                     <DataGridTemplateColumn.CellTemplate>

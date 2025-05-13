@@ -43,7 +43,7 @@ namespace ClinicManagement.SidebarItems
             try
             {
                 smtp.Send(message);
-                MessageBox.Show("Mã xác nhận đã được gửi đến email của bạn!\nMã là: " + randomCode, "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Mã xác nhận đã được gửi đến email của bạn!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 // Truyền mã và email sang cửa sổ xác minh
                 RecoveryPasswordWindow recoveryPasswordWindow = new RecoveryPasswordWindow(randomCode, to);

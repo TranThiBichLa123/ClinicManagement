@@ -6,13 +6,11 @@
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              StartupUri="/SidebarItems/Login.xaml">
+    <!--/SidebarItems/Patient-->
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-
-
                 <ResourceDictionary Source="Assets/Icons.xaml"/>
-
 
             </ResourceDictionary.MergedDictionaries>
             <!-- Start: Pop-up Button Style -->
@@ -277,7 +275,6 @@
                 </Setter>
 
             </Style>
-
             <Style x:Key="topMenuButton" TargetType="Button">
                 <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="Foreground" Value="#29A3EC"/>
@@ -305,6 +302,40 @@
                     </Trigger>
                 </Style.Triggers>
             </Style>
+            <Style x:Key="radioButtonStyle" TargetType="RadioButton">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="Foreground" Value="#29A3EC"/>
+    <Setter Property="Margin" Value="5 0 0 0"/>
+    <Setter Property="Height" Value="30"/>
+    <Setter Property="Width" Value="80"/>
+    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="RadioButton">
+                <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="15">
+                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <ControlTemplate.Triggers>
+                    <!-- Khi Được Chọn -->
+                    <Trigger Property="IsChecked" Value="True">
+                        <Setter TargetName="border" Property="Background" Value="#29A3EC"/>
+                        <Setter Property="Foreground" Value="White"/>
+                    </Trigger>
+
+                    <!-- Khi Hover -->
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter TargetName="border" Property="Background" Value="#29A3EC"/>
+                        <Setter Property="Foreground" Value="White"/>
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+
+
+
 
 
             <Style x:Key="leftSideButton" TargetType="Button">
@@ -646,7 +677,7 @@
             </Style>
 
             <ControlTemplate x:Key="ComboBoxTemplate2" TargetType="{x:Type ComboBox}">
-                <Grid x:Name="templateRoot" SnapsToDevicePixels="true" Height="40" Width="120">
+                <Grid x:Name="templateRoot" SnapsToDevicePixels="true" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
@@ -700,10 +731,10 @@
 
             <Style x:Key="searchTextbox" TargetType="TextBox">
                 <Setter Property="Background" Value="#ffffff" />
-                <Setter Property="Foreground" Value="#767676" />
+                <Setter Property="Foreground" Value="Black" />
                 <Setter Property="BorderThickness" Value="0" />
                 <Setter Property="FontSize" Value="12" />
-                <Setter Property="Padding" Value="150 15" />
+                <Setter Property="Padding" Value="110 15" />
                 <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="Margin" Value="0 10" />
                 <Setter Property="Template">
@@ -970,7 +1001,7 @@
                 <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
                 <Setter Property="Background" Value="{StaticResource OptionMark.Static.Background}"/>
                 <Setter Property="BorderBrush" Value="#DAE2EA"/>
-                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                <Setter Property="Foreground" Value="Black"/>
                 <Setter Property="BorderThickness" Value="1"/>
                 <Setter Property="Template">
                     <Setter.Value>

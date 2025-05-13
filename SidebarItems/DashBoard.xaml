@@ -458,8 +458,7 @@ mc:Ignorable="d"
                     <StackPanel VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <TextBlock Text="Bich La" FontSize="26" FontWeight="Bold" VerticalAlignment="Center"/>
-                            <Button Name="prf" Style="{StaticResource topMenuButton}" Margin="5,0,0,0" VerticalAlignment="Center" Width="33"  MouseEnter="prf_MouseEnter" MouseLeave="prf_MouseLeave">
-                                <Icon:PackIconMaterial Kind="ChevronDown" Width="15" Height="15" Foreground="#c7c7c7"/>
+                            <Button Name="prf" Style="{StaticResource topMenuButton}" Content="V" FontWeight="Bold" Margin="5,0,0,0" VerticalAlignment="Center" Width="33"  MouseEnter="prf_MouseEnter" MouseLeave="prf_MouseLeave">
                             </Button>
                         </StackPanel>
                         <TextBlock Text="Doctor" Foreground="#6C879A" Margin="0 3 0 0"/>
@@ -483,7 +482,7 @@ mc:Ignorable="d"
                 </Popup>
 
                 <Border Grid.Row="1"  CornerRadius="15" BorderBrush="Transparent" 
-        BorderThickness="0" Margin="20,0,395,0">
+        BorderThickness="0" Margin="20,0,395,0" Width="606">
                     <Border.Background>
                         <LinearGradientBrush StartPoint="1, 0" EndPoint="0, 1">
                             <GradientStop Color="White" Offset="0"/>
