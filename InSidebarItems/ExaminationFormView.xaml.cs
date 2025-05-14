@@ -16,6 +16,8 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BLL;
+using DTO;
 
 namespace ClinicManagement.InSidebarItems
 {
@@ -27,6 +29,8 @@ namespace ClinicManagement.InSidebarItems
         private string idBenhNhan;
         private int idTiepNhan;
         private int idPK;
+        private ExaminationFormViewBLL bll = new ExaminationFormViewBLL();
+        private ExaminationFormDTO examinationForm = new ExaminationFormDTO();
         private string connectionString = "Data Source=LAPTOP-2FUIJHRN;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
 
         public ExaminationFormView(string idBenhNhan, int idTiepNhan)
@@ -36,86 +40,28 @@ namespace ClinicManagement.InSidebarItems
             this.idTiepNhan = idTiepNhan;
             lblMaBN.Content = idBenhNhan;
 
-            using (SqlConnection con = new SqlConnection(connectionString))
+            var pk = bll.GetPhieuKham(this.idTiepNhan);
+            if (pk != null )
             {
-                DateTime ngayTN = DateTime.MinValue;
-                con.Open();
-                string querry = "SELECT NgayTN FROM DANHSACHTIEPNHAN WHERE ID_TiepNhan = @id_TiepNhan";
-                SqlCommand cmd = new SqlCommand(querry, con);
-                cmd.Parameters.AddWithValue("@id_TiepNhan", idTiepNhan); // Corrected parameter name
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    ngayTN = (DateTime)reader["NgayTN"];
-                }
-                reader.Close();
-            }
+                idPK = Convert.ToInt32(pk["ID_PhieuKham"]);
+                lblMaPK.Content = idPK.ToString();
+                lblHoTenBN.Content = pk["HoTenBN"].ToString();
+                lblTrieuChung.Content = pk["TrieuChung"].ToString();
+                lblChuanDoan.Content = pk["TenLoaiBenh"].ToString();
+                lblTienKham.Content = ((decimal)pk["TienKham"]).ToString("N0");
+                lblTongTienThuoc.Content = ((decimal)pk["TongTienThuoc"]).ToString("N0");
+                lblNgayKham.Content = "Ca " + pk["CaKham"] + " Ngày " + pk["NgayTN"];
 
-            using (SqlConnection con = new SqlConnection(connectionString))
+                var toa = bll.GetToaThuocTheoPhieuKham(idPK);
+                dgToaThuoc.ItemsSource = toa.DefaultView;
+            }
+            else
             {
-                con.Open();
-                string querry = @"SELECT HoTenBN, PK.TrieuChung, TenLoaiBenh, ID_PhieuKham, TienKham, TongTienThuoc, CaKham, NgayTN     
-                                  FROM PHIEUKHAM PK JOIN DANHSACHTIEPNHAN TN ON PK.ID_TiepNhan = TN.ID_TiepNhan
-                                                    JOIN BENHNHAN BN ON BN.ID_BenhNhan = TN.ID_BenhNhan 
-                                                    JOIN LOAIBENH LB ON PK.ID_LoaiBenh = LB.ID_LoaiBenh
-                                  WHERE PK.ID_TiepNhan = @ID_TiepNhan
-                                ";
-                SqlCommand cmd = new SqlCommand(querry, con);
-                cmd.Parameters.AddWithValue("@ID_TiepNhan", this.idTiepNhan);
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                string hoTenBN = null;
-                string trieuChung = null;
-                string tenLoaiBenh = null;
-                string idPhieuKham = null;
-                string caKham = null;
-                string ngayTN = null;
-                decimal tienKham = 0;
-                decimal tongTienThuoc = 0;
-                while (reader.Read())
-                {
-                    hoTenBN = reader["HoTenBN"].ToString();
-                    trieuChung = reader["TrieuChung"].ToString();
-                    tenLoaiBenh = reader["TenLoaiBenh"].ToString();
-                    idPhieuKham = reader["ID_PhieuKham"].ToString();
-                    idPK = Convert.ToInt32(idPhieuKham);
-                    caKham = reader["CaKham"].ToString();
-                    ngayTN = ((DateTime)reader["NgayTN"]).ToString("dd/MM/yyyy");
-                    tienKham = (decimal)reader["TienKham"];
-                    if (reader["TongTienThuoc"] != DBNull.Value)
-                        tongTienThuoc = (decimal)reader["TongTienThuoc"];
-                    else tongTienThuoc = 0;
-                }
-                reader.Close();
-                if (hoTenBN != null && trieuChung != null && tenLoaiBenh != null && idPhieuKham != null)
-                {
-                    lblMaPK.Content = idPhieuKham.ToString();
-                    lblHoTenBN.Content = hoTenBN.ToString();
-                    lblTrieuChung.Content = trieuChung.ToString();
-                    lblChuanDoan.Content = tenLoaiBenh.ToString();
-                    string querry2 = @"SELECT TenThuoc, TenDVT, SoLuong, MoTaCachDung, DonGiaBan_LucMua, TienThuoc
-                                       FROM PHIEUKHAM PK JOIN TOATHUOC CT ON PK.ID_PhieuKham = CT.ID_PhieuKham JOIN THUOC T ON CT.ID_Thuoc = T.ID_Thuoc
-                                                        JOIN DVT ON DVT.ID_DVT = T.ID_DVT JOIN CACHDUNG C ON C.ID_CachDung = T.ID_CachDUng
-                                       WHERE PK.ID_PhieuKham = @ID_PhieuKham";
-                    SqlDataAdapter adapter = new SqlDataAdapter(querry2, con);
-                    adapter.SelectCommand.Parameters.AddWithValue("@ID_PhieuKham", idPhieuKham);
-                    DataTable dtThuoc = new DataTable();
-                    adapter.Fill(dtThuoc);
-
-                    dgToaThuoc.ItemsSource = dtThuoc.DefaultView;
-                    lblTienKham.Content = tienKham.ToString("N0");
-                    lblTongTienThuoc.Content = tongTienThuoc.ToString("N0");
-                    lblNgayKham.Content = "Ca " + caKham + " Ngày " + ngayTN;
-                }
-                else
-                {
-                    MessageBox.Show("Không tìm thấy thông tin bệnh nhân.");
-                }
+                MessageBox.Show("Không tìm thấy thông tin phiếu khám của bệnh nhân này!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void AnimateBack()
         {
             // Tạo hiệu ứng slide-out sang phải cho form hiện tại
             var currentTransform = new TranslateTransform();
@@ -154,7 +100,10 @@ namespace ClinicManagement.InSidebarItems
 
             // Bắt đầu animation ra ngoài
             currentTransform.BeginAnimation(TranslateTransform.XProperty, slideOut);
-
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AnimateBack();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -176,86 +125,19 @@ namespace ClinicManagement.InSidebarItems
             if (result != MessageBoxResult.Yes)
                 return;
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            var check = bll.CheckDaXuatHD(this.idPK);
+            if(check)
             {
-                string check = @"SELECT * FROM HOADON WHERE ID_PhieuKham = @ID_PhieuKham";
-                try
-                {
-                    conn.Open();
-                    SqlCommand checkcmd = new SqlCommand(check, conn);
-                    checkcmd.Parameters.AddWithValue("@ID_PhieuKham", this.idPK);
-                    object rowAffected = checkcmd.ExecuteScalar();
-                    if (rowAffected != null)
-                    {
-                        MessageBox.Show("Phiếu khám đã được xuất hóa đơn, không thể xóa!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                    else
-                    {
-                        string querry = @"UPDATE PHIEUKHAM SET Is_Deleted = 1 WHERE ID_PhieuKham = @ID_PhieuKham";
-                        string querry2 = @"DELETE FROM TOATHUOC WHERE ID_PhieuKham = @ID_PhieuKham";
-                        SqlCommand cmd2 = new SqlCommand(querry2, conn);
-                        cmd2.Parameters.AddWithValue("@ID_PhieuKham", this.idPK);
-                        cmd2.ExecuteNonQuery();
-
-                        SqlCommand cmd = new SqlCommand(querry, conn);
-                        cmd.Parameters.AddWithValue("@ID_PhieuKham", this.idPK);
-
-                        int Affected = cmd.ExecuteNonQuery();
-                        if (Affected > 0)
-                        {
-                            MessageBox.Show("Đã xóa phiếu khám và các toa thuốc tương ứng.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                            //Tạo hiệu ứng slide-out sang phải cho form hiện tại
-
-                            var currentTransform = new TranslateTransform();
-                            this.RenderTransform = currentTransform;
-
-                            var slideOut = new DoubleAnimation
-                            {
-                                From = 0,
-                                To = this.ActualWidth,
-                                Duration = TimeSpan.FromMilliseconds(300),
-                                EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
-                            };
-
-                            // Khi slideOut xong, thay thế bằng ExaminationList
-                            slideOut.Completed += (s, _) =>
-                            {
-                                var parent = this.Parent as Border;
-                                if (parent != null)
-                                {
-                                    var list = new SidebarItems.ExaminationList();
-                                    list.RenderTransform = new TranslateTransform { X = -this.ActualWidth }; // Bắt đầu từ bên trái
-
-                                    parent.Child = list;
-
-                                    var slideIn = new DoubleAnimation
-                                    {
-                                        From = -this.ActualWidth,
-                                        To = 0,
-                                        Duration = TimeSpan.FromMilliseconds(300),
-                                        EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
-                                    };
-
-                                    (list.RenderTransform as TranslateTransform).BeginAnimation(TranslateTransform.XProperty, slideIn);
-                                }
-                            };
-
-                            // Bắt đầu animation ra ngoài
-                            currentTransform.BeginAnimation(TranslateTransform.XProperty, slideOut);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Không tìm thấy bệnh nhân cần xóa.", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        }
-                    }    
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi:\n" + ex.Message, "Lỗi khi xóa", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-
+                MessageBox.Show("Phiếu khám đã được xuất hóa đơn, không thể xóa!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            else
+            {
+                bll.DeleteToaThuoc(this.idPK);
+                bll.XoaPhieuKham(this.idPK);
+                MessageBox.Show("Đã xóa thông tin phiếu khám và toa thuốc!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                AnimateBack();
+            }
+                
         }
 
         private void btnSuaPK_Click(object sender, RoutedEventArgs e)
@@ -268,70 +150,54 @@ namespace ClinicManagement.InSidebarItems
             if (result != MessageBoxResult.Yes)
                 return;
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            var check = bll.CheckDaXuatHD(this.idPK);
+            if (check)
             {
-                string check = @"SELECT * FROM HOADON WHERE ID_PhieuKham = @ID_PhieuKham";
-                try
+                MessageBox.Show("Phiếu khám đã được xuất hóa đơn, không thể xóa!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                ExaminationForm form = new ExaminationForm(idBN, idTN, idPK);
+                form.RenderTransform = new TranslateTransform();
+
+                // Gán vào container
+                var parent = this.Parent as Border;
+                if (parent == null) return;
+
+                // Tạo Storyboard để animate "this" ra trái
+                var slideOut = new DoubleAnimation
                 {
-                    conn.Open();
-                    SqlCommand checkcmd = new SqlCommand(check, conn);
-                    checkcmd.Parameters.AddWithValue("@ID_PhieuKham", this.idPK);
-                    object rowAffected = checkcmd.ExecuteScalar();
-                    if (rowAffected != null)
-                    {
-                        MessageBox.Show("Phiếu khám đã được xuất hóa đơn, không thể sửa!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                    else
-                    {
-                        ExaminationForm form = new ExaminationForm(idBN, idTN, idPK);
-                        form.RenderTransform = new TranslateTransform();
+                    From = 0,
+                    To = -this.ActualWidth,
+                    Duration = TimeSpan.FromMilliseconds(300),
+                    EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
+                };
 
-                        // Gán vào container
-                        var parent = this.Parent as Border;
-                        if (parent == null) return;
-
-                        // Tạo Storyboard để animate "this" ra trái
-                        var slideOut = new DoubleAnimation
-                        {
-                            From = 0,
-                            To = -this.ActualWidth,
-                            Duration = TimeSpan.FromMilliseconds(300),
-                            EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
-                        };
-
-                        // Tạo animation cho UserControl mới đi vào từ bên phải
-                        var slideIn = new DoubleAnimation
-                        {
-                            From = this.ActualWidth,
-                            To = 0,
-                            Duration = TimeSpan.FromMilliseconds(300),
-                            EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
-                        };
-
-                        // Bắt đầu animation
-                        var currentTransform = new TranslateTransform();
-                        this.RenderTransform = currentTransform;
-
-                        slideOut.Completed += (s, _) =>
-                        {
-                            // Khi slideOut xong thì thay content
-                            parent.Child = form;
-
-                            // Animate slide-in
-                            var newTransform = form.RenderTransform as TranslateTransform;
-                            newTransform.BeginAnimation(TranslateTransform.XProperty, slideIn);
-                        };
-
-                        // Animate current control ra trái
-                        currentTransform.BeginAnimation(TranslateTransform.XProperty, slideOut);
-
-                    }
-                }
-                catch (Exception ex)
+                // Tạo animation cho UserControl mới đi vào từ bên phải
+                var slideIn = new DoubleAnimation
                 {
-                    MessageBox.Show("Lỗi:\n" + ex.Message, "Lỗi khi sửa", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                    From = this.ActualWidth,
+                    To = 0,
+                    Duration = TimeSpan.FromMilliseconds(300),
+                    EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
+                };
 
+                // Bắt đầu animation
+                var currentTransform = new TranslateTransform();
+                this.RenderTransform = currentTransform;
+
+                slideOut.Completed += (s, _) =>
+                {
+                    // Khi slideOut xong thì thay content
+                    parent.Child = form;
+
+                    // Animate slide-in
+                    var newTransform = form.RenderTransform as TranslateTransform;
+                    newTransform.BeginAnimation(TranslateTransform.XProperty, slideIn);
+                };
+
+                // Animate current control ra trái
+                currentTransform.BeginAnimation(TranslateTransform.XProperty, slideOut);
             }
         }
     }

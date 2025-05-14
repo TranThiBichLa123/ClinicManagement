@@ -18,215 +18,120 @@ using System.Collections;
 using System.ComponentModel;
 using System.Data.SqlTypes;
 using System.Windows.Media.Animation;
+using BLL;
+using DTO;
 
 namespace ClinicManagement.InSidebarItems
 {
-    /// <summary>
-    /// Interaction logic for ExaminationForm.xaml
-    /// </summary>
-
-
-
     public partial class ExaminationForm : UserControl
     {
-        public class ThuocDaChon
-        {
-            public string ID_Thuoc { get; set; }
-            public decimal DonGiaBan { get; set; }
-            public string MoTa { get; set; }
-            public string DonViTinh { get; set; }
-            public string TenThuoc { get; set; }
-            public int SoLuong { get; set; } = 1;
-        }
-
         private int idTiepNhan;
-        private string idBenhNhan;
+        private int idBenhNhan;
         private int? idPhieuKham = null;
-        private string connectionString = "Data Source=LAPTOP-2FUIJHRN;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
+        private ExaminationFormBLL bll = new ExaminationFormBLL();
         private ObservableCollection<ThuocDaChon> danhSachThuoc = new ObservableCollection<ThuocDaChon>();
-
         public ExaminationForm(string idBenhNhan, int idTiepNhan)
         {
             InitializeComponent();
             tblTitle.Text = "Tạo Phiếu Khám";
-            this.idBenhNhan = idBenhNhan;
+            this.idBenhNhan = Convert.ToInt32(idBenhNhan);
             this.idTiepNhan = idTiepNhan;
             txtMaBenhNhan.Text = idBenhNhan;
+            
+            var bn = bll.GetBenhNhanInfo(this.idBenhNhan);
+            if (bn != null)
+                txtTenBenhNhan.Text = bn["HoTenBN"].ToString();
+            else
+                MessageBox.Show("Không tìm thấy thông tin bệnh nhân.");
 
+            cboLoaiBenh.ItemsSource = bll.GetLoaiBenh().DefaultView;
+            cboLoaiBenh.DisplayMemberPath = "TenLoaiBenh";
+            cboLoaiBenh.SelectedValuePath = "ID_LoaiBenh";
 
-            using (SqlConnection con = new SqlConnection(connectionString))
-            {
-                DateTime ngayTN = DateTime.MinValue;
-                con.Open();
-                string querry = "SELECT NgayTN FROM DANHSACHTIEPNHAN WHERE ID_TiepNhan = @id_TiepNhan";
-                SqlCommand cmd = new SqlCommand(querry, con);
-                cmd.Parameters.AddWithValue("@id_TiepNhan", idTiepNhan); // Corrected parameter name
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    ngayTN = (DateTime)reader["NgayTN"];
-                }
-                reader.Close();
-            }
+            cboThuoc.ItemsSource = bll.GetThuocList().DefaultView;
+            cboThuoc.DisplayMemberPath = "TenThuoc";
+            cboThuoc.SelectedValuePath = "ID_Thuoc";
 
-            using (SqlConnection con = new SqlConnection(connectionString))
-            {
-                con.Open();
-                string querry = "SELECT HoTenBN from BENHNHAN WHERE ID_BenhNhan = @ID_BenhNhan";
-                SqlCommand cmd = new SqlCommand(querry, con);
-                cmd.Parameters.AddWithValue("@ID_BenhNhan", idBenhNhan);
-                var tenBN = cmd.ExecuteScalar();
-                if (tenBN != null)
-                {
-                    txtTenBenhNhan.Text = tenBN.ToString();
-                }
-                else
-                {
-                    MessageBox.Show("Không tìm thấy thông tin bệnh nhân.");
-                }
-            }
-
-            LoadLoaiBenh();
             dgThuocDaChon.ItemsSource = danhSachThuoc;
-            LoadThuoc();
         }
 
         public ExaminationForm(string idBN, int idTN, int idPK)
         {
             InitializeComponent();
             tblTitle.Text = "Sửa Phiếu Khám";
-            this.idBenhNhan = idBN;
+            this.idBenhNhan = Convert.ToInt32(idBN);
             this.idTiepNhan = idTN;
             this.idPhieuKham = idPK;
+            txtMaBenhNhan.Text = this.idBenhNhan.ToString();
 
-            LoadLoaiBenh();
+            cboLoaiBenh.ItemsSource = bll.GetLoaiBenh().DefaultView;
+            cboLoaiBenh.DisplayMemberPath = "TenLoaiBenh";
+            cboLoaiBenh.SelectedValuePath = "ID_LoaiBenh";
 
-            LoadPhieuKham(idPK);
+            cboThuoc.ItemsSource = bll.GetThuocList().DefaultView;
+            cboThuoc.DisplayMemberPath = "TenThuoc";
+            cboThuoc.SelectedValuePath = "ID_Thuoc";
 
-            LoadThuoc();
-        }
-        private void LoadLoaiBenh()
-        {
-            string query = "SELECT ID_LoaiBenh, TenLoaiBenh FROM LOAIBENH";
-
-            using (SqlConnection con = new SqlConnection(connectionString))
+            var pk = bll.GetPhieuKham(idPK);
+            if (pk != null)
             {
-                SqlDataAdapter adapter = new SqlDataAdapter(query, con);
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-
-                cboLoaiBenh.ItemsSource = dt.DefaultView;
-                cboLoaiBenh.DisplayMemberPath = "TenLoaiBenh";
-                cboLoaiBenh.SelectedValuePath = "ID_LoaiBenh";
+                txtTrieuChung.Text = pk["TrieuChung"].ToString();
+                txtCaKham.Text = pk["CaKham"].ToString();
+                txtTenBenhNhan.Text = pk["HoTenBN"].ToString();
+                cboLoaiBenh.SelectedValue = pk["ID_LoaiBenh"];
             }
-        }
 
-        private void LoadThuoc()
-        {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            var toa = bll.GetToaThuoc(idPK);
+            danhSachThuoc.Clear();
+            foreach (DataRow row in toa.Rows)
             {
-                string querry = @"SELECT T.ID_Thuoc, T.TenThuoc, T.SoLuongTon, T.DonGiaBan, C.MoTaCachDung, T.ID_DVT, D.TenDVT, T.HinhAnh
-                                    FROM THUOC T JOIN DVT D ON T.ID_DVT = D.ID_DVT JOIN CACHDUNG C ON C.ID_CachDung = T.ID_CachDung";
-
-                SqlDataAdapter adapter = new SqlDataAdapter(querry, connectionString);
-                DataTable dtThuoc = new DataTable();
-                adapter.Fill(dtThuoc);
-
-                // Đổ vào ComboBox
-                cboThuoc.ItemsSource = dtThuoc.DefaultView;
-                cboThuoc.DisplayMemberPath = "TenThuoc";
-                cboThuoc.SelectedValuePath = "ID_Thuoc";
-            }
-        }
-
-        private void LoadPhieuKham(int idPhieuKham)
-        {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                string query = @"SELECT TN.ID_BenhNhan, HoTenBN, TrieuChung, ID_LoaiBenh, CaKham, NgayTN 
-                                    FROM PHIEUKHAM PK JOIN DANHSACHTIEPNHAN TN ON PK.ID_TiepNhan = TN.ID_TiepNhan
-                                                      JOIN BENHNHAN BN ON BN.ID_BenhNhan = TN.ID_BenhNhan
-                                    WHERE ID_PhieuKham = @ID_PhieuKham AND PK.Is_Deleted = 0";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@ID_PhieuKham", idPhieuKham);
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
+                danhSachThuoc.Add(new ThuocDaChon
                 {
-                    txtTrieuChung.Text = reader["TrieuChung"].ToString();
-                    txtCaKham.Text = reader["CaKham"].ToString();
-                    txtMaBenhNhan.Text = idBenhNhan.ToString();
-                    txtTenBenhNhan.Text = reader["HoTenBN"].ToString();
-                    cboLoaiBenh.SelectedValue = reader["ID_LoaiBenh"];
-                }
-                reader.Close();
-
-                // Load danh sách thuốc trong toa thuốc và chuyển sang ObservableCollection
-                string querry2 = @"SELECT CT.ID_Thuoc, TenThuoc, TenDVT, SoLuong, MoTaCachDung, DonGiaBan_LucMua, TienThuoc
-                                       FROM PHIEUKHAM PK JOIN TOATHUOC CT ON PK.ID_PhieuKham = CT.ID_PhieuKham JOIN THUOC T ON CT.ID_Thuoc = T.ID_Thuoc
-                                                        JOIN DVT ON DVT.ID_DVT = T.ID_DVT JOIN CACHDUNG C ON C.ID_CachDung = T.ID_CachDUng
-                                       WHERE PK.ID_PhieuKham = @ID_PhieuKham";
-                SqlDataAdapter adapter = new SqlDataAdapter(querry2, conn);
-                adapter.SelectCommand.Parameters.AddWithValue("@ID_PhieuKham", idPhieuKham);
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-
-                // ======= Sửa đoạn này để chuyển DataTable thành ObservableCollection =======
-                danhSachThuoc.Clear();
-                foreach (DataRow row in dt.Rows)
-                {
-                    danhSachThuoc.Add(new ThuocDaChon
-                    {
-                        ID_Thuoc = row["ID_Thuoc"].ToString(),
-                        TenThuoc = row["TenThuoc"].ToString(),
-                        DonViTinh = row["TenDVT"].ToString(),
-                        MoTa = row["MoTaCachDung"].ToString(),
-                        DonGiaBan = Convert.ToDecimal(row["DonGiaBan_LucMua"]),
-                        SoLuong = Convert.ToInt32(row["SoLuong"])
-                    });
-                }
-                dgThuocDaChon.ItemsSource = danhSachThuoc;
+                    ID_Thuoc = row["ID_Thuoc"].ToString(),
+                    TenThuoc = row["TenThuoc"].ToString(),
+                    DonViTinh = row["TenDVT"].ToString(),
+                    MoTa = row["MoTaCachDung"].ToString(),
+                    DonGiaBan = Convert.ToDecimal(row["DonGiaBan_LucMua"]),
+                    SoLuong = Convert.ToInt32(row["SoLuong"])
+                });
             }
+            dgThuocDaChon.ItemsSource = danhSachThuoc;
         }
+      
 
+        
         private void btnThemThuoc_Click(object sender, RoutedEventArgs e)
         {
             if (cboThuoc.SelectedItem == null)
             {
-                MessageBox.Show("Vui lòng chọn thuốc trước khi thêm.");
-                return;
-            }
-
-            if (!int.TryParse(txtSoLuong.Text.Trim(), out int soLuong) || soLuong <= 0)
-            {
-                MessageBox.Show("Vui lòng nhập số lượng hợp lệ (> 0).");
+                MessageBox.Show("Vui lòng chọn thuốc trước khi thêm.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             var selectedThuoc = cboThuoc.SelectedItem as DataRowView;
             string id = selectedThuoc["ID_Thuoc"].ToString();
             string ten = selectedThuoc["TenThuoc"].ToString();
-            decimal donGiaBan = Convert.ToDecimal(selectedThuoc["DonGiaBan"]);
-            int soLuongTon = Convert.ToInt32(selectedThuoc["SoLuongTon"]);
-            string querryAddThuoc = @"SELECT TenDVT, MoTaCachDung, TienThuoc FROM
-                                            DVT JOIN THUOC ON THUOC.ID_DVT = DVT.ID_DVT
-                                                JOIN TOATHUOC ON TOATHUOC.ID_Thuoc = THUOC.ID_Thuoc
-                                                JOIN CACHDUNG ON CACHDUNG.ID_CachDung = THUOC.ID_CachDung
-                                            WHERE TOATHUOC.ID_Thuoc = @ID";
-            string tenDVT = null;
-            string MoTa = null;
-            if (soLuong > soLuongTon)
+            decimal donGia = Convert.ToDecimal(selectedThuoc["DonGiaBan"]);
+            int ton = Convert.ToInt32(selectedThuoc["SoLuongTon"]);
+
+            if (!int.TryParse(txtSoLuong.Text.Trim(), out int soLuong) || soLuong <= 0)
             {
-                MessageBox.Show($"Số lượng vượt quá tồn kho ({soLuongTon}).");
+                MessageBox.Show("Vui lòng nhập số lượng hợp lệ (> 0).", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (soLuong > ton)
+            {
+                MessageBox.Show($"Số lượng vượt quá tồn kho ({ton}).", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             var daTonTai = danhSachThuoc.FirstOrDefault(t => t.ID_Thuoc == id);
             if (daTonTai != null)
             {
-                if (daTonTai.SoLuong + soLuong > soLuongTon)
+                if (daTonTai.SoLuong + soLuong > ton)
                 {
-                    MessageBox.Show($"Tổng số lượng vượt tồn kho ({soLuongTon}).");
+                    MessageBox.Show($"Tổng số lượng vượt tồn kho ({ton}).", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
@@ -234,32 +139,18 @@ namespace ClinicManagement.InSidebarItems
             }
             else
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand(querryAddThuoc, conn);
-                    cmd.Parameters.AddWithValue("@ID", id);
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader.Read())
-                    {
-                        tenDVT = reader["TenDVT"].ToString();
-                        MoTa = reader["MoTaCachDung"].ToString();
-                    }
-                    reader.Close();
-
-                }
-
+                var chiTiet = bll.GetChiTietThuoc(id);
                 danhSachThuoc.Add(new ThuocDaChon
                 {
                     ID_Thuoc = id,
                     TenThuoc = ten,
-                    DonViTinh = tenDVT,
-                    MoTa = MoTa,
-                    DonGiaBan = donGiaBan,
+                    DonViTinh = chiTiet["TenDVT"].ToString(),
+                    MoTa = chiTiet["MoTaCachDung"].ToString(),
+                    DonGiaBan = donGia,
                     SoLuong = soLuong
                 });
             }
-
+     
             dgThuocDaChon.Items.Refresh();
             txtSoLuong.Text = "";
         }
@@ -268,117 +159,52 @@ namespace ClinicManagement.InSidebarItems
         {
             if (string.IsNullOrWhiteSpace(txtCaKham.Text) || string.IsNullOrWhiteSpace(txtTrieuChung.Text) || cboLoaiBenh.SelectedValue == null)
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin.");
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             if (idPhieuKham == null)
             {
                 // ======= CHẾ ĐỘ THÊM MỚI =======
-                string query = @"INSERT INTO PHIEUKHAM (ID_TiepNhan, CaKham, TrieuChung, ID_LoaiBenh) 
-                         VALUES (@ID_TiepNhan, @CaKham, @TrieuChung, @ID_LoaiBenh); 
-                         SELECT SCOPE_IDENTITY();";
-
-                using (SqlConnection con = new SqlConnection(connectionString))
-                {
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand(query, con);
-                    cmd.Parameters.AddWithValue("@ID_TiepNhan", idTiepNhan);
-                    cmd.Parameters.AddWithValue("@CaKham", txtCaKham.Text.Trim());
-                    cmd.Parameters.AddWithValue("@TrieuChung", txtTrieuChung.Text.Trim());
-                    cmd.Parameters.AddWithValue("@ID_LoaiBenh", cboLoaiBenh.SelectedValue);
-
-                    object result = cmd.ExecuteScalar();
-                    idPhieuKham = Convert.ToInt32(result);
-                }
+                idPhieuKham = bll.TaoPhieuKham(idTiepNhan, txtCaKham.Text, txtTrieuChung.Text, (int)cboLoaiBenh.SelectedValue);
             }
             else
             {
                 // ======= CHẾ ĐỘ CHỈNH SỬA =======
-                string updateQuery = @"UPDATE PHIEUKHAM 
-                               SET CaKham = @CaKham, TrieuChung = @TrieuChung, ID_LoaiBenh = @ID_LoaiBenh 
-                               WHERE ID_PhieuKham = @ID_PhieuKham";
-
-                using (SqlConnection con = new SqlConnection(connectionString))
-                {
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand(updateQuery, con);
-                    cmd.Parameters.AddWithValue("@CaKham", txtCaKham.Text.Trim());
-                    cmd.Parameters.AddWithValue("@TrieuChung", txtTrieuChung.Text.Trim());
-                    cmd.Parameters.AddWithValue("@ID_LoaiBenh", cboLoaiBenh.SelectedValue);
-                    cmd.Parameters.AddWithValue("@ID_PhieuKham", idPhieuKham);
-                    cmd.ExecuteNonQuery();
-                }
-
-                // Xoá toa thuốc cũ trước khi thêm lại
-                using (SqlConnection con = new SqlConnection(connectionString))
-                {
-                    con.Open();
-                    string querryDelToaThuoc = @"DELETE FROM TOATHUOC WHERE ID_PhieuKham = @ID_PhieuKham";
-                    SqlCommand cmd = new SqlCommand(querryDelToaThuoc, con);
-                    cmd.Parameters.AddWithValue("@ID_PhieuKham", idPhieuKham);
-                    cmd.ExecuteNonQuery();
-                }
+                bll.CapNhatPhieuKham(idPhieuKham.Value, txtCaKham.Text, txtTrieuChung.Text, (int)cboLoaiBenh.SelectedValue);
+                bll.XoaToaThuoc(idPhieuKham.Value);
             }
 
             // ======= LƯU THÔNG TIN TOA THUỐC =======
-            foreach (var thuoc in danhSachThuoc)
+            bll.ThemToaThuoc(idPhieuKham.Value, danhSachThuoc.ToList());
+            MessageBox.Show("Lưu thành công thông tin khám bệnh và toa thuốc.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            AnimateBack();
+        }
+
+        private void AnimateBack()
+        {
+            var slideOut = new DoubleAnimation(0, this.ActualWidth, TimeSpan.FromMilliseconds(300))
             {
-                string insertThuoc = @"INSERT INTO TOATHUOC (ID_PhieuKham, ID_Thuoc, DonGiaBan_LucMua, SoLuong) 
-                               VALUES (@ID_PhieuKham, @ID_Thuoc, @DonGiaBan, @SoLuong)";
-
-                using (SqlConnection con = new SqlConnection(connectionString))
-                {
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand(insertThuoc, con);
-                    cmd.Parameters.AddWithValue("@ID_PhieuKham", idPhieuKham);
-                    cmd.Parameters.AddWithValue("@ID_Thuoc", thuoc.ID_Thuoc);
-                    cmd.Parameters.AddWithValue("@DonGiaBan", thuoc.DonGiaBan);
-                    cmd.Parameters.AddWithValue("@SoLuong", thuoc.SoLuong);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-
-            // Tạo hiệu ứng slide-out sang phải cho form hiện tại
-
-            MessageBox.Show("Lưu thành công thông tin khám bệnh và toa thuốc.");
-
-            // ======= Animation Slide Out + Load ExaminationList =======
-            var currentTransform = new TranslateTransform();
-            this.RenderTransform = currentTransform;
-
-            var slideOut = new DoubleAnimation
-            {
-                From = 0,
-                To = this.ActualWidth,
-                Duration = TimeSpan.FromMilliseconds(300),
-                EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
+                EasingFunction = new QuadraticEase()
             };
-
+            var trans = new TranslateTransform();
+            this.RenderTransform = trans;
             slideOut.Completed += (s, _) =>
             {
-                var parent = this.Parent as Border;
-                if (parent != null)
+                if (this.Parent is Border parent)
                 {
                     var list = new SidebarItems.ExaminationList();
                     list.RenderTransform = new TranslateTransform { X = -this.ActualWidth };
-
                     parent.Child = list;
-
-                    var slideIn = new DoubleAnimation
-                    {
-                        From = -this.ActualWidth,
-                        To = 0,
-                        Duration = TimeSpan.FromMilliseconds(300),
-                        EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
-                    };
-
+                    var slideIn = new DoubleAnimation(-this.ActualWidth, 0, TimeSpan.FromMilliseconds(300));
                     (list.RenderTransform as TranslateTransform).BeginAnimation(TranslateTransform.XProperty, slideIn);
                 }
             };
-
-            currentTransform.BeginAnimation(TranslateTransform.XProperty, slideOut);
+            trans.BeginAnimation(TranslateTransform.XProperty, slideOut);
         }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e) => AnimateBack();
+
 
         private void cboThuoc_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -455,48 +281,6 @@ namespace ClinicManagement.InSidebarItems
             // Cập nhật lại giao diện DataGrid
             dgThuocDaChon.Items.Refresh();
             txtSoLuong.Text = "";
-        }
-
-        private void btnExit_Click(object sender, RoutedEventArgs e)
-        {
-            // Tạo hiệu ứng slide-out sang phải cho form hiện tại
-            var currentTransform = new TranslateTransform();
-            this.RenderTransform = currentTransform;
-
-            var slideOut = new DoubleAnimation
-            {
-                From = 0,
-                To = this.ActualWidth,
-                Duration = TimeSpan.FromMilliseconds(300),
-                EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
-            };
-
-            // Khi slideOut xong, thay thế bằng ExaminationList
-            slideOut.Completed += (s, _) =>
-            {
-                var parent = this.Parent as Border;
-                if (parent != null)
-                {
-                    var list = new SidebarItems.ExaminationList();
-                    list.RenderTransform = new TranslateTransform { X = -this.ActualWidth }; // Bắt đầu từ bên trái
-
-                    parent.Child = list;
-
-                    var slideIn = new DoubleAnimation
-                    {
-                        From = -this.ActualWidth,
-                        To = 0,
-                        Duration = TimeSpan.FromMilliseconds(300),
-                        EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
-                    };
-
-                    (list.RenderTransform as TranslateTransform).BeginAnimation(TranslateTransform.XProperty, slideIn);
-                }
-            };
-
-            // Bắt đầu animation ra ngoài
-            currentTransform.BeginAnimation(TranslateTransform.XProperty, slideOut);
-
         }
 
         private void dgThuocDaChon_SelectionChanged(object sender, SelectionChangedEventArgs e)
