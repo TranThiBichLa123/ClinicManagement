@@ -1,4 +1,5 @@
 ﻿using ClinicManagement.SidebarItems;
+using DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,6 +18,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static ClinicManagement.SidebarItems.PatientList;
+using DTO;
+using BLL;
 
 namespace ClinicManagement.InSidebarItems
 {
@@ -24,11 +27,13 @@ namespace ClinicManagement.InSidebarItems
     {
         private string connectionString = "Data Source=LAPTOP-5EKP9JC6\\SQLEXPRESS01;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
         private string ID_BenhNhan;
+        private ExaminationBLL examinationBLL;
         public PatientExaminationList(string ID_BenhNhan)
         {
             InitializeComponent();
             this.ID_BenhNhan = ID_BenhNhan;
             DataContext = this;
+            examinationBLL = new ExaminationBLL();
             LoadPatientInfo(ID_BenhNhan);
             LoadPhieuKham();
         }
@@ -44,63 +49,21 @@ namespace ClinicManagement.InSidebarItems
                 rootElement.Clip = clipRect;
             }
         }
-
-        public class Patient
+        private BenhNhan GetBenhNhanById(string id)
         {
-            public int ID { get; set; }
-            public string HoTen { get; set; }
-            public string NgaySinh { get; set; }
-            public string GioiTinh { get; set; }
-        }
-
-        private Patient GetPatientById(string id)
-        {
-            Patient patient = null;
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                string query = "SELECT * FROM BENHNHAN WHERE ID_BenhNhan = @id";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@id", id);
-
-                try
-                {
-                    conn.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    if (reader.Read())
-                    {
-                        patient = new Patient
-                        {
-                            ID = Convert.ToInt32(reader["ID_BenhNhan"]),
-                            HoTen = reader["HoTenBN"].ToString(),
-                            NgaySinh = Convert.ToDateTime(reader["NgaySinh"]).ToString("dd/MM/yyyy"),
-                            GioiTinh = reader["GioiTinh"].ToString(),
-                        };
-                    }
-
-                    reader.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi khi truy vấn CSDL: " + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-
-            return patient;
+            return examinationBLL.GetBenhNhanById(id);
         }
         private void LoadPatientInfo(string id)
         {
-            Patient patient = GetPatientById(id);
+            BenhNhan patient = GetBenhNhanById(id);
 
             if (patient != null)
             {
-                txtIDPatienr.Text = patient.ID.ToString();
-                txtPatientName.Text = patient.HoTen;
+                txtIDPatienr.Text = patient.ID_BenhNhan.ToString();
+                txtPatientName.Text = patient.HoTenBN;
                 txtPatientSex.Text = patient.GioiTinh;
-                txtPatientDate.Text = patient.NgaySinh;
+                txtPatientDate.Text = patient.NgaySinh.ToString("dd/MM/yyyy"); 
 
-                // Hiển thị icon giới tính nếu bạn đã thêm phần đó trong XAML
                 if (patient.GioiTinh.ToLower() == "nam")
                 {
                     iconGender.Kind = MaterialDesignThemes.Wpf.PackIconKind.FaceMan;
@@ -115,50 +78,12 @@ namespace ClinicManagement.InSidebarItems
                 MessageBox.Show("Không tìm thấy thông tin bệnh nhân.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
-
-        public class PhieuKham
-        {
-            public int ID_PhieuKham { get; set; }
-            public DateTime? NgayTN { get; set; }
-            public string CaTN { get; set; }
-            public string TienKham { get; set; }   
-            public string TongTienThuoc { get; set; } 
-        }
         private void LoadPhieuKham()
         {
-            List<PhieuKham> danhSachPhieu = new List<PhieuKham>();
-            string query = @"SELECT ID_PhieuKham, TN.NgayTN, TN.CaTN, TienKham, TongTienThuoc 
-                             FROM PHIEUKHAM PK
-                             JOIN DANHSACHTIEPNHAN TN ON TN.ID_TiepNhan=PK.ID_TiepNhan
-                             WHERE TN.ID_BenhNhan = @ID_BenhNhan";
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand(query, conn))
-            {
-                cmd.Parameters.AddWithValue("@ID_BenhNhan", ID_BenhNhan);
-                conn.Open();
-
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        danhSachPhieu.Add(new PhieuKham
-                        {
-                            ID_PhieuKham = reader.GetInt32(0),
-                            NgayTN = reader.IsDBNull(1) ? (DateTime?)null : reader.GetDateTime(1),
-                            CaTN = reader.IsDBNull(2) ? "Không rõ" : reader.GetString(2), // Ca khám sáng/chiều
-                            TienKham = reader.IsDBNull(3) ? "0" : reader.GetDecimal(3).ToString("N0"),
-                            TongTienThuoc = reader.IsDBNull(4) ? "0" : reader.GetDecimal(4).ToString("N0")
-                        });
-                    }
-                }
-            }
-
+            List<PhieuKham> danhSachPhieu = examinationBLL.LoadPhieuKham(ID_BenhNhan);
             dgPhieuKham.ItemsSource = danhSachPhieu;
             txtExaminationCount.Text = danhSachPhieu.Count.ToString();
         }
-
-
 
         private void btn_ViewExamination_Click(object sender, RoutedEventArgs e)
         {
@@ -170,119 +95,44 @@ namespace ClinicManagement.InSidebarItems
             ShowExaminationPopup(idPhieuKham);
         }
 
-        public class Thuoc
-        {
-            public int ID_PhieuKham { get; set; }
-            public string TenThuoc { get; set; }
-            public int SoLuong { get; set; }
-            public string TienThuoc { get; set; }  // dạng string để format tiền tệ
-            public string MoTaCachDung { get; set; }
-        }
-
-        private void LoadDanhSachThuoc(int idPhieuKham, string query)
+        private void LoadDanhSachThuoc(int idPhieuKham)
         {
             List<Thuoc> danhSachThuoc = new List<Thuoc>();
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                try
-                {
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@ID_PhieuKham", idPhieuKham);
-
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        danhSachThuoc.Add(new Thuoc
-                        {
-                            ID_PhieuKham = reader.GetInt32(reader.GetOrdinal("ID_PhieuKham")),
-                            TenThuoc = reader["TenThuoc"].ToString(),
-                            SoLuong = reader.GetInt32(reader.GetOrdinal("SoLuong")),
-                            TienThuoc = reader.IsDBNull(reader.GetOrdinal("TienThuoc"))
-                                ? "Chưa có"
-                                : Convert.ToDecimal(reader["TienThuoc"]).ToString("N0"),
-                            MoTaCachDung = reader["MoTaCachDung"].ToString()
-                        });
-                    }
-
-                    reader.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi khi tải danh sách thuốc: " + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                danhSachThuoc = examinationBLL.LoadDanhSachThuoc(idPhieuKham);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải danh sách thuốc: " + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             dgDSThuoc.ItemsSource = danhSachThuoc;
         }
 
         private void ShowExaminationPopup(int idPhieuKham)
-        {
-            string querry = @"SELECT HoTenBN, PK.TrieuChung, TenLoaiBenh, ID_PhieuKham, TienKham, TongTienThuoc, PK.CAKham
-                                  FROM PHIEUKHAM PK 
-                                  JOIN DANHSACHTIEPNHAN TN ON TN.ID_TiepNhan=PK.ID_TiepNhan
-                                  JOIN BENHNHAN BN ON BN.ID_BenhNhan = TN.ID_BenhNhan 
-                                  JOIN LOAIBENH LB ON PK.ID_LoaiBenh = LB.ID_LoaiBenh
-                                  WHERE PK.ID_PhieuKham = @ID_PhieuKham
-                                ";
-
-            using (SqlConnection con = new SqlConnection(connectionString))
+        {           
+            try
             {
-                try
+                object[] objects = examinationBLL.ShowExaminationPopup(idPhieuKham);
+                if (objects[0] != null && objects[1] != null && objects[2] != null)
                 {
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand(querry, con);
-                    cmd.Parameters.AddWithValue("@ID_PhieuKham", idPhieuKham);
+                    txtIDPhieuKham.Text = idPhieuKham.ToString();
+                    txtCAKham.Text = objects[5].ToString();
+                    txtTrieuChung.Text = objects[1].ToString();
+                    txtTienKham.Text = Convert.ToDecimal(objects[3]).ToString("N0");
+                    txtTongTienThuoc.Text = Convert.ToDecimal(objects[4]).ToString("N0");
+                    txtTenLoaiBenh.Text = objects[2].ToString();
 
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    string hoTenBN = null;
-                    string trieuChung = null;
-                    string tenLoaiBenh = null;
-                    decimal tienKham = 0;
-                    decimal tongTienThuoc = 0;
-                    string caKham = null;
-                    while (reader.Read())
-                    {
-                        hoTenBN = reader["HoTenBN"].ToString();
-                        trieuChung = reader["TrieuChung"].ToString();
-                        tenLoaiBenh = reader["TenLoaiBenh"].ToString();
-                        caKham = reader["CAKham"].ToString();
-                        tienKham = (decimal)reader["TienKham"];
-                        if (reader["TongTienThuoc"] != DBNull.Value)
-                            tongTienThuoc = (decimal)reader["TongTienThuoc"];
-                        else tongTienThuoc = 0;
-                    }
-                    reader.Close();
-
-                    if (hoTenBN != null && trieuChung != null && tenLoaiBenh != null)
-                    {
-                        txtIDPhieuKham.Text = idPhieuKham.ToString();
-                        txtCAKham.Text = caKham.ToString();
-                        txtTrieuChung.Text = trieuChung.ToString();
-                        txtTenLoaiBenh.Text = tenLoaiBenh.ToString();
-                        txtTienKham.Text = tienKham.ToString("N0");
-                        txtTongTienThuoc.Text = tongTienThuoc.ToString("N0");
-
-                        ExaminationPopup.IsOpen = true;
-
-                        string queryThuoc = @"SELECT PK.ID_PhieuKham, TenThuoc, SoLuong, TienThuoc, MoTaCachDung
-                                              FROM PHIEUKHAM PK 
-                                              JOIN TOATHUOC CT ON PK.ID_PhieuKham = CT.ID_PhieuKham 
-                                              JOIN THUOC T ON CT.ID_Thuoc = T.ID_Thuoc 
-                                              JOIN CACHDUNG C ON C.ID_CachDung = T.ID_CachDung
-                                              WHERE PK.ID_PhieuKham = @ID_PhieuKham";
-
-                        LoadDanhSachThuoc(idPhieuKham, queryThuoc);
-                    }
-
+                    ExaminationPopup.IsOpen = true;
+                    LoadDanhSachThuoc(idPhieuKham);
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi khi tải chi tiết phiếu khám: " + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải chi tiết phiếu khám: " + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }      
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)

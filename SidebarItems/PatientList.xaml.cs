@@ -17,122 +17,39 @@ using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using ClinicManagement.InSidebarItems;
 using System.Windows.Media.Animation;
+using DTO;
+using BLL;
 
 namespace ClinicManagement.SidebarItems
 {
     public partial class PatientList : UserControl
     {
         string connectionString = "Data Source=LAPTOP-5EKP9JC6\\SQLEXPRESS01;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
-
+        private BenhNhanBLL benhnhanBLL;
         public PatientList()
         {
             InitializeComponent();
+            benhnhanBLL = new BenhNhanBLL();
             LoadDSBenhNhan();
         }
 
         private void LoadDSBenhNhan(string nameKeyword = "", string idKeyword = "", string loaiBenhKeyword = "", string trieuChungKeyword = "", string ngayDK = "")
         {
-            string query = @"
-                        SELECT 
-                            BN.ID_BenhNhan,
-                            BN.HoTenBN,
-                            BN.NgaySinh,
-                            BN.GioiTinh,
-                            BN.CCCD,
-                            BN.DienThoai,
-                            BN.DiaChi,
-                            BN.Email,
-                            BN.NgayDK
-                        FROM BENHNHAN BN
-                        WHERE BN.Is_Deleted = 0
-";
-
-            if (!string.IsNullOrEmpty(loaiBenhKeyword) || !string.IsNullOrEmpty(trieuChungKeyword))
+            try
             {
-                query += @"
-                        AND EXISTS (
-                            SELECT 1
-                            FROM PHIEUKHAM PK
-                            JOIN DANHSACHTIEPNHAN TN ON TN.ID_TiepNhan=PK.ID_TiepNhan
-                            JOIN LOAIBENH LB ON PK.ID_LoaiBenh = LB.ID_LoaiBenh
-                            WHERE TN.ID_BenhNhan = BN.ID_BenhNhan
-    ";
-
-                if (!string.IsNullOrEmpty(loaiBenhKeyword))
-                    query += " AND LB.TenLoaiBenh LIKE @loaiBenhKeyword";
-
-                if (!string.IsNullOrEmpty(trieuChungKeyword))
-                    query += " AND PK.TrieuChung LIKE @trieuChungKeyword";
-
-                query += ")";
+                DataTable dt = benhnhanBLL.LoadPatientList(nameKeyword, idKeyword, loaiBenhKeyword, trieuChungKeyword, ngayDK);
+                dgBenhNhan.ItemsSource = dt.DefaultView;
+                txtPatientCount.Text = dt.Rows.Count.ToString();
             }
-
-            if (!string.IsNullOrEmpty(nameKeyword))
-                query += " AND BN.HoTenBN LIKE @nameKeyword";
-            if (!string.IsNullOrEmpty(idKeyword))
-                query += " AND CAST(BN.ID_BenhNhan AS NVARCHAR) LIKE @idKeyword";
-            if (!string.IsNullOrEmpty(ngayDK))
-                query += " AND CONVERT(VARCHAR, BN.NgayDK, 103) LIKE @ngayDK";
-
-
-            using (SqlConnection con = new SqlConnection(connectionString))
+            catch (Exception ex)
             {
-                try
-                {
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand(query, con);
-
-                    if (!string.IsNullOrEmpty(nameKeyword))
-                        cmd.Parameters.AddWithValue("@nameKeyword", "%" + nameKeyword + "%");
-                    if (!string.IsNullOrEmpty(idKeyword))
-                        cmd.Parameters.AddWithValue("@idKeyword", "%" + idKeyword + "%");
-                    if (!string.IsNullOrEmpty(loaiBenhKeyword))
-                        cmd.Parameters.AddWithValue("@loaiBenhKeyword", "%" + loaiBenhKeyword + "%");
-                    if (!string.IsNullOrEmpty(trieuChungKeyword))
-                        cmd.Parameters.AddWithValue("@trieuChungKeyword", "%" + trieuChungKeyword + "%");
-                    if (!string.IsNullOrEmpty(ngayDK))
-                        cmd.Parameters.AddWithValue("@ngayDK", "%" + ngayDK + "%");
-
-                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        foreach (DataColumn col in dt.Columns)
-                        {
-                            if (row[col] == DBNull.Value)
-                            {
-                                row[col] = "0";
-                            }
-                        }
-                    }
-                    dgBenhNhan.ItemsSource = dt.DefaultView;
-                    txtPatientCount.Text = dt.Rows.Count.ToString();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi tải danh sách bệnh nhân: " + ex.Message);
-                }
+                MessageBox.Show("Lỗi tải danh sách bệnh nhân: " + ex.Message);
             }
         }
 
         private void btnAddPatient_Click(object sender, RoutedEventArgs e)
         {
             AddPatientPopup.IsOpen = true;
-        }
-
-        public class BenhNhan
-        {
-            public string HoTenBN { get; set; }
-            public DateTime NgaySinh { get; set; }
-            public string GioiTinh { get; set; }
-            public string CCCD { get; set; }
-            public string DienThoai { get; set; }
-            public string DiaChi { get; set; }
-            public string Email { get; set; }
-
-            public DateTime NgayDK { get; set; }
-            public bool Is_Deleted { get; set; }
         }
 
         private void SavePatient_Click(object sender, RoutedEventArgs e)
@@ -165,7 +82,7 @@ namespace ClinicManagement.SidebarItems
 
             try
             {
-                bool isAdded = AddPatientToDatabase(newPatient);
+                bool isAdded = benhnhanBLL.AddPatientToDatabase(newPatient);
 
                 if (isAdded)
                 {
@@ -180,31 +97,6 @@ namespace ClinicManagement.SidebarItems
             catch (Exception ex)
             {
                 MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private bool AddPatientToDatabase(BenhNhan patient)
-        {
-            string query = @"
-                INSERT INTO BenhNhan (HoTenBN, NgaySinh, GioiTinh, CCCD, DienThoai, DiaChi, Email, NgayDK, Is_Deleted)
-                VALUES (@HoTenBN, @NgaySinh, @GioiTinh, @CCCD, @DienThoai, @DiaChi, @Email, @NgayDK, @Is_Deleted)";
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand(query, conn))
-            {
-                cmd.Parameters.AddWithValue("@HoTenBN", patient.HoTenBN);
-                cmd.Parameters.AddWithValue("@NgaySinh", patient.NgaySinh);
-                cmd.Parameters.AddWithValue("@GioiTinh", patient.GioiTinh);
-                cmd.Parameters.AddWithValue("@CCCD", patient.CCCD);
-                cmd.Parameters.AddWithValue("@DienThoai", patient.DienThoai);
-                cmd.Parameters.AddWithValue("@DiaChi", patient.DiaChi);
-                cmd.Parameters.AddWithValue("@Email", patient.Email);
-                cmd.Parameters.AddWithValue("@NgayDK", patient.NgayDK);
-                cmd.Parameters.AddWithValue("@Is_Deleted", patient.Is_Deleted);
-
-                conn.Open();
-                int result = cmd.ExecuteNonQuery();
-                return result > 0;
             }
         }
 
@@ -236,7 +128,6 @@ namespace ClinicManagement.SidebarItems
                 return;
             }
 
-            // Đổ dữ liệu cũ vào popup
             EditPatientName.Text = selectedPatient["HoTenBN"].ToString();
             EditDOB.SelectedDate = Convert.ToDateTime(selectedPatient["NgaySinh"]);
             EditPhone.Text = selectedPatient["DienThoai"].ToString();
@@ -292,58 +183,38 @@ namespace ClinicManagement.SidebarItems
                 ? selectedRow["DiaChi"].ToString()  
                 : EditAddress.Text;
 
-            string newGender;
-            if (EditGender.SelectedItem is ComboBoxItem genderItem && !string.IsNullOrWhiteSpace(genderItem.Content.ToString()))
-            {
-                newGender = genderItem.Content.ToString(); 
-            }
-            else
-            {
-                newGender = selectedRow["GioiTinh"].ToString();
-            }
+            string newGender = (EditGender.SelectedItem is ComboBoxItem genderItem && !string.IsNullOrWhiteSpace(genderItem.Content.ToString()))
+                ? genderItem.Content.ToString()
+                : selectedRow["GioiTinh"].ToString();
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            BenhNhan patient = new BenhNhan
             {
-                string query = @"
-                        UPDATE BENHNHAN
-                        SET HoTenBN = @HoTenBN,
-                            NgaySinh = @NgaySinh,
-                            GioiTinh = @GioiTinh,
-                            CCCD = @CCCD,
-                            DienThoai = @DienThoai,
-                            DiaChi = @DiaChi,
-                            Email = @Email
-                        WHERE ID_BenhNhan = @ID_BenhNhan";
-
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@HoTenBN", newName);
-                cmd.Parameters.AddWithValue("@NgaySinh", newDOB);
-                cmd.Parameters.AddWithValue("@GioiTinh", newGender);
-                cmd.Parameters.AddWithValue("@CCCD", newCCCD);
-                cmd.Parameters.AddWithValue("@DienThoai", newPhone);
-                cmd.Parameters.AddWithValue("@DiaChi", newAddress);
-                cmd.Parameters.AddWithValue("@Email", newEmail);
-                cmd.Parameters.AddWithValue("@ID_BenhNhan", idBenhNhan);
-
-                try
+                ID_BenhNhan = idBenhNhan,
+                HoTenBN = newName,
+                NgaySinh = newDOB,
+                GioiTinh = newGender,
+                CCCD = newCCCD,
+                DienThoai = newPhone,
+                DiaChi = newAddress,
+                Email = newEmail
+            };
+            bool result = benhnhanBLL.UpdatePatient(patient);
+            try
+            {
+                if (result)
                 {
-                    conn.Open();
-                    int result = cmd.ExecuteNonQuery();
-                    if (result > 0)
-                    {
-                        MessageBox.Show("Cập nhật thông tin bệnh nhân thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-                        EditPatientPopup.IsOpen = false;
-                        LoadDSBenhNhan(); 
-                    }
-                    else
-                    {
-                        MessageBox.Show("Không thể cập nhật. Vui lòng thử lại.", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
+                    MessageBox.Show("Cập nhật thông tin bệnh nhân thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    EditPatientPopup.IsOpen = false;
+                    LoadDSBenhNhan(); 
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Lỗi cập nhật:\n" + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Không thể cập nhật. Vui lòng thử lại.", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi cập nhật:\n" + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -402,42 +273,38 @@ namespace ClinicManagement.SidebarItems
                 MessageBox.Show("Vui lòng chọn một bệnh nhân để xóa.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
+
             var result = MessageBox.Show("Bạn có chắc chắn muốn xóa bệnh nhân này?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result != MessageBoxResult.Yes)
                 return;
 
             string idBenhNhan = selectedRow["ID_BenhNhan"].ToString();
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                string querry = "UPDATE BENHNHAN SET Is_Deleted = 1 WHERE ID_BenhNhan = @ID_BenhNhan";
+                int deleteResult = benhnhanBLL.DeletePatient(Convert.ToInt32(idBenhNhan));
 
-                SqlCommand cmd = new SqlCommand(querry, conn);
-                cmd.Parameters.AddWithValue("@ID_BenhNhan", idBenhNhan);
-                try
+                switch (deleteResult)
                 {
-                    conn.Open();
-                    int rowsAffected = cmd.ExecuteNonQuery();
-                    if (rowsAffected > 0)
-                    {
-                        MessageBox.Show("Đã xóa bệnh nhân khỏi danh sách tiếp nhận.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-
+                    case 1:
+                        MessageBox.Show("Đã xóa bệnh nhân thành công.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                         LoadDSBenhNhan();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Không tìm thấy bệnh nhân cần xóa.", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi:\n" + ex.Message, "Lỗi khi xóa", MessageBoxButton.OK, MessageBoxImage.Error);
+                        break;
+                    case 2:
+                        MessageBox.Show("Không thể xóa vì bệnh nhân đã có phiếu khám.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        break;
+                    case 0:
+                    default:
+                        MessageBox.Show("Không tìm thấy bệnh nhân để xóa.", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        break;
                 }
             }
-
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi:\n" + ex.Message, "Lỗi khi xóa", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             double radius = 20;
