@@ -57,8 +57,7 @@ HorizontalAlignment="Center"/>
                     <!-- Start: MenuItem -->
                     <StackPanel Grid.Row="1" Margin="-1 0 0 20">
                         <Button x:Name="btnHome" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnHome_MouseEnter" MouseLeave="btnHome_MouseLeave" Click="btnHome_Click">
-                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource home}" IconWidth="16" Text="Dashboard" VerticalAlignment="Center"/>
-
+                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource home}" IconWidth="16" Text="Overview" VerticalAlignment="Center"/>
                         </Button>
                         <Button x:Name="btnDashboard" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnDashboard_MouseEnter" MouseLeave="btnDashboard_MouseLeave" Click="btnDashboard_Click">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource dashboard}" IconWidth="16" Text="Dashboard" VerticalAlignment="Center"/>
@@ -75,19 +74,17 @@ HorizontalAlignment="Center"/>
                         <Button x:Name="btnBilling" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnBilling_MouseEnter" MouseLeave="btnBilling_MouseLeave" Click="btnBilling_Click">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource billing}" IconWidth="16" Text="Billing" VerticalAlignment="Center"/>
                         </Button>
-                        
-                       
-
+                        <Button x:Name="btnReport" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnReport_MouseEnter" MouseLeave="btnReport_MouseLeave" Click="btnReport_Click">
+                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource billing}" IconWidth="16" Text="Report" VerticalAlignment="Center"/>
+                        </Button>
 
                     </StackPanel>
                     <StackPanel Grid.Row="3" VerticalAlignment="Bottom">
                         <Button x:Name="btnSetting" Style="{DynamicResource PopupButtonStyle}" 
-        MouseEnter="btnSetting_MouseEnter" MouseLeave="btnSetting_MouseLeave" Click="Logout_Click">
+                            MouseEnter="btnSetting_MouseEnter" MouseLeave="btnSetting_MouseLeave" Click="Logout_Click">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" 
- IconWidth="16" Text="Logout" Icon="{DynamicResource logout}" VerticalAlignment="Center"/>
+                            IconWidth="16" Text="Logout" Icon="{DynamicResource logout}" VerticalAlignment="Center"/>
                         </Button>
-
-
                     </StackPanel>
 
                     <!-- End: MenuItem -->

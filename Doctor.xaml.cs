@@ -230,5 +230,30 @@ namespace ClinicManagement
                 this.Close(); 
             }
         }
+        private void btnReport_MouseEnter(object sender, MouseEventArgs e)
+        {
+
+            if (Tg_Btn.IsChecked == false)
+            {
+                Popup.PlacementTarget = btnReport;
+                Popup.Placement = PlacementMode.Right;
+                Popup.IsOpen = true;
+                Header.PopupText.Text = "Report";
+            }
+        }
+
+        private void btnReport_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Popup.Visibility = Visibility.Collapsed;
+            Popup.IsOpen = false;
+
+        }
+
+        private void btnReport_Click(object sender, RoutedEventArgs e)
+        {
+            LoadUserControl(new ReportView());
+        }
+
+
     }
 }

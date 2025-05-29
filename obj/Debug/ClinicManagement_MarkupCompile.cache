@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\QL_PHONGMACHTU\obj\Debug\
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\
 ClinicManagement
 none
 false
 DEBUG;TRACE
-D:\QL_PHONGMACHTU\App.xaml
-18-701501802
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\App.xaml
+19-1461567653
 
-231538299329
-25717195710
-Assets\Icons.xaml;Cashier.xaml;Controls\MenuItem.xaml;Controls\MenuItemPopup.xaml;Doctor.xaml;Receptionist.xaml;SidebarItems\CreateBill.xaml;SidebarItems\DashBoard.xaml;SidebarItems\EditBill.xaml;SidebarItems\ForgotPassword.xaml;SidebarItems\InvoiceList.xaml;SidebarItems\Login.xaml;SidebarItems\NewPassword.xaml;SidebarItems\Patient.xaml;SidebarItems\popUpDoctor.xaml;SidebarItems\ProfileWindow.xaml;SidebarItems\RecoveryPasswordWindow.xaml;SidebarItems\ResetPassword.xaml;
+25-1285513964
+27686475206
+Assets\Icons.xaml;Cashier.xaml;Controls\MenuItem.xaml;Controls\MenuItemPopup.xaml;Doctor.xaml;Receptionist.xaml;SidebarItems\CreateBill.xaml;SidebarItems\DashBoard.xaml;SidebarItems\EditBill.xaml;SidebarItems\ForgotPassword.xaml;SidebarItems\InvoiceList.xaml;SidebarItems\Login.xaml;SidebarItems\NewPassword.xaml;SidebarItems\Patient.xaml;SidebarItems\popUpDoctor.xaml;SidebarItems\ProfileWindow.xaml;SidebarItems\RecoveryPasswordWindow.xaml;SidebarItems\ReportView.xaml;SidebarItems\ResetPassword.xaml;
 
 False
 
