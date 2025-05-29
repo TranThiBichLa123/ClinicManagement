@@ -15,7 +15,7 @@
       "RelativeMoniker": "D:0:0:{23EC210B-9B07-48B7-887B-08019CBB52E5}|DTO\\DTO.csproj|solutionrelative:dto\\drug.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1033AED8-16BD-4DF5-93CC-2E70DE1631D0}|DAL\\DAL.csproj|D:\\NAM 2 - HK2\\NHAP MON CNPM\\Do an quan ly phong mach tu\\ClinicManagement\\dal\\newdrugaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1033AED8-16BD-4DF5-93CC-2E70DE1631D0}|DAL\\DAL.csproj|d:\\nam 2 - hk2\\nhap mon cnpm\\do an quan ly phong mach tu\\clinicmanagement\\dal\\newdrugaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1033AED8-16BD-4DF5-93CC-2E70DE1631D0}|DAL\\DAL.csproj|solutionrelative:dal\\newdrugaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -31,7 +31,7 @@
       "RelativeMoniker": "D:0:0:{23D15D59-7343-4CEE-A748-7907D2983193}|BLL\\BLL.csproj|solutionrelative:bll\\drugbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|d:\\nam 2 - hk2\\nhap mon cnpm\\do an quan ly phong mach tu\\clinicmanagement\\sidebaritems\\newdrug.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\NAM 2 - HK2\\NHAP MON CNPM\\Do an quan ly phong mach tu\\ClinicManagement\\sidebaritems\\newdrug.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\newdrug.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -299,8 +299,7 @@
               "RelativeToolTip": "DTO\\Drug.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAIBEwBsAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-18T09:22:18.682Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-18T09:22:18.682Z"
             },
             {
               "$type": "Document",
@@ -358,8 +357,7 @@
               "ToolTip": "D:\\NAM 2 - HK2\\NHAP MON CNPM\\Do an quan ly phong mach tu\\ClinicManagement\\SidebarItems\\DrugView.xaml",
               "RelativeToolTip": "SidebarItems\\DrugView.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-17T09:09:48.439Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T09:09:48.439Z"
             },
             {
               "$type": "Document",
@@ -370,8 +368,7 @@
               "ToolTip": "D:\\NAM 2 - HK2\\NHAP MON CNPM\\Do an quan ly phong mach tu\\ClinicManagement\\SidebarItems\\EditDrug.xaml",
               "RelativeToolTip": "SidebarItems\\EditDrug.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-17T09:09:41.556Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T09:09:41.556Z"
             }
           ]
         },
@@ -439,8 +436,7 @@
               "RelativeToolTip": "SidebarItems\\NewDrug.xaml.cs",
               "ViewState": "AgIAALAAAAAAAAAAAAAmwBsAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T14:45:36.111Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-06T14:45:36.111Z"
             }
           ]
         }
