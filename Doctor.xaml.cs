@@ -8,7 +8,7 @@ namespace ClinicManagement
 {
     public partial class Doctor : Window
     {
-        private void LoadUserControl(UserControl userControl)
+        public void LoadUserControl(UserControl userControl)
         {
             // Kiểm tra Border có chứa phần tử con hay không
             if (fContainer.Child != null)
@@ -75,7 +75,13 @@ namespace ClinicManagement
 
         }
 
-       
+        private void btnBilling_Click(object sender, RoutedEventArgs e)
+        {
+            LoadUserControl(new InvoiceList(this));
+        }
+
+
+
 
         private void btnPointOfSale_MouseLeave(object sender, MouseEventArgs e)
         {
@@ -247,5 +253,54 @@ namespace ClinicManagement
 
 
         }
+        private void btnReport_MouseEnter(object sender, MouseEventArgs e)
+        {
+
+            if (Tg_Btn.IsChecked == false)
+            {
+                Popup.PlacementTarget = btnReport;
+                Popup.Placement = PlacementMode.Right;
+                Popup.IsOpen = true;
+                Header.PopupText.Text = "Report";
+            }
+        }
+
+        private void btnReport_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Popup.Visibility = Visibility.Collapsed;
+            Popup.IsOpen = false;
+
+        }
+
+        private void btnReport_Click(object sender, RoutedEventArgs e)
+        {
+            LoadUserControl(new ReportView());
+        }
+
+        private void btnProductStock_MouseEnter(object sender, MouseEventArgs e)
+        {
+
+            if (Tg_Btn.IsChecked == false)
+            {
+                Popup.PlacementTarget = btnReport;
+                Popup.Placement = PlacementMode.Right;
+                Popup.IsOpen = true;
+                Header.PopupText.Text = "Report";
+            }
+        }
+
+        private void btnProductStock_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Popup.Visibility = Visibility.Collapsed;
+            Popup.IsOpen = false;
+
+        }
+
+        private void btnProductStock_Click(object sender, RoutedEventArgs e)
+        {
+            LoadUserControl(new ReportView());
+        }
+
+
     }
 }

@@ -4,11 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ClinicManagement.SidebarItems"
-            xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
-             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-            
-mc:Ignorable="d" 
-              d:DesignHeight="724.04" d:DesignWidth="1030">
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"      
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="724.04" d:DesignWidth="1030">
     <UserControl.Resources>
 
         <Style x:Key="CalendarStyle1" TargetType="{x:Type Calendar}">
@@ -427,6 +427,7 @@ mc:Ignorable="d"
         </Style>
     </UserControl.Resources>
     <Grid Background="Transparent">
+
         <!--Main section-->
         <Border x:Name="borderMainContent" Grid.Column="1" CornerRadius="20" MouseDown="Border_MouseDown">
             <Border.Background>
@@ -466,105 +467,31 @@ mc:Ignorable="d"
                 </StackPanel>
                 <!--Title-->
                 <TextBlock FontSize="26" HorizontalAlignment="Left" Margin="20 35 0 20" Width="350">
-    <Run Text="Good Afternoon, " Foreground="#FF0E0E10"/> 
-    <Run Text="Dr.Bich La" FontWeight="Bold" Foreground="#29A3EC"/>
+        <Run Text="Good Afternoon, " Foreground="#FF0E0E10"/> 
+        <Run Text="Dr.Bich La" FontWeight="Bold" Foreground="#29A3EC"/>
                 </TextBlock>
                 <!--add the popup user control-->
                 <Popup x:Name="popup_uc"
-       AllowsTransparency="True"
-       HorizontalOffset="10"
-       VerticalOffset="10" Margin="0,0,0,260" Grid.RowSpan="2">
+           AllowsTransparency="True"
+           HorizontalOffset="10"
+           VerticalOffset="10" Margin="0,0,0,260" Grid.RowSpan="2">
 
-                    <Grid>
+                    <!--<Grid>
                         <local:popUpDoctor x:Name="Header" Foreground="#E0FFFF"/>
 
-                    </Grid>
+                    </Grid>-->
                 </Popup>
 
                 <Border Grid.Row="1"  CornerRadius="15" BorderBrush="Transparent" 
-        BorderThickness="0" Margin="20,0,395,0" Width="606">
-                    <Border.Background>
-                        <LinearGradientBrush StartPoint="1, 0" EndPoint="0, 1">
-                            <GradientStop Color="White" Offset="0"/>
-                            <GradientStop Color="Silver" Offset="1"/>
-
-                        </LinearGradientBrush>
-                    </Border.Background>
-                    <Grid Margin="15">
-                        <!-- Định nghĩa 2 cột -->
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <!-- Cột nội dung -->
-                            <ColumnDefinition Width="Auto"/>
-                            <!-- Cột Icon -->
-                        </Grid.ColumnDefinitions>
-
-                        <!-- Định nghĩa 2 hàng -->
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <!-- Hàng chứa Patients + số lượng -->
-                            <RowDefinition Height="Auto"/>
-                            <!-- Hàng chứa New Patients + Old Patients -->
-                        </Grid.RowDefinitions>
-
-                        <!-- 🟢 Hàng 1, Cột 1: Tiêu đề chính -->
-                        <StackPanel Grid.Column="0" Grid.Row="0" >
-                            <TextBlock FontSize="26" Text="Patients" FontWeight="Bold" HorizontalAlignment="Left"/>
-                            <TextBlock FontWeight="SemiBold" FontSize="60" Text="4" HorizontalAlignment="Left" Margin="0,5,0,2"/>
-                        </StackPanel>
-
-                        <!-- 🟡 Hàng 2, Cột 1: Chứa New Patients & Old Patients -->
-                        <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="0,49,0,-29" Grid.Row="1">
-                            <Border Background="#FFADDCFB" Width="195" CornerRadius="15" Margin="0,0,18,0">
-                                <StackPanel Margin="10,0,10,0" Height="84">
-                                    <TextBlock FontWeight="SemiBold" FontSize="25" Text="New Patients"/>
-                                    <TextBlock FontSize="15" Text="40" FontWeight="Bold"/>
-                                    <Border Background="#FFFCB6B6" Padding="4,2" CornerRadius="8" Opacity="0.8"
-MinWidth="40" HorizontalAlignment="Right" Margin="0,0,0,425" >
-                                        <TextBlock Text="20%" Foreground="#E44D42" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
-                                    </Border>
-                                </StackPanel>
-                            </Border>
-
-                            <Border Background="#FF98D2F8" Width="192" CornerRadius="15">
-                                <StackPanel Margin="10,0,10,0" Height="94">
-                                    <TextBlock FontWeight="SemiBold" FontSize="25" Text="Old Patients"/>
-                                    <TextBlock FontSize="15" Text="30" FontWeight="Bold"/>
-                                    <Border Background="#FFC0E8A9" Padding="4,2" CornerRadius="8" Opacity="0.8"
-        MinWidth="40" HorizontalAlignment="Right" Margin="0,0,0,425">
-                                        <TextBlock Text="30%" Foreground="#2E8B57" FontSize="14" FontWeight="Bold" TextAlignment="Center"/>
-                                    </Border>
-
-                                </StackPanel>
-                            </Border>
-                        </StackPanel>
-
-
-                        <!-- 🔵 Cột 2: Icon chiếm cả 2 hàng -->
-                        <fa:IconImage Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Icon="Twitter" Foreground="#29A3EC" 
-                      Width="80" Height="80" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="35,80"/>
-                    </Grid>
+            BorderThickness="0" Margin="20,0,395,0" Width="606">
                 </Border>
-
-
-
-
-
-
-                <Calendar Grid.Row="1" 
-          HorizontalAlignment="Right" 
-          Margin="0,0,20,0" 
-          Style="{DynamicResource CalendarStyle1}" 
-          CalendarButtonStyle="{DynamicResource CalendarButtonStyle1}" 
-          CalendarDayButtonStyle="{DynamicResource CalendarDayButtonStyle1}" 
-          CalendarItemStyle="{DynamicResource CalendarItemStyle1}"/>
-
-
-
-
-
+                <!-- Đóng Border Grid.Row="1" nếu cần -->
             </Grid>
-
+  
+            <!-- Đóng Grid bên trong Border -->
         </Border>
+        <!-- Đóng Border ngoài cùng -->
     </Grid>
+    <!-- Đóng Grid Background="Transparent" -->
+
 </UserControl>

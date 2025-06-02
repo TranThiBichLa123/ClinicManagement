@@ -1,0 +1,177 @@
+﻿<UserControl x:Class="ClinicManagement.SidebarItems.InvoiceList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:conv="clr-namespace:ClinicManagement.Converters"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ClinicManagement.SidebarItems"
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             Loaded="InvoiceList_Loaded"
+             mc:Ignorable="d" 
+             d:DesignHeight="724.04" d:DesignWidth="1030">
+
+    <UserControl.Resources>
+        <conv:SearchHintVisibilityConverter x:Key="SearchHintVisibilityConverter"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Bộ lọc tìm kiếm -->
+        <Grid Grid.Row="0" Height="60" Margin="10,10,10,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="140"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="110"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- ComboBox lọc -->
+            <ComboBox x:Name="searchCategoryComboBox"
+                      Grid.Column="0"
+                      Style="{DynamicResource ComboBoxStyle1}"
+                      VerticalContentAlignment="Center"
+                      FontSize="14">
+                <ComboBoxItem Content="Tất cả" IsSelected="True"/>
+                <ComboBoxItem Content="Mã hóa đơn"/>
+                <ComboBoxItem Content="Mã phiếu khám"/>
+                <ComboBoxItem Content="Mã nhân viên"/>
+            </ComboBox>
+
+            <!-- Search TextBox với Hint -->
+            <Grid Grid.Column="1">
+                <TextBox x:Name="textBoxSearch"
+                         TextChanged="textBoxSearch_TextChanged"
+                         Style="{StaticResource searchTextbox}"
+                         VerticalContentAlignment="Center"
+                         FontSize="14"
+                         Padding="10,0"
+                         Height="35"/>
+                <TextBlock Text="Search here ..."
+                           Foreground="#868686"
+                           VerticalAlignment="Center"
+                           Margin="12,0,0,0"
+                           IsHitTestVisible="False"
+                           FontSize="14">
+                    <TextBlock.Visibility>
+                        <MultiBinding Converter="{StaticResource SearchHintVisibilityConverter}">
+                            <Binding ElementName="textBoxSearch" Path="Text"/>
+                            <Binding ElementName="textBoxSearch" Path="IsFocused"/>
+                        </MultiBinding>
+                    </TextBlock.Visibility>
+                </TextBlock>
+            </Grid>
+
+            <!-- DatePicker -->
+            <DatePicker x:Name="datePickerSearch"
+                        Grid.Column="2"
+                        SelectedDate="{Binding SelectedDate}"
+                        DisplayDateStart="2020-01-01"
+                        DisplayDateEnd="2030-12-31"
+                        FontSize="14"
+                        Height="35"
+                        Margin="10,0"
+                        VerticalContentAlignment="Center"
+                        SelectedDateFormat="Short"
+            Language="vi-VN"/>
+
+            <!-- Nút tìm kiếm -->
+            <Button Content="Tìm kiếm"
+                    Grid.Column="3"
+                    Width="100"
+                    Height="35"
+                    Background="#3f51b5"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    Click="OnSearchButtonClick"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Margin="10,0,0,0"/>
+        </Grid>
+
+        <!-- DataGrid -->
+        <DataGrid Grid.Row="1"
+                  x:Name="billDataGrid"
+                  Margin="10"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  RowHeight="45"
+                  HeadersVisibility="Column"
+                  ColumnHeaderHeight="50"
+                  CanUserAddRows="False"
+                  BorderThickness="0"
+                  Background="White"
+                  HorizontalGridLinesBrush="Transparent"
+                  VerticalGridLinesBrush="Transparent"
+                  RowBackground="White"
+                  AlternatingRowBackground="#F8F8F8">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Mã HĐ" Binding="{Binding MaHoaDon}" Width="*"/>
+                <DataGridTextColumn Header="Mã phiếu khám" Binding="{Binding MaPhieuKham}" Width="*"/>
+                <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding MaNhanVien}" Width="*"/>
+                <DataGridTextColumn Header="Ngày lập hóa đơn" Binding="{Binding NgayLap, StringFormat='dd/MM/yyyy'}" Width="*"/>
+                <DataGridTextColumn Header="Tiền khám" Binding="{Binding TienKham, StringFormat=N0}" Width="*"/>
+                <DataGridTextColumn Header="Tiền thuốc" Binding="{Binding TienThuoc, StringFormat=N0}" Width="*"/>
+                <DataGridTextColumn Header="Tổng tiền" Binding="{Binding TongTien, StringFormat=N0}" Width="*"/>
+
+                <!-- Cột Sửa -->
+                <DataGridTemplateColumn Header="Sửa" Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Width="50" Height="25" Cursor="Hand" Click="EditButton_Click">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="#4FC3F7"
+                                                CornerRadius="5"
+                                                BorderThickness="0"
+                                                BorderBrush="Transparent">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                                <Button.Content>
+                                    <Icon:PackIconMaterial Kind="Pencil"
+                                                           Foreground="White"
+                                                           Width="18" Height="18"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"/>
+                                </Button.Content>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!-- Cột Xóa -->
+                <DataGridTemplateColumn Header="Xóa" Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Width="50" Height="25" Cursor="Hand" Click="DeleteBill_Click">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="#E53935"
+                                                CornerRadius="5"
+                                                BorderThickness="0"
+                                                BorderBrush="Transparent">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                                <Button.Content>
+                                    <Icon:PackIconMaterial Kind="Delete"
+                                                           Foreground="White"
+                                                           Width="18" Height="18"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"/>
+                                </Button.Content>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

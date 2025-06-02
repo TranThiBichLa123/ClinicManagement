@@ -254,12 +254,12 @@ Margin="50,79,50,50">
                         RepeatBehavior="Forever">
                                     <DiscreteObjectKeyFrame KeyTime="0:0:2">
                                         <DiscreteObjectKeyFrame.Value>
-                                            <BitmapImage UriSource="/img/login2.jpg"/>
+                                            <BitmapImage UriSource="pack://application:,,,/img/login2.jpg"/>
                                         </DiscreteObjectKeyFrame.Value>
                                     </DiscreteObjectKeyFrame>
                                     <DiscreteObjectKeyFrame KeyTime="0:0:4">
                                         <DiscreteObjectKeyFrame.Value>
-                                            <BitmapImage UriSource="/img/login3.jpg"/>
+                                            <BitmapImage UriSource="pack://application:,,,/img/login3.jpg"/>
                                         </DiscreteObjectKeyFrame.Value>
                                     </DiscreteObjectKeyFrame>
                                 </ObjectAnimationUsingKeyFrames>

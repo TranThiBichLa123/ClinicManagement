@@ -1,75 +1,88 @@
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\bin\Debug\img\drugDefault.jpg
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\bin\Debug\ClinicManagement.exe.config
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\bin\Debug\ClinicManagement.exe
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\bin\Debug\ClinicManagement.pdb
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\bin\Debug\BLL.dll
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\bin\Debug\DTO.dll
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\bin\Debug\FontAwesome.Sharp.dll
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\bin\Debug\LiveCharts.dll
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\bin\Debug\LiveCharts.Wpf.dll
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\bin\Debug\MahApps.Metro.IconPacks.Core.dll
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\bin\Debug\MahApps.Metro.IconPacks.Material.dll
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\bin\Debug\PresentationFramework.Aero2.dll
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\bin\Debug\DAL.dll
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\bin\Debug\BLL.pdb
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\bin\Debug\DTO.pdb
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\bin\Debug\LiveCharts.pdb
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\bin\Debug\LiveCharts.xml
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\bin\Debug\LiveCharts.Wpf.pdb
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\bin\Debug\LiveCharts.Wpf.xml
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\bin\Debug\MahApps.Metro.IconPacks.Core.xml
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\bin\Debug\MahApps.Metro.IconPacks.Material.xml
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\bin\Debug\DAL.pdb
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\ClinicManagement.csproj.AssemblyReference.cache
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\Cashier.g.cs
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\Controls\MenuItem.g.cs
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\Controls\MenuItemPopup.g.cs
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\Doctor.g.cs
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\Receptionist.g.cs
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\SidebarItems\DashBoard.g.cs
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\SidebarItems\DrugDetail.g.cs
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\SidebarItems\DrugView.g.cs
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\SidebarItems\EditDrug.g.cs
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\SidebarItems\EditRole.g.cs
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\SidebarItems\ForgotPassword.g.cs
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\SidebarItems\Login.g.cs
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\SidebarItems\NewDrug.g.cs
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\SidebarItems\NewPassword.g.cs
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\SidebarItems\Patient.g.cs
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\SidebarItems\popUpDoctor.g.cs
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\SidebarItems\RecoveryPasswordWindow.g.cs
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\SidebarItems\ResetPassword.g.cs
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\SidebarItems\Setting.g.cs
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\App.g.cs
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\ClinicManagement_Content.g.cs
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\GeneratedInternalTypeHelper.g.cs
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\ClinicManagement_MarkupCompile.cache
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\ClinicManagement_MarkupCompile.lref
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\App.baml
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\Assets\Icons.baml
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\Cashier.baml
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\Controls\MenuItem.baml
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\Controls\MenuItemPopup.baml
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\Doctor.baml
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\Receptionist.baml
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\SidebarItems\DashBoard.baml
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\SidebarItems\DrugDetail.baml
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\SidebarItems\DrugView.baml
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\SidebarItems\EditDrug.baml
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\SidebarItems\EditRole.baml
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\SidebarItems\ForgotPassword.baml
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\SidebarItems\Login.baml
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\SidebarItems\NewDrug.baml
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\SidebarItems\NewPassword.baml
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\SidebarItems\Patient.baml
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\SidebarItems\popUpDoctor.baml
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\SidebarItems\RecoveryPasswordWindow.baml
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\SidebarItems\ResetPassword.baml
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\SidebarItems\Setting.baml
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\ClinicManagement.g.resources
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\ClinicManagement.Properties.Resources.resources
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\ClinicManagement.csproj.GenerateResource.cache
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\ClinicManagement.csproj.CoreCompileInputs.cache
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\ClinicMa.D65B9BD0.Up2Date
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\ClinicManagement.exe
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\obj\Debug\ClinicManagement.pdb
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\ClinicManagement.csproj.AssemblyReference.cache
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\Cashier.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\Controls\MenuItem.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\Controls\MenuItemPopup.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\Doctor.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\Receptionist.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\CreateBill.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\DashBoard.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\EditBill.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\DrugDetail.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\DrugView.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\EditDrug.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\EditRole.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\ForgotPassword.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\InvoiceList.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\Login.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\NewDrug.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\NewPassword.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\Patient.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\popUpDoctor.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\RecoveryPasswordWindow.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\ResetPassword.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\ReportView.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\Setting.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\App.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\ClinicManagement_Content.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\ClinicManagement_MarkupCompile.cache
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\ClinicManagement_MarkupCompile.lref
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\App.baml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\Assets\Icons.baml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\Cashier.baml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\Controls\MenuItem.baml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\Controls\MenuItemPopup.baml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\Doctor.baml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\Receptionist.baml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\CreateBill.baml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\DashBoard.baml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\EditBill.baml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\DrugDetail.baml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\DrugView.baml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\EditDrug.baml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\EditRole.baml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\ForgotPassword.baml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\InvoiceList.baml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\Login.baml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\NewDrug.baml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\NewPassword.baml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\Patient.baml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\popUpDoctor.baml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\RecoveryPasswordWindow.baml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\ResetPassword.baml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\ReportView.baml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\Setting.baml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\ClinicManagement.g.resources
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\ClinicManagement.pdb
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\bin\Debug\img\drugDefault.jpg
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\bin\Debug\ClinicManagement.exe.config
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\bin\Debug\ClinicManagement.exe
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\bin\Debug\ClinicManagement.pdb
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\bin\Debug\BLL.dll
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\bin\Debug\DTO.dll
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\bin\Debug\FontAwesome.Sharp.dll
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\bin\Debug\LiveCharts.dll
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\bin\Debug\LiveCharts.Wpf.dll
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\bin\Debug\MahApps.Metro.IconPacks.Core.dll
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\bin\Debug\MahApps.Metro.IconPacks.Material.dll
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\bin\Debug\MaterialDesignColors.dll
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\bin\Debug\MaterialDesignThemes.Wpf.dll
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\bin\Debug\PresentationFramework.Aero2.dll
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\bin\Debug\DAL.dll
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\bin\Debug\BLL.pdb
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\bin\Debug\DTO.pdb
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\bin\Debug\LiveCharts.pdb
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\bin\Debug\LiveCharts.xml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\bin\Debug\LiveCharts.Wpf.pdb
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\bin\Debug\LiveCharts.Wpf.xml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\bin\Debug\MahApps.Metro.IconPacks.Core.xml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\bin\Debug\MahApps.Metro.IconPacks.Material.xml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\bin\Debug\MaterialDesignColors.pdb
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\bin\Debug\MaterialDesignThemes.Wpf.pdb
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\bin\Debug\MaterialDesignThemes.Wpf.xml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\bin\Debug\DAL.pdb
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\ClinicManagement.Properties.Resources.resources
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\ClinicManagement.csproj.GenerateResource.cache
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\ClinicManagement.csproj.CoreCompileInputs.cache
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\ClinicMa.D65B9BD0.Up2Date
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\ClinicManagement.exe

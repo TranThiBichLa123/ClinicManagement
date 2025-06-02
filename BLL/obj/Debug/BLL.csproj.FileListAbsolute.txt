@@ -1,11 +1,27 @@
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\BLL\bin\Debug\BLL.dll
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\BLL\bin\Debug\BLL.pdb
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\BLL\bin\Debug\DAL.dll
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\BLL\bin\Debug\DTO.dll
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\BLL\bin\Debug\DAL.pdb
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\BLL\bin\Debug\DTO.pdb
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\BLL\obj\Debug\BLL.csproj.Up2Date
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\BLL\obj\Debug\BLL.dll
-D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\BLL\obj\Debug\BLL.pdb
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\BLL\bin\Debug\BLL.dll
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\BLL\bin\Debug\BLL.pdb
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\BLL\bin\Debug\ControlzEx.dll
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\BLL\bin\Debug\DAL.dll
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\BLL\bin\Debug\DTO.dll
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\BLL\bin\Debug\LiveCharts.dll
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\BLL\bin\Debug\LiveCharts.Wpf.dll
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\BLL\bin\Debug\MahApps.Metro.dll
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\BLL\bin\Debug\Microsoft.Xaml.Behaviors.dll
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\BLL\bin\Debug\DAL.pdb
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\BLL\bin\Debug\DTO.pdb
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\BLL\bin\Debug\ControlzEx.pdb
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\BLL\bin\Debug\ControlzEx.xml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\BLL\bin\Debug\LiveCharts.pdb
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\BLL\bin\Debug\LiveCharts.xml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\BLL\bin\Debug\LiveCharts.Wpf.pdb
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\BLL\bin\Debug\LiveCharts.Wpf.xml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\BLL\bin\Debug\MahApps.Metro.pdb
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\BLL\bin\Debug\MahApps.Metro.xml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\BLL\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\BLL\bin\Debug\Microsoft.Xaml.Behaviors.xml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\BLL\bin\Debug\de\MahApps.Metro.resources.dll
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\BLL\obj\Debug\BLL.csproj.Up2Date
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\BLL\obj\Debug\BLL.dll
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\BLL\obj\Debug\BLL.pdb

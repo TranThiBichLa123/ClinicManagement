@@ -42,10 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountAccess.cs" />
+    <Compile Include="BillAccess.cs" />
     <Compile Include="DatabaseAccess.cs" />
     <Compile Include="DrugAccess.cs" />
     <Compile Include="NewDrugAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportAccess.cs" />
     <Compile Include="SettingAccess.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -7,3 +7,21 @@ D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\DAL\ob
 D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\DAL\obj\Debug\DAL.csproj.Up2Date
 D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\DAL\obj\Debug\DAL.dll
 D:\NAM 2 - HK2\NHAP MON CNPM\Do an quan ly phong mach tu\ClinicManagement\DAL\obj\Debug\DAL.pdb
+D:\QL_PHONGMACHTU\DAL\bin\Debug\DAL.dll
+D:\QL_PHONGMACHTU\DAL\bin\Debug\DAL.pdb
+D:\QL_PHONGMACHTU\DAL\bin\Debug\DTO.dll
+D:\QL_PHONGMACHTU\DAL\bin\Debug\DTO.pdb
+D:\QL_PHONGMACHTU\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+D:\QL_PHONGMACHTU\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\QL_PHONGMACHTU\DAL\obj\Debug\DAL.csproj.Up2Date
+D:\QL_PHONGMACHTU\DAL\obj\Debug\DAL.dll
+D:\QL_PHONGMACHTU\DAL\obj\Debug\DAL.pdb
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\DAL\bin\Debug\DAL.dll
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\DAL\bin\Debug\DAL.pdb
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\DAL\bin\Debug\DTO.dll
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\DAL\bin\Debug\DTO.pdb
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\DAL\obj\Debug\DAL.csproj.Up2Date
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\DAL\obj\Debug\DAL.dll
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\DAL\obj\Debug\DAL.pdb
