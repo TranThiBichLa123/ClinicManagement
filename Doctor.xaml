@@ -59,15 +59,15 @@
                         <Button x:Name="btnHome" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnHome_MouseEnter" MouseLeave="btnHome_MouseLeave" Click="btnHome_Click">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource home}" IconWidth="16" Text="Trang tổng quan" VerticalAlignment="Center"/>
                         </Button>
-                        <Button x:Name="btnDashboard" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnDashboard_MouseEnter" MouseLeave="btnDashboard_MouseLeave" Click="btnDashboard_Click">
+                        <!--<Button x:Name="btnDashboard" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnDashboard_MouseEnter" MouseLeave="btnDashboard_MouseLeave" Click="btnDashboard_Click">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource dashboard}" IconWidth="16" Text="Quản lý thuốc" VerticalAlignment="Center"/>
                         </Button>
                         <Button x:Name="btnProducts" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnProducts_MouseEnter" MouseLeave="btnProducts_MouseLeave">
 
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource pillIcon}" IconWidth="16" Text="Products" VerticalAlignment="Center"/>
-                        </Button>
+                        </Button>-->
                         <Button x:Name="btnDrug" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="Drug_MouseEnter" MouseLeave="Drug_MouseLeave" Click="btnDrug_Click">
-                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource pillIcon}" IconWidth="16" Text="Drug" VerticalAlignment="Center" />
+                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource pillIcon}" IconWidth="16" Text="Quản lý thuốc" VerticalAlignment="Center" />
                         </Button>
                         <Button x:Name="btnProductStock" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnProductStock_MouseEnter" MouseLeave="btnProductStock_MouseLeave">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource products}" IconWidth="16" Text="Danh sách tiếp nhận" VerticalAlignment="Center"/>

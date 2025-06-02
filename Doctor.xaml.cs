@@ -133,17 +133,17 @@ namespace ClinicManagement
 
         }
 
-        private void btnDashboard_MouseEnter(object sender, MouseEventArgs e)
-        {
-            if (Tg_Btn.IsChecked == false)
-            {
-                Popup.PlacementTarget = btnDashboard;
-                Popup.Placement = PlacementMode.Right;
-                Popup.IsOpen = true;
-                Header.PopupText.Text = "Dashboard";
-            }
+        //private void btnDashboard_MouseEnter(object sender, MouseEventArgs e)
+        //{
+        //    if (Tg_Btn.IsChecked == false)
+        //    {
+        //        Popup.PlacementTarget = btnDashboard;
+        //        Popup.Placement = PlacementMode.Right;
+        //        Popup.IsOpen = true;
+        //        Header.PopupText.Text = "Dashboard";
+        //    }
 
-        }
+        //}
 
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
@@ -173,17 +173,17 @@ namespace ClinicManagement
 
         
 
-        private void btnProducts_MouseEnter(object sender, MouseEventArgs e)
-        {
+        //private void btnProducts_MouseEnter(object sender, MouseEventArgs e)
+        //{
 
-            if (Tg_Btn.IsChecked == false)
-            {
-                Popup.PlacementTarget = btnProducts;
-                Popup.Placement = PlacementMode.Right;
-                Popup.IsOpen = true;
-                Header.PopupText.Text = "Products";
-            }
-        }
+        //    if (Tg_Btn.IsChecked == false)
+        //    {
+        //        Popup.PlacementTarget = btnProducts;
+        //        Popup.Placement = PlacementMode.Right;
+        //        Popup.IsOpen = true;
+        //        Header.PopupText.Text = "Products";
+        //    }
+        //}
 
         private void btnProducts_MouseLeave(object sender, MouseEventArgs e)
         {

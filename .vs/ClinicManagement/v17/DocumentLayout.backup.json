@@ -1,7 +1,19 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|d:\\uit\\n2hk2\\nmcnpm\\clinic-project\\clinicmanagement\\doctor.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:doctor.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|d:\\uit\\n2hk2\\nmcnpm\\clinic-project\\clinicmanagement\\sidebaritems\\dashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\dashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ASUS\\AppData\\Local\\Temp\\.vsdbgsrc\\c6ee7f6fec133611eb2a064e1a788d1d2474410b0c2beae8c7d187c8d89dcad0\\ResourcePart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +21,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,6 +38,41 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Doctor.xaml",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\Doctor.xaml",
+              "RelativeDocumentMoniker": "Doctor.xaml",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\Doctor.xaml*",
+              "RelativeToolTip": "Doctor.xaml*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-02T07:05:07.213Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DashBoard.xaml",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\DashBoard.xaml",
+              "RelativeDocumentMoniker": "SidebarItems\\DashBoard.xaml",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\DashBoard.xaml*",
+              "RelativeToolTip": "SidebarItems\\DashBoard.xaml*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-02T07:04:04.984Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ResourcePart.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\.vsdbgsrc\\c6ee7f6fec133611eb2a064e1a788d1d2474410b0c2beae8c7d187c8d89dcad0\\ResourcePart.cs",
+              "ToolTip": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\.vsdbgsrc\\c6ee7f6fec133611eb2a064e1a788d1d2474410b0c2beae8c7d187c8d89dcad0\\ResourcePart.cs [Read Only]",
+              "ViewState": "AgIAABoAAAAAAAAAAAAkwCsAAAAEAAAAAQAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T06:44:26.771Z",
+              "EditorCaption": " [Read Only]"
             }
           ]
         },

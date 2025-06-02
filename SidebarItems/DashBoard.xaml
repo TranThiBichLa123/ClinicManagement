@@ -45,11 +45,6 @@
             </Setter>
         </Style>
 
-
-
-
-
-
         <Style x:Key="CalendarButtonStyle1" TargetType="{x:Type CalendarButton}">
             <Setter Property="Background" Value="#FFBADDE9"/>
             <Setter Property ="MinWidth" Value="40"/>
@@ -97,9 +92,9 @@
                                     <VisualState x:Name="Inactive">
                                         <Storyboard>
                                             <ColorAnimation Duration="0" 
-    To="#FF000000" 
-    Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" 
-    Storyboard.TargetName="NormalText"/>
+                                                To="#FF000000" 
+                                                Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" 
+                                                Storyboard.TargetName="NormalText"/>    
                                         </Storyboard>
                                     </VisualState>
                                 </VisualStateGroup>
