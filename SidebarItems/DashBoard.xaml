@@ -590,8 +590,8 @@
                         </StackPanel>
                         <!--Title-->
                         <TextBlock FontSize="26" HorizontalAlignment="Left" Margin="20 35 0 20" Width="350">
-                    <Run Text="Good Afternoon, " Foreground="#FF0E0E10"/> 
-                    <Run Text="Dr.Bich La" FontWeight="Bold" Foreground="#29A3EC"/>
+                    <Run Text="Xin chào, " Foreground="#FF0E0E10"/> 
+                    <Run Text="Bác sĩ Bich La" FontWeight="Bold" Foreground="#29A3EC"/>
                         </TextBlock>
                         <!--add the popup user control-->
                         <Popup x:Name="popup_uc"
@@ -600,8 +600,7 @@
                        VerticalOffset="10" Margin="0,0,0,260" Grid.RowSpan="2">
 
                         </Popup>
-                        <Border Grid.Row="1"  CornerRadius="15" BorderBrush="Transparent" 
-                    BorderThickness="0" Margin="20,0,395,0">
+                        <Border Grid.Row="1"  CornerRadius="15" BorderBrush="Transparent"  BorderThickness="0" Margin="20,0,395,0">
                             <Border.Background>
                                 <LinearGradientBrush StartPoint="1, 0" EndPoint="0, 1">
                                     <GradientStop Color="White" Offset="0"/>
@@ -628,7 +627,7 @@
 
                                 <!-- 🟢 Hàng 1, Cột 1: Tiêu đề chính -->
                                 <StackPanel Grid.Column="0" Grid.Row="0" >
-                                    <TextBlock FontSize="60" Text="New Patients" FontWeight="Bold" HorizontalAlignment="Left"/>
+                                    <TextBlock FontSize="40" Text="Bệnh nhân hôm nay" FontWeight="Bold" HorizontalAlignment="Left"/>
                                     <TextBlock FontSize="80" Text="{Binding SoBenhNhanHomNay}" FontWeight="SemiBold" Margin="0,5,0,2" HorizontalAlignment="Left"/>
                                 </StackPanel>
                                 <!-- 🔵 Cột 2: Icon chiếm cả 2 hàng -->
@@ -638,12 +637,12 @@
                         </Border>
 
                         <Calendar Grid.Row="1" 
-          HorizontalAlignment="Right" 
-          Margin="0,0,20,0" 
-          Style="{DynamicResource CalendarStyle1}" 
-          CalendarButtonStyle="{DynamicResource CalendarButtonStyle1}" 
-          CalendarDayButtonStyle="{DynamicResource CalendarDayButtonStyle1}" 
-          CalendarItemStyle="{DynamicResource CalendarItemStyle1}"/>
+                              HorizontalAlignment="Right" 
+                              Margin="0,0,20,0" 
+                              Style="{DynamicResource CalendarStyle1}" 
+                              CalendarButtonStyle="{DynamicResource CalendarButtonStyle1}" 
+                              CalendarDayButtonStyle="{DynamicResource CalendarDayButtonStyle1}" 
+                              CalendarItemStyle="{DynamicResource CalendarItemStyle1}"/>    
                     </Grid>
 
                 </Border>

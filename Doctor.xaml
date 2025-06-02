@@ -34,22 +34,22 @@
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="0">
-                         <Border CornerRadius="25" Width="45" Height="45" HorizontalAlignment="Left" Margin="8,5,5,5">
-      <Border.Background>
-          <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-              <GradientStop Color="#29A3EC" Offset="0"/>
-              <GradientStop Color="#d3b7ff" Offset="1"/>
-          </LinearGradientBrush>
-      </Border.Background>
-      <fa:IconImage Icon="Twitter" Foreground="White" 
-Width="30" Height="30"
-VerticalAlignment="Center" 
-HorizontalAlignment="Center"/>
-  </Border>
+                        <Border CornerRadius="25" Width="45" Height="45" HorizontalAlignment="Left" Margin="8,5,5,5">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                                    <GradientStop Color="#29A3EC" Offset="0"/>
+                                    <GradientStop Color="#d3b7ff" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <fa:IconImage Icon="Twitter" Foreground="White" 
+                            Width="30" Height="30"
+                            VerticalAlignment="Center" 
+                            HorizontalAlignment="Center"/>      
+                        </Border>   
 
                         <StackPanel Margin="60 0 0 0" VerticalAlignment="Center">
                             <TextBlock Text="HOPE" FontSize="20" Margin="0 0 0 0" Foreground="#FF29A3EC" FontWeight="Bold"/>
-                            <TextBlock Text="Clinic Management" FontSize="11" Margin="0 0 0 0" Foreground="#7788bf"/>
+                            <TextBlock Text="Phòng mạch tư" FontSize="11" Margin="0 0 0 0" Foreground="#7788bf"/>
 
                         </StackPanel>
                     </Grid>
@@ -57,25 +57,32 @@ HorizontalAlignment="Center"/>
                     <!-- Start: MenuItem -->
                     <StackPanel Grid.Row="1" Margin="-1 0 0 20">
                         <Button x:Name="btnHome" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnHome_MouseEnter" MouseLeave="btnHome_MouseLeave" Click="btnHome_Click">
-                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource home}" IconWidth="16" Text="Overview" VerticalAlignment="Center"/>
+                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource home}" IconWidth="16" Text="Trang tổng quan" VerticalAlignment="Center"/>
                         </Button>
                         <Button x:Name="btnDashboard" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnDashboard_MouseEnter" MouseLeave="btnDashboard_MouseLeave" Click="btnDashboard_Click">
-                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource dashboard}" IconWidth="16" Text="Dashboard" VerticalAlignment="Center"/>
+                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource dashboard}" IconWidth="16" Text="Quản lý thuốc" VerticalAlignment="Center"/>
                         </Button>
                         <Button x:Name="btnProducts" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnProducts_MouseEnter" MouseLeave="btnProducts_MouseLeave">
-                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource products}" IconWidth="16" Text="Products" VerticalAlignment="Center"/>
+                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource products}" IconWidth="16" Text="Quản lý bệnh nhân" VerticalAlignment="Center"/>
                         </Button>
                         <Button x:Name="btnProductStock" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnProductStock_MouseEnter" MouseLeave="btnProductStock_MouseLeave">
-                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource products}" IconWidth="16" Text="Product Stock" VerticalAlignment="Center"/>
+                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource products}" IconWidth="16" Text="Danh sách tiếp nhận" VerticalAlignment="Center"/>
                         </Button>
-                        <Button x:Name="btnOrderList" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnOrderList_MouseEnter" MouseLeave="btnOrderList_MouseLeave">
-                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource email}" IconWidth="16" Text="Order List" VerticalAlignment="Center"/>
-                        </Button>
+
                         <Button x:Name="btnBilling" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnBilling_MouseEnter" MouseLeave="btnBilling_MouseLeave" Click="btnBilling_Click">
-                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource billing}" IconWidth="16" Text="Billing" VerticalAlignment="Center"/>
+                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource billing}" IconWidth="16" Text="Quản lý hóa đơn" VerticalAlignment="Center"/>
                         </Button>
                         <Button x:Name="btnReport" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnReport_MouseEnter" MouseLeave="btnReport_MouseLeave" Click="btnReport_Click">
-                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource billing}" IconWidth="16" Text="Report" VerticalAlignment="Center"/>
+                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource billing}" IconWidth="16" Text="Trang báo cáo" VerticalAlignment="Center"/>
+                        </Button>
+                        <Button x:Name="btnOrderList" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnOrderList_MouseEnter" MouseLeave="btnOrderList_MouseLeave">
+                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource email}" IconWidth="16" Text="Quản lý người dùng" VerticalAlignment="Center"/>
+                        </Button>
+                        <Button x:Name="btnRules" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnOrderList_MouseEnter" MouseLeave="btnOrderList_MouseLeave">
+                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource email}" IconWidth="16" Text="Thay đổi quy định" VerticalAlignment="Center"/>
+                        </Button>
+                        <Button x:Name="btnAccount" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnOrderList_MouseEnter" MouseLeave="btnOrderList_MouseLeave">
+                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource email}" IconWidth="16" Text="Tài khoản" VerticalAlignment="Center"/>
                         </Button>
 
                     </StackPanel>
@@ -142,7 +149,7 @@ HorizontalAlignment="Center"/>
                     <Button x:Name="btnMinimize" Style="{DynamicResource IconButtonsStyle}" Content="{DynamicResource minimize}" Click="btnMinimize_Click"/>
                 </StackPanel>
                 <!-- End: Button Close | Restore | Minimize -->
-<Border Grid.Row="1"
+                <Border Grid.Row="1"
                        Name="fContainer"
                        Margin="20,0,20,20"
                        >
