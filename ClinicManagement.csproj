@@ -119,6 +119,15 @@
     <Compile Include="SidebarItems\EditRole.xaml.cs">
       <DependentUpon>EditRole.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SidebarItems\ExaminationForm.xaml.cs">
+      <DependentUpon>ExaminationForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SidebarItems\ExaminationFormView.xaml.cs">
+      <DependentUpon>ExaminationFormView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SidebarItems\ExaminationList.xaml.cs">
+      <DependentUpon>ExaminationList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SidebarItems\ForgotPassword.xaml.cs">
       <DependentUpon>ForgotPassword.xaml</DependentUpon>
     </Compile>
@@ -242,6 +251,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SidebarItems\ExaminationForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SidebarItems\ExaminationFormView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SidebarItems\ExaminationList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="SidebarItems\ForgotPassword.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -282,7 +303,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    
     <Page Include="SidebarItems\Setting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

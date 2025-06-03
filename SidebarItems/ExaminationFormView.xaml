@@ -1,0 +1,178 @@
+﻿<UserControl x:Class="ClinicManagement.SidebarItems.ExaminationFormView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ClinicManagement.SidebarItems"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             Loaded="UserControl_Loaded"
+             mc:Ignorable="d" 
+             d:DesignHeight="620" d:DesignWidth="1200">
+    <Border CornerRadius="20">
+        <Viewbox Stretch="Uniform">
+            <Grid Width="1200" Height="620">
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="1, 0" EndPoint="0, 1">
+                        <GradientStop Color="White" Offset="0"/>
+                        <GradientStop Color="Silver" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Border Height="45">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 1">
+                            <GradientStop Color="#29A3EC" Offset="0"/>
+                            <GradientStop Color="#B3D8A8" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Background="Transparent" BorderBrush="Transparent" Height="42" Width="60" Click="Button_Click" VerticalContentAlignment="Center">
+                            <materialDesign:PackIcon Kind="Backburger" Height="21" Width="auto" />
+                        </Button>
+                        <TextBlock Text="THÔNG TIN PHIẾU KHÁM" FontSize="24" FontWeight="Bold" Margin="0 0 0 0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Margin="40 10 50 0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <!-- Mã PK + Ngày khám -->
+                        <StackPanel Orientation="Horizontal" Height="35">
+                            <TextBlock Text="Mã phiếu khám:" FontSize="16" FontWeight="Black" VerticalAlignment="Center"/>
+                            <Border Width="70" Height="35" CornerRadius="5" BorderThickness="3" BorderBrush="#29A3EC" Margin="5 -0 0 0">
+                                <Label x:Name="lblMaPK" Content="" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" FontWeight="DemiBold"/>
+                            </Border>
+                            <TextBlock Text="Ca khám:" FontSize="16" FontWeight="Black" VerticalAlignment="Center" Margin="20 0 0 0"/>
+                            <Border Width="250" Height="35" CornerRadius="5" BorderThickness="3" BorderBrush="#29A3EC" Margin="27 0 0 0">
+                                <Label x:Name="lblNgayKham" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontWeight="DemiBold"/>
+                            </Border>
+                        </StackPanel>
+                        <!-- Mã + Tên Bệnh nhân -->
+                        <StackPanel Orientation="Horizontal" Height="35" Margin="0 10 0 0">
+                            <TextBlock Text="Mã bệnh nhân:" FontSize="16" FontWeight="Black" VerticalAlignment="Center"/>
+                            <Border Width="70" Height="35" CornerRadius="5" BorderThickness="3" BorderBrush="#29A3EC" Margin="15 0 0 0">
+                                <Label x:Name="lblMaBN" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontWeight="DemiBold"/>
+                            </Border>
+                            <TextBlock Text="Họ và tên:" FontSize="16" FontWeight="Black" VerticalAlignment="Center" Margin="20 0 0 0"/>
+                            <Border Width="250" Height="35" CornerRadius="5" BorderThickness="3" BorderBrush="#29A3EC" Margin="18 0 0 0">
+                                <Label x:Name="lblHoTenBN" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontWeight="DemiBold"/>
+                            </Border>
+                        </StackPanel>
+                        <!-- Triệu chứng -->
+                        <StackPanel Orientation="Horizontal" Height="35" Margin="0 10 0 0">
+                            <TextBlock Text="Triệu chứng:" FontSize="16" FontWeight="Black" VerticalAlignment="Center"/>
+                            <Border Width="439" Height="35" CornerRadius="5" BorderThickness="3" BorderBrush="#29A3EC" Margin="32 0 0 0">
+                                <Label x:Name="lblTrieuChung" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontWeight="DemiBold"/>
+                            </Border>
+                        </StackPanel>
+                        <!-- Chuẩn đoán -->
+                        <StackPanel Orientation="Horizontal" Height="35" Margin="0 10 0 0">
+                            <TextBlock Text="Chuẩn đoán:" FontSize="16" FontWeight="Black" VerticalAlignment="Center"/>
+                            <Border Width="438" Height="35" CornerRadius="5" BorderThickness="3" BorderBrush="#29A3EC" Margin="35 0 0 0">
+                                <Label x:Name="lblChuanDoan" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontWeight="DemiBold"/>
+                            </Border>
+                        </StackPanel>
+                        <!-- Sửa + Xóa PK -->
+                        <StackPanel Orientation="Horizontal" Height="35" Margin="0 10 0 0" HorizontalAlignment="Center">
+                            <Button x:Name="btnXoaPK" Content="Xóa Phiếu" Click="btnXoaPK_Click" Background="#FF0B55" BorderBrush="Transparent"/>
+                            <fa:IconImage Icon="TrashAlt" Foreground="#FF0B55" Width="24" Height="24" Margin="5 0 40 0"
+                                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <Button x:Name="btnSuaPK" Content="Sửa Phiếu" Click="btnSuaPK_Click" Margin="40 0 0 0" Background="#077A7D" BorderBrush="Transparent"/>
+                            <fa:IconImage Icon="PencilAlt" Foreground="#077A7D" Width="24" Height="24" Margin="5 0 0 0"
+                                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Orientation="Vertical">
+                        <Border Grid.Row="0" BorderThickness="2" CornerRadius="5"
+                            Margin="0 20 20 0" HorizontalAlignment="Center"
+                                Width="240" Height="220">
+                            <Border.BorderBrush>
+                                <LinearGradientBrush>
+                                    <GradientStop Color="#29A3EC" Offset="0"/>
+                                    <GradientStop Color="#B3D8A8" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.BorderBrush>
+                            <StackPanel>
+                                <TextBlock Text="Tiền khám" FontSize="34" FontWeight="Black" HorizontalAlignment="Center" Margin="0 5 0 0"
+                                           Foreground="#29A3EC"/>
+                                <Label x:Name="lblTienKham" FontSize="30" Content="1000" HorizontalAlignment="Center"
+                                            FontFamily="Bahnschrift" FontStretch="Expanded" FontWeight="DemiBold"/>
+                                <fa:IconImage Icon="Stethoscope" Foreground="#29A3EC" Width="100" Height="100" Margin="0 10 0 0"
+                                              VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2" Orientation="Vertical" Margin="0 0 5 0">
+                        <Border Grid.Row="1" Width="240" Height="220" BorderThickness="2" CornerRadius="5"
+                                Margin="0 20 0 0" HorizontalAlignment="Center">
+                            <Border.BorderBrush>
+                                <LinearGradientBrush>
+                                    <GradientStop Color="#29A3EC" Offset="0"/>
+                                    <GradientStop Color="#B3D8A8" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.BorderBrush>
+                            <StackPanel>
+                                <TextBlock Text="Tiền thuốc" FontSize="34" FontWeight="Black" Margin="0 5 0 0"
+                                           HorizontalAlignment="Center" Foreground="#29A3EC"/>
+                                <Label x:Name="lblTongTienThuoc" FontSize="30" Content="1000" HorizontalAlignment="Center"
+                                        FontFamily="Bahnschrift" FontStretch="Expanded" FontWeight="DemiBold"/>
+                                <fa:IconImage Icon="Medkit" Foreground="#29A3EC" Width="100" Height="100" Margin="0 10 0 0"
+                                              VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+
+                </Grid>
+
+                <!-- Tách border tiền khám, tổng tiền thuốc thành 2 border, bo tròn userControl lại -->
+
+                <GroupBox Grid.Row="2" Margin="20,20,20,20">
+                    <GroupBox.Header>
+                        <TextBlock Text="Danh sách thuốc đã kê toa" FontSize="16" FontWeight="Black"/>
+                    </GroupBox.Header>
+                    <GroupBox.BorderBrush>
+                        <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 1">
+                            <GradientStop Color="#29A3EC" Offset="0"/>
+                            <GradientStop Color="#B3D8A8" Offset="1"/>
+                        </LinearGradientBrush>
+                    </GroupBox.BorderBrush>
+
+                    <DataGrid x:Name="dgToaThuoc" AutoGenerateColumns="False"
+                              RowStyle="{DynamicResource DataGridRowStyle1}"
+                              ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                              CellStyle="{DynamicResource DataGridCellStyle1}"
+                              Style="{DynamicResource DataGridStyle1}"
+                              Margin="0,10,0,10" Height="200">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Tên thuốc" Binding="{Binding TenThuoc}" IsReadOnly="True" Width="2*"/>
+                            <DataGridTextColumn Header="Đơn vị tính" Binding="{Binding TenDVT}" IsReadOnly="True" Width="1.6*"/>
+                            <DataGridTextColumn Header="Số lượng" Binding="{Binding SoLuong, Mode=TwoWay}" IsReadOnly="True" Width="1.6*" />
+                            <DataGridTextColumn Header="Cách dùng" Binding="{Binding MoTaCachDung}" IsReadOnly="True" Width="1.6*"/>
+                            <DataGridTextColumn Header="Đơn giá" Binding="{Binding DonGiaBan_LucMua, StringFormat={}{0:N0}}" IsReadOnly="True" Width="1.6*"/>
+                            <DataGridTextColumn Header="Thành tiền" Binding="{Binding TienThuoc, StringFormat={}{0:N0}}" IsReadOnly="True" Width="1.6*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </GroupBox>
+
+            </Grid>
+        </Viewbox>
+    </Border>
+</UserControl>

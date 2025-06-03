@@ -283,7 +283,7 @@ namespace ClinicManagement
 
         private void btnExam_Click(object sender, RoutedEventArgs e)
         {
-            LoadUserControl(new ReportView());
+            LoadUserControl(new ExaminationList());
         }
         private void btnRules_MouseEnter(object sender, MouseEventArgs e)
         {

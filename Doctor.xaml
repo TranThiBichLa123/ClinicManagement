@@ -62,7 +62,7 @@
                         <Button x:Name="btnDrug" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="Drug_MouseEnter" MouseLeave="Drug_MouseLeave" Click="btnDrug_Click">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource pillIcon}" IconWidth="16" Text="Quản lý thuốc" VerticalAlignment="Center" />
                         </Button>
-                        <Button x:Name="btnExam" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnExam_MouseEnter" MouseLeave="btnExam_MouseLeave">
+                        <Button x:Name="btnExam" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnExam_MouseEnter" MouseLeave="btnExam_MouseLeave" Click="btnExam_Click">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource products}" IconWidth="16" Text="Danh sách tiếp nhận" VerticalAlignment="Center"/>
                         </Button>
 

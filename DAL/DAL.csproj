@@ -45,6 +45,9 @@
     <Compile Include="BillAccess.cs" />
     <Compile Include="DatabaseAccess.cs" />
     <Compile Include="DrugAccess.cs" />
+    <Compile Include="ExaminationFormDAL.cs" />
+    <Compile Include="ExaminationFormViewDAL.cs" />
+    <Compile Include="ExaminationListDAL.cs" />
     <Compile Include="NewDrugAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportAccess.cs" />

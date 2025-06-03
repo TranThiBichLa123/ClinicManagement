@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\App.xaml
-241996641390
+27-553819840
 11981880871
-30493466425
+33-924811385
 27686475206
-Assets\Icons.xaml;Cashier.xaml;Controls\MenuItem.xaml;Controls\MenuItemPopup.xaml;Doctor.xaml;Receptionist.xaml;SidebarItems\CreateBill.xaml;SidebarItems\DashBoard.xaml;SidebarItems\EditBill.xaml;SidebarItems\DrugDetail.xaml;SidebarItems\DrugView.xaml;SidebarItems\EditDrug.xaml;SidebarItems\EditRole.xaml;SidebarItems\ForgotPassword.xaml;SidebarItems\InvoiceList.xaml;SidebarItems\Login.xaml;SidebarItems\NewDrug.xaml;SidebarItems\NewPassword.xaml;SidebarItems\Patient.xaml;SidebarItems\popUpDoctor.xaml;SidebarItems\RecoveryPasswordWindow.xaml;SidebarItems\ResetPassword.xaml;SidebarItems\ReportView.xaml;SidebarItems\Setting.xaml;
+Assets\Icons.xaml;Cashier.xaml;Controls\MenuItem.xaml;Controls\MenuItemPopup.xaml;Doctor.xaml;Receptionist.xaml;SidebarItems\CreateBill.xaml;SidebarItems\DashBoard.xaml;SidebarItems\EditBill.xaml;SidebarItems\DrugDetail.xaml;SidebarItems\DrugView.xaml;SidebarItems\EditDrug.xaml;SidebarItems\EditRole.xaml;SidebarItems\ExaminationForm.xaml;SidebarItems\ExaminationFormView.xaml;SidebarItems\ExaminationList.xaml;SidebarItems\ForgotPassword.xaml;SidebarItems\InvoiceList.xaml;SidebarItems\Login.xaml;SidebarItems\NewDrug.xaml;SidebarItems\NewPassword.xaml;SidebarItems\Patient.xaml;SidebarItems\popUpDoctor.xaml;SidebarItems\RecoveryPasswordWindow.xaml;SidebarItems\ResetPassword.xaml;SidebarItems\ReportView.xaml;SidebarItems\Setting.xaml;
 
 False
 

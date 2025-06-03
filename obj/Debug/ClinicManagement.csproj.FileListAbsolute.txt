@@ -86,3 +86,9 @@ D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\ClinicManagement.c
 D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\ClinicMa.D65B9BD0.Up2Date
 D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\ClinicManagement.exe
 D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\ClinicManagement.pdb
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\ExaminationForm.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\ExaminationFormView.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\ExaminationList.g.cs
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\ExaminationForm.baml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\ExaminationFormView.baml
+D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\obj\Debug\SidebarItems\ExaminationList.baml
