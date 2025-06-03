@@ -2,6 +2,9 @@
 using System.Data;
 using DTO;
 using System.Security.Principal;
+using System;
+using System.Windows;
+using System.Collections.Generic;
 namespace DAL
 {
     public class AccountAccess : DatabaseAccess
@@ -50,5 +53,8 @@ namespace DAL
 
             return "invalid_login"; // Nếu không tìm thấy người dùng
         }
+
+       
+        
     }
 }

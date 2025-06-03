@@ -1,0 +1,513 @@
+﻿<UserControl x:Class="ClinicManagement.SidebarItems.PatientList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ClinicManagement.SidebarItems"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"   
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             mc:Ignorable="d" 
+             Loaded="UserControl_Loaded"
+             d:DesignHeight="600" d:DesignWidth="1200">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="1, 0" EndPoint="0, 1">
+                <GradientStop Color="White" Offset="0"/>
+                <GradientStop Color="Silver" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Phần tìm kiếm -->
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <!-- DataGrid chiếm phần còn lại -->
+        </Grid.RowDefinitions>
+
+        <Grid VerticalAlignment="Top">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 1">
+                    <GradientStop Color="#29A3EC" Offset="0"/>
+                    <GradientStop Color="#B3D8A8" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+
+            <TextBlock
+                  FontSize="30" FontWeight="Bold" HorizontalAlignment="Left"
+                  FontFamily="Segoe UI" Foreground="#CC000000"
+                  VerticalAlignment="Bottom" Margin="30,0,0,5"
+                  Text="Danh sách bệnh nhân"/>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="0,15,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="1">
+                <Button
+                      Width="120" HorizontalAlignment="Right" Margin="0,10,10,10"
+                      Content="Add Patient" Foreground="White"
+                      IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                      
+                      ToolTip="Resource name: MaterialDesignRaisedButton"
+                      Click="btnAddPatient_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="1" CornerRadius="10">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+
+            <Popup x:Name="AddPatientPopup" Placement="Center" StaysOpen="False" IsOpen="False"
+                   VerticalOffset="250" AllowsTransparency="True" PopupAnimation="Fade">
+                <Border Background="White" BorderThickness="5" Padding="20" CornerRadius="20">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="#29A3EC" Offset="0"/>
+                            <GradientStop Color="#B3D8A8" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                    <Grid>
+                        <Grid.Background>
+                            <LinearGradientBrush StartPoint="1, 0" EndPoint="0, 1">
+                                <GradientStop Color="White" Offset="0"/>
+                                <GradientStop Color="Silver" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Grid.Background>
+
+                        <!-- Define Columns and Rows -->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0" Grid.ColumnSpan="2">
+                            <Border Margin="10" Padding="5" HorizontalAlignment="Center" 
+                                    VerticalAlignment="Center" Grid.Row="0" Background="#29A3EC"
+                                    CornerRadius="20" Width="250" Height="50">
+                                <TextBlock Text="THÊM BỆNH NHÂN" FontFamily="Segoe UI" FontSize="24" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+
+                        <Grid Grid.Row="1" Grid.Column="0">
+                            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Width="300">
+                                <TextBlock Text="Tên Bệnh Nhân" Margin="10" FontWeight="Bold"/>
+                                <TextBox Name="txtPatientName" Width="200" Margin="10"/>
+
+                                <TextBlock Text="Ngày sinh" Margin="10" FontWeight="Bold"/>
+                                <DatePicker Name="dpDOB" Width="200" Margin="10"/>
+
+                                <TextBlock Text="Số điện thoại" Margin="10" FontWeight="Bold"/>
+                                <TextBox Name="txtPhone" Width="200" Margin="10"/>
+
+                                <TextBlock Text="Email" Margin="10" FontWeight="Bold"/>
+                                <TextBox Name="txtEmail" Width="200" Margin="10"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid Grid.Row="1"  Grid.Column="1" >
+                            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Width="300">
+                                <TextBlock Text="Giới tính" Margin="10" FontWeight="Bold"/>
+                                <ComboBox Name="cmbGender" Width="200" Margin="10">
+                                    <ComboBoxItem>Nam</ComboBoxItem>
+                                    <ComboBoxItem>Nữ</ComboBoxItem>
+                                </ComboBox>
+
+                                <TextBlock Text="CCCD" Margin="10" FontWeight="Bold"/>
+                                <TextBox Name="txtCCCD" Width="200" Margin="10"/>
+
+                                <TextBlock Text="Địa chỉ" Margin="10" FontWeight="Bold"/>
+                                <TextBox Name="txtAddress" Width="200" Margin="10"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Margin="10">
+                                <Button Content="Hủy" Foreground="LightGray" Width="100" Height="40" Margin="20,0,100,0" Click="Cancel_Click">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="DodgerBlue" CornerRadius="20" BorderThickness="0" Padding="10">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                                <Button Content="Lưu bệnh nhân" Foreground="White" Width="140" Height="40" Margin="10" Click="SavePatient_Click">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="#B3D8A8" CornerRadius="20" BorderThickness="0" Padding="10">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Popup>
+
+            <Popup x:Name="EditPatientPopup" Placement="Center" StaysOpen="False" IsOpen="False"
+                    VerticalOffset="250" AllowsTransparency="True" PopupAnimation="Fade">
+                <Border Background="White" BorderThickness="5" Padding="20" CornerRadius="20">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="#29A3EC" Offset="0"/>
+                            <GradientStop Color="#B3D8A8" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                    <Grid>
+                        <Grid.Background>
+                            <LinearGradientBrush StartPoint="1, 0" EndPoint="0, 1">
+                                <GradientStop Color="White" Offset="0"/>
+                                <GradientStop Color="Silver" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Grid.Background>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Tiêu đề -->
+                        <Grid Grid.Row="0" Grid.ColumnSpan="2">
+                            <Border Margin="10" Padding="5" HorizontalAlignment="Center"
+                        VerticalAlignment="Center" Background="#29A3EC"
+                        CornerRadius="20" Width="250" Height="50">
+                                <TextBlock Text="SỬA BỆNH NHÂN" FontFamily="Segoe UI" FontSize="24" FontWeight="Bold"
+                               Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+
+                        <!-- Cột trái -->
+                        <Grid Grid.Row="1" Grid.Column="0">
+                            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Width="300">
+                                <TextBlock Text="Tên Bệnh Nhân" Margin="10" FontWeight="Bold"/>
+                                <TextBox Name="EditPatientName" Width="200" Margin="10"/>
+
+                                <TextBlock Text="Ngày sinh" Margin="10" FontWeight="Bold"/>
+                                <DatePicker Name="EditDOB" Width="200" Margin="10"/>
+
+                                <TextBlock Text="Số điện thoại" Margin="10" FontWeight="Bold"/>
+                                <TextBox Name="EditPhone" Width="200" Margin="10"/>
+
+                                <TextBlock Text="Email" Margin="10" FontWeight="Bold"/>
+                                <TextBox Name="EditEmail" Width="200" Margin="10"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <!-- Cột phải -->
+                        <Grid Grid.Row="1" Grid.Column="1">
+                            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Width="300">
+                                <TextBlock Text="Giới tính" Margin="10" FontWeight="Bold"/>
+                                <ComboBox Name="EditGender" Width="200" Margin="10">
+                                    <ComboBoxItem Content="Nam"/>
+                                    <ComboBoxItem Content="Nữ"/>
+                                </ComboBox>
+
+                                <TextBlock Text="CCCD" Margin="10" FontWeight="Bold"/>
+                                <TextBox Name="EditCCCD" Width="200" Margin="10"/>
+
+                                <TextBlock Text="Địa chỉ" Margin="10" FontWeight="Bold"/>
+                                <TextBox Name="EditAddress" Width="200" Margin="10"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <!-- Nút thao tác -->
+                        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Margin="10">
+                                <Button Content="Hủy" Foreground="LightGray" Width="100" Height="40" Margin="20,0,100,0" Click="CancelEdit_Click">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="DodgerBlue" CornerRadius="20" BorderThickness="0" Padding="10">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                                <Button Content="Lưu Bệnh Nhân" Foreground="White" Width="140" Height="40" Margin="10" Click="SaveEditedPatient_Click">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="#B3D8A8" CornerRadius="20" BorderThickness="0" Padding="10">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Popup>
+
+            <Grid Grid.Row="1" Grid.Column="0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock 
+                            FontSize="12" FontWeight="Bold" HorizontalAlignment="Left"
+                            FontFamily="Segoe UI" Foreground="#CC000000"
+                            VerticalAlignment="Center" Margin="15,0,0,5"
+                            Text="Số lượng bệnh nhân: "/>
+                    <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" Padding="5,5" Width="40" Height="30" Margin="0,0,0,5">
+                        <TextBlock x:Name="txtPatientCount"
+                            FontSize="12" FontWeight="Bold" HorizontalAlignment="Center"
+                            Foreground="#AA000000"
+                            VerticalAlignment="Center" Margin="0,0,0,0"
+                            Text="0"/>
+                    </Border>
+                    <materialDesign:PackIcon Kind="HumanWheelchair" VerticalAlignment="Center"
+                                             Margin="10,0,0,5" Width="30" Height="30"
+                                             Foreground="#189ded"/>
+                </StackPanel>
+            </Grid>
+
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="0" Grid.Column="0">
+                <TextBlock
+                    FontSize="12" FontWeight="Bold" HorizontalAlignment="Left"
+                    Foreground="#CC000000"
+                    VerticalAlignment="Center" Margin="15,0,0,0"
+                    Text="Tên bệnh nhân"/>
+            </Grid>
+
+            <Grid Grid.Row="0" Grid.Column="1">
+                <TextBlock 
+                    FontSize="12" FontWeight="Bold" HorizontalAlignment="Left"
+                    Foreground="#CC000000"
+                    VerticalAlignment="Center" Margin="15,0,0,0"
+                    Text="ID bệnh nhân"/>
+            </Grid>
+
+            <Grid Grid.Row="0" Grid.Column="2">
+                <TextBlock 
+                    FontSize="12" FontWeight="Bold" HorizontalAlignment="Left"
+                    Foreground="#CC000000"
+                    VerticalAlignment="Center" Margin="15,0,0,0"
+                    Text="Ngày đăng ký"/>
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.Column="0">
+                <TextBlock
+                    FontSize="12" FontWeight="Bold" HorizontalAlignment="Left"
+                    Foreground="#CC000000"
+                    VerticalAlignment="Center" Margin="15,0,0,0"
+                    Text="Loại bệnh"/>
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.Column="1">
+                <TextBlock
+                    FontSize="12" FontWeight="Bold" HorizontalAlignment="Left"
+                    Foreground="#CC000000"
+                    VerticalAlignment="Center" Margin="15,0,0,0"
+                    Text="Triệu chứng"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="0">
+                <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" 
+                        Padding="5,5" Width="370" Height="30" Margin="15,0,0,5" 
+                        HorizontalAlignment="Left">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="67*"/>
+                            <ColumnDefinition Width="291*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="txtSearchByName" TextChanged="SearchBox_TextChanged"
+                            FontSize="12" FontWeight="Bold"
+                            Foreground="#AA000000"
+                            VerticalContentAlignment="Center"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Padding="5,0,30,0" Grid.ColumnSpan="2" />
+
+                        <materialDesign:PackIcon Kind="Magnify" 
+                                 Width="18" Height="18"
+                                 Foreground="Gray"
+                                 VerticalAlignment="Center"
+                                 Margin="268,0,0,0" Grid.Column="1"/>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" 
+                        Padding="5,5" Width="370" Height="30" Margin="15,0,0,5" 
+                        HorizontalAlignment="Left">
+                    <Grid>
+                        <TextBox x:Name="txtSearchByID" TextChanged="SearchBox_TextChanged"
+                            FontSize="12" FontWeight="Bold"
+                            Foreground="#AA000000"
+                            VerticalContentAlignment="Center"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Padding="5,0,30,0" />
+
+                        <materialDesign:PackIcon Kind="ShapeOutline" 
+                                 Width="18" Height="18"
+                                 Foreground="Gray"
+                                 HorizontalAlignment="Right"
+                                 VerticalAlignment="Center"
+                                 Margin="0,0,5,0"/>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="2">
+                <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" 
+                        Padding="5,5" Width="370" Height="30" Margin="15,0,0,5" 
+                        HorizontalAlignment="Left">
+                    <Grid>
+                        <TextBox x:Name="txtSearchNgayKham" TextChanged="SearchBox_TextChanged"
+                            FontSize="12" FontWeight="Bold"
+                            Foreground="#AA000000"
+                            VerticalContentAlignment="Center"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Padding="5,0,30,0" 
+                            GotFocus="TextBox_GotFocus"
+                            LostFocus="TextBox_LostFocus"/>
+
+                        <TextBlock x:Name="txtPlaceholder"
+                                   Margin="5,0,30,0"
+                                   VerticalAlignment="Center"
+                                   Foreground="Gray"
+                                   IsHitTestVisible="False"
+                                   Text="DD/MM/YYYY"
+                                   Visibility="Visible"/>
+
+                        <materialDesign:PackIcon Kind="Calendar" 
+                                 Width="18" Height="18"
+                                 Foreground="Gray"
+                                 HorizontalAlignment="Right"
+                                 VerticalAlignment="Center"
+                                 Margin="0,0,5,0"/>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="4" Grid.Column="0">
+                <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" 
+                        Padding="5,5" Width="370" Height="30" Margin="15,0,0,5" 
+                        HorizontalAlignment="Left">
+                    <Grid>
+                        <TextBox x:Name="txtSearchLoaiBenh" TextChanged="SearchBox_TextChanged"
+                            FontSize="12" FontWeight="Bold"
+                            Foreground="#AA000000"
+                            VerticalContentAlignment="Center"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Padding="5,0,30,0" />
+
+                        <materialDesign:PackIcon Kind="HospitalBox"
+                                 Width="18" Height="18"
+                                 Foreground="Gray"
+                                 HorizontalAlignment="Right"
+                                 VerticalAlignment="Center"
+                                 Margin="0,0,5,0"/>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="4" Grid.Column="1">
+                <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" 
+                        Padding="5,5" Width="370" Height="30" Margin="15,0,0,5" 
+                        HorizontalAlignment="Left">
+                    <Grid>
+                        <TextBox x:Name="txtSearchTrieuChung" TextChanged="SearchBox_TextChanged"
+                            FontSize="12" FontWeight="Bold"
+                            Foreground="#AA000000"
+                            VerticalContentAlignment="Center"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Padding="5,0,30,0" />
+
+                        <materialDesign:PackIcon Kind="EmoticonSickOutline" 
+                                 Width="18" Height="18"
+                                 Foreground="Gray"
+                                 HorizontalAlignment="Right"
+                                 VerticalAlignment="Center"
+                                 Margin="0,0,5,0"/>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+
+        <!-- DataGrid -->
+        <DataGrid x:Name="dgBenhNhan" Grid.Row="3" RowHeight="25"
+                HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                AutoGenerateColumns="False" SelectionUnit="FullRow"      
+                SelectionMode="Single" Margin="10,15,10,0"
+                RowStyle="{DynamicResource DataGridRowStyle1}"
+                ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                CellStyle="{DynamicResource DataGridCellStyle1}"
+                Style="{DynamicResource DataGridStyle1}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID_BenhNhan}" />
+                <DataGridTextColumn Header="Họ và tên" Binding="{Binding HoTenBN}" />
+                <DataGridTextColumn Header="Ngày sinh" Binding="{Binding NgaySinh}" />
+                <DataGridTextColumn Header="Giới tính" Binding="{Binding GioiTinh}" />
+                <DataGridTextColumn Header="CCCD" Binding="{Binding CCCD}" />
+                <DataGridTextColumn Header="Số điện thoại" Binding="{Binding DienThoai}" />
+                <DataGridTextColumn Header="Địa chỉ" Binding="{Binding DiaChi}" />
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" />
+
+                <DataGridTemplateColumn Header="Action" Width="70">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Button Width="50" Height="50" BorderBrush="Transparent"
+                                        Click="ActionMenu_Click" Background="Transparent"
+                                        HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <materialDesign:PackIcon Kind="DotsVertical" />
+                                    <Button.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem Header="Edit" Click="btn_editPatient_Click"/>
+                                            <MenuItem Header="Delete" Click="btn_deletePatientFromBenhNhan_Click"/>
+                                            <MenuItem x:Name="ExaminationList" Header="Examination" Click="btn_ViewExamination_Click"/>
+                                        </ContextMenu>
+                                    </Button.ContextMenu>
+                                </Button>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
+    </Grid>
+</UserControl>

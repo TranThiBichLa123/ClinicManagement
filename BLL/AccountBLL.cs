@@ -1,6 +1,8 @@
 ﻿using DTO;
 using DAL;
 using System.Data;
+using System.Collections.Generic;
+using System.Windows.Controls.Primitives;
 namespace BLL
 {
     public class AccountBLL
@@ -36,6 +38,46 @@ namespace BLL
         {
             string query = "SELECT * FROM NHANVIEN"; // Ví dụ
             return dbAccess.GetData(query);
+        }
+    }
+    public class BenhNhanBLL
+    {
+        private readonly PatientDAL patientDal = new PatientDAL();
+        public DataTable LoadPatientList(string nameKeyword = "", string idKeyword = "", string loaiBenhKeyword = "", string trieuChungKeyword = "", string ngayDK = "")
+        {
+            return patientDal.LoadPatientList(nameKeyword, idKeyword, loaiBenhKeyword, trieuChungKeyword, ngayDK);
+        }
+        public bool AddPatientToDatabase(BenhNhan patient)
+        {
+            return patientDal.AddPatientToDatabase(patient);
+        }
+        public bool UpdatePatient(BenhNhan patient)
+        {
+            return patientDal.UpdatePatient(patient);
+        }
+        public int DeletePatient(int id)
+        {
+            return patientDal.DeletePatient(id);
+        }
+    }
+    public class ExaminationBLL
+    {
+        private readonly ExaminationDAL examinationDal = new ExaminationDAL();
+        public BenhNhan GetBenhNhanById(string id)
+        {
+            return examinationDal.GetBenhNhanById(id);
+        }
+        public List<PhieuKham> LoadPhieuKham(string idBenhNhan)
+        {
+            return examinationDal.LoadPhieuKham(idBenhNhan);
+        }
+        public List<Thuoc> LoadDanhSachThuoc(int idPhieuKham)
+        {
+            return examinationDal.LoadDanhSachThuoc(idPhieuKham);
+        }
+        public object[] ShowExaminationPopup(int idPhieuKham)
+        {
+            return examinationDal.ShowExaminationPopup(idPhieuKham);
         }
     }
 }
