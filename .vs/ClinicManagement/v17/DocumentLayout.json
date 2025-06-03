@@ -3,19 +3,76 @@
   "WorkspaceRootPath": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|d:\\uit\\n2hk2\\nmcnpm\\clinic-project\\clinicmanagement\\doctor.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
-      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:doctor.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|d:\\uit\\n2hk2\\nmcnpm\\clinic-project\\clinicmanagement\\sidebaritems\\dashboard.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\dashboard.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|d:\\uit\\n2hk2\\nmcnpm\\clinic-project\\clinicmanagement\\doctor.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:doctor.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|d:\\uit\\n2hk2\\nmcnpm\\clinic-project\\clinicmanagement\\sidebaritems\\dashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\sidebaritems\\dashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\dashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ASUS\\AppData\\Local\\Temp\\.vsdbgsrc\\c6ee7f6fec133611eb2a064e1a788d1d2474410b0c2beae8c7d187c8d89dcad0\\ResourcePart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\InSidebarItems\\ExaminationForm.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:InSidebarItems\\ExaminationForm.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\sidebaritems\\login.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\login.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\sidebaritems\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1033AED8-16BD-4DF5-93CC-2E70DE1631D0}|DAL\\DAL.csproj|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\dal\\accountaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1033AED8-16BD-4DF5-93CC-2E70DE1631D0}|DAL\\DAL.csproj|solutionrelative:dal\\accountaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23D15D59-7343-4CEE-A748-7907D2983193}|BLL\\BLL.csproj|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\bll\\accountbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23D15D59-7343-4CEE-A748-7907D2983193}|BLL\\BLL.csproj|solutionrelative:bll\\accountbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1033AED8-16BD-4DF5-93CC-2E70DE1631D0}|DAL\\DAL.csproj|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\dal\\databaseaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1033AED8-16BD-4DF5-93CC-2E70DE1631D0}|DAL\\DAL.csproj|solutionrelative:dal\\databaseaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23EC210B-9B07-48B7-887B-08019CBB52E5}|DTO\\DTO.csproj|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\dto\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23EC210B-9B07-48B7-887B-08019CBB52E5}|DTO\\DTO.csproj|solutionrelative:dto\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\InSidebarItems\\ExaminationFormView.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:InSidebarItems\\ExaminationFormView.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|d:\\uit\\n2hk2\\nmcnpm\\clinic-project\\clinicmanagement\\bll\\examinationlistbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:bll\\examinationlistbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|d:\\uit\\n2hk2\\nmcnpm\\clinic-project\\clinicmanagement\\bll\\examinationformviewbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:bll\\examinationformviewbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\bll\\examinationformbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:bll\\examinationformbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\dto\\examinationformdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:dto\\examinationformdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|d:\\uit\\n2hk2\\nmcnpm\\clinic-project\\clinicmanagement\\dto\\thuocdachon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:dto\\thuocdachon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\dal\\examinationformdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:dal\\examinationformdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\dal\\examinationformviewdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:dal\\examinationformviewdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\dal\\examinationlistdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:dal\\examinationlistdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,50 +103,220 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Doctor.xaml.cs",
-              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\Doctor.xaml.cs",
-              "RelativeDocumentMoniker": "Doctor.xaml.cs",
-              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\Doctor.xaml.cs*",
-              "RelativeToolTip": "Doctor.xaml.cs*",
-              "ViewState": "AgIAAJ4AAAAAAAAAAAAAAKoAAAAAAAAAAAAAAA==",
+              "Title": "DashBoard.xaml.cs",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\DashBoard.xaml.cs",
+              "RelativeDocumentMoniker": "SidebarItems\\DashBoard.xaml.cs",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\DashBoard.xaml.cs",
+              "RelativeToolTip": "SidebarItems\\DashBoard.xaml.cs",
+              "ViewState": "AgIAAJoAAAAAAAAAAAAuwMsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T07:06:10.995Z",
+              "WhenOpened": "2025-06-03T15:28:43.95Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Doctor.xaml",
-              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\Doctor.xaml",
-              "RelativeDocumentMoniker": "Doctor.xaml",
-              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\Doctor.xaml",
-              "RelativeToolTip": "Doctor.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-02T07:05:07.213Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "DashBoard.xaml",
               "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\DashBoard.xaml",
               "RelativeDocumentMoniker": "SidebarItems\\DashBoard.xaml",
-              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\DashBoard.xaml",
-              "RelativeToolTip": "SidebarItems\\DashBoard.xaml",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\DashBoard.xaml*",
+              "RelativeToolTip": "SidebarItems\\DashBoard.xaml*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-02T07:04:04.984Z",
+              "WhenOpened": "2025-06-03T15:24:56.06Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "ResourcePart.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\.vsdbgsrc\\c6ee7f6fec133611eb2a064e1a788d1d2474410b0c2beae8c7d187c8d89dcad0\\ResourcePart.cs",
-              "ToolTip": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\.vsdbgsrc\\c6ee7f6fec133611eb2a064e1a788d1d2474410b0c2beae8c7d187c8d89dcad0\\ResourcePart.cs [Read Only]",
-              "ViewState": "AgIAABoAAAAAAAAAAAAkwCsAAAAEAAAAAQAAAA==",
+              "Title": "Login.xaml.cs",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\Login.xaml.cs",
+              "RelativeDocumentMoniker": "SidebarItems\\Login.xaml.cs",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\Login.xaml.cs",
+              "RelativeToolTip": "SidebarItems\\Login.xaml.cs",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAwwI4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T06:44:26.771Z",
-              "EditorCaption": " [Read Only]"
+              "WhenOpened": "2025-06-03T15:03:49.33Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AccountBLL.cs",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\BLL\\AccountBLL.cs",
+              "RelativeDocumentMoniker": "BLL\\AccountBLL.cs",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\BLL\\AccountBLL.cs",
+              "RelativeToolTip": "BLL\\AccountBLL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-03T14:48:31.277Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ExaminationForm.xaml.cs",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\InSidebarItems\\ExaminationForm.xaml.cs",
+              "RelativeDocumentMoniker": "InSidebarItems\\ExaminationForm.xaml.cs",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\InSidebarItems\\ExaminationForm.xaml.cs",
+              "RelativeToolTip": "InSidebarItems\\ExaminationForm.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T09:57:23.481Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ExaminationListBLL.cs",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\BLL\\ExaminationListBLL.cs",
+              "RelativeDocumentMoniker": "BLL\\ExaminationListBLL.cs",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\BLL\\ExaminationListBLL.cs",
+              "RelativeToolTip": "BLL\\ExaminationListBLL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-03T14:57:32.161Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ExaminationFormViewBLL.cs",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\BLL\\ExaminationFormViewBLL.cs",
+              "RelativeDocumentMoniker": "BLL\\ExaminationFormViewBLL.cs",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\BLL\\ExaminationFormViewBLL.cs",
+              "RelativeToolTip": "BLL\\ExaminationFormViewBLL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-03T14:57:25.012Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Login.xaml",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\Login.xaml",
+              "RelativeDocumentMoniker": "SidebarItems\\Login.xaml",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\Login.xaml",
+              "RelativeToolTip": "SidebarItems\\Login.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-03T15:03:41.904Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AccountAccess.cs",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\DAL\\AccountAccess.cs",
+              "RelativeDocumentMoniker": "DAL\\AccountAccess.cs",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\DAL\\AccountAccess.cs",
+              "RelativeToolTip": "DAL\\AccountAccess.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwBgAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-03T14:56:02.793Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ExaminationFormBLL.cs",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\BLL\\ExaminationFormBLL.cs",
+              "RelativeDocumentMoniker": "BLL\\ExaminationFormBLL.cs",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\BLL\\ExaminationFormBLL.cs",
+              "RelativeToolTip": "BLL\\ExaminationFormBLL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T09:44:05.838Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ExaminationFormDTO.cs",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\DTO\\ExaminationFormDTO.cs",
+              "RelativeDocumentMoniker": "DTO\\ExaminationFormDTO.cs",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\DTO\\ExaminationFormDTO.cs",
+              "RelativeToolTip": "DTO\\ExaminationFormDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T10:05:19.38Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Account.cs",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\DTO\\Account.cs",
+              "RelativeDocumentMoniker": "DTO\\Account.cs",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\DTO\\Account.cs",
+              "RelativeToolTip": "DTO\\Account.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T10:05:08.433Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DatabaseAccess.cs",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\DAL\\DatabaseAccess.cs",
+              "RelativeDocumentMoniker": "DAL\\DatabaseAccess.cs",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\DAL\\DatabaseAccess.cs",
+              "RelativeToolTip": "DAL\\DatabaseAccess.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T10:02:30.351Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ThuocDaChon.cs",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\DTO\\ThuocDaChon.cs",
+              "RelativeDocumentMoniker": "DTO\\ThuocDaChon.cs",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\DTO\\ThuocDaChon.cs",
+              "RelativeToolTip": "DTO\\ThuocDaChon.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T10:05:21.65Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ExaminationFormDAL.cs",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\DAL\\ExaminationFormDAL.cs",
+              "RelativeDocumentMoniker": "DAL\\ExaminationFormDAL.cs",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\DAL\\ExaminationFormDAL.cs",
+              "RelativeToolTip": "DAL\\ExaminationFormDAL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T10:02:24.341Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ExaminationFormViewDAL.cs",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\DAL\\ExaminationFormViewDAL.cs",
+              "RelativeDocumentMoniker": "DAL\\ExaminationFormViewDAL.cs",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\DAL\\ExaminationFormViewDAL.cs",
+              "RelativeToolTip": "DAL\\ExaminationFormViewDAL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T10:02:26.931Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ExaminationListDAL.cs",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\DAL\\ExaminationListDAL.cs",
+              "RelativeDocumentMoniker": "DAL\\ExaminationListDAL.cs",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\DAL\\ExaminationListDAL.cs",
+              "RelativeToolTip": "DAL\\ExaminationListDAL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T10:02:28.226Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ExaminationFormView.xaml.cs",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\InSidebarItems\\ExaminationFormView.xaml.cs",
+              "RelativeDocumentMoniker": "InSidebarItems\\ExaminationFormView.xaml.cs",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\InSidebarItems\\ExaminationFormView.xaml.cs",
+              "RelativeToolTip": "InSidebarItems\\ExaminationFormView.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T09:57:31.938Z",
+              "EditorCaption": ""
             }
           ]
         },

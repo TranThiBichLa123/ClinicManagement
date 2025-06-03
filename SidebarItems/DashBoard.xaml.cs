@@ -92,7 +92,7 @@ namespace ClinicManagement.SidebarItems
         public SeriesCollection ThuocSeries { get; set; }
         public List<string> ThuocLabels { get; set; }
 
-        
+
 
         private void LoadTopThuocChart()
         {
@@ -114,7 +114,7 @@ namespace ClinicManagement.SidebarItems
         public SeriesCollection DoTuoiSeries { get; set; }
         public SeriesCollection TinhThanhSeries { get; set; }
 
-        
+
 
         private void LoadGioiTinhChart()
         {

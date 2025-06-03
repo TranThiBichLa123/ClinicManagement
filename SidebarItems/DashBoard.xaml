@@ -45,6 +45,11 @@
             </Setter>
         </Style>
 
+
+
+
+
+
         <Style x:Key="CalendarButtonStyle1" TargetType="{x:Type CalendarButton}">
             <Setter Property="Background" Value="#FFBADDE9"/>
             <Setter Property ="MinWidth" Value="40"/>
@@ -92,9 +97,9 @@
                                     <VisualState x:Name="Inactive">
                                         <Storyboard>
                                             <ColorAnimation Duration="0" 
-                                                To="#FF000000" 
-                                                Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" 
-                                                Storyboard.TargetName="NormalText"/>    
+    To="#FF000000" 
+    Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" 
+    Storyboard.TargetName="NormalText"/>
                                         </Storyboard>
                                     </VisualState>
                                 </VisualStateGroup>
@@ -422,71 +427,226 @@
         </Style>
     </UserControl.Resources>
     <Grid Background="Transparent">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="10">
+            <StackPanel Orientation="Vertical" Margin="0">
+                <!--Main section-->
+                <Border x:Name="borderMainContent" Grid.Column="1" CornerRadius="20" MouseDown="Border_MouseDown">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="1, 0" EndPoint="0, 1">
+                            <GradientStop Color="White" Offset="0"/>
+                            <GradientStop Color="white" Offset="1"/>
 
-        <!--Main section-->
-        <Border x:Name="borderMainContent" Grid.Column="1" CornerRadius="20" MouseDown="Border_MouseDown">
-            <Border.Background>
-                <LinearGradientBrush StartPoint="1, 0" EndPoint="0, 1">
-                    <GradientStop Color="White" Offset="0"/>
-                    <GradientStop Color="white" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="300"/>
+                            <RowDefinition Height="800"/>
+                            <RowDefinition Height="800"/>
+                            <RowDefinition Height="800"/>
+                            <RowDefinition Height="800"/>
+                            <RowDefinition Height="800"/>
+                            <RowDefinition Height="800"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <!--Top Menu-->
+                        <!--popup doctor profile-->
+                        <Grid Grid.Row="2">
+                            <Grid>
+                                <GroupBox Margin="20,20,20,20" Height="800" >
+                                    <GroupBox.Header>
+                                        <TextBlock Text="Biểu đồ số lượng bệnh nhân theo thời gian"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       FontSize="16"/>
+                                    </GroupBox.Header>
+                                    <StackPanel>
+                                        <lvc:CartesianChart Series="{Binding BenhNhanSeries}" Margin="10" Height="500">
+                                            <lvc:CartesianChart.AxisX>
+                                                <lvc:Axis Title="Ngày tiếp nhận" Labels="{Binding NgayLabels}" LabelsRotation="300"/>
+                                            </lvc:CartesianChart.AxisX>
+                                            <lvc:CartesianChart.AxisY>
+                                                <lvc:Axis Title="Số bệnh nhân tiếp nhận"/>
+                                            </lvc:CartesianChart.AxisY>
+                                        </lvc:CartesianChart>
+                                    </StackPanel>
+                                </GroupBox>
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="3">
+                            <Grid>
+                                <GroupBox Margin="20,20,20,20" Height="800">
+                                    <GroupBox.Header>
+                                        <TextBlock Text="Top 3 thuốc sử dụng nhiều nhất"
+                                           FontWeight="Bold"
+                                           Foreground="White"
+                                           FontSize="16"/>
+                                    </GroupBox.Header>
+                                    <StackPanel>
+                                        <lvc:CartesianChart Series="{Binding ThuocSeries}" Margin="10" Height="500">
+                                            <lvc:CartesianChart.AxisY>
+                                                <lvc:Axis Labels="{Binding ThuocLabels}" Title="Thuốc" LabelsRotation="300" />
+                                            </lvc:CartesianChart.AxisY>
+                                            <lvc:CartesianChart.AxisX>
+                                                <lvc:Axis Title="Số lượng dùng" />
+                                            </lvc:CartesianChart.AxisX>
+                                        </lvc:CartesianChart>
+                                    </StackPanel>
+                                </GroupBox>
+                            </Grid>
+                        </Grid>
 
-                </LinearGradientBrush>
-            </Border.Background>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="300"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <!--Top Menu-->
-                <!--popup doctor profile-->
+                        <Grid Grid.Row="4">
+                            <Grid>
+                                <GroupBox Margin="20,20,20,20" Height="800">
+                                    <GroupBox.Header>
+                                        <TextBlock Text="Biểu đồ phân tích giới tính bệnh nhân"
+                                           FontWeight="Bold"
+                                           Foreground="White"
+                                           FontSize="16"/>
+                                    </GroupBox.Header>
+                                    <StackPanel>
+                                        <lvc:PieChart Series="{Binding GioiTinhSeries}" LegendLocation="Right" Height="500" />
+                                    </StackPanel>
+                                </GroupBox>
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="5">
+                            <Grid>
+                                <GroupBox Margin="20,20,20,20" Height="800">
+                                    <GroupBox.Header>
+                                        <TextBlock Text="Biểu đồ phân tích độ tuổi bệnh nhân"
+                                           FontWeight="Bold"
+                                           Foreground="White"
+                                           FontSize="16"/>
+                                    </GroupBox.Header>
+                                    <StackPanel>
+                                        <lvc:PieChart Series="{Binding DoTuoiSeries}" LegendLocation="Right" Height="500"/>
+                                    </StackPanel>
+                                </GroupBox>
+                            </Grid>
+                        </Grid>
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"    Margin="20,0" Grid.RowSpan="1" Width="200">
-                    <Border Width="50" Height="50" CornerRadius="25" Margin="5 0 20 0" ClipToBounds="True">
-                        <Image Source="/img/doctor.jpg"  Width="50" Height="50"  Stretch="UniformToFill">
-                            <Image.Clip>
-                                <EllipseGeometry Center="25,25" RadiusX="25" RadiusY="25"/>
-                            </Image.Clip>
-                        </Image>
-                    </Border>
+                        <Grid Grid.Row="6">
+                            <Grid>
+                                <GroupBox Margin="20,20,20,20" Height="800">
+                                    <GroupBox.Header>
+                                        <TextBlock Text="Biểu đồ phân tích tỉnh thành"
+                                           FontWeight="Bold"
+                                           Foreground="White"
+                                           FontSize="16"/>
+                                    </GroupBox.Header>
+                                    <StackPanel>
+                                        <lvc:PieChart Series="{Binding TinhThanhSeries}" LegendLocation="Right" Height="500" />
+                                    </StackPanel>
+                                </GroupBox>
+                            </Grid>
+                        </Grid>
+
+                        <Grid Grid.Row="7">
+                            <Grid>
+                                <GroupBox Margin="20,20,20,20" Height="800">
+                                    <GroupBox.Header>
+                                        <TextBlock Text="Biểu đồ doanh thu theo tháng"
+                                                FontWeight="Bold"
+                                                Foreground="White"
+                                                FontSize="16"/>
+                                    </GroupBox.Header>
+                                    <StackPanel>
+                                        <lvc:CartesianChart Series="{Binding DoanhThuSeries}" Margin="10" Height="500">
+                                            <lvc:CartesianChart.AxisX>
+                                                <lvc:Axis Title="Tháng/Năm" Labels="{Binding ThangLabels}" LabelsRotation="45"/>
+                                            </lvc:CartesianChart.AxisX>
+                                            <lvc:CartesianChart.AxisY>
+                                                <lvc:Axis Title="Tổng doanh thu (VND)"/>
+                                            </lvc:CartesianChart.AxisY>
+                                        </lvc:CartesianChart>
+                                    </StackPanel>
+                                </GroupBox>
+                            </Grid>
+                        </Grid>
 
 
-                    <StackPanel VerticalAlignment="Center">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <TextBlock Text="Bich La" FontSize="26" FontWeight="Bold" VerticalAlignment="Center"/>
-                            <Button Name="prf" Style="{StaticResource topMenuButton}" Content="V" FontWeight="Bold" Margin="5,0,0,0" VerticalAlignment="Center" Width="33"  MouseEnter="prf_MouseEnter" MouseLeave="prf_MouseLeave">
-                            </Button>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"    Margin="20,0" Grid.RowSpan="1" Width="200">
+                            <Border Width="50" Height="50" CornerRadius="25" Margin="5 0 20 0" ClipToBounds="True">
+                                <Image Source="/img/doctor.jpg"  Width="50" Height="50"  Stretch="UniformToFill">
+                                    <Image.Clip>
+                                        <EllipseGeometry Center="25,25" RadiusX="25" RadiusY="25"/>
+                                    </Image.Clip>
+                                </Image>
+                            </Border>
+
+
+                            <StackPanel VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <TextBlock Text="Bich La" FontSize="26" FontWeight="Bold" VerticalAlignment="Center"/>
+                                    <Button Name="prf" Style="{StaticResource topMenuButton}" Margin="5,0,0,0" VerticalAlignment="Center" Width="33"  MouseEnter="prf_MouseEnter" MouseLeave="prf_MouseLeave">
+                                        <Icon:PackIconMaterial Kind="ChevronDown" Width="15" Height="15" Foreground="#c7c7c7"/>
+                                    </Button>
+                                </StackPanel>
+                                <TextBlock Text="Doctor" Foreground="#6C879A" Margin="0 3 0 0"/>
+                            </StackPanel>
                         </StackPanel>
-                        <TextBlock Text="Doctor" Foreground="#6C879A" Margin="0 3 0 0"/>
-                    </StackPanel>
-                </StackPanel>
-                <!--Title-->
-                <TextBlock FontSize="26" HorizontalAlignment="Left" Margin="20 35 0 20" Width="350">
-        <Run Text="Good Afternoon, " Foreground="#FF0E0E10"/> 
-        <Run Text="Dr.Bich La" FontWeight="Bold" Foreground="#29A3EC"/>
-                </TextBlock>
-                <!--add the popup user control-->
-                <Popup x:Name="popup_uc"
-           AllowsTransparency="True"
-           HorizontalOffset="10"
-           VerticalOffset="10" Margin="0,0,0,260" Grid.RowSpan="2">
+                        <!--Title-->
+                        <TextBlock FontSize="26" HorizontalAlignment="Left" Margin="20 35 0 20" Width="350">
+                    <Run Text="Xin chào, " Foreground="#FF0E0E10"/> 
+                    <Run Text="Bác sĩ Bich La" FontWeight="Bold" Foreground="#29A3EC"/>
+                        </TextBlock>
+                        <!--add the popup user control-->
+                        <Popup x:Name="popup_uc"
+                       AllowsTransparency="True"
+                       HorizontalOffset="10"
+                       VerticalOffset="10" Margin="0,0,0,260" Grid.RowSpan="2">
 
-                    <!--<Grid>
-                        <local:popUpDoctor x:Name="Header" Foreground="#E0FFFF"/>
+                        </Popup>
+                        <Border Grid.Row="1"  CornerRadius="15" BorderBrush="Transparent"  BorderThickness="0" Margin="20,0,395,0">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="1, 0" EndPoint="0, 1">
+                                    <GradientStop Color="White" Offset="0"/>
+                                    <GradientStop Color="Silver" Offset="1"/>
 
-                    </Grid>-->
-                </Popup>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Grid Margin="15">
+                                <!-- Định nghĩa 2 cột -->
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <!-- Cột nội dung -->
+                                    <ColumnDefinition Width="Auto"/>
+                                    <!-- Cột Icon -->
+                                </Grid.ColumnDefinitions>
 
-                <Border Grid.Row="1"  CornerRadius="15" BorderBrush="Transparent" 
-            BorderThickness="0" Margin="20,0,395,0" Width="606">
+                                <!-- Định nghĩa 2 hàng -->
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <!-- Hàng chứa Patients + số lượng -->
+                                    <RowDefinition Height="Auto"/>
+                                    <!-- Hàng chứa New Patients + Old Patients -->
+                                </Grid.RowDefinitions>
+
+                                <!-- 🟢 Hàng 1, Cột 1: Tiêu đề chính -->
+                                <StackPanel Grid.Column="0" Grid.Row="0" >
+                                    <TextBlock FontSize="40" Text="Bệnh nhân hôm nay" FontWeight="Bold" HorizontalAlignment="Left"/>
+                                    <TextBlock FontSize="80" Text="{Binding SoBenhNhanHomNay}" FontWeight="SemiBold" Margin="0,5,0,2" HorizontalAlignment="Left"/>
+                                </StackPanel>
+                                <!-- 🔵 Cột 2: Icon chiếm cả 2 hàng -->
+                                <fa:IconImage Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Icon="Twitter" Foreground="#29A3EC" 
+                                  Width="80" Height="80" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="35,80"/>
+                            </Grid>
+                        </Border>
+
+                        <Calendar Grid.Row="1" 
+                              HorizontalAlignment="Right" 
+                              Margin="0,0,20,0" 
+                              Style="{DynamicResource CalendarStyle1}" 
+                              CalendarButtonStyle="{DynamicResource CalendarButtonStyle1}" 
+                              CalendarDayButtonStyle="{DynamicResource CalendarDayButtonStyle1}" 
+                              CalendarItemStyle="{DynamicResource CalendarItemStyle1}"/>
+                    </Grid>
+
                 </Border>
-                <!-- Đóng Border Grid.Row="1" nếu cần -->
-            </Grid>
-  
-            <!-- Đóng Grid bên trong Border -->
-        </Border>
-        <!-- Đóng Border ngoài cùng -->
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
-    <!-- Đóng Grid Background="Transparent" -->
-
 </UserControl>
