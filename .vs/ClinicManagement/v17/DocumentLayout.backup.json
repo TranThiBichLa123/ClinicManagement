@@ -7,7 +7,7 @@
       "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\dashboard.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|d:\\uit\\n2hk2\\nmcnpm\\clinic-project\\clinicmanagement\\sidebaritems\\dashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\sidebaritems\\dashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\dashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
@@ -108,7 +108,7 @@
               "RelativeDocumentMoniker": "SidebarItems\\DashBoard.xaml.cs",
               "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\DashBoard.xaml.cs",
               "RelativeToolTip": "SidebarItems\\DashBoard.xaml.cs",
-              "ViewState": "AgIAAJ4AAAAAAAAAAAAcwK0AAAA1AAAAAAAAAA==",
+              "ViewState": "AgIAAJoAAAAAAAAAAAAuwMsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-03T15:28:43.95Z",
               "EditorCaption": ""
@@ -119,8 +119,8 @@
               "Title": "DashBoard.xaml",
               "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\DashBoard.xaml",
               "RelativeDocumentMoniker": "SidebarItems\\DashBoard.xaml",
-              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\DashBoard.xaml",
-              "RelativeToolTip": "SidebarItems\\DashBoard.xaml",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\DashBoard.xaml*",
+              "RelativeToolTip": "SidebarItems\\DashBoard.xaml*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-06-03T15:24:56.06Z",
               "EditorCaption": ""
