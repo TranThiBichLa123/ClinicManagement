@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\doctor.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:doctor.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|d:\\uit\\n2hk2\\nmcnpm\\clinic-project\\clinicmanagement\\doctor.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
       "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:doctor.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\doctor.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:doctor.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|d:\\uit\\n2hk2\\nmcnpm\\clinic-project\\clinicmanagement\\sidebaritems\\dashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -90,7 +90,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -110,25 +110,25 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Doctor.xaml.cs",
               "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\Doctor.xaml.cs",
               "RelativeDocumentMoniker": "Doctor.xaml.cs",
-              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\Doctor.xaml.cs",
-              "RelativeToolTip": "Doctor.xaml.cs",
-              "ViewState": "AgIAAB8BAAAAAAAAAAAAwDIBAAAAAAAAAAAAAA==",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\Doctor.xaml.cs*",
+              "RelativeToolTip": "Doctor.xaml.cs*",
+              "ViewState": "AgIAACoBAAAAAAAAAAAqwD4BAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-03T16:11:34.968Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Doctor.xaml",
               "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\Doctor.xaml",
               "RelativeDocumentMoniker": "Doctor.xaml",
-              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\Doctor.xaml",
-              "RelativeToolTip": "Doctor.xaml",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\Doctor.xaml*",
+              "RelativeToolTip": "Doctor.xaml*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-06-03T16:08:52.794Z",
               "EditorCaption": ""

@@ -51,7 +51,7 @@ namespace ClinicManagement
                 Popup.PlacementTarget = btnHome;
                 Popup.Placement = PlacementMode.Right;
                 Popup.IsOpen = true;
-                Header.PopupText.Text = "Home";
+                Header.PopupText.Text = "Tổng quan";
             }
 
         }
@@ -64,7 +64,7 @@ namespace ClinicManagement
                 Popup.PlacementTarget = btnBilling;
                 Popup.Placement = PlacementMode.Right;
                 Popup.IsOpen = true;
-                Header.PopupText.Text = "Billing";
+                Header.PopupText.Text = "Hóa đơn";
             }
         }
 
@@ -121,29 +121,6 @@ namespace ClinicManagement
 
         }
 
-        private void btnDashboard_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnDashboard_MouseLeave(object sender, MouseEventArgs e)
-        {
-            Popup.Visibility = Visibility.Collapsed;
-            Popup.IsOpen = false;
-
-        }
-
-        //private void btnDashboard_MouseEnter(object sender, MouseEventArgs e)
-        //{
-        //    if (Tg_Btn.IsChecked == false)
-        //    {
-        //        Popup.PlacementTarget = btnDashboard;
-        //        Popup.Placement = PlacementMode.Right;
-        //        Popup.IsOpen = true;
-        //        Header.PopupText.Text = "Dashboard";
-        //    }
-
-        //}
 
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
@@ -151,44 +128,28 @@ namespace ClinicManagement
 
         }
 
-        private void btnOrderList_MouseEnter(object sender, MouseEventArgs e)
+        private void btnStaff_MouseEnter(object sender, MouseEventArgs e)
         {
             if (Tg_Btn.IsChecked == false)
             {
-                Popup.PlacementTarget = btnOrderList;
+                Popup.PlacementTarget = btnStaff;
                 Popup.Placement = PlacementMode.Right;
                 Popup.IsOpen = true;
-                Header.PopupText.Text = "Order List";
+                Header.PopupText.Text = "Nhân viên";
             }
         }
 
-        private void btnOrderList_MouseLeave(object sender, MouseEventArgs e)
+        private void btnStaff_MouseLeave(object sender, MouseEventArgs e)
         {
             Popup.Visibility = Visibility.Collapsed;
             Popup.IsOpen = false;
 
         }
 
-       
-
-        
-
-        //private void btnProducts_MouseEnter(object sender, MouseEventArgs e)
-        //{
-
-        //    if (Tg_Btn.IsChecked == false)
-        //    {
-        //        Popup.PlacementTarget = btnProducts;
-        //        Popup.Placement = PlacementMode.Right;
-        //        Popup.IsOpen = true;
-        //        Header.PopupText.Text = "Products";
-        //    }
-        //}
-
-        private void btnProducts_MouseLeave(object sender, MouseEventArgs e)
+        private void btnStaff_Click(object sender, RoutedEventArgs e)
         {
-            Popup.Visibility = Visibility.Collapsed;
-            Popup.IsOpen = false;
+            LoadUserControl(new DashBoard());
+
 
         }
 
@@ -230,7 +191,7 @@ namespace ClinicManagement
                 Popup.PlacementTarget = btnDrug;
                 Popup.Placement = PlacementMode.Right;
                 Popup.IsOpen = true;
-                Header.PopupText.Text = "Drug";
+                Header.PopupText.Text = "Thuốc";
             }
         }
 
@@ -261,7 +222,7 @@ namespace ClinicManagement
                 Popup.PlacementTarget = btnReport;
                 Popup.Placement = PlacementMode.Right;
                 Popup.IsOpen = true;
-                Header.PopupText.Text = "Report";
+                Header.PopupText.Text = "Báo cáo";
             }
         }
 
@@ -282,10 +243,10 @@ namespace ClinicManagement
 
             if (Tg_Btn.IsChecked == false)
             {
-                Popup.PlacementTarget = btnReport;
+                Popup.PlacementTarget = btnPatient;
                 Popup.Placement = PlacementMode.Right;
                 Popup.IsOpen = true;
-                Header.PopupText.Text = "Report";
+                Header.PopupText.Text = "Bệnh nhân";
             }
         }
 
@@ -301,30 +262,76 @@ namespace ClinicManagement
             LoadUserControl(new ReportView());
         }
 
-        private void btnProductStock_MouseEnter(object sender, MouseEventArgs e)
+        private void btnExam_MouseEnter(object sender, MouseEventArgs e)
         {
 
             if (Tg_Btn.IsChecked == false)
             {
-                Popup.PlacementTarget = btnReport;
+                Popup.PlacementTarget = btnExam;
                 Popup.Placement = PlacementMode.Right;
                 Popup.IsOpen = true;
-                Header.PopupText.Text = "Report";
+                Header.PopupText.Text = "Danh sách tiếp nhận";
             }
         }
 
-        private void btnProductStock_MouseLeave(object sender, MouseEventArgs e)
+        private void btnExam_MouseLeave(object sender, MouseEventArgs e)
         {
             Popup.Visibility = Visibility.Collapsed;
             Popup.IsOpen = false;
 
         }
 
-        private void btnProductStock_Click(object sender, RoutedEventArgs e)
+        private void btnExam_Click(object sender, RoutedEventArgs e)
         {
             LoadUserControl(new ReportView());
         }
+        private void btnRules_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (Tg_Btn.IsChecked == false)
+            {
+                Popup.PlacementTarget = btnRules;
+                Popup.Placement = PlacementMode.Right;
+                Popup.IsOpen = true;
+                Header.PopupText.Text = "Quy định";
+            }
+        }
+
+        private void btnRules_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Popup.Visibility = Visibility.Collapsed;
+            Popup.IsOpen = false;
+
+        }
+
+        private void btnRules_Click(object sender, RoutedEventArgs e)
+        {
+            LoadUserControl(new DashBoard());
 
 
+        }
+        private void btnAccount_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (Tg_Btn.IsChecked == false)
+            {
+                Popup.PlacementTarget = btnAccount;
+                Popup.Placement = PlacementMode.Right;
+                Popup.IsOpen = true;
+                Header.PopupText.Text = "Phân quyền";
+            }
+        }
+
+        private void btnAccount_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Popup.Visibility = Visibility.Collapsed;
+            Popup.IsOpen = false;
+
+        }
+
+        private void btnAccount_Click(object sender, RoutedEventArgs e)
+        {
+            LoadUserControl(new DashBoard());
+
+
+        }
     }
 }
