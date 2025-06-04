@@ -21,15 +21,6 @@ namespace ClinicManagement.SidebarItems
         {
             InitializeComponent();
 
-
-          /*  // Set Data First
-            var cachDungList = new DrugBLL().GetAllCachDung();
-            var dvtList = new DrugBLL().GetAllDonViTinh();
-
-            CachDungcomboBox.ItemsSource = cachDungList;
-            DvtcomboBox.ItemsSource = dvtList;
-          */
-            // Assign selected value (safe even if not found)
             CachDungcomboBox.Text = selectedDrug.CachDung;
             DvtcomboBox.Text = selectedDrug.TenDVT;
             TenThuoccomboBox.Text = selectedDrug.TenThuoc;
@@ -38,11 +29,9 @@ namespace ClinicManagement.SidebarItems
             XuatXucomboBox.Text = selectedDrug.XuatXu;
             textBoxSoLuongNhap.Text = selectedDrug.SoLuongTon.ToString();
             textBoxTyLeGiaBan.Text = selectedDrug.TyLeGiaBan.ToString();
-           /* datePickerHanSuDung.SelectedDate = selectedDrug.HanSuDung;*/
 
             if (!string.IsNullOrEmpty(selectedDrug.HinhAnh))
             {
-               /* currentDrug.HinhAnh = imagePath ?? selectedDrug.HinhAnh;*/
 
                 imgThuoc.Source = new BitmapImage(new Uri(selectedDrug.HinhAnh, UriKind.Absolute));
             }
@@ -53,14 +42,14 @@ namespace ClinicManagement.SidebarItems
         private void EditDrug_Click(object sender, RoutedEventArgs e)
         {
             currentDrug.TenThuoc = 
-    currentDrug.TenThuoc = TenThuoccomboBox.Text;
-    currentDrug.TenDVT = DvtcomboBox.Text;
-    currentDrug.CachDung = CachDungcomboBox.Text;
+            currentDrug.TenThuoc = TenThuoccomboBox.Text;
+            currentDrug.TenDVT = DvtcomboBox.Text;
+            currentDrug.CachDung = CachDungcomboBox.Text;
 
-    currentDrug.ThanhPhan = ThanhPhancomboBox.Text;
-    currentDrug.XuatXu = XuatXucomboBox.Text;
-    currentDrug.DonGiaNhap = double.Parse(textBoxDonGiaNhap.Text);
-    currentDrug.TyLeGiaBan = decimal.Parse(textBoxTyLeGiaBan.Text);
+            currentDrug.ThanhPhan = ThanhPhancomboBox.Text;
+            currentDrug.XuatXu = XuatXucomboBox.Text;
+            currentDrug.DonGiaNhap = double.Parse(textBoxDonGiaNhap.Text);
+            currentDrug.TyLeGiaBan = decimal.Parse(textBoxTyLeGiaBan.Text);
             currentDrug.HinhAnh = imagePath ?? currentDrug.HinhAnh;
 
             bool result = new DrugBLL().UpdateDrug(currentDrug); 

@@ -580,18 +580,18 @@
 
                             <StackPanel VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                    <TextBlock Text="Bich La" FontSize="26" FontWeight="Bold" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Diem" FontSize="26" FontWeight="Bold" VerticalAlignment="Center"/>
                                     <Button Name="prf" Style="{StaticResource topMenuButton}" Margin="5,0,0,0" VerticalAlignment="Center" Width="33"  MouseEnter="prf_MouseEnter" MouseLeave="prf_MouseLeave">
                                         <Icon:PackIconMaterial Kind="ChevronDown" Width="15" Height="15" Foreground="#c7c7c7"/>
                                     </Button>
                                 </StackPanel>
-                                <TextBlock Text="Doctor" Foreground="#6C879A" Margin="0 3 0 0"/>
+                                <TextBlock Text="Bác sĩ" Foreground="#6C879A" Margin="0 3 0 0"/>
                             </StackPanel>
                         </StackPanel>
                         <!--Title-->
                         <TextBlock FontSize="26" HorizontalAlignment="Left" Margin="20 35 0 20" Width="350">
                     <Run Text="Xin chào, " Foreground="#FF0E0E10"/> 
-                    <Run Text="Bác sĩ Bich La" FontWeight="Bold" Foreground="#29A3EC"/>
+                    <Run Text="Bác sĩ " FontWeight="Bold" Foreground="#29A3EC"/>
                         </TextBlock>
                         <!--add the popup user control-->
                         <Popup x:Name="popup_uc"

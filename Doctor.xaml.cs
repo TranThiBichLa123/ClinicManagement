@@ -333,5 +333,29 @@ namespace ClinicManagement
 
 
         }
+        private void btnPay_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (Tg_Btn.IsChecked == false)
+            {
+                Popup.PlacementTarget = btnPay;
+                Popup.Placement = PlacementMode.Right;
+                Popup.IsOpen = true;
+                Header.PopupText.Text = "Thanh toán";
+            }
+        }
+
+        private void btnPay_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Popup.Visibility = Visibility.Collapsed;
+            Popup.IsOpen = false;
+
+        }
+
+        private void btnPay_Click(object sender, RoutedEventArgs e)
+        {
+            LoadUserControl(new CreateBill());
+
+
+        }
     }
 }
