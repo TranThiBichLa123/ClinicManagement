@@ -299,5 +299,39 @@ namespace DAL
 
             return count;
         }
+        public List<TienNhapTheoThang> GetTongTienNhapTheoThang()
+        {
+            var result = new List<TienNhapTheoThang>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string query = @"
+                SELECT 
+                    MONTH(NgayNhap) AS Thang,
+                    YEAR(NgayNhap) AS Nam,
+                    SUM(TongTienNhap) AS TongTienNhap
+                FROM PHIEUNHAPTHUOC
+                GROUP BY MONTH(NgayNhap), YEAR(NgayNhap)
+                ORDER BY Nam, Thang";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        result.Add(new TienNhapTheoThang
+                        {
+                            Thang = reader.GetInt32(0),
+                            Nam = reader.GetInt32(1),
+                            TongTienNhap = reader.GetDecimal(2)
+                        });
+                    }
+                }
+            }
+
+            return result;
+        }
     }
 }

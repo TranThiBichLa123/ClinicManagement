@@ -57,5 +57,9 @@ namespace BLL
         {
             return dal.GetSoBenhNhanHomNay();
         }
+        public List<TienNhapTheoThang> GetTongTienNhapTheoThang()
+        {
+            return dal.GetTongTienNhapTheoThang();
+        }
     }
 }

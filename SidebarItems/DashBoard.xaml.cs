@@ -170,23 +170,51 @@ namespace ClinicManagement.SidebarItems
             DataContext = this;
         }
 
-        public SeriesCollection DoanhThuSeries { get; set; }
+        public SeriesCollection ChartSeries { get; set; }
         public List<string> ThangLabels { get; set; }
+        public Func<double, string> VNDLabeler { get; set; } = value => value.ToString("N0") + " đ";
 
         private void LoadDoanhThuChart()
         {
-            var data = reportBLL.GetDoanhThuTheoThang(); // List<DoanhThuTheoThang>
+            var listDoanhThu = reportBLL.GetDoanhThuTheoThang();         // List<DoanhThuTheoThang>
+            var listTienNhap = reportBLL.GetTongTienNhapTheoThang();     // List<TienNhapTheoThang>
 
-            DoanhThuSeries = new SeriesCollection
+            // Gộp 2 danh sách theo Tháng/Năm
+            var mergedData = (from dt in listDoanhThu
+                              join tn in listTienNhap
+                              on new { dt.Thang, dt.Nam } equals new { tn.Thang, tn.Nam } into gj
+                              from tn in gj.DefaultIfEmpty()
+                              select new
+                              {
+                                  ThangNam = $"{dt.Thang:00}/{dt.Nam}",
+                                  DoanhThu = dt.TongDoanhThu,
+                                  TienNhap = tn?.TongTienNhap ?? 0,
+                                  LoiNhuan = dt.TongDoanhThu - (tn?.TongTienNhap ?? 0)
+                              }).ToList();
+
+            // Tạo biểu đồ
+            ChartSeries = new SeriesCollection
     {
         new ColumnSeries
         {
             Title = "Doanh thu",
-            Values = new ChartValues<decimal>(data.Select(x => x.TongDoanhThu))
+            Values = new ChartValues<decimal>(mergedData.Select(x => x.DoanhThu))
+        },
+        new ColumnSeries
+        {
+            Title = "Chi phí nhập",
+            Values = new ChartValues<decimal>(mergedData.Select(x => x.TienNhap))
+        },
+        new LineSeries
+        {
+            Title = "Lợi nhuận",
+            Values = new ChartValues<decimal>(mergedData.Select(x => x.LoiNhuan)),
+            PointGeometry = DefaultGeometries.Circle,
+            StrokeThickness = 2
         }
     };
 
-            ThangLabels = data.Select(x => $"{x.Thang}/{x.Nam}").ToList();
+            ThangLabels = mergedData.Select(x => x.ThangNam).ToList();
 
             DataContext = this;
         }

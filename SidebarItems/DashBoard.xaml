@@ -452,7 +452,7 @@
                         </Grid.RowDefinitions>
                         <!--Top Menu-->
                         <!--popup doctor profile-->
-                        <Grid Grid.Row="2">
+                        <Grid Grid.Row="3">
                             <Grid>
                                 <GroupBox Margin="20,20,20,20" Height="800" >
                                     <GroupBox.Header>
@@ -474,7 +474,7 @@
                                 </GroupBox>
                             </Grid>
                         </Grid>
-                        <Grid Grid.Row="3">
+                        <Grid Grid.Row="7">
                             <Grid>
                                 <GroupBox Margin="20,20,20,20" Height="800">
                                     <GroupBox.Header>
@@ -544,7 +544,7 @@
                             </Grid>
                         </Grid>
 
-                        <Grid Grid.Row="7">
+                        <Grid Grid.Row="2">
                             <Grid>
                                 <GroupBox Margin="20,20,20,20" Height="800">
                                     <GroupBox.Header>
@@ -554,12 +554,12 @@
                                                 FontSize="16"/>
                                     </GroupBox.Header>
                                     <StackPanel>
-                                        <lvc:CartesianChart Series="{Binding DoanhThuSeries}" Margin="10" Height="500">
+                                        <lvc:CartesianChart Series="{Binding ChartSeries}" Margin="10" Height="500">
                                             <lvc:CartesianChart.AxisX>
                                                 <lvc:Axis Title="Tháng/Năm" Labels="{Binding ThangLabels}" LabelsRotation="45"/>
                                             </lvc:CartesianChart.AxisX>
                                             <lvc:CartesianChart.AxisY>
-                                                <lvc:Axis Title="Tổng doanh thu (VND)"/>
+                                                <lvc:Axis Title="Số tiền (VNĐ)" LabelFormatter="{Binding VNDLabeler}"/>
                                             </lvc:CartesianChart.AxisY>
                                         </lvc:CartesianChart>
                                     </StackPanel>

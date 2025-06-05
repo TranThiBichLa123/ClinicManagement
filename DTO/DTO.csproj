@@ -61,6 +61,7 @@
     <Compile Include="StaffAccount.cs" />
     <Compile Include="ThongKeBenhNhan.cs" />
     <Compile Include="ThuocDaChon.cs" />
+    <Compile Include="TienNhapTheoThang.cs" />
     <Compile Include="TinhThanhThongKe.cs" />
     <Compile Include="TopThuoc.cs" />
   </ItemGroup>
