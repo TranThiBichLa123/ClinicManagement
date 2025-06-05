@@ -21,20 +21,20 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <!--sidebar-->
-                <Border Grid.Column="0"
+            <Border Grid.Column="0"
                     Background="White"
                     CornerRadius="8 0 0 8"
                     
                     HorizontalAlignment="Left">
                 <Grid x:Name="GridNav" Width="60">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="90"/>
+                        <RowDefinition Height="50"/>
                         <RowDefinition Height="500"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="0">
-                        <Border CornerRadius="25" Width="45" Height="45" HorizontalAlignment="Left" Margin="8,5,5,5">
+                        <Border CornerRadius="25" Width="45" Height="35" HorizontalAlignment="Left" Margin="8,0,0,0">
                             <Border.Background>
                                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
                                     <GradientStop Color="#29A3EC" Offset="0"/>
@@ -44,8 +44,8 @@
                             <fa:IconImage Icon="Twitter" Foreground="White" 
                             Width="30" Height="30"
                             VerticalAlignment="Center" 
-                            HorizontalAlignment="Center"/>      
-                        </Border>   
+                            HorizontalAlignment="Center"/>
+                        </Border>
 
                         <StackPanel Margin="60 0 0 0" VerticalAlignment="Center">
                             <TextBlock Text="HOPE" FontSize="20" Margin="0 0 0 0" Foreground="#FF29A3EC" FontWeight="Bold"/>
@@ -55,16 +55,16 @@
                     </Grid>
 
                     <!-- Start: MenuItem -->
-                    <StackPanel Grid.Row="1" Margin="-1 0 0 20">
+                    <StackPanel Grid.Row="1" Margin="-1,0,0,80" Grid.RowSpan="2">
                         <Button x:Name="btnHome" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnHome_MouseEnter" MouseLeave="btnHome_MouseLeave" Click="btnHome_Click">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource home}" IconWidth="16" Text="Trang tổng quan" VerticalAlignment="Center"/>
                         </Button>
-   
+
 
                         <Button x:Name="btnPatient" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnPatient_MouseEnter" MouseLeave="btnPatient_MouseLeave" Click="btnPatient_Click">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource customers}" IconWidth="16" Text="Quản lý bệnh nhân" VerticalAlignment="Center"/>
                         </Button>
-                       
+
                         <Button x:Name="btnExam" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnExam_MouseEnter" MouseLeave="btnExam_MouseLeave" Click="btnExam_Click">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource email}" IconWidth="16" Text="Danh sách tiếp nhận" VerticalAlignment="Center"/>
                         </Button>
@@ -85,15 +85,15 @@
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource dashboard}" IconWidth="16" Text="Trang báo cáo" VerticalAlignment="Center"/>
 
                         </Button>
-                        <Button x:Name="btnStaff" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnStaff_MouseEnter" MouseLeave="btnStaff_MouseLeave">
+                        <Button x:Name="btnStaff" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnStaff_MouseEnter" MouseLeave="btnStaff_MouseLeave" Click="btnStaff_Click">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource users}" IconWidth="16" Text="Quản lý nhân viên" VerticalAlignment="Center"/>
                         </Button>
 
-                        <Button x:Name="btnRules" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnRules_MouseEnter" MouseLeave="btnRules_MouseLeave">
+                        <Button x:Name="btnRules" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnRules_MouseEnter" MouseLeave="btnRules_MouseLeave" Click="btnRules_Click">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource pillIcon}" IconWidth="16" Text="Thay đổi quy định" VerticalAlignment="Center"/>
                         </Button>
-                        <Button x:Name="btnAccount" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnAccount_MouseEnter" MouseLeave="btnAccount_MouseLeave">
-                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource settings}" IconWidth="16" Text="Cài đặt phân quyền" VerticalAlignment="Center"/>
+                        <Button x:Name="btnAccount" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnAccount_MouseEnter" MouseLeave="btnAccount_MouseLeave" Click="btnAccount_Click">
+                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource billing}" IconWidth="16" Text="Cài đặt phân quyền" VerticalAlignment="Center"/>
 
                         </Button>
 
@@ -113,16 +113,18 @@
                         <ctls:MenuItemPopup x:Name="Header" Foreground="black"/>
                     </Popup>
                     <!-- End: Popup User Control -->
-   </Grid>
+                </Grid>
             </Border>
 
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="504*"/>
+                    <RowDefinition Height="27*"/>
+                    <RowDefinition Height="109*"/>
                 </Grid.RowDefinitions>
 
-                <ToggleButton x:Name="Tg_Btn" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource iToggleButtonStyle}" HorizontalAlignment="Left" BorderThickness="0" Background="Transparent" Margin="10,15,0,15" Height="30" Width="30">
+                <ToggleButton x:Name="Tg_Btn" VerticalAlignment="Center" Style="{DynamicResource iToggleButtonStyle}" HorizontalAlignment="Left" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Height="30" Width="30">
                     <ToggleButton.Triggers>
                         <EventTrigger RoutedEvent="ToggleButton.Unchecked">
                             <BeginStoryboard>
@@ -144,7 +146,7 @@
                 </ToggleButton>
 
                 <!-- Start: Button Close | Restore | Minimize -->
-                <StackPanel Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0" Height="30" Orientation="Horizontal" FlowDirection="RightToLeft" Grid.RowSpan="2">
+                <StackPanel Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0" Height="30" Orientation="Horizontal" FlowDirection="RightToLeft">
                     <Button x:Name="btnClose" Style="{StaticResource IconButtonsStyle}" Content="{DynamicResource close}" Click="btnClose_Click" Tag="IsCloseButton"/>
                     <Button x:Name="btnRestore" Margin="5,0" Click="btnRestore_Click">
                         <Button.Style>
@@ -163,11 +165,11 @@
                 <!-- End: Button Close | Restore | Minimize -->
                 <Border Grid.Row="1"
                        Name="fContainer"
-                       Margin="20,0,20,20"
+                       Margin="20,0,20,20" Grid.RowSpan="3"
                        >
 
                 </Border>
+            </Grid>
         </Grid>
-     </Grid>
     </Border>
 </Window>

@@ -1,0 +1,200 @@
+﻿<UserControl x:Class="ClinicManagement.SidebarItems.StaffAccount"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:conv="clr-namespace:ClinicManagement.Converters"
+             xmlns:local="clr-namespace:ClinicManagement.SidebarItems"
+             mc:Ignorable="d" 
+                          Loaded="UserControl_Loaded"
+
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
+        <conv:SearchHintVisibilityConverter x:Key="SearchHintVisibilityConverter"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <!-- Nội dung chính -->
+            <RowDefinition Height="Auto"/>
+            <!-- Footer nếu cần -->
+        </Grid.RowDefinitions>
+
+        <Grid Background="Transparent" Grid.Row="0">
+            <!-- Main Section -->
+            <Border x:Name="staffMainContent" CornerRadius="0,0,20,20">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                        <GradientStop Color="White" Offset="0"/>
+                        <GradientStop Color="Silver" Offset="1.5"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <!-- Toolbar + tìm kiếm -->
+                        <RowDefinition Height="*"/>
+                        <!-- DataGrid -->
+                    </Grid.RowDefinitions>
+
+                    <!-- Toolbar + Search -->
+                    <Grid Grid.Row="0" Margin="10,15,10,5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <!-- Nút -->
+                            <RowDefinition Height="Auto"/>
+                            <!-- Tìm kiếm -->
+                        </Grid.RowDefinitions>
+
+                        <!-- Toolbar -->
+                        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,10" HorizontalAlignment="Left">
+                            <Button Content="➕ Thêm" Style="{StaticResource topMenuButton}" Click="btnAddStaff_Click" ToolTip="Thêm nhân viên mới"/>
+                            <Button Content="❌ Xóa" Style="{StaticResource topMenuButton}" Click="btnDeleteStaff_Click" ToolTip="Xóa nhân viên đã chọn"/>
+                            <Button Content="🔧 Sửa" Style="{StaticResource topMenuButton}" Click="btnEditStaff_Click" ToolTip="Sửa thông tin nhân viên"/>
+                        </StackPanel>
+
+                        <!-- Search Panel -->
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"/>
+                                <!-- ComboBox -->
+                                <ColumnDefinition Width="*"/>
+                                <!-- TextBox -->
+                                <ColumnDefinition Width="200"/>
+                                <!-- DatePicker -->
+                                <ColumnDefinition Width="120"/>
+                                <!-- Tìm -->
+                            </Grid.ColumnDefinitions>
+
+                            <!-- ComboBox -->
+                            <ComboBox x:Name="searchCategoryComboBox"
+                                      Grid.Column="0"
+                                      Style="{DynamicResource ComboBoxStyle1}"
+                                      VerticalContentAlignment="Center"
+                                      Height="35"
+                                      
+                                      FontSize="14"
+                                      ToolTip="Chọn tiêu chí lọc">
+                                <ComboBoxItem Content="Tất cả" IsSelected="True"/>
+                                <ComboBoxItem Content="Mã nhân viên"/>
+                                <ComboBoxItem Content="Họ tên"/>
+                                <ComboBoxItem Content="Vai trò"/>
+                            </ComboBox>
+
+                            <!-- TextBox + Hint -->
+                            <Grid Grid.Column="1" Margin="10,0,0,0">
+                                <TextBox x:Name="textBoxSearch"
+                                         Style="{StaticResource searchTextbox}"
+                                         VerticalContentAlignment="Center"
+                                         FontSize="14"
+                                         Padding="10,0"
+                                         Height="35"
+                                         TextChanged="textBoxSearch_TextChanged"/>
+                                <TextBlock Text="Nhập từ khóa tìm kiếm..."
+                                           Foreground="#868686"
+                                           VerticalAlignment="Center"
+                                           Margin="12,0,0,0"
+                                           IsHitTestVisible="False"
+                                           FontSize="14">
+                                    <TextBlock.Visibility>
+                                        <MultiBinding Converter="{StaticResource SearchHintVisibilityConverter}">
+                                            <Binding ElementName="textBoxSearch" Path="Text"/>
+                                            <Binding ElementName="textBoxSearch" Path="IsFocused"/>
+                                        </MultiBinding>
+                                    </TextBlock.Visibility>
+                                </TextBlock>
+                            </Grid>
+
+                            <!-- ComboBox lọc theo năm sinh -->
+                            <ComboBox x:Name="yearComboBox"
+          Grid.Column="2"
+          Width="150"
+          Height="35"
+          Margin="10,0"
+          VerticalContentAlignment="Center"
+          FontSize="14"
+                                      SelectionChanged="yearComboBox_SelectionChanged"
+          ToolTip="Chọn năm sinh">
+                            </ComboBox>
+
+
+                            <Button Content="🔄 Làm mới"
+        Grid.Column="3"
+        Width="120"
+        Height="35"
+        Margin="0,0,0,0"
+        Background="#4CAF50"
+        Foreground="White"
+        FontWeight="Bold"
+        Click="ReloadButton_Click"
+        ToolTip="Tải lại toàn bộ danh sách"/>
+
+                        </Grid>
+                    </Grid>
+
+                    <!-- DataGrid -->
+                    <DataGrid x:Name="staffDataGrid"
+                              Grid.Row="1"
+                              Margin="10"
+                              RowStyle="{StaticResource DataGridRowStyle1}"
+                              ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle1}"
+                              CellStyle="{StaticResource DataGridCellStyle1}"
+                              Style="{StaticResource DataGridStyle1}"
+                              AutoGenerateColumns="False"
+                              CanUserResizeColumns="True"
+                              EnableColumnVirtualization="True"
+                              EnableRowVirtualization="True"
+                              HeadersVisibility="Column"
+                              ScrollViewer.CanContentScroll="True"
+                              ScrollViewer.VerticalScrollBarVisibility="Auto"
+                              ScrollViewer.HorizontalScrollBarVisibility="Auto">
+
+                        <DataGrid.Columns>
+                            <DataGridCheckBoxColumn Binding="{Binding IsSelected, Mode=TwoWay}" Header="Chọn" Width="80">
+                                <DataGridCheckBoxColumn.HeaderTemplate>
+                                    <DataTemplate>
+                                        <CheckBox Checked="HeaderCheckBox_Checked" Unchecked="HeaderCheckBox_Unchecked"/>
+                                    </DataTemplate>
+                                </DataGridCheckBoxColumn.HeaderTemplate>
+                            </DataGridCheckBoxColumn>
+
+                            <DataGridTextColumn Header="Mã nhân viên" IsReadOnly="True" Width="120" Binding="{Binding ID_NhanVien}"/>
+                            <DataGridTemplateColumn Header="Họ tên" IsReadOnly="True" Width="250">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Ellipse Width="35" Height="35" Margin="0 0 10 0">
+                                                <Ellipse.Fill>
+                                                    <ImageBrush ImageSource="{Binding HinhAnh}" Stretch="UniformToFill"/>
+                                                </Ellipse.Fill>
+                                            </Ellipse>
+                                            <TextBlock Text="{Binding HoTenNV}" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTextColumn Header="Ngày sinh" Binding="{Binding NgaySinh}" IsReadOnly="True" Width="120"/>
+                            <DataGridTextColumn Header="Giới tính" Binding="{Binding GioiTinh}" IsReadOnly="True" Width="80"/>
+                            <DataGridTextColumn Header="CCCD" Binding="{Binding CCCD}" IsReadOnly="True" Width="130"/>
+                            <DataGridTextColumn Header="Điện thoại" Binding="{Binding DienThoai}" IsReadOnly="True" Width="120"/>
+                            <DataGridTextColumn Header="Địa chỉ" Binding="{Binding DiaChi}" Foreground="#FF5252" IsReadOnly="True" Width="200"/>
+                            <DataGridTextColumn Header="Email" Binding="{Binding Email}" IsReadOnly="True" Width="200"/>
+                            <DataGridTextColumn Header="Vai trò" Binding="{Binding ID_VaiTro}" IsReadOnly="True" Width="80"/>
+                            <DataGridTextColumn Header="Trạng thái" Binding="{Binding TrangThai}" IsReadOnly="True" Width="120"/>
+                            <DataGridTextColumn Header="Mật khẩu" Binding="{Binding Mat_Khau}" IsReadOnly="True" Width="120"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal"/>
+    </Grid>
+</UserControl>

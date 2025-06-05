@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="ClinicManagement.SidebarItems.SettingEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="500" d:DesignWidth="800">
+
+    <Grid Background="White">
+        <TabControl FontSize="14" Padding="10">
+            <!-- === QUI DINH === -->
+            <TabItem Header="Quy định">
+                <Grid Margin="10">
+                    <DataGrid x:Name="quyDinhGrid" AutoGenerateColumns="False" CanUserAddRows="True" Margin="0 0 0 50">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Tên quy định" Binding="{Binding TenQuiDinh}" Width="*"/>
+                            <DataGridTextColumn Header="Giá trị" Binding="{Binding GiaTri}" Width="150"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Content="Lưu thay đổi" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="120" Click="SaveQuiDinh_Click"/>
+                </Grid>
+            </TabItem>
+
+            <!-- === DVT === -->
+            <TabItem Header="Đơn vị tính">
+                <Grid Margin="10">
+                    <DataGrid x:Name="dvtGrid" AutoGenerateColumns="False" CanUserAddRows="True" Margin="0 0 0 50">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Tên đơn vị" Binding="{Binding TenDVT}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Content="Lưu thay đổi" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="120" Click="SaveDVT_Click"/>
+                </Grid>
+            </TabItem>
+
+            <!-- === CÁCH DÙNG === -->
+            <TabItem Header="Cách dùng">
+                <Grid Margin="10">
+                    <DataGrid x:Name="cachDungGrid" AutoGenerateColumns="False" CanUserAddRows="True" Margin="0 0 0 50">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Mô tả" Binding="{Binding MoTaCachDung}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Content="Lưu thay đổi" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="120" Click="SaveCachDung_Click"/>
+                </Grid>
+            </TabItem>
+
+            <!-- === LOẠI BỆNH === -->
+            <TabItem Header="Loại bệnh">
+                <Grid Margin="10">
+                    <DataGrid x:Name="loaiBenhGrid" AutoGenerateColumns="False" CanUserAddRows="True" Margin="0 0 0 50">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Tên bệnh" Binding="{Binding TenLoaiBenh}" Width="200"/>
+                            <DataGridTextColumn Header="Triệu chứng" Binding="{Binding TrieuChung}" Width="*"/>
+                            <DataGridTextColumn Header="Hướng điều trị" Binding="{Binding HuongDieuTri}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Content="Lưu thay đổi" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="120" Click="SaveLoaiBenh_Click"/>
+                </Grid>
+            </TabItem>
+
+            <!-- === NHÓM NGƯỜI DÙNG === -->
+            <TabItem Header="Nhóm người dùng">
+                <Grid Margin="10">
+                    <DataGrid x:Name="nhomGrid" AutoGenerateColumns="False" CanUserAddRows="True" Margin="0 0 0 50">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Tên nhóm" Binding="{Binding TenNhom}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Content="Lưu thay đổi" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="120" Click="SaveNhom_Click"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>
