@@ -357,5 +357,29 @@ namespace ClinicManagement
 
 
         }
+        private void btnReceipt_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (Tg_Btn.IsChecked == false)
+            {
+                Popup.PlacementTarget = btnReceipt;
+                Popup.Placement = PlacementMode.Right;
+                Popup.IsOpen = true;
+                Header.PopupText.Text = "Nhập hàng";
+            }
+        }
+
+        private void btnReceipt_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Popup.Visibility = Visibility.Collapsed;
+            Popup.IsOpen = false;
+
+        }
+
+        private void btnReceipt_Click(object sender, RoutedEventArgs e)
+        {
+            LoadUserControl(new ReceiptList());
+
+
+        }
     }
 }

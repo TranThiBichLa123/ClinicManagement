@@ -166,6 +166,9 @@
     <Compile Include="SidebarItems\popUpDoctor.xaml.cs">
       <DependentUpon>popUpDoctor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SidebarItems\ReceiptList.xaml.cs">
+      <DependentUpon>ReceiptList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SidebarItems\RecoveryPasswordWindow.xaml.cs">
       <DependentUpon>RecoveryPasswordWindow.xaml</DependentUpon>
     </Compile>
@@ -313,6 +316,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SidebarItems\popUpDoctor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SidebarItems\ReceiptList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

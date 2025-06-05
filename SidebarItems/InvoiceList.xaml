@@ -24,7 +24,7 @@
         <Grid Grid.Row="0" Height="60" Margin="10,10,10,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="140"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="180"/>
                 <ColumnDefinition Width="110"/>
             </Grid.ColumnDefinitions>
@@ -34,7 +34,7 @@
                       Grid.Column="0"
                       Style="{DynamicResource ComboBoxStyle1}"
                       VerticalContentAlignment="Center"
-                      FontSize="14">
+                      FontSize="14" Height="35"  Margin="0,12,31,12">
                 <ComboBoxItem Content="Tất cả" IsSelected="True"/>
                 <ComboBoxItem Content="Mã hóa đơn"/>
                 <ComboBoxItem Content="Mã phiếu khám"/>

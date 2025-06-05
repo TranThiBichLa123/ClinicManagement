@@ -3,6 +3,78 @@
   "WorkspaceRootPath": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\doctor.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:doctor.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\doctor.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:doctor.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|d:\\uit\\n2hk2\\nmcnpm\\clinic-project\\clinicmanagement\\sidebaritems\\receiptlist.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\receiptlist.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|d:\\uit\\n2hk2\\nmcnpm\\clinic-project\\clinicmanagement\\sidebaritems\\receiptlist.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\receiptlist.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|d:\\uit\\n2hk2\\nmcnpm\\clinic-project\\clinicmanagement\\sidebaritems\\drugview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\drugview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\sidebaritems\\drugview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\drugview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23D15D59-7343-4CEE-A748-7907D2983193}|BLL\\BLL.csproj|d:\\uit\\n2hk2\\nmcnpm\\clinic-project\\clinicmanagement\\bll\\newdrugbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23D15D59-7343-4CEE-A748-7907D2983193}|BLL\\BLL.csproj|solutionrelative:bll\\newdrugbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23D15D59-7343-4CEE-A748-7907D2983193}|BLL\\BLL.csproj|d:\\uit\\n2hk2\\nmcnpm\\clinic-project\\clinicmanagement\\bll\\drugbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23D15D59-7343-4CEE-A748-7907D2983193}|BLL\\BLL.csproj|solutionrelative:bll\\drugbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|d:\\uit\\n2hk2\\nmcnpm\\clinic-project\\clinicmanagement\\sidebaritems\\invoicelist.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\invoicelist.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|d:\\uit\\n2hk2\\nmcnpm\\clinic-project\\clinicmanagement\\sidebaritems\\invoicelist.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\invoicelist.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|d:\\uit\\n2hk2\\nmcnpm\\clinic-project\\clinicmanagement\\sidebaritems\\reportview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\reportview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|d:\\uit\\n2hk2\\nmcnpm\\clinic-project\\clinicmanagement\\sidebaritems\\newdrug.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\newdrug.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\sidebaritems\\editdrug.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\editdrug.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\sidebaritems\\drugdetail.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\drugdetail.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|d:\\uit\\n2hk2\\nmcnpm\\clinic-project\\clinicmanagement\\sidebaritems\\createbill.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\createbill.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|d:\\uit\\n2hk2\\nmcnpm\\clinic-project\\clinicmanagement\\sidebaritems\\examinationform.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\examinationform.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|d:\\uit\\n2hk2\\nmcnpm\\clinic-project\\clinicmanagement\\sidebaritems\\examinationformview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\examinationformview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|d:\\uit\\n2hk2\\nmcnpm\\clinic-project\\clinicmanagement\\sidebaritems\\examinationlist.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\examinationlist.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|d:\\uit\\n2hk2\\nmcnpm\\clinic-project\\clinicmanagement\\sidebaritems\\patientlist.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
       "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\patientlist.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     },
@@ -15,28 +87,12 @@
       "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\editdrug.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\sidebaritems\\editdrug.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\editdrug.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\sidebaritems\\editbill.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\editbill.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\sidebaritems\\drugview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\drugview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\sidebaritems\\drugdetail.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\drugdetail.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\sidebaritems\\dashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:sidebaritems\\dashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\doctor.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:doctor.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\assets\\icons.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -45,10 +101,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\doctor.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
-      "RelativeMoniker": "D:0:0:{A832A97A-07D9-4081-8C7B-64929C546929}|ClinicManagement.csproj|solutionrelative:doctor.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,7 +110,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -78,7 +130,276 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ReceiptList.xaml.cs",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\ReceiptList.xaml.cs",
+              "RelativeDocumentMoniker": "SidebarItems\\ReceiptList.xaml.cs",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\ReceiptList.xaml.cs",
+              "RelativeToolTip": "SidebarItems\\ReceiptList.xaml.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAAABcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-05T07:07:59.587Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Doctor.xaml",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\Doctor.xaml",
+              "RelativeDocumentMoniker": "Doctor.xaml",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\Doctor.xaml",
+              "RelativeToolTip": "Doctor.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-03T19:47:20.501Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Doctor.xaml.cs",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\Doctor.xaml.cs",
+              "RelativeDocumentMoniker": "Doctor.xaml.cs",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\Doctor.xaml.cs",
+              "RelativeToolTip": "Doctor.xaml.cs",
+              "ViewState": "AgIAAFoBAAAAAAAAAAAcwG4BAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-03T20:38:59.648Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ReceiptList.xaml",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\ReceiptList.xaml",
+              "RelativeDocumentMoniker": "SidebarItems\\ReceiptList.xaml",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\ReceiptList.xaml",
+              "RelativeToolTip": "SidebarItems\\ReceiptList.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-05T06:53:12.504Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DrugView.xaml.cs",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\DrugView.xaml.cs",
+              "RelativeDocumentMoniker": "SidebarItems\\DrugView.xaml.cs",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\DrugView.xaml.cs",
+              "RelativeToolTip": "SidebarItems\\DrugView.xaml.cs",
+              "ViewState": "AgIAAKkAAAAAAAAAAADwv8QAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-05T07:18:31.206Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "NewDrugBLL.cs",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\BLL\\NewDrugBLL.cs",
+              "RelativeDocumentMoniker": "BLL\\NewDrugBLL.cs",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\BLL\\NewDrugBLL.cs",
+              "RelativeToolTip": "BLL\\NewDrugBLL.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-05T07:13:56.516Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DrugBLL.cs",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\BLL\\DrugBLL.cs",
+              "RelativeDocumentMoniker": "BLL\\DrugBLL.cs",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\BLL\\DrugBLL.cs",
+              "RelativeToolTip": "BLL\\DrugBLL.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-05T07:14:25.698Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "InvoiceList.xaml.cs",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\InvoiceList.xaml.cs",
+              "RelativeDocumentMoniker": "SidebarItems\\InvoiceList.xaml.cs",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\InvoiceList.xaml.cs",
+              "RelativeToolTip": "SidebarItems\\InvoiceList.xaml.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABwAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-05T07:01:37.123Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DrugView.xaml",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\DrugView.xaml",
+              "RelativeDocumentMoniker": "SidebarItems\\DrugView.xaml",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\DrugView.xaml",
+              "RelativeToolTip": "SidebarItems\\DrugView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-03T20:57:36.683Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ReportView.xaml",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\ReportView.xaml",
+              "RelativeDocumentMoniker": "SidebarItems\\ReportView.xaml",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\ReportView.xaml",
+              "RelativeToolTip": "SidebarItems\\ReportView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-05T06:50:06.968Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "InvoiceList.xaml",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\InvoiceList.xaml",
+              "RelativeDocumentMoniker": "SidebarItems\\InvoiceList.xaml",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\InvoiceList.xaml",
+              "RelativeToolTip": "SidebarItems\\InvoiceList.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-05T06:47:30.41Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "NewDrug.xaml",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\NewDrug.xaml",
+              "RelativeDocumentMoniker": "SidebarItems\\NewDrug.xaml",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\NewDrug.xaml",
+              "RelativeToolTip": "SidebarItems\\NewDrug.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-05T06:49:33.236Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "EditDrug.xaml",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\EditDrug.xaml",
+              "RelativeDocumentMoniker": "SidebarItems\\EditDrug.xaml",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\EditDrug.xaml",
+              "RelativeToolTip": "SidebarItems\\EditDrug.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-03T20:57:45.748Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "DrugDetail.xaml",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\DrugDetail.xaml",
+              "RelativeDocumentMoniker": "SidebarItems\\DrugDetail.xaml",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\DrugDetail.xaml",
+              "RelativeToolTip": "SidebarItems\\DrugDetail.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-03T20:57:33.559Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "CreateBill.xaml",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\CreateBill.xaml",
+              "RelativeDocumentMoniker": "SidebarItems\\CreateBill.xaml",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\CreateBill.xaml",
+              "RelativeToolTip": "SidebarItems\\CreateBill.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-05T06:42:41.851Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "PatientList.xaml",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\PatientList.xaml",
+              "RelativeDocumentMoniker": "SidebarItems\\PatientList.xaml",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\PatientList.xaml",
+              "RelativeToolTip": "SidebarItems\\PatientList.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-03T21:37:56.374Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ExaminationFormView.xaml",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\ExaminationFormView.xaml",
+              "RelativeDocumentMoniker": "SidebarItems\\ExaminationFormView.xaml",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\ExaminationFormView.xaml",
+              "RelativeToolTip": "SidebarItems\\ExaminationFormView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-05T06:27:28.837Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "DashBoard.xaml",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\DashBoard.xaml",
+              "RelativeDocumentMoniker": "SidebarItems\\DashBoard.xaml",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\DashBoard.xaml",
+              "RelativeToolTip": "SidebarItems\\DashBoard.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-03T20:56:23.915Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Icons.xaml",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\Assets\\Icons.xaml",
+              "RelativeDocumentMoniker": "Assets\\Icons.xaml",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\Assets\\Icons.xaml",
+              "RelativeToolTip": "Assets\\Icons.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-03T20:46:31.067Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "EditDrug.xaml.cs",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\EditDrug.xaml.cs",
+              "RelativeDocumentMoniker": "SidebarItems\\EditDrug.xaml.cs",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\EditDrug.xaml.cs",
+              "RelativeToolTip": "SidebarItems\\EditDrug.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAABjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-03T20:58:12.902Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ExaminationForm.xaml",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\ExaminationForm.xaml",
+              "RelativeDocumentMoniker": "SidebarItems\\ExaminationForm.xaml",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\ExaminationForm.xaml",
+              "RelativeToolTip": "SidebarItems\\ExaminationForm.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-05T06:27:33.566Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ExaminationList.xaml",
+              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\ExaminationList.xaml",
+              "RelativeDocumentMoniker": "SidebarItems\\ExaminationList.xaml",
+              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\ExaminationList.xaml",
+              "RelativeToolTip": "SidebarItems\\ExaminationList.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-05T06:27:25.497Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
               "Title": "PatientList.xaml.cs",
               "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\PatientList.xaml.cs",
               "RelativeDocumentMoniker": "SidebarItems\\PatientList.xaml.cs",
@@ -91,42 +412,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PatientList.xaml",
-              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\PatientList.xaml",
-              "RelativeDocumentMoniker": "SidebarItems\\PatientList.xaml",
-              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\PatientList.xaml",
-              "RelativeToolTip": "SidebarItems\\PatientList.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-03T21:37:56.374Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "EditDrug.xaml.cs",
-              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\EditDrug.xaml.cs",
-              "RelativeDocumentMoniker": "SidebarItems\\EditDrug.xaml.cs",
-              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\EditDrug.xaml.cs",
-              "RelativeToolTip": "SidebarItems\\EditDrug.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAABjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-03T20:58:12.902Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "EditDrug.xaml",
-              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\EditDrug.xaml",
-              "RelativeDocumentMoniker": "SidebarItems\\EditDrug.xaml",
-              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\EditDrug.xaml",
-              "RelativeToolTip": "SidebarItems\\EditDrug.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-03T20:57:45.748Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 21,
               "Title": "EditBill.xaml",
               "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\EditBill.xaml",
               "RelativeDocumentMoniker": "SidebarItems\\EditBill.xaml",
@@ -137,75 +423,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "DrugView.xaml",
-              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\DrugView.xaml",
-              "RelativeDocumentMoniker": "SidebarItems\\DrugView.xaml",
-              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\DrugView.xaml",
-              "RelativeToolTip": "SidebarItems\\DrugView.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-03T20:57:36.683Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "DrugDetail.xaml",
-              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\DrugDetail.xaml",
-              "RelativeDocumentMoniker": "SidebarItems\\DrugDetail.xaml",
-              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\DrugDetail.xaml",
-              "RelativeToolTip": "SidebarItems\\DrugDetail.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-03T20:57:33.559Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "DashBoard.xaml",
-              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\DashBoard.xaml",
-              "RelativeDocumentMoniker": "SidebarItems\\DashBoard.xaml",
-              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\SidebarItems\\DashBoard.xaml",
-              "RelativeToolTip": "SidebarItems\\DashBoard.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-03T20:56:23.915Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Icons.xaml",
-              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\Assets\\Icons.xaml",
-              "RelativeDocumentMoniker": "Assets\\Icons.xaml",
-              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\Assets\\Icons.xaml",
-              "RelativeToolTip": "Assets\\Icons.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-03T20:46:31.067Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Doctor.xaml.cs",
-              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\Doctor.xaml.cs",
-              "RelativeDocumentMoniker": "Doctor.xaml.cs",
-              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\Doctor.xaml.cs",
-              "RelativeToolTip": "Doctor.xaml.cs",
-              "ViewState": "AgIAAEIBAAAAAAAAAAAqwFYBAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-03T20:38:59.648Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Doctor.xaml",
-              "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\Doctor.xaml",
-              "RelativeDocumentMoniker": "Doctor.xaml",
-              "ToolTip": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\Doctor.xaml",
-              "RelativeToolTip": "Doctor.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-03T19:47:20.501Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 24,
               "Title": "App.xaml",
               "DocumentMoniker": "D:\\UIT\\n2hk2\\NMCNPM\\Clinic-Project\\ClinicManagement\\App.xaml",
               "RelativeDocumentMoniker": "App.xaml",
