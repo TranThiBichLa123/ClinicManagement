@@ -334,7 +334,17 @@ namespace ClinicManagement.SidebarItems
             }
         }
 
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            double radius = 20;
 
+            var rootElement = this.Content as FrameworkElement;
+            if (rootElement != null)
+            {
+                var clipRect = new RectangleGeometry(new Rect(0, 0, rootElement.ActualWidth, rootElement.ActualHeight), radius, radius);
+                rootElement.Clip = clipRect;
+            }
+        }
 
 
 

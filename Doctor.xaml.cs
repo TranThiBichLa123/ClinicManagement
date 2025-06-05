@@ -148,7 +148,7 @@ namespace ClinicManagement
 
         private void btnStaff_Click(object sender, RoutedEventArgs e)
         {
-            LoadUserControl(new DashBoard());
+            LoadUserControl(new StaffAccount(this));
 
 
         }
@@ -305,7 +305,7 @@ namespace ClinicManagement
 
         private void btnRules_Click(object sender, RoutedEventArgs e)
         {
-            LoadUserControl(new DashBoard());
+            LoadUserControl(new Setting());
 
 
         }
@@ -329,7 +329,7 @@ namespace ClinicManagement
 
         private void btnAccount_Click(object sender, RoutedEventArgs e)
         {
-            LoadUserControl(new DashBoard());
+            LoadUserControl(new RoleManagement());
 
 
         }

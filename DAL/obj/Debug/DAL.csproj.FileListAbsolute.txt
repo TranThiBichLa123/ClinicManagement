@@ -7,3 +7,12 @@ D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\DAL\obj\Debug\DAL.csproj.Cor
 D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\DAL\obj\Debug\DAL.csproj.Up2Date
 D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\DAL\obj\Debug\DAL.dll
 D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\DAL\obj\Debug\DAL.pdb
+D:\Clinic\ClinicManagement\DAL\bin\Debug\DAL.dll
+D:\Clinic\ClinicManagement\DAL\bin\Debug\DAL.pdb
+D:\Clinic\ClinicManagement\DAL\bin\Debug\DTO.dll
+D:\Clinic\ClinicManagement\DAL\bin\Debug\DTO.pdb
+D:\Clinic\ClinicManagement\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+D:\Clinic\ClinicManagement\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\Clinic\ClinicManagement\DAL\obj\Debug\DAL.csproj.Up2Date
+D:\Clinic\ClinicManagement\DAL\obj\Debug\DAL.dll
+D:\Clinic\ClinicManagement\DAL\obj\Debug\DAL.pdb

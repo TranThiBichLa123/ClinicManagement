@@ -82,14 +82,14 @@
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource dashboard}" IconWidth="16" Text="Trang báo cáo" VerticalAlignment="Center"/>
 
                         </Button>
-                        <Button x:Name="btnStaff" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnStaff_MouseEnter" MouseLeave="btnStaff_MouseLeave">
+                        <Button x:Name="btnStaff" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnStaff_MouseEnter" MouseLeave="btnStaff_MouseLeave"  Click="btnStaff_Click">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource users}" IconWidth="16" Text="Quản lý nhân viên" VerticalAlignment="Center"/>
                         </Button>
 
-                        <Button x:Name="btnRules" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnRules_MouseEnter" MouseLeave="btnRules_MouseLeave">
+                        <Button x:Name="btnRules" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnRules_MouseEnter" MouseLeave="btnRules_MouseLeave" Click="btnRules_Click">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource pillIcon}" IconWidth="16" Text="Thay đổi quy định" VerticalAlignment="Center"/>
                         </Button>
-                        <Button x:Name="btnAccount" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnAccount_MouseEnter" MouseLeave="btnAccount_MouseLeave">
+                        <Button x:Name="btnAccount" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnAccount_MouseEnter" MouseLeave="btnAccount_MouseLeave" Click="btnAccount_Click">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource settings}" IconWidth="16" Text="Cài đặt phân quyền" VerticalAlignment="Center"/>
 
                         </Button>

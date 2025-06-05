@@ -6,6 +6,8 @@
              xmlns:conv="clr-namespace:ClinicManagement.Converters"
              xmlns:local="clr-namespace:ClinicManagement.SidebarItems"
              mc:Ignorable="d" 
+                          Loaded="UserControl_Loaded"
+
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              d:DesignHeight="450" d:DesignWidth="800">

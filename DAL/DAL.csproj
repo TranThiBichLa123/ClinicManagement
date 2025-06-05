@@ -43,17 +43,23 @@
   <ItemGroup>
     <Compile Include="AccountAccess.cs" />
     <Compile Include="BillAccess.cs" />
+    <Compile Include="CachDungAccess.cs" />
     <Compile Include="DatabaseAccess.cs" />
+    <Compile Include="DonViTinhAccess.cs" />
     <Compile Include="DrugAccess.cs" />
     <Compile Include="ExaminationDAL.cs" />
     <Compile Include="ExaminationFormDAL.cs" />
     <Compile Include="ExaminationFormViewDAL.cs" />
     <Compile Include="ExaminationListDAL.cs" />
+    <Compile Include="LoaiBenhAccess.cs" />
     <Compile Include="NewDrugAccess.cs" />
     <Compile Include="PatientDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuiDinhAccess.cs" />
     <Compile Include="ReportAccess.cs" />
+    <Compile Include="RoleManagementAccess.cs" />
     <Compile Include="SettingAccess.cs" />
+    <Compile Include="StaffAccountAccess.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DTO\DTO.csproj">

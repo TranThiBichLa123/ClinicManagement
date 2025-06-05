@@ -4,3 +4,9 @@ D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\DTO\obj\Debug\DTO.csproj.Ass
 D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
 D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\DTO\obj\Debug\DTO.dll
 D:\UIT\n2hk2\NMCNPM\Clinic-Project\ClinicManagement\DTO\obj\Debug\DTO.pdb
+D:\Clinic\ClinicManagement\DTO\bin\Debug\DTO.dll
+D:\Clinic\ClinicManagement\DTO\bin\Debug\DTO.pdb
+D:\Clinic\ClinicManagement\DTO\obj\Debug\DTO.csproj.AssemblyReference.cache
+D:\Clinic\ClinicManagement\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+D:\Clinic\ClinicManagement\DTO\obj\Debug\DTO.dll
+D:\Clinic\ClinicManagement\DTO\obj\Debug\DTO.pdb

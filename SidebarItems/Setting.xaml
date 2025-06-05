@@ -1,35 +1,61 @@
 ﻿<UserControl x:Class="ClinicManagement.SidebarItems.Setting"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ClinicManagement.SidebarItems"
-             mc:Ignorable="d" 
-             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.Resources>
-        <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
-    </UserControl.Resources>
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+
+             Loaded="UserControl_Loaded"
+
+             mc:Ignorable="d" d:DesignHeight="620" d:DesignWidth="1200">
+
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="1, 0" EndPoint="0, 1">
+                <GradientStop Color="White" Offset="0"/>
+                <GradientStop Color="Silver" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TabControl Background="Transparent" Margin="0"
-            x:Name="TabControl_Setting"
-            SelectedItem="{Binding SelectedItem_LazyCodet}">
+
+        <Grid VerticalAlignment="Top" Height="45">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 1">
+                    <GradientStop Color="#29A3EC" Offset="0"/>
+                    <GradientStop Color="#B3D8A8" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+            <materialDesign:PackIcon Kind="Cog" Width="28" Height="28" Foreground="#CC000000" Margin="0,7,5,0"/>
+                <TextBlock
+        FontSize="30" FontWeight="Bold" HorizontalAlignment="Left"
+FontFamily="Segoe UI" Foreground="#CC000000"
+VerticalAlignment="Bottom" Margin="0,0,0,0"
+        Text="Cài đặt hệ thống"/>
+            </StackPanel>
+
+
+            
+        </Grid>
+
+
+        <TabControl Grid.Row="1" FontSize="14" Background="White" BorderThickness="0" Margin="0,10,0,0" >
             <TabControl.Resources>
                 <Style TargetType="TabItem">
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="TabItem">
-                                <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="4,4,0,0" Margin="2,0">
+                                <Border Name="Border" BorderThickness="0,0,0,0" BorderBrush="Gainsboro" CornerRadius="4,4,0,0" Margin="0,0">
                                     <ContentPresenter x:Name="ContentSite"
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center"
-                                ContentSource="Header"
-                                Margin="10,2"/>
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,5"/>
                                 </Border>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsSelected" Value="True">
@@ -45,202 +71,174 @@
                 </Style>
             </TabControl.Resources>
 
-            <TabItem Header="Phân quyền" IsSelected="True" >
-                <Grid Background="Transparent" Grid.Column="2" Grid.ColumnSpan="2">
-                    <!-- Main section -->
-                    <Border x:Name="borderMainContent" CornerRadius="0,0,20,20" >
-                        <Border.Background>
-                            <LinearGradientBrush StartPoint="1, 0" EndPoint="0, 1">
-                                <GradientStop Color="White" Offset="0"/>
-                                <GradientStop Color="Silver" Offset="1.5"/>
-                            </LinearGradientBrush>
-                        </Border.Background>
-
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <!-- Hàng 1: Tìm kiếm và các nút -->
-                                <RowDefinition Height="auto"/>
-                                <!-- Hàng 2: Bảng thuốc -->
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0 0 30 25">
-                                <Button Content="🔧 Sửa" Style="{StaticResource topMenuButton}" Click="btnEditRole_Click"/>
-                                <Button Content="❌ Xóa" Style="{StaticResource topMenuButton}" />
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="FileDocumentOutline" Width="20" Height="20" Margin="0,0,5,0" Foreground="DarkSlateBlue"/>
+                        <TextBlock Text="Quy Định" FontWeight="Bold" VerticalAlignment="Center" Foreground="DarkSlateBlue"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="350"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Background="#AEC8D1" CornerRadius="10" Padding="15" Grid.Column="0">
+                        <StackPanel>
+                            <TextBlock Text="📝 Quy Định" FontSize="18" FontWeight="Bold"/>
+                            <Separator Margin="0,10"/>
+                            <TextBlock Text="Tên quy định:"/>
+                            <TextBox x:Name="txtTenQuiDinh" Margin="0,5"/>
+                            <TextBlock Text="Giá trị:"/>
+                            <TextBox x:Name="txtGiaTriQuiDinh" Margin="0,5"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,10,0,0">
+                                <Button Content="➕ Thêm" Width="90" Click="btnThemQuiDinh_Click"/>
+                                <Button Content="✏️ Sửa" Width="90" Margin="10,0,0,0" Click="btnSuaQuiDinh_Click"/>
+                                <Button Content="❌ Xoá" Width="90" Margin="10,0,0,0" Click="btnXoaQuiDinh_Click"/>
                             </StackPanel>
-
-
-
-                            <!-- DataGrid -->
-                            <DataGrid Grid.Row="1" 
-          RowStyle="{DynamicResource DataGridRowStyle1}"
-          ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
-          CellStyle="{DynamicResource DataGridCellStyle1}"
-          x:Name="roleDataGrid"
-                                Style="{DynamicResource DataGridStyle1}"
-          Margin="10,10,10,10">
-                                <!-- Thêm margin để không dính sát -->
-                                <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn   Binding="{Binding IsSelected, Mode=TwoWay}" Header="Chọn" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
-                                        <DataGridCheckBoxColumn.HeaderTemplate>
-                                            <DataTemplate>
-                                                <CheckBox Style="{StaticResource CheckBoxStyle1}"   />
-                                            </DataTemplate>
-                                        </DataGridCheckBoxColumn.HeaderTemplate>
-                                    </DataGridCheckBoxColumn>
-
-
-
-                                    <DataGridTextColumn Header="Mã quyền" Binding="{Binding ID_VaiTro}" IsReadOnly="True" Width="*"/>
-                                    <DataGridTextColumn Header="Tên nhóm quyền" Binding="{Binding TenVaiTro}" IsReadOnly="True" Width="*"/>
-
-                                </DataGrid.Columns>
-                            </DataGrid>
-
-                        </Grid>
+                        </StackPanel>
                     </Border>
+                    <DataGrid x:Name="gridQuiDinh" Grid.Column="2" AutoGenerateColumns="False" IsReadOnly="True"
+                                      RowStyle="{DynamicResource DataGridRowStyle1}"
+                                      ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                                      CellStyle="{DynamicResource DataGridCellStyle1}"
+                                      Style="{DynamicResource DataGridStyle1}"
+                                      SelectionChanged="gridQuiDinh_SelectionChanged" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Tên quy định" Binding="{Binding TenQuiDinh}" Width="*"/>
+                            <DataGridTextColumn Header="Giá trị" Binding="{Binding GiaTri}" Width="150"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
-            </TabItem>
-            <TabItem Header="Tài khoản">
-                <Grid Background="Transparent" Grid.Column="2" Grid.ColumnSpan="2">
-                    <!-- Main section -->
-                    <Border x:Name="accountMainContent" CornerRadius="0,0,20,20" >
-                        <Border.Background>
-                            <LinearGradientBrush StartPoint="1, 0" EndPoint="0, 1">
-                                <GradientStop Color="White" Offset="0"/>
-                                <GradientStop Color="Silver" Offset="1.5"/>
-                            </LinearGradientBrush>
-                        </Border.Background>
 
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <!-- Hàng 1: Tìm kiếm và các nút -->
-                                <RowDefinition Height="Auto"/>
-                                <!-- Hàng 2: Bảng thuốc -->
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0 0 30 25">
-                                <Button Content="➕ Thêm" Style="{StaticResource topMenuButton}"/>
-                                <Button Content="❌ Xóa" Style="{StaticResource topMenuButton}" />
-                                <Button Content="🔧 Sửa" Style="{StaticResource topMenuButton}"/>
-                            </StackPanel>
-                            <!-- DataGrid -->
-                            <DataGrid Grid.Row="1" 
-RowStyle="{DynamicResource DataGridRowStyle1}"
-ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
-CellStyle="{DynamicResource DataGridCellStyle1}"
-x:Name="accountDataGrid"
-                      Style="{DynamicResource DataGridStyle1}"
->
-                                <!-- Thêm margin để không dính sát -->
-                                <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn   Binding="{Binding IsSelected, Mode=TwoWay}" Header="Chọn" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
-                                        <DataGridCheckBoxColumn.HeaderTemplate>
-                                            <DataTemplate>
-                                                <CheckBox Style="{StaticResource CheckBoxStyle1}"   />
-                                            </DataTemplate>
-                                        </DataGridCheckBoxColumn.HeaderTemplate>
-                                    </DataGridCheckBoxColumn>
-                                    <DataGridTextColumn Header="Mã tài khoản" Binding="{Binding ID_TaiKhoan}" IsReadOnly="True" Width="*"/>
-                                    <DataGridTextColumn Header="Email" Binding="{Binding Email}" IsReadOnly="True" Width="*"/>
-                                    <DataGridTextColumn Header="Mã vai trò" Binding="{Binding ID_VaiTro}" IsReadOnly="True" Width="*"/>
-                                    <DataGridTextColumn Header="Trạng thái" Binding="{Binding TrangThai}" IsReadOnly="True" Width="*"/>
-
-                                </DataGrid.Columns>
-                            </DataGrid>
-                            <!-- Xuất thuốc -->
-
-
-
-
-
-                        </Grid>
-                    </Border>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Nhân viên">
-                <Grid Background="Transparent" Grid.Column="2" Grid.ColumnSpan="2">
-                    <!-- Main section -->
-                    <Border x:Name="staffMainContent" CornerRadius="0,0,20,20" >
-                        <Border.Background>
-                            <LinearGradientBrush StartPoint="1, 0" EndPoint="0, 1">
-                                <GradientStop Color="White" Offset="0"/>
-                                <GradientStop Color="Silver" Offset="1.5"/>
-                            </LinearGradientBrush>
-                        </Border.Background>
-
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <!-- Hàng 1: Tìm kiếm và các nút -->
-                                <RowDefinition Height="auto"/>
-                                <!-- Hàng 2: Bảng thuốc -->
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0 0 30 25">
-                                <Button Content="➕ Thêm" Style="{StaticResource topMenuButton}"/>
-                                <Button Content="❌ Xóa" Style="{StaticResource topMenuButton}" />
-                                <Button Content="🔧 Sửa" Style="{StaticResource topMenuButton}"/>
-                            </StackPanel>
-
-                         <DataGrid 
-RowStyle="{DynamicResource DataGridRowStyle1}"
-ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
-CellStyle="{DynamicResource DataGridCellStyle1}"
-x:Name="staffDataGrid"
-
-Style="{DynamicResource DataGridStyle1}"
-Margin="10,10,10,-53" Grid.Row="1">
-                                <!-- Thêm margin để không dính sát -->
-                                <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn   Binding="{Binding IsSelected, Mode=TwoWay}" Header="Chọn" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
-                                        <DataGridCheckBoxColumn.HeaderTemplate>
-                                            <DataTemplate>
-                                                <CheckBox Style="{StaticResource CheckBoxStyle1}"   />
-                                            </DataTemplate>
-                                        </DataGridCheckBoxColumn.HeaderTemplate>
-                                    </DataGridCheckBoxColumn>
-
-                                    <DataGridTextColumn Header="Mã nhân viên" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding ID_NhanVien}"/>
-                                    <DataGridTemplateColumn Header="Họ tên" IsReadOnly="True" Width="*">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Ellipse Width="35" Height="35" Margin="0 0 10 0">
-                                                        <Ellipse.Fill>
-                                                            <ImageBrush ImageSource="{Binding HinhAnh}" Stretch="UniformToFill"/>
-                                                        </Ellipse.Fill>
-                                                    </Ellipse>
-
-                                                    <!-- Hiển thị tên thuốc -->
-                                                    <TextBlock Text="{Binding HoTenNV}" VerticalAlignment="Center"/>
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
-                              
-                                    <DataGridTextColumn Header="Ngày sinh" Binding="{Binding NgaySinh}" IsReadOnly="True" Width="*"/>
-                                    <DataGridTextColumn Header="Giới tính" Binding="{Binding GioiTinh}" IsReadOnly="True" Width="*"/>
-                                    <DataGridTextColumn Header="CCCD" Binding="{Binding CCCD}" IsReadOnly="True" Width="*"/>
-                                    <DataGridTextColumn Header="Điện thoại" Binding="{Binding DienThoai}" IsReadOnly="True" Width="*"/>
-                                    <DataGridTextColumn Header="Địa chỉ" Binding="{Binding DiaChi}" Foreground="#FF5252" IsReadOnly="True" Width="*"/>
-                                    <DataGridTextColumn Header="Email" Binding="{Binding Email}" IsReadOnly="True" Width="*"/>
-                                    <DataGridTextColumn Header="Vai trò" Binding="{Binding ID_VaiTro}" IsReadOnly="True" Width="*"/>
-                                    <DataGridTextColumn Header="Trạng thái" Binding="{Binding TrangThai}" IsReadOnly="True" Width="*"/>
-
-                                </DataGrid.Columns>
-                            </DataGrid>
-                            <!-- Xuất thuốc -->
-
-
-
-
-
-
-                        </Grid>
-                    </Border>
-                </Grid>
             </TabItem>
 
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Scale" Width="20" Height="20" Margin="0,0,5,0" Foreground="DarkSlateBlue"/>
+                        <TextBlock Text="Đơn Vị Tính" FontWeight="Bold" VerticalAlignment="Center" Foreground="DarkSlateBlue"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="350"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Background="#AEC8D1" CornerRadius="10" Padding="15" Grid.Column="0">
+                        <StackPanel>
+                            <TextBlock Text="📏 Đơn Vị Tính" FontSize="18" FontWeight="Bold"/>
+                            <Separator Margin="0,10"/>
+                            <TextBlock Text="Tên đơn vị:"/>
+                            <TextBox x:Name="txtTenDVT" Margin="0,5"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                                <Button Content="➕ Thêm" Width="90" Click="BtnThemDVT_Click"/>
+                                <Button Content="✏️ Sửa" Width="90" Margin="10,0,0,0" Click="BtnSuaDVT_Click"/>
+                                <Button Content="❌ Xoá" Width="90" Margin="10,0,0,0" Click="BtnXoaDVT_Click"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <DataGrid x:Name="gridDVT" Grid.Column="2" AutoGenerateColumns="False" IsReadOnly="True"
+                  RowStyle="{DynamicResource DataGridRowStyle1}"
+                  ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                  CellStyle="{DynamicResource DataGridCellStyle1}"
+                  Style="{DynamicResource DataGridStyle1}"
+                  SelectionChanged="gridDVT_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Tên đơn vị" Binding="{Binding TenDVT}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+
+            </TabItem>
+
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Pill" Width="20" Height="20" Margin="0,0,5,0" Foreground="DarkSlateBlue"/>
+                        <TextBlock Text="Cách Dùng" FontWeight="Bold" VerticalAlignment="Center" Foreground="DarkSlateBlue"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="350"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Background="#AEC8D1" CornerRadius="10" Padding="15" Grid.Column="0">
+                        <StackPanel>
+                            <TextBlock Text="💊 Cách Dùng" FontSize="18" FontWeight="Bold"/>
+                            <Separator Margin="0,10"/>
+                            <TextBlock Text="Mô tả cách dùng:"/>
+                            <TextBox x:Name="txtCachDung" AcceptsReturn="True" Height="60" Margin="0,5"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                                <Button Content="➕ Thêm" Width="90" Click="BtnThemCachDung_Click"/>
+                                <Button Content="✏️ Sửa" Width="90" Margin="10,0,0,0" Click="BtnSuaCachDung_Click"/>
+                                <Button Content="❌ Xoá" Width="90" Margin="10,0,0,0" Click="BtnXoaCachDung_Click"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <DataGrid x:Name="gridCachDung" Grid.Column="2" AutoGenerateColumns="False" IsReadOnly="True"
+                  RowStyle="{DynamicResource DataGridRowStyle1}"
+                  ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                  CellStyle="{DynamicResource DataGridCellStyle1}"
+                  Style="{DynamicResource DataGridStyle1}"
+                  SelectionChanged="gridCachDung_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Mô tả" Binding="{Binding MoTaCachDung}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+
+            </TabItem>
+
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="VirusOutline" Width="20" Height="20" Margin="0,0,5,0" Foreground="DarkSlateBlue"/>
+                        <TextBlock Text="Loại Bệnh" FontWeight="Bold" VerticalAlignment="Center" Foreground="DarkSlateBlue"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="350"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Background="#AEC8D1" CornerRadius="10" Padding="15" Grid.Column="0">
+                        <StackPanel>
+                            <TextBlock Text="🦠 Loại Bệnh" FontSize="18" FontWeight="Bold"/>
+                            <Separator Margin="0,10"/>
+                            <TextBlock Text="Tên bệnh:"/>
+                            <TextBox x:Name="txtTenBenh" Margin="0,5"/>
+                            <TextBlock Text="Triệu chứng:"/>
+                            <TextBox x:Name="txtTrieuChung" AcceptsReturn="True" Height="60" Margin="0,5"/>
+                            <TextBlock Text="Hướng điều trị:"/>
+                            <TextBox x:Name="txtHuongDieuTri" AcceptsReturn="True" Height="60" Margin="0,5"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                                <Button Content="➕ Thêm" Width="90" Click="BtnThemLoaiBenh_Click"/>
+                                <Button Content="✏️ Sửa" Width="90" Margin="10,0,0,0" Click="BtnSuaLoaiBenh_Click"/>
+                                <Button Content="❌ Xoá" Width="90" Margin="10,0,0,0" Click="BtnXoaLoaiBenh_Click"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <DataGrid x:Name="gridLoaiBenh" Grid.Column="2" AutoGenerateColumns="False" IsReadOnly="True"
+                  RowStyle="{DynamicResource DataGridRowStyle1}"
+                  ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                  CellStyle="{DynamicResource DataGridCellStyle1}"
+                  Style="{DynamicResource DataGridStyle1}"
+                  SelectionChanged="gridLoaiBenh_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Tên bệnh" Binding="{Binding TenLoaiBenh}" Width="200"/>
+                            <DataGridTextColumn Header="Triệu chứng" Binding="{Binding TrieuChung}" Width="*"/>
+                            <DataGridTextColumn Header="Hướng điều trị" Binding="{Binding HuongDieuTri}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+
+            </TabItem>
         </TabControl>
-        <StackPanel Grid.Row="1" Orientation="Horizontal"/>
     </Grid>
 </UserControl>

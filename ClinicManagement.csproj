@@ -109,6 +109,9 @@
     <Compile Include="Receptionist.xaml.cs">
       <DependentUpon>Receptionist.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SidebarItems\AddStaff.xaml.cs">
+      <DependentUpon>AddStaff.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SidebarItems\CreateBill.xaml.cs">
       <DependentUpon>CreateBill.xaml</DependentUpon>
     </Compile>
@@ -129,6 +132,9 @@
     </Compile>
     <Compile Include="SidebarItems\EditRole.xaml.cs">
       <DependentUpon>EditRole.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SidebarItems\EditStaff.xaml.cs">
+      <DependentUpon>EditStaff.xaml</DependentUpon>
     </Compile>
     <Compile Include="SidebarItems\ExaminationForm.xaml.cs">
       <DependentUpon>ExaminationForm.xaml</DependentUpon>
@@ -175,8 +181,14 @@
     <Compile Include="SidebarItems\ResetPassword.xaml.cs">
       <DependentUpon>ResetPassword.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SidebarItems\RoleManagement.xaml.cs">
+      <DependentUpon>RoleManagement.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SidebarItems\Setting.xaml.cs">
       <DependentUpon>Setting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SidebarItems\StaffAccount.xaml.cs">
+      <DependentUpon>StaffAccount.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -240,6 +252,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SidebarItems\AddStaff.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SidebarItems\CreateBill.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -265,6 +281,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SidebarItems\EditRole.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SidebarItems\EditStaff.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -328,7 +348,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SidebarItems\RoleManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SidebarItems\Setting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SidebarItems\StaffAccount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -368,6 +396,7 @@
     <Resource Include="Image1.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="img\avatar.jpg" />
     <Content Include="img\drugDefault.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

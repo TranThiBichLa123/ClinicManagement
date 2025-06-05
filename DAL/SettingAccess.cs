@@ -10,6 +10,7 @@ namespace DAL
 {
     public class SettingAccess:DatabaseAccess
     {
+
         public List<Setting> GetRoleList()
         {
             List<Setting> settingList = new List<Setting>();

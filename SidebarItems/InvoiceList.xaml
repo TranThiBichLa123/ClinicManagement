@@ -34,6 +34,7 @@
                       Grid.Column="0"
                       Style="{DynamicResource ComboBoxStyle1}"
                       VerticalContentAlignment="Center"
+                       Height="35"
                       FontSize="14">
                 <ComboBoxItem Content="Tất cả" IsSelected="True"/>
                 <ComboBoxItem Content="Mã hóa đơn"/>
@@ -42,7 +43,7 @@
             </ComboBox>
 
             <!-- Search TextBox với Hint -->
-            <Grid Grid.Column="1">
+            <Grid Grid.Column="1" Margin="10,0,0,0">
                 <TextBox x:Name="textBoxSearch"
                          TextChanged="textBoxSearch_TextChanged"
                          Style="{StaticResource searchTextbox}"
