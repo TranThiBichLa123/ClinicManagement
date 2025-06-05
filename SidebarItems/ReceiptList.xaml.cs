@@ -31,9 +31,9 @@ namespace ClinicManagement.SidebarItems
         }
         private void InvoiceList_Loaded(object sender, RoutedEventArgs e)
         {
+
         }
 
-        private List<HoaDon> originalList = new List<HoaDon>();
 
         private void textBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {

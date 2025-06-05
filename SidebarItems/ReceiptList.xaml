@@ -55,8 +55,8 @@
             <!-- Nút tìm kiếm -->
             <Button Content="Tìm kiếm"
     Grid.Column="2"
-    Width="100"
-    Height="35"
+    Width="122"
+    Height="36"
     Background="#3f51b5"
     Foreground="White"
     FontWeight="Bold"
@@ -81,7 +81,7 @@
 
         <!-- DataGrid -->
         <DataGrid Grid.Row="1"
-              x:Name="billDataGrid"
+              x:Name="receiptDataGrid"
               Margin="10"
               AutoGenerateColumns="False"
               IsReadOnly="True"
