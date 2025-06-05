@@ -65,6 +65,12 @@ namespace ClinicManagement.SidebarItems
             this.idPhieuKham = idPK;
             txtMaBenhNhan.Text = this.idBenhNhan.ToString();
 
+            var bn = bll.GetBenhNhanInfo(this.idBenhNhan);
+            if (bn != null)
+                txtTenBenhNhan.Text = bn["HoTenBN"].ToString();
+            else
+                MessageBox.Show("Không tìm thấy thông tin bệnh nhân.");
+
             cboLoaiBenh.ItemsSource = bll.GetLoaiBenh().DefaultView;
             cboLoaiBenh.DisplayMemberPath = "TenLoaiBenh";
             cboLoaiBenh.SelectedValuePath = "ID_LoaiBenh";
@@ -310,15 +316,7 @@ namespace ClinicManagement.SidebarItems
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            double radius = 20;
-
-            // Ensure 'Root' is defined and refers to the root container of the UserControl
-            var rootElement = this.Content as FrameworkElement;
-            if (rootElement != null)
-            {
-                var clipRect = new RectangleGeometry(new Rect(0, 0, rootElement.ActualWidth, rootElement.ActualHeight), radius, radius);
-                rootElement.Clip = clipRect;
-            }
+            
         }
     }
 }

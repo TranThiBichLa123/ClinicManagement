@@ -9,16 +9,9 @@
             Loaded="UserControl_Loaded"
             mc:Ignorable="d"
             d:DesignHeight="620" d:DesignWidth="1200">
-    <Border CornerRadius="20">
-        <Viewbox Stretch="Uniform">
-            <Grid Width="1200" Height="620">
-                <Grid.Background>
-                    <LinearGradientBrush StartPoint="1, 0" EndPoint="0, 1">
-                        <GradientStop Color="White" Offset="0"/>
-                        <GradientStop Color="Silver" Offset="1"/>
-                    </LinearGradientBrush>
-                </Grid.Background>
-
+    <Border CornerRadius="20" Background="#F5F5F5" Padding="0">
+        <Border CornerRadius="20" Background="White" Padding="20">
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -26,47 +19,42 @@
                 </Grid.RowDefinitions>
 
                 <Border Height="45">
-                    <Border.Background>
-                        <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 1">
-                            <GradientStop Color="#29A3EC" Offset="0"/>
-                            <GradientStop Color="#B3D8A8" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Border.Background>
-
                     <StackPanel Orientation="Horizontal">
-                        <Button x:Name="btnExit" Background="Transparent" BorderBrush="Transparent" Height="42" Width="60" Click="btnExit_Click">
-                            <materialDesign:PackIcon Kind="Backburger" Height="21" Width="auto" VerticalContentAlignment="Center"/>
+                        <Button x:Name="btnExit" Background="Transparent" BorderBrush="Transparent" Height="42" Width="60" Click="btnExit_Click"
+                                Foreground="#2196F3">
+                            <materialDesign:PackIcon Kind="Backburger" Height="30" Width="26" VerticalAlignment="Center"/>
                         </Button>
-                        <TextBlock x:Name="tblTitle" Text="TẠO PHIẾU KHÁM" FontSize="24" FontWeight="Bold" Margin="0 0 0 0" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="tblTitle" Text="TẠO PHIẾU KHÁM" FontSize="24" FontWeight="Bold" Margin="0 0 0 0" VerticalAlignment="Center"
+                                   Foreground="#2196F3"/>
                     </StackPanel>
 
                 </Border>
 
                 <Grid Grid.Row="1" Margin="0 20 0 0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="660"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Orientation="Vertical" Margin="20 10 0 10" HorizontalAlignment="Left">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Mã bệnh nhân:" Margin="0 0 10 0" FontSize="16" FontWeight="Black"/>
-                            <TextBox x:Name="txtMaBenhNhan" Width="100" Height="50" Padding="5" FontSize="16" Margin="0 0 30 0" FontWeight="DemiBold"/>
+                            <TextBox x:Name="txtMaBenhNhan" Width="100" Height="30" FontSize="16" Margin="0 0 30 0" FontWeight="DemiBold"/>
                             <TextBlock Text="Tên bệnh nhân:" Margin="0 0 10 0" FontSize="16" FontWeight="Black"/>
-                            <TextBox x:Name="txtTenBenhNhan" Width="231"  Height="50" Padding="5" FontSize="16" FontWeight="DemiBold"/>
+                            <TextBox x:Name="txtTenBenhNhan" Width="231"  Height="30" FontSize="16" FontWeight="DemiBold"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
                             <TextBlock Text="Triệu chứng:" Margin="0 0 10 0" FontSize="16" FontWeight="Black"/>
-                            <TextBox x:Name="txtTrieuChung" Width="509" Height="50" Padding="5" FontSize="16" Margin="0 0 30 0" FontWeight="DemiBold"/>
+                            <TextBox x:Name="txtTrieuChung" Width="509" Height="30" FontSize="16" Margin="0 0 30 0" FontWeight="DemiBold"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Margin="0 10  0 0" >
                             <TextBlock Text="Chuẩn đoán bệnh: " FontSize="16" FontWeight="Black"/>
-                            <ComboBox x:Name="cboLoaiBenh" Width="200" Height="30" Padding="5" FontSize="16"
+                            <ComboBox x:Name="cboLoaiBenh" Width="200" Height="30" FontSize="16"
                             DisplayMemberPath="TenLoaiBenh" SelectedValuePath="ID_LoaiBenh" FontWeight="DemiBold"/>
                             <TextBlock Text="Ca khám:" Margin="30 0 10 0" FontSize="16" FontWeight="Black"/>
-                            <TextBox x:Name="txtCaKham" Width="161" Height="50" Padding="5" FontSize="16" Margin="0 0 30 0" FontWeight="DemiBold"/>
+                            <TextBox x:Name="txtCaKham" Width="161" Height="30" FontSize="16" FontWeight="DemiBold"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Margin="0 10  0 0" >
@@ -111,7 +99,7 @@
 
                 </Grid>
 
-                <GroupBox Grid.Row="2" Margin="20,20,20,20">
+                <GroupBox Grid.Row="2" Margin="20,20,20,20" Height="270">
                     <GroupBox.Header >
                         <TextBlock Text="Danh sách thuốc đã chọn" FontSize="18" FontWeight="Black" TextAlignment="Center" Height="25"/>
                     </GroupBox.Header>
@@ -138,6 +126,6 @@
                     </DataGrid>
                 </GroupBox>
             </Grid>
-        </Viewbox>
+        </Border>
     </Border>
 </UserControl>

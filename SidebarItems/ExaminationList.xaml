@@ -9,17 +9,9 @@
             mc:Ignorable="d"
             Loaded="UserControl_Loaded"
             d:DesignHeight="620" d:DesignWidth="1200">
-    <Border CornerRadius="20">
-        <Viewbox Stretch="Uniform">
-            <Grid Width="1200" Height="620">
-                <!-- set background color-->
-                <Grid.Background>
-                    <LinearGradientBrush StartPoint="1, 0" EndPoint="0, 1">
-                        <GradientStop Color="White" Offset="0"/>
-                        <GradientStop Color="Silver" Offset="1"/>
-                    </LinearGradientBrush>
-                </Grid.Background>
-
+    <Border CornerRadius="20" Background="#F5F5F5" Padding="0">
+        <Border CornerRadius="20" Background="White" Padding="20">
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -29,14 +21,9 @@
 
                 <!-- Show window name -->
                 <Border Height="45">
-                    <Border.Background>
-                        <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 1">
-                            <GradientStop Color="#29A3EC" Offset="0"/>
-                            <GradientStop Color="#B3D8A8" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Border.Background>
 
-                    <TextBlock Text="TIẾP NHẬN BỆNH NHÂN" FontSize="24" FontWeight="Bold" Margin="20 0 0 0" VerticalAlignment="Center"/>
+                    <TextBlock Text="TIẾP NHẬN BỆNH NHÂN" FontSize="24" FontWeight="Bold" Margin="20 0 0 0" VerticalAlignment="Center"
+                               Foreground="#2196F3"/>
 
                 </Border>
 
@@ -49,12 +36,12 @@
                      
                                 />
                     <TextBlock Text="Đã tiếp nhận:" VerticalAlignment="Center" Margin="20, 0, 5, 0"
-                         FontSize="16" FontWeight="DemiBold" FontFamily="Calibri"/>
+                            FontSize="16" FontWeight="DemiBold" FontFamily="Calibri"/>
                     <Border Width="40" Height="30" CornerRadius="5" BorderThickness="3" BorderBrush="#29A3EC">
                         <Label x:Name="lblRowCount" Content="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <TextBlock Text="bệnh nhân" VerticalAlignment="Center" Margin="5, 0, 0, 0"
-                         FontSize="16" FontWeight="DemiBold" FontFamily="Calibri"/>
+                            FontSize="16" FontWeight="DemiBold" FontFamily="Calibri"/>
                     <TextBlock Text="Tối đa:" VerticalAlignment="Center" Margin="40, 0, 5, 0"
                         FontSize="16" FontWeight="DemiBold" FontFamily="Calibri"/>
                     <Border Width="40" Height="30" CornerRadius="5" BorderThickness="3" BorderBrush="#29A3EC">
@@ -198,11 +185,11 @@
                 </Grid>
 
                 <DataGrid Grid.Row="3" x:Name="dgTiepNhan" AutoGenerateColumns="False"
-                  RowStyle="{DynamicResource DataGridRowStyle1}"
-                  ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
-                  CellStyle="{DynamicResource DataGridCellStyle1}"
-                  Style="{DynamicResource DataGridStyle1}"
-                  Margin="10" Height="420">
+                    RowStyle="{DynamicResource DataGridRowStyle1}"
+                    ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                    CellStyle="{DynamicResource DataGridCellStyle1}"
+                    Style="{DynamicResource DataGridStyle1}"
+                    Margin="10" Height="420">
                     <!-- Thêm margin để không dính sát -->
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="STT" IsReadOnly="True" CanUserResize="False" Width="0.5" Binding="{Binding STT}"/>
@@ -236,6 +223,6 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
-        </Viewbox>
+        </Border>
     </Border>
 </UserControl>

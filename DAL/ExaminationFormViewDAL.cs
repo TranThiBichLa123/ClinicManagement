@@ -17,7 +17,7 @@ namespace DAL
                                   FROM PHIEUKHAM PK JOIN DANHSACHTIEPNHAN TN ON PK.ID_TiepNhan = TN.ID_TiepNhan
                                                     JOIN BENHNHAN BN ON BN.ID_BenhNhan = TN.ID_BenhNhan 
                                                     JOIN LOAIBENH LB ON PK.ID_LoaiBenh = LB.ID_LoaiBenh
-                                  WHERE PK.ID_TiepNhan = {idTN}";
+                                  WHERE PK.ID_TiepNhan = {idTN} AND PK.Is_Deleted = 0";
             var dt = GetData(query);
             return dt.Rows.Count > 0 ? dt.Rows[0] : null;
         }

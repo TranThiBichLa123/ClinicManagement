@@ -32,7 +32,7 @@ namespace ClinicManagement.SidebarItems
         private int idPK;
         private ExaminationFormViewBLL bll = new ExaminationFormViewBLL();
         private ExaminationFormDTO examinationForm = new ExaminationFormDTO();
-        private string connectionString = "Data Source=KOROBE\\SQLEXPRESS;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
+        private string connectionString = "Data Source=LAPTOP-2FUIJHRN;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
 
         public ExaminationFormView(string idBenhNhan, int idTiepNhan)
         {
@@ -51,7 +51,7 @@ namespace ClinicManagement.SidebarItems
                 lblChuanDoan.Content = pk["TenLoaiBenh"].ToString();
                 lblTienKham.Content = ((decimal)pk["TienKham"]).ToString("N0");
                 lblTongTienThuoc.Content = ((decimal)pk["TongTienThuoc"]).ToString("N0");
-                lblNgayKham.Content = "Ca " + pk["CaKham"] + " Ngày " + pk["NgayTN"];
+                lblNgayKham.Content = pk["CaKham"] + " " + ((DateTime)pk["NgayTN"]).ToString("dd/MM/yyyy");
 
                 var toa = bll.GetToaThuocTheoPhieuKham(idPK);
                 dgToaThuoc.ItemsSource = toa.DefaultView;
@@ -109,15 +109,7 @@ namespace ClinicManagement.SidebarItems
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            double radius = 20;
-
-            // Ensure 'Root' is defined and refers to the root container of the UserControl
-            var rootElement = this.Content as FrameworkElement;
-            if (rootElement != null)
-            {
-                var clipRect = new RectangleGeometry(new Rect(0, 0, rootElement.ActualWidth, rootElement.ActualHeight), radius, radius);
-                rootElement.Clip = clipRect;
-            }
+            
         }
 
         private void btnXoaPK_Click(object sender, RoutedEventArgs e)
@@ -154,7 +146,7 @@ namespace ClinicManagement.SidebarItems
             var check = bll.CheckDaXuatHD(this.idPK);
             if (check)
             {
-                MessageBox.Show("Phiếu khám đã được xuất hóa đơn, không thể xóa!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Phiếu khám đã được xuất hóa đơn, không thể sửa!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
