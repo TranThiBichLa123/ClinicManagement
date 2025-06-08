@@ -107,6 +107,7 @@
     <Compile Include="Converters\AddOneConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\LockVisibilityConverter.cs" />
+    <Compile Include="Converters\RowIndexConverter.cs" />
     <Compile Include="Converters\SearchHintVisibilityConverter.cs" />
     <Compile Include="PhanQuyenHelper.cs" />
     <Compile Include="Receptionist.xaml.cs">

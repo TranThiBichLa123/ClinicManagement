@@ -56,7 +56,7 @@ namespace ClinicManagement.SidebarItems
             drugDataGrid.ItemsSource = null;
             drugDataGrid.ItemsSource = drugList;
 
-          /*  PopulateMonthYearComboBox();*/
+            /*  PopulateMonthYearComboBox();*/
             /*UpdateStatistics(); // default call*/
             LoadDrugInfo();
 
@@ -135,7 +135,7 @@ namespace ClinicManagement.SidebarItems
             {
                 string keyword = textBoxSearch.Text.Trim();
                 string selectedFilter = (searchComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString();
-                
+
                 if (string.IsNullOrEmpty(keyword))
                 {
                     MessageBox.Show("Vui lòng nhập từ khóa tìm kiếm.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -177,7 +177,7 @@ namespace ClinicManagement.SidebarItems
             }
         }
 
-     
+
         private void ExportButton_Checked(object sender, RoutedEventArgs e)
         {
 
@@ -190,11 +190,7 @@ namespace ClinicManagement.SidebarItems
 
         }
 
-        private void AddDrugButton_Click(object sender, RoutedEventArgs e)
-        {
-            NewDrug newDrug = new NewDrug();
-            newDrug.ShowDialog();
-        }
+
 
 
         private void DeleteDrugButton_Click(object sender, RoutedEventArgs e)
@@ -204,6 +200,12 @@ namespace ClinicManagement.SidebarItems
             if (selectedDrug == null)
             {
                 MessageBox.Show("Vui lòng chọn một thuốc để xóa.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (selectedDrug.SoLuongTon > 0)
+            {
+                MessageBox.Show("Không thể xóa thuốc khi vẫn còn tồn kho.", "Cảnh báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -218,7 +220,7 @@ namespace ClinicManagement.SidebarItems
 
                 if (isHidden)
                 {
-                    drugList.Remove(selectedDrug); 
+                    drugList.Remove(selectedDrug);
                     MessageBox.Show("Thuốc đã được xóa thành công.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
@@ -226,8 +228,8 @@ namespace ClinicManagement.SidebarItems
                     MessageBox.Show("Xóa thuốc thất bại.", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-
         }
+
 
         private void EditDrugButton_Click(object sender, RoutedEventArgs e)
         {
@@ -266,48 +268,95 @@ namespace ClinicManagement.SidebarItems
             }
         }
 
-     /*   private void MonthCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+
+        private void textBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (monthComboBox.SelectedItem != null && yearComboBox.SelectedItem != null)
+            string keyword = textBoxSearch.Text.Trim();
+            string selectedFilter = (searchComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString();
+
+            if (string.IsNullOrWhiteSpace(keyword))
             {
-                UpdateStatistics();
+                LoadDrugInfo(); // Trả về danh sách gốc nếu trống
+                return;
+            }
+
+            var filteredList = drugBLL.GetDrugList(); // Lấy toàn bộ danh sách để lọc phía client
+
+            switch (selectedFilter)
+            {
+                case "Tên thuốc":
+                    filteredList = filteredList
+                        .Where(d => d.TenThuoc?.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0)
+                        .ToList();
+                    break;
+                case "Đơn vị tính":
+                    filteredList = filteredList
+                        .Where(d => d.TenDVT?.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0)
+                        .ToList();
+                    break;
+                case "Cách dùng":
+                    filteredList = filteredList
+                        .Where(d => d.CachDung?.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0)
+                        .ToList();
+                    break;
+                case "Xuất xứ":
+                    filteredList = filteredList
+                        .Where(d => d.XuatXu?.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0)
+                        .ToList();
+                    break;
+            }
+
+            drugList.Clear();
+            foreach (var drug in filteredList)
+            {
+                drugList.Add(drug);
             }
         }
 
-        private void YearCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (monthComboBox.SelectedItem != null && yearComboBox.SelectedItem != null)
-            {
-                UpdateStatistics();
-            }
-        }
 
-        private void UpdateStatistics()
-        {
-            try
-            {
-                string selectedMonthText = monthComboBox.SelectedItem as string;
-                int selectedMonth = int.Parse(selectedMonthText.Split(' ')[1]);
+        /*   private void MonthCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+           {
+               if (monthComboBox.SelectedItem != null && yearComboBox.SelectedItem != null)
+               {
+                   UpdateStatistics();
+               }
+           }
 
-                string selectedYearText = yearComboBox.SelectedItem as string;
-                int selectedYear = int.Parse(selectedYearText);
+           private void YearCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+           {
+               if (monthComboBox.SelectedItem != null && yearComboBox.SelectedItem != null)
+               {
+                   UpdateStatistics();
+               }
+           }
 
-                int daBan = drugBLL.GetTongSoLuongDaBan(selectedMonth, selectedYear);
-                daBanTextBlock.Text = daBan.ToString();
+           private void UpdateStatistics()
+           {
+               try
+               {
+                   string selectedMonthText = monthComboBox.SelectedItem as string;
+                   int selectedMonth = int.Parse(selectedMonthText.Split(' ')[1]);
 
-                int tonKho = drugBLL.GetTongSoLuongTonKho(selectedMonth, selectedYear);
-                tonKhoTextBlock.Text = tonKho.ToString();
+                   string selectedYearText = yearComboBox.SelectedItem as string;
+                   int selectedYear = int.Parse(selectedYearText);
 
-                var chartData = drugBLL.GetThongKeTheoTuan(selectedMonth, selectedYear);
-                UpdateChart(chartData);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi cập nhật thống kê: " + ex.Message);
-            }
-        }
+                   int daBan = drugBLL.GetTongSoLuongDaBan(selectedMonth, selectedYear);
+                   daBanTextBlock.Text = daBan.ToString();
 
-      */
+                   int tonKho = drugBLL.GetTongSoLuongTonKho(selectedMonth, selectedYear);
+                   tonKhoTextBlock.Text = tonKho.ToString();
+
+                   var chartData = drugBLL.GetThongKeTheoTuan(selectedMonth, selectedYear);
+                   UpdateChart(chartData);
+               }
+               catch (Exception ex)
+               {
+                   MessageBox.Show("Lỗi cập nhật thống kê: " + ex.Message);
+               }
+           }
+
+         */
 
     }
 }

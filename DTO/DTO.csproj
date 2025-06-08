@@ -46,6 +46,7 @@
     <Compile Include="ExaminationFormDTO.cs" />
     <Compile Include="LoginLogDTO.cs" />
     <Compile Include="NewDrug.cs" />
+    <Compile Include="NhapThuoc.cs" />
     <Compile Include="PhanQuyen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleManagement.cs" />

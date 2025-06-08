@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:ClinicManagement"
              xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local1="clr-namespace:ClinicManagement.Converters"
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              StartupUri="/SidebarItems/Login.xaml">
@@ -11,6 +12,11 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary>
+                    <local1:RowIndexConverter x:Key="RowIndexConverter"/>
+                </ResourceDictionary>
+                
                 <ResourceDictionary Source="Assets/Icons.xaml"/>
 
 

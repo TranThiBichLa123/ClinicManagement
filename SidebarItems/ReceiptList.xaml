@@ -11,7 +11,10 @@
              d:DesignHeight="730" d:DesignWidth="1030">
     <UserControl.Resources>
         <conv:SearchHintVisibilityConverter x:Key="SearchHintVisibilityConverter"/>
+        <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
     </UserControl.Resources>
+
+
 
     <Grid>
         <Grid.RowDefinitions>
@@ -19,65 +22,78 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Bộ lọc tìm kiếm -->
+        <!-- Tìm kiếm phiếu nhập -->
         <Grid Grid.Row="0" Height="60" Margin="10,10,10,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="140"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="180"/>
-                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="360"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Search TextBox với Hint -->
-            <Grid Grid.ColumnSpan="2" Margin="24,0,0,0">
-                <TextBox x:Name="textBoxSearch"
-                     TextChanged="textBoxSearch_TextChanged"
-                     Style="{StaticResource searchTextbox}"
-                     VerticalContentAlignment="Center"
-                     FontSize="14"
-                     Padding="10,0"
-                     Height="35"/>
-                <TextBlock Text="Search here ..."
-                       Foreground="#868686"
-                       VerticalAlignment="Center"
-                       Margin="12,0,0,0"
-                       IsHitTestVisible="False"
-                       FontSize="14">
-                    <TextBlock.Visibility>
-                        <MultiBinding Converter="{StaticResource SearchHintVisibilityConverter}">
-                            <Binding ElementName="textBoxSearch" Path="Text"/>
-                            <Binding ElementName="textBoxSearch" Path="IsFocused"/>
-                        </MultiBinding>
-                    </TextBlock.Visibility>
-                </TextBlock>
+            <!-- Search Box Style -->
+            <Grid Width="360" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <!-- ComboBox nếu cần loại tìm kiếm khác (hiện giữ placeholder) -->
+                <ComboBox Name="searchComboBox"
+                          Text="Ngày nhập"
+                  Style="{DynamicResource ComboBoxStyle1}"
+                  HorizontalAlignment="Left"
+                  Margin="10,10,0,11"
+                  Height="45" Width="105"
+                  IsEnabled="False">
+                    <ComboBoxItem Content="Ngày nhập" IsSelected="True"/>
+                </ComboBox>
+
+                <!-- Divider -->
+                <Rectangle Width="1" HorizontalAlignment="Left" Panel.ZIndex="2" Margin="115,0,0,0" Fill="#DDD"/>
+
+                <!-- Placeholder -->
+                <TextBlock Margin="120,0,42,0"
+                   VerticalAlignment="Center"
+                   Foreground="#868686"
+                   IsHitTestVisible="False"
+                   Panel.ZIndex="1"
+                   Text="Nhập ngày (dd/MM/yyyy)..."
+                   Visibility="{Binding ElementName=textBoxSearch, Path=Text.IsEmpty, Converter={StaticResource BoolToVisConverter}}"/>
+
+                <!-- TextBox nhập ngày dạng chuỗi -->
+                <TextBox Name="textBoxSearch"
+                 Style="{StaticResource searchTextbox}"
+                 Margin="10,10,0,10"/>
+
+                <!-- Nút tìm -->
+                <Button Content="🔎"
+                FontSize="16"
+                Style="{StaticResource textBoxButton}"
+                HorizontalAlignment="Right"
+                Margin="0 0 7 0"
+                Click="OnSearchButtonClick"/>
             </Grid>
 
-            <!-- Nút tìm kiếm -->
-            <Button Content="Tìm kiếm"
-    Grid.Column="2"
-    Width="122"
-    Height="36"
-    Background="#3f51b5"
-    Foreground="White"
-    FontWeight="Bold"
-    Click="OnSearchButtonClick"
-    HorizontalAlignment="Left"
-    VerticalAlignment="Center"
-    Margin="10,0,0,0"/>
+            <!-- Nút reload -->
+            <Button Content="🔄️"
+            Style="{StaticResource topMenuButton}"
+            FontSize="16"
+            Click="ReloadBtn_Click"
+            HorizontalAlignment="Left"
+            Grid.Column="1"
+            Margin="10,18,0,18"
+            Width="30"/>
 
-            <!-- Nút tìm kiếm -->
+            <!-- Nút thêm phiếu -->
             <Button Content="Thêm phiếu"
-                Grid.Column="2"
-                Width="114"
-                Height="36"
-                Background="#3f51b5"
-                Foreground="White"
-                FontWeight="Bold"
-                Click="AddClick"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Margin="156,0,0,0" Grid.ColumnSpan="2"/>
+            Grid.Column="2"
+            Width="120"
+            Height="36"
+            Background="#3f51b5"
+            Foreground="White"
+            FontWeight="Bold"
+            Click="AddClick"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Margin="0,0,10,0"/>
         </Grid>
+
+
 
         <!-- DataGrid -->
         <DataGrid Grid.Row="1"
@@ -97,15 +113,17 @@
               AlternatingRowBackground="#F8F8F8">
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Mã phiếu nhập" Binding="{Binding MaHoaDon}" Width="*"/>
-                <DataGridTextColumn Header="Ngày nhập" Binding="{Binding NgayLap, StringFormat='dd/MM/yyyy'}" Width="*"/>
-                <DataGridTextColumn Header="Tổng tiền" Binding="{Binding TongTien, StringFormat=N0}" Width="*"/>
+                <DataGridTextColumn Header="Mã phiếu nhập" Binding="{Binding ID_PhieuNhapThuoc}" Width="*"/>
+                <DataGridTextColumn Header="Ngày nhập" Binding="{Binding NgayNhap, StringFormat='dd/MM/yyyy'}" Width="*"/>
+                <DataGridTextColumn Header="Tổng tiền" Binding="{Binding TongTienNhap, StringFormat=N0}" Width="*"/>
+
+
 
                 <!-- Cột Sửa -->
                 <DataGridTemplateColumn Header="Xem chi tiết" Width="150">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Width="50" Height="25" Cursor="Hand" Click="EditButton_Click">
+                            <Button Width="50" Height="25" Cursor="Hand" Click="ViewButton_Click">
                                 <Button.Template>
                                     <ControlTemplate TargetType="Button">
                                         <Border Background="#4FC3F7"
@@ -117,7 +135,7 @@
                                     </ControlTemplate>
                                 </Button.Template>
                                 <Button.Content>
-                                    <Icon:PackIconMaterial Kind="Pencil"
+                                    <Icon:PackIconMaterial Kind="Eye"
                                                        Foreground="White"
                                                        Width="18" Height="18"
                                                        HorizontalAlignment="Center"

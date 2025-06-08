@@ -1,203 +1,305 @@
-﻿using BLL;
-using DTO;
-using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using BLL;
+using DTO;
+using Microsoft.Win32;
+using static DTO.NhapThuoc;
 
 namespace ClinicManagement.SidebarItems
 {
     public partial class NewDrug : Window
     {
-        private readonly NewDrugBLL newdrugBLL = new NewDrugBLL(); 
+        private ObservableCollection<ChiTietPhieuNhapThuocDTO> danhSachThuocNhap = new ObservableCollection<ChiTietPhieuNhapThuocDTO>();
+        private NhapThuocBLL bll = new NhapThuocBLL();
 
-        public List<string> DanhSachTenThuoc { get; set; }
-        public List<string> DanhSachThanhPhan { get; set; }
-        public List<string> DanhSachXuatXu { get; set; }
-        private string imagePath;
-        private List<DTO.NewDrug> danhSachThuoc = new List<DTO.NewDrug>();
-
+        private ThuocDTO thuocDangChon = null;
+        private string selectedImagePath = "/img/drugDefault.jpg";
+        private List<DonViTinhDTO> danhSachDVT;
+        private List<CachDungDTO> danhSachCachDung;
 
         public NewDrug()
         {
             InitializeComponent();
-            newDrugBLL = new NewDrugBLL(); 
-            DanhSachTenThuoc = newdrugBLL.LayTenThuoc();
-            DanhSachThanhPhan = newdrugBLL.LayThanhPhan();
-            DanhSachXuatXu = newdrugBLL.LayXuatXu();
-
-            this.DataContext = this;
+            drugDataGrid.ItemsSource = danhSachThuocNhap;
+            LoadTenThuoc();
+            LoadDVT_CachDung();
         }
 
-        private void NewDrugImg_Click(object sender, RoutedEventArgs e)
+        private void LoadDVT_CachDung()
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp|All Files|*.*"
-            };
-            if (openFileDialog.ShowDialog() == true)
-            {
-                BitmapImage bitmap = new BitmapImage();
-                bitmap.BeginInit();
-                bitmap.UriSource = new Uri(openFileDialog.FileName);
-                bitmap.CacheOption = BitmapCacheOption.OnLoad;
-                bitmap.EndInit();
-
-                imgThuoc.Source = bitmap;
-
-                 imagePath = openFileDialog.FileName;
-            }
-
+            danhSachDVT = bll.GetAllDVT();
+            danhSachCachDung = bll.GetAllCachDung();
+            DvtcomboBox.ItemsSource = danhSachDVT;
+            DvtcomboBox.DisplayMemberPath = "TenDVT";
+            DvtcomboBox.SelectedValuePath = "ID_DVT";
+            CachDungcomboBox.ItemsSource = danhSachCachDung;
+            CachDungcomboBox.DisplayMemberPath = "MoTaCachDung";
+            CachDungcomboBox.SelectedValuePath = "ID_CachDung";
         }
-        private bool ValidateInputs()
+
+        private void LoadTenThuoc()
         {
-            if (string.IsNullOrWhiteSpace(TenThuoccomboBox.Text) || string.IsNullOrWhiteSpace(ThanhPhancomboBox.Text) || string.IsNullOrWhiteSpace(CachDungcomboBox.Text) || string.IsNullOrWhiteSpace(textBoxDonGiaNhap.Text) || string.IsNullOrWhiteSpace(DvtcomboBox.Text) || string.IsNullOrWhiteSpace(textBoxTyLeGiaBan.Text) || string.IsNullOrWhiteSpace(textBoxSoLuongNhap.Text) || string.IsNullOrWhiteSpace(XuatXucomboBox.Text) || datePickerHanSuDung.SelectedDate == null)
-            {
-                System.Windows.MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
-            }
-            return true;
+            TenThuoccomboBox.ItemsSource = bll.GetDanhSachTenThuoc();
         }
-        private readonly NewDrugBLL newDrugBLL;
-        private string avatarImageBytes;
-        private void ResetForm()
+
+        private void TenThuoccomboBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            TenThuoccomboBox.SelectedIndex = -1;
-            DvtcomboBox.SelectedIndex = -1;
-            CachDungcomboBox.SelectedIndex = -1;
-            ThanhPhancomboBox.SelectedIndex = -1;
-            XuatXucomboBox.SelectedIndex = -1;
-
-            textBoxSoLuongNhap.Clear();
-            textBoxDonGiaNhap.Clear();
-            textBoxTyLeGiaBan.Clear();
-            datePickerHanSuDung.SelectedDate = null;
-
-            imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "img", "drugDefault.jpg");
-
-            imgThuoc.Source = new BitmapImage(new Uri(imagePath));
-        }
-
-        private void addDrug_Click(object sender, RoutedEventArgs e)
-       {
-            try
+            string tenThuoc = TenThuoccomboBox.Text.Trim();
+            if (string.IsNullOrEmpty(tenThuoc)) return;
+            var thuoc = bll.GetThuocByTen(tenThuoc);
+            if (thuoc != null)
             {
-                if (danhSachThuoc.Count == 0)
-                {
-                    MessageBox.Show("Danh sách thuốc đang trống!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return;
-                }
-
-                bool isSuccess = newDrugBLL.AddDanhSachThuoc(danhSachThuoc);
-                if (isSuccess)
-                {
-                    MessageBox.Show("Nhập thuốc thành công.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-                    danhSachThuoc.Clear();
-                    drugDataGrid.ItemsSource = null;
-                }
-                else
-                {
-                    MessageBox.Show("Nhập thuốc thất bại.", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                thuocDangChon = thuoc;
+                DvtcomboBox.SelectedValue = thuoc.ID_DVT;
+                CachDungcomboBox.SelectedValue = thuoc.ID_CachDung;
+                ThanhPhancomboBox.Text = thuoc.ThanhPhan;
+                XuatXucomboBox.Text = thuoc.XuatXu;
+                textBoxDonGiaNhap.Text = thuoc.DonGiaNhap.ToString();
+                textBoxTyLeGiaBan.Text = thuoc.TyLeGiaBan.ToString();
+                selectedImagePath = !string.IsNullOrEmpty(thuoc.HinhAnh) ? thuoc.HinhAnh : "/img/drugDefault.jpg";
+                imgThuoc.Source = new BitmapImage(new Uri(selectedImagePath, UriKind.RelativeOrAbsolute));
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        
-
-        private void XoaThuoc_Click(object sender, RoutedEventArgs e)
-        {
-            var button = sender as Button;
-            var selectedDrug = button.DataContext as DTO.NewDrug;
-
-            if (selectedDrug != null)
-            {
-                danhSachThuoc.Remove(selectedDrug);
-                drugDataGrid.ItemsSource = null;
-                drugDataGrid.ItemsSource = danhSachThuoc;
-            }
-        }
-
-        private void TenThuoccomboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-            if (e.AddedItems.Count == 0)
-                return;
-
-            string selectedDrugName = (e.AddedItems[0] as ComboBoxItem)?.Content?.ToString()
-                                      ?? e.AddedItems[0]?.ToString();
-
-            if (string.IsNullOrEmpty(selectedDrugName))
-                return;
-
-            var existingDrug = new DrugBLL().GetDrugByTen(selectedDrugName);
-
-            if (existingDrug != null)
-            {
-                DvtcomboBox.Text = existingDrug.TenDVT;
-                CachDungcomboBox.Text = existingDrug.CachDung;
-                ThanhPhancomboBox.Text = existingDrug.ThanhPhan;
-                XuatXucomboBox.Text = existingDrug.XuatXu;
-                textBoxDonGiaNhap.Text = existingDrug.DonGiaNhap.ToString();
-                textBoxTyLeGiaBan.Text = existingDrug.TyLeGiaBan.ToString();
-
-                string fullImagePath = existingDrug.HinhAnh;
-
-                if (!string.IsNullOrEmpty(fullImagePath) && File.Exists(fullImagePath))
-                {
-                    imagePath = fullImagePath;
-                    imgThuoc.Source = new BitmapImage(new Uri(imagePath, UriKind.Absolute));
-                }
-                else
-                {
-                    imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "img", "drugDefault.jpg");
-                    imgThuoc.Source = new BitmapImage(new Uri(imagePath, UriKind.Absolute));
-                }
-            }
+            else thuocDangChon = null;
         }
 
         private void ChonThuoc_Click(object sender, RoutedEventArgs e)
         {
-            
-    if (!ValidateInputs()) return;
+            try
+            {
+                string tenThuoc = TenThuoccomboBox.Text.Trim();
+                int soLuong = int.Parse(textBoxSoLuongNhap.Text);
+                decimal donGia = decimal.Parse(textBoxDonGiaNhap.Text);
+                decimal tyLe = decimal.Parse(textBoxTyLeGiaBan.Text);
 
-    string tenThuoc = TenThuoccomboBox.Text.Trim();
-    var existingDrug = danhSachThuoc.Find(d => d.TenThuoc.Equals(tenThuoc, StringComparison.OrdinalIgnoreCase));
+                var ct = new ChiTietPhieuNhapThuocDTO
+                {
+                    TenThuoc = tenThuoc,
+                    ID_Thuoc = thuocDangChon?.ID_Thuoc ?? 0,
+                    SoLuongNhap = soLuong,
+                    DonGiaNhap = donGia,
+                    HanSuDung = datePickerHanSuDung.SelectedDate,
+                    HinhAnh = selectedImagePath.Contains(":\\") ? selectedImagePath : null,
+                    ID_DVT = (int)(DvtcomboBox.SelectedValue ?? thuocDangChon?.ID_DVT ?? 0),
+                    ID_CachDung = (int)(CachDungcomboBox.SelectedValue ?? thuocDangChon?.ID_CachDung ?? 0),
+                    ThanhPhan = ThanhPhancomboBox.Text,
+                    XuatXu = XuatXucomboBox.Text,
+                    TyLeGiaBan = tyLe
+                };
 
-    if (existingDrug != null)
-    {
-        existingDrug.SoLuongNhap += int.Parse(textBoxSoLuongNhap.Text);
-    }
-    else
-    {
-        DTO.NewDrug newDrug = new DTO.NewDrug
+                if (ct.ID_DVT == 0 || ct.ID_CachDung == 0)
+                {
+                    MessageBox.Show("Vui lòng chọn đầy đủ Đơn vị tính và Cách dùng cho thuốc mới!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                danhSachThuocNhap.Add(ct);
+                drugDataGrid.Items.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi chọn thuốc: " + ex.Message);
+            }
+        }
+
+        private void addDrug_Click(object sender, RoutedEventArgs e)
         {
-            TenThuoc = tenThuoc,
-            TenDVT = DvtcomboBox.Text,
-            MoTaCachDung = CachDungcomboBox.Text,
-            ThanhPhan = ThanhPhancomboBox.Text,
-            XuatXu = XuatXucomboBox.Text,
-            SoLuongNhap = int.Parse(textBoxSoLuongNhap.Text),
-            DonGiaNhap = double.Parse(textBoxDonGiaNhap.Text),
-            TyLeGiaBan = decimal.Parse(textBoxTyLeGiaBan.Text),
-            HanSuDung = (DateTime)datePickerHanSuDung.SelectedDate,
-            HinhAnh = imagePath
-        };
+            if (danhSachThuocNhap.Count == 0)
+            {
+                MessageBox.Show("Danh sách thuốc đang trống!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
-        danhSachThuoc.Add(newDrug);
-    }
+            DateTime ngayNhap = DateTime.Now;
+            int idPhieu = bll.CreatePhieuNhapThuoc(ngayNhap);
 
-    drugDataGrid.ItemsSource = null;
-    drugDataGrid.ItemsSource = danhSachThuoc;
-    ResetForm();
+            foreach (var ct in danhSachThuocNhap)
+            {
+                var thuocDB = bll.GetThuocByTen(ct.TenThuoc);
 
+                if (thuocDB != null)
+                {
+                    thuocDB.DonGiaNhap = ct.DonGiaNhap;
+                    thuocDB.ThanhPhan = ct.ThanhPhan;
+                    thuocDB.XuatXu = ct.XuatXu;
+                    thuocDB.TyLeGiaBan = ct.TyLeGiaBan;
+                    thuocDB.HinhAnh = ct.HinhAnh;
+                    bll.UpdateThuocAndIncreaseQuantity(thuocDB, ct.SoLuongNhap);
+                    ct.ID_Thuoc = thuocDB.ID_Thuoc;
+                }
+                else
+                {
+                    var newThuoc = new ThuocDTO
+                    {
+                        TenThuoc = ct.TenThuoc,
+                        ID_DVT = ct.ID_DVT,
+                        ID_CachDung = ct.ID_CachDung,
+                        ThanhPhan = ct.ThanhPhan,
+                        XuatXu = ct.XuatXu,
+                        DonGiaNhap = ct.DonGiaNhap,
+                        TyLeGiaBan = ct.TyLeGiaBan,
+                        HinhAnh = ct.HinhAnh
+                    };
+                    ct.ID_Thuoc = bll.AddNewThuoc(newThuoc);
+                }
+
+                ct.ID_PhieuNhapThuoc = idPhieu;
+                bll.AddChiTietPhieuNhap(ct);
+            }
+
+            MessageBox.Show("Đã nhập thuốc thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
+            danhSachThuocNhap.Clear();
+            drugDataGrid.Items.Refresh();
+            Reset_Click(null, null);
+            LoadTenThuoc();
+            LoadDVT_CachDung();
+            thuocDangChon = null;
+        }
+
+        private void XoaThuoc_Click(object sender, RoutedEventArgs e)
+        {
+            if ((sender as Button)?.DataContext is ChiTietPhieuNhapThuocDTO ct)
+            {
+                danhSachThuocNhap.Remove(ct);
+                drugDataGrid.Items.Refresh();
+            }
+        }
+
+        private void SuaThuoc_Click(object sender, RoutedEventArgs e)
+        {
+            if ((sender as Button)?.DataContext is ChiTietPhieuNhapThuocDTO ct)
+            {
+                var thuocDayDu = bll.GetThuocByTen(ct.TenThuoc);
+
+                TenThuoccomboBox.Text = ct.TenThuoc;
+                DvtcomboBox.SelectedValue = thuocDayDu?.ID_DVT ?? ct.ID_DVT;
+                CachDungcomboBox.SelectedValue = thuocDayDu?.ID_CachDung ?? ct.ID_CachDung;
+                ThanhPhancomboBox.Text = thuocDayDu?.ThanhPhan ?? ct.ThanhPhan;
+                XuatXucomboBox.Text = thuocDayDu?.XuatXu ?? ct.XuatXu;
+                textBoxDonGiaNhap.Text = (thuocDayDu?.DonGiaNhap ?? ct.DonGiaNhap).ToString();
+                textBoxSoLuongNhap.Text = ct.SoLuongNhap.ToString();
+                textBoxTyLeGiaBan.Text = (thuocDayDu?.TyLeGiaBan ?? ct.TyLeGiaBan).ToString();
+                datePickerHanSuDung.SelectedDate = ct.HanSuDung;
+
+                selectedImagePath = thuocDayDu?.HinhAnh ?? ct.HinhAnh ?? "/img/drugDefault.jpg";
+                imgThuoc.Source = new BitmapImage(new Uri(selectedImagePath, UriKind.RelativeOrAbsolute));
+
+                danhSachThuocNhap.Remove(ct);
+                drugDataGrid.Items.Refresh();
+            }
+        }
+
+        private void Reset_Click(object sender, RoutedEventArgs e)
+        {
+            TenThuoccomboBox.Text = "";
+            DvtcomboBox.SelectedIndex = -1;
+            CachDungcomboBox.SelectedIndex = -1;
+            ThanhPhancomboBox.Text = "";
+            XuatXucomboBox.Text = "";
+            textBoxSoLuongNhap.Text = "";
+            textBoxDonGiaNhap.Text = "";
+            textBoxTyLeGiaBan.Text = "";
+            datePickerHanSuDung.SelectedDate = null;
+            selectedImagePath = "/img/drugDefault.jpg";
+            imgThuoc.Source = new BitmapImage(new Uri(selectedImagePath, UriKind.RelativeOrAbsolute));
+        }
+
+        private void NewDrugImg_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Image files (*.png;*.jpg)|*.png;*.jpg";
+            if (dialog.ShowDialog() == true)
+            {
+                selectedImagePath = dialog.FileName;
+                imgThuoc.Source = new BitmapImage(new Uri(selectedImagePath, UriKind.Absolute));
+            }
+        }
+
+        private readonly bool isReadOnlyMode = false;
+
+        public NewDrug(int idPhieuNhap, bool isReadOnly = false)
+        {
+            InitializeComponent();
+            this.isReadOnlyMode = isReadOnly;
+
+            drugDataGrid.ItemsSource = danhSachThuocNhap;
+
+            LoadTenThuoc();
+            LoadDVT_CachDung();
+            LoadPhieuNhapChiTiet(idPhieuNhap);
+
+            if (isReadOnlyMode)
+                EnableReadOnlyMode();
+        }
+
+        private void LoadPhieuNhapChiTiet(int idPhieu)
+        {
+            var danhSach = bll.GetChiTietPhieuNhap(idPhieu);
+            danhSachThuocNhap.Clear();
+
+            foreach (var item in danhSach)
+            {
+                danhSachThuocNhap.Add(item);
+            }
+
+            drugDataGrid.Items.Refresh();
+        }
+
+        private void EnableReadOnlyMode()
+        {
+            TenThuoccomboBox.IsEnabled = false;
+            DvtcomboBox.IsEnabled = false;
+            CachDungcomboBox.IsEnabled = false;
+            ThanhPhancomboBox.IsEnabled = false;
+            XuatXucomboBox.IsEnabled = false;
+            textBoxDonGiaNhap.IsEnabled = false;
+            textBoxSoLuongNhap.IsEnabled = false;
+            textBoxTyLeGiaBan.IsEnabled = false;
+            datePickerHanSuDung.IsEnabled = false;
+
+            btnChonThuoc.IsEnabled = false;
+            btnReset.IsEnabled = false;
+            btnNhapThuoc.IsEnabled = false;
+            btnChonAnhThuoc.IsEnabled = false;
+
+            drugDataGrid.SelectionChanged += DrugDataGrid_SelectionChanged;
+
+            foreach (var column in drugDataGrid.Columns)
+            {
+                if (column.Header?.ToString() == "Sửa" || column.Header?.ToString() == "Xóa")
+                {
+                    column.Visibility = Visibility.Collapsed;
+                }
+            }
+        }
+
+        private void DrugDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (drugDataGrid.SelectedItem is ChiTietPhieuNhapThuocDTO ct)
+            {
+                var thuoc = bll.GetThuocByTen(ct.TenThuoc);
+                if (thuoc != null)
+                {
+                    TenThuoccomboBox.Text = thuoc.TenThuoc;
+                    DvtcomboBox.SelectedValue = thuoc.ID_DVT;
+                    CachDungcomboBox.SelectedValue = thuoc.ID_CachDung;
+                    ThanhPhancomboBox.Text = thuoc.ThanhPhan;
+                    XuatXucomboBox.Text = thuoc.XuatXu;
+                    textBoxDonGiaNhap.Text = thuoc.DonGiaNhap.ToString();
+                    textBoxSoLuongNhap.Text = ct.SoLuongNhap.ToString();
+                    textBoxTyLeGiaBan.Text = thuoc.TyLeGiaBan.ToString();
+                    datePickerHanSuDung.SelectedDate = ct.HanSuDung;
+
+                    if (!string.IsNullOrEmpty(thuoc.HinhAnh))
+                    {
+                        imgThuoc.Source = new BitmapImage(new Uri(thuoc.HinhAnh, UriKind.RelativeOrAbsolute));
+                    }
+                }
+            }
         }
     }
 }

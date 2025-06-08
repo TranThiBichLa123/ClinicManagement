@@ -58,6 +58,7 @@
     <Compile Include="LoginLogDAL.cs" />
     <Compile Include="NewDrugAccess.cs" />
     <Compile Include="NhanVienDAL.cs" />
+    <Compile Include="NhapThuocAccess.cs" />
     <Compile Include="NhomNguoiDungDAL.cs" />
     <Compile Include="PatientDAL.cs" />
     <Compile Include="PhanQuyenDAL.cs" />

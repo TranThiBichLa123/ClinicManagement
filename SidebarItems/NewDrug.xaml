@@ -49,7 +49,7 @@
 
 
             <!-- Nút chọn ảnh -->
-            <Button Content="Chọn ảnh thuốc"  Height="40" Background="#FF29A3EC"
+            <Button Name="btnChonAnhThuoc" Content="Chọn ảnh thuốc"  Height="40" Background="#FF29A3EC"
             Foreground="White" FontSize="10" FontWeight="Bold" Margin="0,15,0,0"
            HorizontalAlignment="Center" Cursor="Hand" BorderThickness="0"
             Width="240" Click="NewDrugImg_Click" >
@@ -74,74 +74,64 @@
         </StackPanel>
 
         <Grid Grid.Row="0" Grid.Column="2" Margin="0,0,0,0">
-            <!-- Border bọc ComboBox để tạo viền bo góc -->
             <Border CornerRadius="5"
-    BorderThickness="2"
-    BorderBrush="Silver"
-    Background="White"
-    Width="250"
-    Height="50" VerticalAlignment="Center" HorizontalAlignment="Center">
-
-                <!-- ComboBox nhập -->
+            BorderThickness="2"
+            BorderBrush="Silver"
+            Background="White"
+            Width="250"
+            Height="50"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
                 <ComboBox x:Name="DvtcomboBox"
-          Background="Transparent"
-          BorderThickness="0"
-          Height="35"
-          IsEditable="True"
-          IsTextSearchEnabled="True"
-          FontSize="14"
-          VerticalContentAlignment="Center"
-          SelectedItem="{Binding TenDVT, Mode=TwoWay}" Margin="8,7,8,4">
-                    <ComboBoxItem Content="Chai" />
-                    <ComboBoxItem Content="Viên"/>
-
-                </ComboBox>
+                  DisplayMemberPath="TenDVT"
+                  SelectedValuePath="ID_DVT"
+                  SelectedValue="{Binding SelectedDVT_ID, Mode=TwoWay}"
+                  ItemsSource="{Binding DanhSachDVT}"
+                  Background="Transparent"
+                  BorderThickness="0"
+                  Height="35"
+                  IsEditable="False"
+                  FontSize="14"
+                  VerticalContentAlignment="Center"
+                  Margin="8,7,8,4"/>
             </Border>
-
-            <!-- TextBlock đóng vai trò placeholder -->
             <TextBlock Text="Nhập đơn vị tính"
-       Foreground="Gray"
-       Margin="35,0,45,0"
-       VerticalAlignment="Center"
-       IsHitTestVisible="False"
-       Visibility="{Binding ElementName=DvtcomboBox, Path=Text.IsEmpty, Converter={StaticResource BoolToVisConverter}}"/>
+               Foreground="Gray"
+               Margin="35,0,45,0"
+               VerticalAlignment="Center"
+               IsHitTestVisible="False"
+               Visibility="{Binding ElementName=DvtcomboBox, Path=Text.IsEmpty, Converter={StaticResource BoolToVisConverter}}"/>
         </Grid>
 
+
         <Grid Grid.Row="1" Grid.Column="1">
-            <!-- Border bọc ComboBox để tạo viền bo góc -->
             <Border CornerRadius="5"
-    BorderThickness="2"
-    BorderBrush="Silver"
-    Background="White"
-    Width="250"
-    Height="50" VerticalAlignment="Center" HorizontalAlignment="Center">
-
-                <!-- ComboBox nhập -->
+            BorderThickness="2"
+            BorderBrush="Silver"
+            Background="White"
+            Width="250"
+            Height="50"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
                 <ComboBox x:Name="CachDungcomboBox"
-          Background="Transparent"
-          BorderThickness="0"
-          Height="35"
-          IsEditable="True"
-          IsTextSearchEnabled="True"
-          FontSize="14"
-          VerticalContentAlignment="Center"
-                          
-          SelectedItem="{Binding MoTaCachDung, Mode=TwoWay}" Margin="8,7,8,4">
-                    <ComboBoxItem Content="Uống sau ăn" />
-                    <ComboBoxItem Content="Uống trước ăn"/>
-                    <ComboBoxItem Content="Ngậm dưới lưỡi"/>
-                    <ComboBoxItem Content="Tiêm bắp"/>
-
-                </ComboBox>
+                  DisplayMemberPath="MoTaCachDung"
+                  SelectedValuePath="ID_CachDung"
+                  SelectedValue="{Binding SelectedCachDung_ID, Mode=TwoWay}"
+                  ItemsSource="{Binding DanhSachCachDung}"
+                  Background="Transparent"
+                  BorderThickness="0"
+                  Height="35"
+                  IsEditable="False"
+                  FontSize="14"
+                  VerticalContentAlignment="Center"
+                  Margin="8,7,8,4"/>
             </Border>
-
-            <!-- TextBlock đóng vai trò placeholder -->
             <TextBlock Text="Nhập cách dùng"
-       Foreground="Gray"
-       Margin="25,0,45,0"
-       VerticalAlignment="Center"
-       IsHitTestVisible="False"
-       Visibility="{Binding ElementName=CachDungcomboBox, Path=Text.IsEmpty, Converter={StaticResource BoolToVisConverter}}"/>
+               Foreground="Gray"
+               Margin="25,0,45,0"
+               VerticalAlignment="Center"
+               IsHitTestVisible="False"
+               Visibility="{Binding ElementName=CachDungcomboBox, Path=Text.IsEmpty, Converter={StaticResource BoolToVisConverter}}"/>
         </Grid>
 
 
@@ -328,7 +318,28 @@ Icon="Boxes"
 
             </Grid>
         </Border>
-        <Button Grid.Column="2" Grid.Row="5" Content="Chọn thuốc"  Height="40" Background="#FF29A3EC"
+        <Button Name="btnReset" Grid.Column="1" Grid.Row="5" Content="Reset"  Height="40" Background="#FF29A3EC"
+Foreground="White" FontSize="10" FontWeight="Bold"  Click="Reset_Click"
+ Cursor="Hand" BorderThickness="0"  Margin="20,0,20,0" >
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="#FF5252" 
+                        CornerRadius="4"
+                        Padding="10"
+                        BorderThickness="0">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Name="btnChonThuoc" Grid.Column="2" Grid.Row="5" Content="Chọn thuốc"  Height="40" Background="#FF29A3EC"
 Foreground="White" FontSize="10" FontWeight="Bold"  Click="ChonThuoc_Click"
  Cursor="Hand" BorderThickness="0"  Margin="20,0,20,0" >
             <Button.Style>
@@ -349,7 +360,7 @@ Foreground="White" FontSize="10" FontWeight="Bold"  Click="ChonThuoc_Click"
                 </Style>
             </Button.Style>
         </Button>
-        <Button Grid.Column="3" Grid.Row="5" Content="Nhập thuốc"  Height="40" Background="#FF29A3EC"
+        <Button Name="btnNhapThuoc" Grid.Column="3" Grid.Row="5" Content="Nhập thuốc"  Height="40" Background="#FF29A3EC"
  Foreground="White" FontSize="10" FontWeight="Bold" 
   Cursor="Hand" BorderThickness="0" Click="addDrug_Click" Margin="20,0,20,0" >
             <Button.Style>
@@ -427,7 +438,8 @@ Icon="Percent"
 
                 <!-- ComboBox nhập -->
                 <ComboBox x:Name="TenThuoccomboBox"
-                SelectionChanged="TenThuoccomboBox_SelectionChanged" 
+                          LostFocus="TenThuoccomboBox_LostFocus"
+
                           Background="Transparent"
                   BorderThickness="0"
                   Height="35"
@@ -450,62 +462,100 @@ Icon="Percent"
                IsHitTestVisible="False"
                Visibility="{Binding ElementName=TenThuoccomboBox, Path=Text.IsEmpty, Converter={StaticResource BoolToVisConverter}}"/>
         </Grid>
-        <!-- DataGrid -->
-        <DataGrid Grid.Column="3"
-RowStyle="{DynamicResource DataGridRowStyle1}"
-ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
-CellStyle="{DynamicResource DataGridCellStyle1}"
-x:Name="drugDataGrid"
+        <ScrollViewer Grid.Column="3"
+              Grid.Row="0"
+              Grid.RowSpan="5"
+              Margin="0,20,0,10"
+              HorizontalScrollBarVisibility="Auto"
+              VerticalScrollBarVisibility="Disabled"
+              CanContentScroll="False">
 
-Style="{DynamicResource DataGridStyle1}" Margin="0,20,0,10" Grid.Row="0" Grid.RowSpan="5"  
->
-            <!-- Thêm margin để không dính sát -->
-            <DataGrid.Columns>
+            <DataGrid x:Name="drugDataGrid"
+              RowStyle="{DynamicResource DataGridRowStyle1}"
+              ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+              CellStyle="{DynamicResource DataGridCellStyle1}"
+              Style="{DynamicResource DataGridStyle1}"
+              AutoGenerateColumns="False"
+              IsReadOnly="True"
+              AlternationCount="2000"
+              HeadersVisibility="Column"
+              CanUserAddRows="False"
+              BorderThickness="0"
+              Background="White"
+              HorizontalAlignment="Stretch"
+              HorizontalScrollBarVisibility="Disabled"
+              ScrollViewer.CanContentScroll="False"
+              MinWidth="1000">
+                <DataGrid.Columns>
 
+                    <!-- STT -->
+                    <DataGridTemplateColumn Header="#" Width="40" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=AlternationIndex, Converter={StaticResource RowIndexConverter}}"
+                     HorizontalAlignment="Center" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Header="#" Width="40" IsReadOnly="True">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=AlternationIndex}" 
-                       HorizontalAlignment="Center" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Tên thuốc" IsReadOnly="True" Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Ellipse Width="35" Height="35" Margin="0 0 10 0">
-                                    <Ellipse.Fill>
-                                        <ImageBrush ImageSource="{Binding HinhAnh}" Stretch="UniformToFill"/>
-                                    </Ellipse.Fill>
-                                </Ellipse>
+                    <!-- Ảnh + tên thuốc -->
+                    <DataGridTemplateColumn Header="Tên thuốc" IsReadOnly="True" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Ellipse Width="35" Height="35" Margin="0 0 10 0">
+                                        <Ellipse.Fill>
+                                            <ImageBrush ImageSource="{Binding HinhAnh}" Stretch="UniformToFill"/>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                    <TextBlock Text="{Binding TenThuoc}" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
 
-                                <!-- Hiển thị tên thuốc -->
-                                <TextBlock Text="{Binding TenThuoc}" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                    <!-- Số lượng -->
+                    <DataGridTextColumn Header="Số lượng nhập" Binding="{Binding SoLuongNhap}" Foreground="#FF5252" IsReadOnly="True" Width="*"/>
 
-            
-                <DataGridTextColumn Header="Số lượng nhập" Binding="{Binding SoLuongNhap}" Foreground="#FF5252" IsReadOnly="True" Width="*"/>
-               
-                <DataGridTemplateColumn Header="Xóa" Width="80">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Margin="0 0 30 0"
-     Style="{StaticResource gridRemoveButton}"
-     Click="XoaThuoc_Click">
-                                <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
-                            </Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-        
-            </DataGrid.Columns>
-        </DataGrid>
+                    <!-- Đơn giá nhập -->
+                    <DataGridTextColumn Header="Đơn giá nhập" Binding="{Binding DonGiaNhap}" IsReadOnly="True" Width="*"/>
 
+                    <!-- Thành tiền -->
+                    <DataGridTextColumn Header="Thành tiền" Binding="{Binding ThanhTien}" IsReadOnly="True" Width="*"/>
+
+                    <!-- Hạn sử dụng -->
+                    <DataGridTextColumn Header="Hạn sử dụng" Binding="{Binding HanSuDung, StringFormat=dd/MM/yyyy}" IsReadOnly="True" Width="*"/>
+
+                    <!-- Nút sửa -->
+                    <DataGridTemplateColumn Header="Sửa" Width="60">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Margin="0 0 10 0"
+                  Style="{StaticResource gridEditButton}"
+                  Click="SuaThuoc_Click">
+                                    <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <!-- Nút xóa -->
+                    <DataGridTemplateColumn Header="Xóa" Width="60">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Margin="0 0 10 0"
+                  Style="{StaticResource gridRemoveButton}"
+                  Click="XoaThuoc_Click">
+                                    <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </ScrollViewer>
 
 
     </Grid>
