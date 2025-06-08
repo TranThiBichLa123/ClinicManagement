@@ -2,66 +2,100 @@
 using DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ClinicManagement.SidebarItems
 {
-    /// <summary>
-    /// Interaction logic for InvoiceList.xaml
-    /// </summary>
     public partial class InvoiceList : UserControl
     {
         private BillService service = new BillService();
+        private readonly PhanQuyenBLL phanQuyenBLL = new PhanQuyenBLL();
 
+        private List<HoaDon> originalList = new List<HoaDon>();
+        public string Account { get; private set; }
         private Doctor _mainWindow;
-
-        public InvoiceList(Doctor mainWindow)
+        public InvoiceList() { }
+        public InvoiceList(string userEmail, Doctor mainWindow)
         {
             InitializeComponent();
-            _mainWindow = mainWindow;
-        }
 
+            Account = userEmail;
+            _mainWindow = mainWindow;
+
+            // Load quyền
+            int nhomQuyen = phanQuyenBLL.LayNhomTheoEmail(Account);
+            var danhSachQuyen = phanQuyenBLL.LayDanhSachIdChucNangTheoNhom(nhomQuyen);
+
+            PhanQuyenHelper.DanhSachQuyen = danhSachQuyen;
+            UserSession.Email = Account;
+            UserSession.NhomQuyen = nhomQuyen;
+            UserSession.DanhSachChucNang = danhSachQuyen;
+
+            // Gắn sự kiện Loaded
+            Loaded += InvoiceList_Loaded;
+        }
 
         private void InvoiceList_Loaded(object sender, RoutedEventArgs e)
         {
-            originalList = service.GetDanhSachHoaDon(); // GÁN VÔ ĐÂY
+            int idNhanVien = new PhanQuyenBLL().LayIDNhanVienTheoEmail(UserSession.Email);
+            bool coQuyen24 = UserSession.DanhSachChucNang.Contains(24);
+
+            DataTable dt;
+
+            if (coQuyen24)
+            {
+                // Lấy toàn bộ danh sách hóa đơn
+                originalList = service.GetDanhSachHoaDon();
+            }
+            else
+            {
+                // Lấy danh sách hóa đơn do chính nhân viên đang đăng nhập tạo
+                originalList = service.GetDanhSachHoaDonTheoNhanVien(idNhanVien);
+            }
+           
             billDataGrid.ItemsSource = originalList;
         }
 
-        private List<HoaDon> originalList = new List<HoaDon>();
+        private bool HasPermission(int chucNangId)
+        {
+            return UserSession.DanhSachChucNang.Contains(chucNangId);
+        }
+
+        private bool DenyIfNoPermission(int chucNangId)
+        {
+            if (!HasPermission(chucNangId))
+            {
+                MessageBox.Show("Bạn không có quyền thực hiện chức năng này!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return true;
+            }
+            return false;
+        }
 
         private void textBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             string searchText = textBoxSearch.Text.Trim().ToLower();
-            string selectedCategory = (searchCategoryComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
-            DateTime? selectedDate = datePickerSearch.SelectedDate; // <-- đúng tên biến!
+            string selectedCategory = (searchCategoryComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? "Tất cả";
+
+            DateTime? selectedDate = datePickerSearch.SelectedDate;
 
             var filtered = originalList.Where(hd =>
             {
                 bool matchCategory;
 
                 if (selectedCategory == "Mã hóa đơn")
-                    matchCategory = hd.MaHoaDon.ToString().ToLower().Contains(searchText);
+                    matchCategory = hd.MaHoaDon.ToString().Contains(searchText);
                 else if (selectedCategory == "Mã phiếu khám")
-                    matchCategory = hd.MaPhieuKham.ToString().ToLower().Contains(searchText);
+                    matchCategory = hd.MaPhieuKham.ToString().Contains(searchText);
                 else if (selectedCategory == "Mã nhân viên")
-                    matchCategory = hd.MaNhanVien.ToString().ToLower().Contains(searchText);
+                    matchCategory = hd.MaNhanVien.ToString().Contains(searchText);
                 else // "Tất cả"
                 {
-                    matchCategory = hd.MaHoaDon.ToString().ToLower().Contains(searchText)
-                                 || hd.MaPhieuKham.ToString().ToLower().Contains(searchText)
-                                 || hd.MaNhanVien.ToString().ToLower().Contains(searchText);
+                    matchCategory = hd.MaHoaDon.ToString().Contains(searchText)
+                                 || hd.MaPhieuKham.ToString().Contains(searchText)
+                                 || hd.MaNhanVien.ToString().Contains(searchText);
                 }
 
                 bool matchDate = selectedDate == null || hd.NgayLap.Date == selectedDate.Value.Date;
@@ -72,50 +106,44 @@ namespace ClinicManagement.SidebarItems
             billDataGrid.ItemsSource = filtered;
         }
 
-
         private void OnSearchButtonClick(object sender, RoutedEventArgs e)
         {
-            // Giả lập lại gọi hàm giống khi gõ
             textBoxSearch_TextChanged(null, null);
         }
 
         private void DeleteBill_Click(object sender, RoutedEventArgs e)
         {
+            if (DenyIfNoPermission(23)) return;
+
+            var bill = (sender as FrameworkElement)?.DataContext as HoaDon;
+            if (bill == null) return;
+
             if (MessageBox.Show("Bạn có chắc muốn xóa hóa đơn này không?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                // Lấy đối tượng hóa đơn từ dòng được click
-                var bill = (sender as FrameworkElement)?.DataContext as HoaDon;
-
-                if (bill != null)
+                bool success = service.XoaHoaDon(bill.MaHoaDon);
+                if (success)
                 {
-                    bool success = service.XoaHoaDon(bill.MaHoaDon); // hoặc MaPhieuKham nếu xóa theo mã phiếu
-
-                    if (success)
-                    {
-                        MessageBox.Show("Đã xóa hóa đơn!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                        // Xóa khỏi danh sách và refresh datagrid
-                        originalList.Remove(bill);
-                        billDataGrid.ItemsSource = null;
-                        billDataGrid.ItemsSource = originalList;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Không thể xóa hóa đơn!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
+                    MessageBox.Show("Đã xóa hóa đơn!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    originalList.Remove(bill);
+                    billDataGrid.ItemsSource = null;
+                    billDataGrid.ItemsSource = originalList;
+                }
+                else
+                {
+                    MessageBox.Show("Không thể xóa hóa đơn!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
+
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
+            if (DenyIfNoPermission(19)) return;
+
             if (billDataGrid.SelectedItem is HoaDon selected)
             {
-                _mainWindow.LoadUserControl(new EditBill(selected.MaPhieuKham, _mainWindow));
+                _mainWindow.LoadUserControl(new EditBill(selected.MaPhieuKham, _mainWindow, Account));
+
             }
         }
-
-
-
-
     }
 }

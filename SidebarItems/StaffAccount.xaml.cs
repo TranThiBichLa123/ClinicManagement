@@ -17,6 +17,7 @@ using BLL;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Collections.ObjectModel;
 using System.Windows.Controls.Primitives;
+using static DTO.PhanQuyen;
 
 
 namespace ClinicManagement.SidebarItems
@@ -109,7 +110,17 @@ namespace ClinicManagement.SidebarItems
 
         private void btnEditRole_Click(object sender, RoutedEventArgs e)
         {
-            new EditRole().ShowDialog();
+            if (sender is Button btn && btn.Tag is DTO.RoleManagement selectedRole)
+            {
+                var dto = new NhomNguoiDungDTO
+                {
+                    ID_Nhom = selectedRole.ID_VaiTro,
+                    TenNhom = selectedRole.TenVaiTro
+                };
+
+                var editWindow = new EditRole(dto);
+                editWindow.ShowDialog();
+            }
         }
 
         private void btnAddStaff_Click(object sender, RoutedEventArgs e)

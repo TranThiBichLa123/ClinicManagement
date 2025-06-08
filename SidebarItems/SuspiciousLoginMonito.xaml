@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="ClinicManagement.SidebarItems.SuspiciousLoginMonito"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ClinicManagement.SidebarItems"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1000">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Header -->
+            <RowDefinition Height="Auto"/>
+            <!-- Filter -->
+            <RowDefinition Height="*"/>
+            <!-- DataGrid -->
+            <RowDefinition Height="Auto"/>
+            <!-- Footer -->
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <TextBlock Text="Hệ thống Giám sát và Kiểm soát Truy cập"
+                   FontSize="22"
+                   FontWeight="Bold"
+                   Foreground="#2D5F9A"
+                   Grid.Row="0"
+                   Margin="0,0,0,20"/>
+
+        <!-- Filter & Action Bar -->
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,0,0,10">
+            <TextBox x:Name="txtSearchEmail" Width="200" Height="30" Margin="0,0,10,0"/>
+            <ComboBox x:Name="cmbTrangThai" Width="150" Height="30" Margin="0,0,10,0">
+                <ComboBoxItem Content="Tất cả" IsSelected="True"/>
+                <ComboBoxItem Content="Đang làm việc"/>
+                <ComboBoxItem Content="Bị khóa"/>
+            </ComboBox>
+            <Button Content="Lọc" Width="80" Height="30" Click="OnFilterClick"/>
+        </StackPanel>
+
+        <!-- DataGrid -->
+        <DataGrid x:Name="logDataGrid"
+                  Grid.Row="2"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  Margin="0"
+                  Height="400">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
+                <DataGridTextColumn Header="Thời gian" Binding="{Binding ThoiGian}" Width="200"/>
+                <DataGridTextColumn Header="Trạng thái" Binding="{Binding TrangThai}" Width="150"/>
+                <DataGridTextColumn Header="Số lần thất bại" Binding="{Binding SoLanThatBai}" Width="120"/>
+                <DataGridTemplateColumn Header="Hành động" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Mở khóa"
+                                    Click="OnUnblockAccountClick"
+                                    Tag="{Binding Email}">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding TrangThai}" Value="Bị khóa">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Footer -->
+        <TextBlock Grid.Row="3"
+                   Text="* Tài khoản bị khóa do truy cập sai quá 5 lần sẽ cần admin mở khóa"
+                   FontStyle="Italic"
+                   Foreground="Gray"/>
+    </Grid>
+</UserControl>

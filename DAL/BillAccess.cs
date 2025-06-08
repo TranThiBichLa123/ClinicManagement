@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Runtime.Remoting.Messaging;
 using DTO;
@@ -246,6 +247,47 @@ namespace DAL
             return list;
         }
 
+        public List<HoaDon> GetDanhSachHoaDonTheoNhanVien(int idNhanVien)
+        {
+            var list = new List<HoaDon>();
+
+            string query = @"
+        SELECT HD.ID_HoaDon, HD.ID_PhieuKham, HD.ID_NhanVien, HD.NgayHoaDon,
+               PK.TienKham,
+               ISNULL(SUM(TT.SoLuong * TT.DonGiaBan_LucMua), 0) AS TienThuoc,
+               HD.TongTien
+        FROM HOADON HD
+        JOIN PHIEUKHAM PK ON HD.ID_PhieuKham = PK.ID_PhieuKham
+        LEFT JOIN TOATHUOC TT ON PK.ID_PhieuKham = TT.ID_PhieuKham
+        WHERE HD.ID_NhanVien = @idNV
+        GROUP BY HD.ID_HoaDon, HD.ID_PhieuKham, HD.ID_NhanVien, HD.NgayHoaDon, PK.TienKham, HD.TongTien
+        ORDER BY HD.NgayHoaDon DESC";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@idNV", idNhanVien);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    list.Add(new HoaDon
+                    {
+                        MaHoaDon = (int)reader["ID_HoaDon"],
+                        MaPhieuKham = (int)reader["ID_PhieuKham"],
+                        MaNhanVien = (int)reader["ID_NhanVien"],
+                        NgayLap = (DateTime)reader["NgayHoaDon"],
+                        TienKham = (decimal)reader["TienKham"],
+                        TienThuoc = (decimal)reader["TienThuoc"],
+                        TongTien = (decimal)reader["TongTien"]
+                    });
+                }
+            }
+
+            return list;
+        }
 
     }
 

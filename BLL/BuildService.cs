@@ -41,7 +41,10 @@ namespace BLL
             return dal.GetDanhSachHoaDon();
         }
 
-
+        public List<HoaDon> GetDanhSachHoaDonTheoNhanVien(int idNhanVien)
+        {
+            return dal.GetDanhSachHoaDonTheoNhanVien(idNhanVien);
+        }
     }
 
 }

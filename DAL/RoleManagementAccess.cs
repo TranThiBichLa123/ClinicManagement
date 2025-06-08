@@ -101,6 +101,48 @@ namespace DAL
 
             return list;
         }
+        public bool XoaNhomQuyen(int idNhom)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlTransaction tran = conn.BeginTransaction();
+
+                try
+                {
+                    // Xóa quyền của nhóm trước
+                    SqlCommand cmd1 = new SqlCommand("DELETE FROM PHANQUYEN WHERE ID_Nhom = @id", conn, tran);
+                    cmd1.Parameters.AddWithValue("@id", idNhom);
+                    cmd1.ExecuteNonQuery();
+
+                    // Xóa nhóm người dùng
+                    SqlCommand cmd2 = new SqlCommand("DELETE FROM NHOMNGUOIDUNG WHERE ID_Nhom = @id", conn, tran);
+                    cmd2.Parameters.AddWithValue("@id", idNhom);
+                    int rows = cmd2.ExecuteNonQuery();
+
+                    tran.Commit();
+                    return rows > 0;
+                }
+                catch
+                {
+                    tran.Rollback();
+                    return false;
+                }
+            }
+        }
+        public bool CoTaiKhoanDangDungNhom(int idNhom)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "SELECT COUNT(*) FROM NHANVIEN WHERE ID_NHOM = @id";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@id", idNhom);
+                conn.Open();
+                int count = (int)cmd.ExecuteScalar();
+                return count > 0;
+            }
+        }
+
 
 
     }

@@ -24,13 +24,42 @@ namespace ClinicManagement.SidebarItems
     public partial class PatientList : UserControl
     {
         private BenhNhanBLL benhnhanBLL;
-        public PatientList()
+        private string Account;
+        private readonly PhanQuyenBLL phanQuyenBLL = new PhanQuyenBLL();
+        public PatientList() { }
+        public PatientList(string userEmail)
         {
             InitializeComponent();
             benhnhanBLL = new BenhNhanBLL();
             LoadDSBenhNhan();
-        }
 
+            Account = userEmail;
+            // Lấy danh sách nhóm/quyền từ email
+            int nhomQuyen = phanQuyenBLL.LayNhomTheoEmail(Account);
+            var danhSachQuyen = phanQuyenBLL.LayDanhSachIdChucNangTheoNhom(nhomQuyen);
+            // Gán vào helper (nếu cần dùng ở nơi khác)
+            PhanQuyenHelper.DanhSachQuyen = danhSachQuyen;
+           
+
+            UserSession.Email = Account;
+            UserSession.NhomQuyen = phanQuyenBLL.LayNhomTheoEmail(UserSession.Email);
+            UserSession.DanhSachChucNang = phanQuyenBLL.LayDanhSachIdChucNangTheoNhom(UserSession.NhomQuyen);
+        }
+       
+        private void ContextMenu_Opened(object sender, RoutedEventArgs e)
+        {
+            var menu = sender as ContextMenu;
+
+            if (menu != null)
+            {
+                var editItem = menu.Items[0] as MenuItem;
+                var deleteItem = menu.Items[1] as MenuItem;
+
+                // Kiểm tra quyền (ví dụ: ID = 22 là sửa, 23 là xóa)
+                editItem.IsEnabled = UserSession.DanhSachChucNang.Contains(16);
+                deleteItem.IsEnabled = UserSession.DanhSachChucNang.Contains(20);
+            }
+        }
         private void LoadDSBenhNhan(string nameKeyword = "", string idKeyword = "", string loaiBenhKeyword = "", string trieuChungKeyword = "", string ngayDK = "")
         {
             try
@@ -47,6 +76,7 @@ namespace ClinicManagement.SidebarItems
 
         private void btnAddPatient_Click(object sender, RoutedEventArgs e)
         {
+            if (DenyIfNoPermission(12)) return;
             AddPatientPopup.IsOpen = true;
         }
 
@@ -118,6 +148,7 @@ namespace ClinicManagement.SidebarItems
         private DataRowView selectedPatient;
         private void btn_editPatient_Click(object sender, RoutedEventArgs e)
         {
+            if (DenyIfNoPermission(16)) return;
             selectedPatient = dgBenhNhan.SelectedItem as DataRowView;
 
             if (selectedPatient == null)
@@ -264,6 +295,7 @@ namespace ClinicManagement.SidebarItems
 
         private void btn_deletePatientFromBenhNhan_Click(object sender, RoutedEventArgs e)
         {
+            if (DenyIfNoPermission(20)) return;
             var selectedRow = dgBenhNhan.SelectedItem as DataRowView;
 
             if (selectedRow == null)
@@ -349,6 +381,20 @@ namespace ClinicManagement.SidebarItems
                 txtSearchTrieuChung.Text.Trim(),
                 txtSearchNgayKham.Text.Trim()
             );
+        }
+        private bool HasPermission(int chucNangId)
+        {
+            return UserSession.DanhSachChucNang.Contains(chucNangId);
+        }
+
+        private bool DenyIfNoPermission(int chucNangId)
+        {
+            if (!HasPermission(chucNangId))
+            {
+                MessageBox.Show("Bạn không có quyền thực hiện chức năng này!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return true;
+            }
+            return false;
         }
     }
 }

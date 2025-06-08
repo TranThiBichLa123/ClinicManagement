@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sbi="clr-namespace:ClinicManagement.SidebarItems"
              xmlns:local="clr-namespace:ClinicManagement.SidebarItems"
              mc:Ignorable="d" 
                           Loaded="UserControl_Loaded"
@@ -191,7 +192,7 @@ VerticalAlignment="Bottom" Margin="0,0,0,0"
 
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10 0 30 10">
                                 <Button Content="➕ Thêm" Style="{StaticResource topMenuButton}" Click="btnAddRole_Click"/>
-                                <Button Content="❌ Xóa" Style="{StaticResource topMenuButton}"/>
+                                <Button Content="❌ Xóa" Style="{StaticResource topMenuButton}" Click="btnDelete_Click"/>
                             </StackPanel>
 
                             <!-- DataGrid -->
@@ -239,6 +240,31 @@ VerticalAlignment="Bottom" Margin="0,0,0,0"
                     </Border>
                 </Grid>
             </TabItem>
+
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Eye" Width="20" Height="20" Margin="0,0,5,0" Foreground="DarkSlateBlue"/>
+                        <TextBlock Text="Giám sát và kiểm soát truy cập" FontWeight="Bold" VerticalAlignment="Center" Foreground="DarkSlateBlue"/>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <Grid Background="Transparent">
+                    <Border CornerRadius="0,0,20,20">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                                <GradientStop Color="White" Offset="0"/>
+                                <GradientStop Color="Silver" Offset="1.5"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+
+                        <!-- Chèn UserControl ở đây -->
+                        <sbi:SuspiciousLoginMonito />
+                    </Border>
+                </Grid>
+            </TabItem>
+
+
         </TabControl>
     </Grid>
 </UserControl>

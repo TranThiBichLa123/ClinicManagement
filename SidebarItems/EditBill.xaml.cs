@@ -26,12 +26,24 @@ namespace ClinicManagement.SidebarItems
         private BillService service = new BillService();
 
         private Doctor _mainWindow;
-
-        public EditBill(int idPhieuKham, Doctor mainWindow)
+        private readonly PhanQuyenBLL phanQuyenBLL = new PhanQuyenBLL();
+        public string Account { get; private set; }
+        public EditBill() { }
+        public EditBill(int idPhieuKham, Doctor mainWindow, string userEmail)
         {
             InitializeComponent();
             _idPhieuKham = idPhieuKham;
             _mainWindow = mainWindow;
+            Account = userEmail;
+
+            // Load quyền
+            int nhomQuyen = phanQuyenBLL.LayNhomTheoEmail(Account);
+            var danhSachQuyen = phanQuyenBLL.LayDanhSachIdChucNangTheoNhom(nhomQuyen);
+
+            PhanQuyenHelper.DanhSachQuyen = danhSachQuyen;
+            UserSession.Email = Account;
+            UserSession.NhomQuyen = nhomQuyen;
+            UserSession.DanhSachChucNang = danhSachQuyen;
         }
 
 
@@ -71,7 +83,7 @@ namespace ClinicManagement.SidebarItems
                 if (success)
                 {
                     MessageBox.Show("Cập nhật hóa đơn thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-                    _mainWindow.LoadUserControl(new InvoiceList(_mainWindow));
+                    _mainWindow.LoadUserControl(new InvoiceList(Account,_mainWindow));
 
                 }
                 else
@@ -87,7 +99,7 @@ namespace ClinicManagement.SidebarItems
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
-            _mainWindow.LoadUserControl(new InvoiceList(_mainWindow));
+            _mainWindow.LoadUserControl(new InvoiceList(Account,_mainWindow));
 
         }
         private void dgChiTiet_MouseDoubleClick(object sender, MouseButtonEventArgs e)

@@ -1,4 +1,6 @@
-﻿using ClinicManagement.SidebarItems;
+﻿using BLL;
+using ClinicManagement.SidebarItems;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -8,6 +10,7 @@ namespace ClinicManagement
 {
     public partial class Doctor : Window
     {
+        private readonly PhanQuyenBLL phanQuyenBLL = new PhanQuyenBLL();
         public void LoadUserControl(UserControl userControl)
         {
             // Kiểm tra Border có chứa phần tử con hay không
@@ -19,12 +22,51 @@ namespace ClinicManagement
             fContainer.Child = userControl; // Gán UserControl vào Border
         }
         private string Account;
+        public void RefreshPermissions()
+        {
+            KiemTraPhanQuyen(UserSession.DanhSachChucNang);
+        }
+      
+
         public Doctor() { } //  constructor mặc định
         public Doctor(string userEmail)
         {
             InitializeComponent();
-            LoadUserControl(new DashBoard());
+            
+            
             Account = userEmail;
+            // Lấy danh sách nhóm/quyền từ email
+            int nhomQuyen = phanQuyenBLL.LayNhomTheoEmail(Account);
+            var danhSachQuyen = phanQuyenBLL.LayDanhSachIdChucNangTheoNhom(nhomQuyen);
+            // Gán vào helper (nếu cần dùng ở nơi khác)
+            PhanQuyenHelper.DanhSachQuyen = danhSachQuyen;
+            KiemTraPhanQuyen(danhSachQuyen);
+            LoadUserControl(new DashBoard());
+
+            UserSession.Email = Account;
+            UserSession.NhomQuyen = phanQuyenBLL.LayNhomTheoEmail(UserSession.Email);
+            UserSession.DanhSachChucNang = phanQuyenBLL.LayDanhSachIdChucNangTheoNhom(UserSession.NhomQuyen);
+
+        }
+
+        private void KiemTraPhanQuyen(List<int> danhSachQuyen)
+        {
+            foreach (var control in GridNav.Children)
+            {
+                if (control is StackPanel sp)
+                {
+                    foreach (var item in sp.Children)
+                    {
+                        if (item is Button btn && int.TryParse(btn.Tag?.ToString(), out int id))
+                        {
+                            btn.Visibility = danhSachQuyen.Contains(id)
+                                ? Visibility.Visible
+                                : Visibility.Collapsed;
+                            btn.IsEnabled = danhSachQuyen.Contains(id);
+                        }
+                    }
+                }
+            }
         }
         private void BG_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -77,7 +119,7 @@ namespace ClinicManagement
 
         private void btnBilling_Click(object sender, RoutedEventArgs e)
         {
-            LoadUserControl(new InvoiceList(this));
+            LoadUserControl(new InvoiceList(Account,this));
         }
 
 
@@ -259,7 +301,7 @@ namespace ClinicManagement
 
         private void btnPatient_Click(object sender, RoutedEventArgs e)
         {
-            LoadUserControl(new PatientList());
+            LoadUserControl(new PatientList(Account));
         }
 
         private void btnExam_MouseEnter(object sender, MouseEventArgs e)
@@ -283,7 +325,7 @@ namespace ClinicManagement
 
         private void btnExam_Click(object sender, RoutedEventArgs e)
         {
-            LoadUserControl(new ExaminationList());
+            LoadUserControl(new ExaminationList(Account));
         }
         private void btnRules_MouseEnter(object sender, MouseEventArgs e)
         {

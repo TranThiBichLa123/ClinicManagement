@@ -12,6 +12,11 @@ namespace BLL
         {
             return dal.GetDanhSachTiepNhan(ngayKham);
         }
+        public DataTable GetDanhSachTiepNhanTheoNhanVien(DateTime ngay, int idNhanVien)
+        {
+            return dal.GetDanhSachTiepNhanTheoNhanVien(ngay, idNhanVien);
+        }
+
 
         public int GetSLBNMax()
         {

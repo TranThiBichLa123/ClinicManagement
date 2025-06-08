@@ -21,6 +21,7 @@ namespace ClinicManagement.SidebarItems
             InitializeComponent();
         }
 
+
         private void SignUp_Click(object sender, MouseButtonEventArgs e)
         {
 
@@ -84,22 +85,68 @@ namespace ClinicManagement.SidebarItems
             Close();
         }
 
+        //private void LoginButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Account acc = new Account();
+        //    acc.Email = textBoxEmail.Text;
+        //    //  Lấy mật khẩu từ đúng control đang hiển thị
+        //    if (textBoxPassword.Visibility == Visibility.Visible)
+        //    {
+        //        acc.MatKhau = textBoxPassword.Text;
+        //    }
+        //    else
+        //    {
+        //        acc.MatKhau = passwordBox.Password;
+        //    }
+
+        //    string userRole;
+        //    string result = accBLL.CheckLogin(acc, out userRole); 
+
+        //    switch (result)
+        //    {
+        //        case "request_taikhoan":
+        //            MessageBox.Show("Email không được để trống!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Warning);
+        //            break;
+        //        case "request_password":
+        //            MessageBox.Show("Mật khẩu không được để trống!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Warning);
+        //            break;
+        //        case "invalid_login":
+        //            MessageBox.Show("Email hoặc mật khẩu không chính xác!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+        //            break;
+        //        case "success":
+        //            GlobalData.LoggedInPassword = acc.MatKhau;   
+
+
+        //                Doctor dashboard = new Doctor(acc.Email);
+        //                dashboard.Show();
+
+
+
+        //            this.Close();
+        //            break;
+        //    }
+        //}
+        private readonly LoginLogBLL loginLogBLL = new LoginLogBLL();
+
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             Account acc = new Account();
             acc.Email = textBoxEmail.Text;
-            //  Lấy mật khẩu từ đúng control đang hiển thị
-            if (textBoxPassword.Visibility == Visibility.Visible)
+            acc.MatKhau = textBoxPassword.Visibility == Visibility.Visible
+                ? textBoxPassword.Text
+                : passwordBox.Password;
+
+            // Check trạng thái tài khoản trước khi xác thực
+            string currentStatus = loginLogBLL.GetTrangThai(acc.Email);
+            if (currentStatus == "Bị khóa")
             {
-                acc.MatKhau = textBoxPassword.Text;
-            }
-            else
-            {
-                acc.MatKhau = passwordBox.Password;
+                MessageBox.Show("Tài khoản này đã bị khóa do đăng nhập sai quá nhiều lần.",
+                    "Truy cập bị chặn", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
             }
 
             string userRole;
-            string result = accBLL.CheckLogin(acc, out userRole); 
+            string result = accBLL.CheckLogin(acc, out userRole);
 
             switch (result)
             {
@@ -110,30 +157,33 @@ namespace ClinicManagement.SidebarItems
                     MessageBox.Show("Mật khẩu không được để trống!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Warning);
                     break;
                 case "invalid_login":
-                    MessageBox.Show("Email hoặc mật khẩu không chính xác!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    // Ghi nhận thất bại + kiểm tra xem đã khóa chưa
+                    loginLogBLL.GhiLogThatBai(acc.Email);
+
+                    string statusAfterFail = loginLogBLL.GetTrangThai(acc.Email);
+                    if (statusAfterFail == "Bị khóa")
+                    {
+                        MessageBox.Show("Tài khoản đã bị khóa do đăng nhập sai nhiều lần.",
+                            "Bị khóa", MessageBoxButton.OK, MessageBoxImage.Stop);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Email hoặc mật khẩu không chính xác!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                     break;
+
                 case "success":
-                    GlobalData.LoggedInPassword = acc.MatKhau;   
-                    if (userRole == "1")
-                    {
-                        Doctor dashboard = new Doctor(acc.Email);
-                        dashboard.Show();
-                    }
-                    else if (userRole == "2")
-                    {
-                        Cashier csher = new Cashier(acc.Email); 
-                        csher.Show();
-                    }
-                    else if (userRole == "3")
-                    {
-                        Receptionist rcpt = new Receptionist(acc.Email); 
-                        rcpt.Show();
-                    }
-                    
+                    // Đăng nhập thành công, reset log
+                    loginLogBLL.GhiLog(acc.Email, "Đang làm việc", 0);
+                    GlobalData.LoggedInPassword = acc.MatKhau;
+
+                    Doctor dashboard = new Doctor(acc.Email);
+                    dashboard.Show();
                     this.Close();
                     break;
             }
         }
+
 
         private void textBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {

@@ -1,4 +1,5 @@
 ﻿using BLL;
+using DTO;
 using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
@@ -29,18 +30,57 @@ namespace ClinicManagement.SidebarItems
         private DateTime thoiDiemTiepNhan;  //Thời điểm khi tiếp nhận 1 bệnh nhân nào đó
         private DateTime thoiDiemKham;  //Thời điểm khi khám bệnh cho 1 bệnh nhân nào đó
         private ExaminationListBLL bll = new ExaminationListBLL();
-        public ExaminationList()
+        private string Account;
+        private readonly PhanQuyenBLL phanQuyenBLL = new PhanQuyenBLL();
+        public ExaminationList() { }
+        public ExaminationList(string userEmail)
         {
             InitializeComponent();
             thoiDiem = DateTime.Now;
             dpNgayKham.SelectedDate = thoiDiem.Date;   // Chọn ngày hôm nay trên DatePicker
             LoadDSTiepNhan(thoiDiem.Date);
+            // Load quyền
+            Account = userEmail;
+            int nhomQuyen = phanQuyenBLL.LayNhomTheoEmail(Account);
+            var danhSachQuyen = phanQuyenBLL.LayDanhSachIdChucNangTheoNhom(nhomQuyen);
+
+            PhanQuyenHelper.DanhSachQuyen = danhSachQuyen;
+            UserSession.Email = Account;
+            UserSession.NhomQuyen = nhomQuyen;
+            UserSession.DanhSachChucNang = danhSachQuyen;
         }
 
+        private bool HasPermission(int chucNangId)
+        {
+            return UserSession.DanhSachChucNang.Contains(chucNangId);
+        }
 
+        private bool DenyIfNoPermission(int chucNangId)
+        {
+            if (!HasPermission(chucNangId))
+            {
+                MessageBox.Show("Bạn không có quyền thực hiện chức năng này!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return true;
+            }
+            return false;
+        }
         private void LoadDSTiepNhan(DateTime ThoiDiemDangXet)
         {
-            var dt = bll.GetDanhSachTiepNhan(ThoiDiemDangXet.Date);
+            int idNhanVien = new PhanQuyenBLL().LayIDNhanVienTheoEmail(UserSession.Email);
+            bool coQuyen24 = UserSession.DanhSachChucNang.Contains(24);
+
+            DataTable dt;
+
+            if (coQuyen24)
+            {
+                dt = bll.GetDanhSachTiepNhan(ThoiDiemDangXet.Date); // toàn bộ
+            }
+            else
+            {
+                dt = bll.GetDanhSachTiepNhanTheoNhanVien(ThoiDiemDangXet.Date, idNhanVien); // lọc theo nhân viên
+            }
+
+            //var dt = bll.GetDanhSachTiepNhan(ThoiDiemDangXet.Date);
             int td = bll.GetSLBNMax();
             int ht = bll.GetSLBNTrongNgay(ThoiDiemDangXet.Date);
 
@@ -116,6 +156,7 @@ namespace ClinicManagement.SidebarItems
 
         private void btn_addPatientToExam_Click(object sender, RoutedEventArgs e)
         {
+            if (DenyIfNoPermission(13)) return;
             DateTime selectedDate = (DateTime)dpNgayKham.SelectedDate;
             DateTime now = DateTime.Now;
             if (selectedDate.Date < now.Date)
@@ -183,6 +224,7 @@ namespace ClinicManagement.SidebarItems
 
         private void btn_editPatientFromExam_Click(object sender, RoutedEventArgs e)
         {
+            if (DenyIfNoPermission(18)) return;
             thoiDiemTiepNhan = DateTime.Now;
             lblEditNgayHienTai.Content = thoiDiemTiepNhan.ToString("dd/MM/yyyy");
 
@@ -264,6 +306,7 @@ namespace ClinicManagement.SidebarItems
         }
         private void btn_deletePatientFromExam_Click(object sender, RoutedEventArgs e)
         {
+            if (DenyIfNoPermission(22)) return;
             // Lấy dòng đang chọn trong DataGrid
             var selectedRow = dgTiepNhan.SelectedItem as DataRowView;
 

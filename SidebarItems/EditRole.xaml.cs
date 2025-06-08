@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,64 +14,201 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BLL;
+using DTO;
+using static DTO.PhanQuyen;
+
 
 namespace ClinicManagement.SidebarItems
 {
     public partial class EditRole : Window
     {
-        public EditRole()
+        public ObservableCollection<ChucNangPhanQuyenVM> DanhSachChucNang { get; set; }
+        private readonly ChucNangBLL chucNangBLL = new ChucNangBLL();
+        private readonly NhomNguoiDungDTO selectedNhom;
+        private readonly PhanQuyenBLL phanQuyenBLL = new PhanQuyenBLL();
+
+        public EditRole(NhomNguoiDungDTO nhom)
         {
             InitializeComponent();
-            /* var converter = new BrushConverter();
-             ObservableCollection<Role> members = new ObservableCollection<Member>();
+            selectedNhom = nhom;
 
-             members.Add(new Member { Number = "1", Character = "J", BgColor = (Brush)converter.ConvertFromString("#1098AD"), Name = "John Doe", Position = "Coach", Email = "john.doe@gmail.com", Phone = "415-954-1475" });
-             members.Add(new Member { Number = "2", Character = "R", BgColor = (Brush)converter.ConvertFromString("#1E88E5"), Name = "Reza Alavi", Position = "Administrator", Email = "reza110@hotmail.com", Phone = "254-451-7893" });
-             members.Add(new Member { Number = "3", Character = "D", BgColor = (Brush)converter.ConvertFromString("#FF8F00"), Name = "Dennis Castillo", Position = "Coach", Email = "deny.cast@gmail.com", Phone = "125-520-0141" });
-             members.Add(new Member { Number = "4", Character = "G", BgColor = (Brush)converter.ConvertFromString("#FF5252"), Name = "Gabriel Cox", Position = "Coach", Email = "coxcox@gmail.com", Phone = "808-635-1221" });
-             members.Add(new Member { Number = "5", Character = "L", BgColor = (Brush)converter.ConvertFromString("#0CA678"), Name = "Lena Jones", Position = "Manager", Email = "lena.offi@hotmail.com", Phone = "320-658-9174" });
-             members.Add(new Member { Number = "6", Character = "B", BgColor = (Brush)converter.ConvertFromString("#6741D9"), Name = "Benjamin Caliword", Position = "Administrator", Email = "beni12@hotmail.com", Phone = "114-203-6258" });
-             members.Add(new Member { Number = "7", Character = "S", BgColor = (Brush)converter.ConvertFromString("#FF6D00"), Name = "Sophia Muris", Position = "Coach", Email = "sophi.muri@gmail.com", Phone = "852-233-6854" });
-             members.Add(new Member { Number = "8", Character = "A", BgColor = (Brush)converter.ConvertFromString("#FF5252"), Name = "Ali Pormand", Position = "Manager", Email = "alipor@yahoo.com", Phone = "968-378-4849" });
-             members.Add(new Member { Number = "9", Character = "F", BgColor = (Brush)converter.ConvertFromString("#1E88E5"), Name = "Frank Underwood", Position = "Manager", Email = "frank@yahoo.com", Phone = "301-584-6966" });
-             members.Add(new Member { Number = "10", Character = "S", BgColor = (Brush)converter.ConvertFromString("#0CA678"), Name = "Saeed Dasman", Position = "Coach", Email = "saeed.dasi@hotmail.com", Phone = "817-320-5052" });
+            // Hiển thị thông tin nhóm
+            RoleCodeTextBox.Text = selectedNhom.ID_Nhom.ToString();
+            RoleNameTextBox.Text = selectedNhom.TenNhom;
 
-             members.Add(new Member { Number = "11", Character = "J", BgColor = (Brush)converter.ConvertFromString("#1098AD"), Name = "John Doe", Position = "Coach", Email = "john.doe@gmail.com", Phone = "415-954-1475" });
-             members.Add(new Member { Number = "12", Character = "R", BgColor = (Brush)converter.ConvertFromString("#1E88E5"), Name = "Reza Alavi", Position = "Administrator", Email = "reza110@hotmail.com", Phone = "254-451-7893" });
-             members.Add(new Member { Number = "13", Character = "D", BgColor = (Brush)converter.ConvertFromString("#FF8F00"), Name = "Dennis Castillo", Position = "Coach", Email = "deny.cast@gmail.com", Phone = "125-520-0141" });
-             members.Add(new Member { Number = "14", Character = "G", BgColor = (Brush)converter.ConvertFromString("#FF5252"), Name = "Gabriel Cox", Position = "Coach", Email = "coxcox@gmail.com", Phone = "808-635-1221" });
-             members.Add(new Member { Number = "15", Character = "L", BgColor = (Brush)converter.ConvertFromString("#0CA678"), Name = "Lena Jones", Position = "Manager", Email = "lena.offi@hotmail.com", Phone = "320-658-9174" });
-             members.Add(new Member { Number = "16", Character = "B", BgColor = (Brush)converter.ConvertFromString("#6741D9"), Name = "Benjamin Caliword", Position = "Administrator", Email = "beni12@hotmail.com", Phone = "114-203-6258" });
-             members.Add(new Member { Number = "17", Character = "S", BgColor = (Brush)converter.ConvertFromString("#FF6D00"), Name = "Sophia Muris", Position = "Coach", Email = "sophi.muri@gmail.com", Phone = "852-233-6854" });
-             members.Add(new Member { Number = "18", Character = "A", BgColor = (Brush)converter.ConvertFromString("#FF5252"), Name = "Ali Pormand", Position = "Manager", Email = "alipor@yahoo.com", Phone = "968-378-4849" });
-             members.Add(new Member { Number = "19", Character = "F", BgColor = (Brush)converter.ConvertFromString("#1E88E5"), Name = "Frank Underwood", Position = "Manager", Email = "frank@yahoo.com", Phone = "301-584-6966" });
-             members.Add(new Member { Number = "20", Character = "S", BgColor = (Brush)converter.ConvertFromString("#0CA678"), Name = "Saeed Dasman", Position = "Coach", Email = "saeed.dasi@hotmail.com", Phone = "817-320-5052" });
+            // Load danh sách chức năng (SỬA LỖI TẠI ĐÂY)
+            DanhSachChucNang = new ObservableCollection<ChucNangPhanQuyenVM>(
+                chucNangBLL.GetAll().Select((cn, index) => new ChucNangPhanQuyenVM // Thêm index vào Select
+                {
+                    ID_ChucNang = cn.ID_ChucNang,
+                    TenChucNang = cn.TenChucNang,
+                    DuocCapQuyen = false,
+                    CapDoPhanQuyen = TaoNoiDungCapDo(index, cn.TenChucNang) // Truyền index vào
+                }));
 
-             members.Add(new Member { Number = "21", Character = "J", BgColor = (Brush)converter.ConvertFromString("#1098AD"), Name = "John Doe", Position = "Coach", Email = "john.doe@gmail.com", Phone = "415-954-1475" });
-             members.Add(new Member { Number = "22", Character = "R", BgColor = (Brush)converter.ConvertFromString("#1E88E5"), Name = "Reza Alavi", Position = "Administrator", Email = "reza110@hotmail.com", Phone = "254-451-7893" });
-             members.Add(new Member { Number = "23", Character = "D", BgColor = (Brush)converter.ConvertFromString("#FF8F00"), Name = "Dennis Castillo", Position = "Coach", Email = "deny.cast@gmail.com", Phone = "125-520-0141" });
-             members.Add(new Member { Number = "24", Character = "G", BgColor = (Brush)converter.ConvertFromString("#FF5252"), Name = "Gabriel Cox", Position = "Coach", Email = "coxcox@gmail.com", Phone = "808-635-1221" });
-             members.Add(new Member { Number = "25", Character = "L", BgColor = (Brush)converter.ConvertFromString("#0CA678"), Name = "Lena Jones", Position = "Manager", Email = "lena.offi@hotmail.com", Phone = "320-658-9174" });
-             members.Add(new Member { Number = "26", Character = "B", BgColor = (Brush)converter.ConvertFromString("#6741D9"), Name = "Benjamin Caliword", Position = "Administrator", Email = "beni12@hotmail.com", Phone = "114-203-6258" });
-             members.Add(new Member { Number = "27", Character = "S", BgColor = (Brush)converter.ConvertFromString("#FF6D00"), Name = "Sophia Muris", Position = "Coach", Email = "sophi.muri@gmail.com", Phone = "852-233-6854" });
-             members.Add(new Member { Number = "28", Character = "A", BgColor = (Brush)converter.ConvertFromString("#FF5252"), Name = "Ali Pormand", Position = "Manager", Email = "alipor@yahoo.com", Phone = "968-378-4849" });
-             members.Add(new Member { Number = "29", Character = "F", BgColor = (Brush)converter.ConvertFromString("#1E88E5"), Name = "Frank Underwood", Position = "Manager", Email = "frank@yahoo.com", Phone = "301-584-6966" });
-             members.Add(new Member { Number = "30", Character = "S", BgColor = (Brush)converter.ConvertFromString("#0CA678"), Name = "Saeed Dasman", Position = "Coach", Email = "saeed.dasi@hotmail.com", Phone = "817-320-5052" });
-
-             membersDataGrid.ItemsSource = members;
-
-
-         }
-         public class Role
-         {
-             public string Character { get; set; }
-             public Brush BgColor { get; set; }
-             public string Number { get; set; }
-             public string Name { get; set; }
-             public string Position { get; set; }
-             public string Email { get; set; }
-             public string Phone { get; set; }
-         }*/
+            membersDataGrid.ItemsSource = DanhSachChucNang;
+            LoadPhanQuyen(selectedNhom.ID_Nhom);
         }
+
+        
+
+        private string TaoNoiDungCapDo(int index, string tenChucNang)
+        {
+            switch (index + 1)
+            {
+                case 1: return "1.  UI-Level (Ẩn giao diện)";
+                case 12: return "2.  Logic-Level (Chặn thao tác)";
+                case 24: return "3. Data-Level (Giới hạn dữ liệu)";
+             
+                default: return $"";
+            }
+        }
+        private void LoadPhanQuyen(int idNhom)
+        {
+            foreach (var item in DanhSachChucNang)
+                item.DuocCapQuyen = false;
+
+            var quyenDaCo = phanQuyenBLL.LayDanhSachIdChucNangTheoNhom(idNhom);
+
+            foreach (var item in DanhSachChucNang)
+            {
+                if (quyenDaCo.Contains(item.ID_ChucNang))
+                    item.DuocCapQuyen = true;
+            }
+
+            membersDataGrid.Items.Refresh();
+        }
+
+        //private void btnLuuPhanQuyen_Click(object sender, RoutedEventArgs e)
+        //{
+
+
+        //    LuuPhanQuyen(selectedNhom.ID_Nhom);
+
+        //    // Giả sử đang chỉnh quyền cho chính mình:
+        //    UserSession.DanhSachChucNang = phanQuyenBLL.LayDanhSachIdChucNangTheoNhom(UserSession.NhomQuyen);
+
+        //    // Gọi trực tiếp tới cửa sổ Doctor đang mở
+        //    foreach (Window win in Application.Current.Windows)
+        //    {
+        //        if (win is Doctor doctorWindow)
+        //        {
+        //            doctorWindow.RefreshPermissions();
+        //            break;
+        //        }
+        //    }
+        //}
+        private void btnLuuPhanQuyen_Click(object sender, RoutedEventArgs e)
+        {
+            string tenNhom = RoleNameTextBox.Text.Trim();
+            if (string.IsNullOrWhiteSpace(tenNhom))
+            {
+                MessageBox.Show("Vui lòng nhập tên nhóm quyền!", "Cảnh báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            var danhSachQuyen = DanhSachChucNang
+                .Where(x => x.DuocCapQuyen == true)
+                .Select(x => x.ID_ChucNang)
+                .ToList();
+
+            if (danhSachQuyen.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn ít nhất một quyền!", "Cảnh báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            try
+            {
+                if (selectedNhom.ID_Nhom == 0)
+                {
+                    
+                    int newID = phanQuyenBLL.ThemNhomMoiVaPhanQuyen(tenNhom, danhSachQuyen);
+                    if (newID > 0)
+                    {
+                        MessageBox.Show("Thêm nhóm quyền thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                        DialogResult = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không thể thêm nhóm quyền!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    LuuPhanQuyen(selectedNhom.ID_Nhom);
+                    bool ok = true;
+                    if (ok)
+                    {
+                        MessageBox.Show("Cập nhật phân quyền thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                        DialogResult = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không thể cập nhật!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+
+                // Nếu chỉnh quyền cho chính mình → cập nhật lại
+                if (UserSession.NhomQuyen == selectedNhom.ID_Nhom)
+                {
+                    UserSession.DanhSachChucNang = phanQuyenBLL.LayDanhSachIdChucNangTheoNhom(UserSession.NhomQuyen);
+                    foreach (Window win in Application.Current.Windows)
+                    {
+                        if (win is Doctor doctorWindow)
+                        {
+                            doctorWindow.RefreshPermissions();
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        public void LuuPhanQuyen(int idNhom)
+        {
+            // Đảm bảo commit thay đổi
+            membersDataGrid.CommitEdit(DataGridEditingUnit.Row, true);
+            membersDataGrid.CommitEdit(DataGridEditingUnit.Cell, true);
+
+            // Debug: In toàn bộ trạng thái tích chọn
+            Debug.WriteLine("=== DEBUG TRẠNG THÁI PHÂN QUYỀN ===");
+            foreach (var item in DanhSachChucNang)
+            {
+                Debug.WriteLine($"{item.ID_ChucNang} - {item.TenChucNang}: {item.DuocCapQuyen}");
+            }
+
+            var danhSachQuyen = DanhSachChucNang
+                .Where(x => x.DuocCapQuyen == true)
+                .Select(x => x.ID_ChucNang)
+                .ToList();
+
+            // Debug chi tiết
+            Debug.WriteLine($"Đang lưu quyền cho nhóm ID: {idNhom}");
+            Debug.WriteLine("Danh sách quyền đã chọn: " + string.Join(", ", danhSachQuyen));
+
+            if (danhSachQuyen.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn ít nhất một quyền!", "Cảnh báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            try
+            {
+                phanQuyenBLL.LuuPhanQuyen(idNhom, danhSachQuyen);
+                MessageBox.Show("Lưu thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi lưu quyền: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
     }
+
 }

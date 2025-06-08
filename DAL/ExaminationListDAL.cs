@@ -26,6 +26,27 @@ namespace DAL
                 return dt;
             }
         }
+        public DataTable GetDanhSachTiepNhanTheoNhanVien(DateTime ngay, int idNhanVien)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                string query = @"SELECT BN.ID_BenhNhan, BN.HoTenBN, CAST(BN.NgaySinh AS DATE) AS NgaySinh, BN.GioiTinh,
+                                TN.ID_TiepNhan, TN.NgayTN, TN.CaTN, TN.ID_NhanVien
+                         FROM DANHSACHTIEPNHAN TN
+                         JOIN BENHNHAN BN ON TN.ID_BenhNhan = BN.ID_BenhNhan
+                         WHERE TN.Is_Deleted = 0 AND TN.NgayTN = @NgayKham AND TN.ID_NhanVien = @ID_NV";
+
+                SqlDataAdapter adapter = new SqlDataAdapter(query, con);
+                adapter.SelectCommand.Parameters.AddWithValue("@NgayKham", ngay.Date);
+                adapter.SelectCommand.Parameters.AddWithValue("@ID_NV", idNhanVien);
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                return dt;
+            }
+        }
+
         public int GetSLBNMax()
         {
             using (SqlConnection con = new SqlConnection(connectionString))

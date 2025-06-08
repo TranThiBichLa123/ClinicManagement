@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using BLL;
 using DTO;
+using static DTO.PhanQuyen;
 
 namespace ClinicManagement.SidebarItems
 {
@@ -27,9 +28,16 @@ namespace ClinicManagement.SidebarItems
             roleDataGrid.ItemsSource = roles;
         }
 
-        private void btnAddRole_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void btnAddRole_Click(object sender, RoutedEventArgs e)
         {
-            var addWindow = new EditRole();
+            // Tạo nhóm rỗng để truyền vào màn hình thêm mới
+            var emptyNhom = new NhomNguoiDungDTO
+            {
+                ID_Nhom = 0, // Có thể gán 0 hoặc -1 nếu chưa có ID
+                TenNhom = string.Empty
+            };
+
+            var addWindow = new EditRole(emptyNhom); // ✅ Đúng constructor
             if (addWindow.ShowDialog() == true)
             {
                 LoadRoles();
@@ -39,27 +47,67 @@ namespace ClinicManagement.SidebarItems
         {
             accountDataGrid.SelectedIndex = -1; // Bỏ chọn ngay lập tức
         }
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (roleDataGrid.SelectedItem is DTO.RoleManagement selected)
+            {
+                if (roleBLL.CoTaiKhoanDangDungNhom(selected.ID_VaiTro))
+                {
+                    MessageBox.Show("Không thể xóa vì vẫn còn nhân viên đang sử dụng nhóm quyền này.\nHãy chuyển vai trò của họ trước!",
+                                    "Ràng buộc dữ liệu", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                if (MessageBox.Show($"Bạn có chắc muốn xóa nhóm quyền \"{selected.TenVaiTro}\" không?",
+                    "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    bool success = roleBLL.XoaNhomQuyen(selected.ID_VaiTro);
+
+                    if (success)
+                    {
+                        MessageBox.Show("Đã xóa nhóm quyền!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                        LoadRoles();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không thể xóa nhóm quyền này.", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn nhóm quyền cần xóa!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
 
 
-        private void EditRoleButton_Click(object sender, System.Windows.RoutedEventArgs e)
+
+
+
+        private void EditRoleButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
             if (button?.Tag is int idVaiTro)
             {
-                var editWindow = new EditRole();
                 var role = roleBLL.GetAllRoles().Find(r => r.ID_VaiTro == idVaiTro);
                 if (role != null)
                 {
-                    editWindow.RoleCodeTextBox.Text = role.ID_VaiTro.ToString();
-                    editWindow.RoleNameTextBox.Text = role.TenVaiTro;
-                }
+                    // Tạo DTO phù hợp với EditRole constructor
+                    var dto = new NhomNguoiDungDTO
+                    {
+                        ID_Nhom = role.ID_VaiTro,
+                        TenNhom = role.TenVaiTro
+                    };
 
-                if (editWindow.ShowDialog() == true)
-                {
-                    LoadRoles();
+                    var editWindow = new EditRole(dto);
+                    if (editWindow.ShowDialog() == true)
+                    {
+                        LoadRoles();
+                    }
                 }
             }
         }
+
 
         // Tab Tài khoản
         private void LoadAccounts()

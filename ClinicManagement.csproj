@@ -103,9 +103,12 @@
     <Compile Include="Cashier.xaml.cs">
       <DependentUpon>Cashier.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChucNangPhanQuyenVM.cs" />
     <Compile Include="Converters\AddOneConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\LockVisibilityConverter.cs" />
     <Compile Include="Converters\SearchHintVisibilityConverter.cs" />
+    <Compile Include="PhanQuyenHelper.cs" />
     <Compile Include="Receptionist.xaml.cs">
       <DependentUpon>Receptionist.xaml</DependentUpon>
     </Compile>
@@ -196,6 +199,10 @@
     <Compile Include="SidebarItems\StaffAccount.xaml.cs">
       <DependentUpon>StaffAccount.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SidebarItems\SuspiciousLoginMonito.xaml.cs">
+      <DependentUpon>SuspiciousLoginMonito.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserSession.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\MenuItem.xaml.cs">
@@ -371,6 +378,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SidebarItems\StaffAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SidebarItems\SuspiciousLoginMonito.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

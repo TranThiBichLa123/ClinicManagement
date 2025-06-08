@@ -36,5 +36,13 @@ namespace BLL
         {
             return roleAccess.GetAllAccounts();
         }
+        public bool XoaNhomQuyen(int idNhom)
+        {
+            return roleAccess.XoaNhomQuyen(idNhom);
+        }
+        public bool CoTaiKhoanDangDungNhom(int idNhom)
+        {
+            return roleAccess.CoTaiKhoanDangDungNhom(idNhom);
+        }
     }
 }

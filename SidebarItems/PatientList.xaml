@@ -52,7 +52,7 @@
 
             <Grid Grid.Column="1">
                 <Button
-                      Width="120" HorizontalAlignment="Right" Margin="0,10,10,10"
+                      Width="120" HorizontalAlignment="Right" Margin="0,10,10,10" x:Name="btnAddPatient"
                       Content="Thêm bệnh nhân
                     " Foreground="White"
                       IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
@@ -496,10 +496,10 @@
                                         HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <materialDesign:PackIcon Kind="DotsVertical" />
                                     <Button.ContextMenu>
-                                        <ContextMenu>
-                                            <MenuItem Header="Edit" Click="btn_editPatient_Click"/>
-                                            <MenuItem Header="Delete" Click="btn_deletePatientFromBenhNhan_Click"/>
-                                            <MenuItem x:Name="ExaminationList" Header="Examination" Click="btn_ViewExamination_Click"/>
+                                        <ContextMenu Opened="ContextMenu_Opened">
+                                            <MenuItem Header="Chỉnh sửa" Click="btn_editPatient_Click" />
+                                            <MenuItem Header="Xóa" Click="btn_deletePatientFromBenhNhan_Click"/>
+                                            <MenuItem x:Name="btnViewExamination" Header="Danh sách phiếu khám" Click="btn_ViewExamination_Click" />
                                         </ContextMenu>
                                     </Button.ContextMenu>
                                 </Button>

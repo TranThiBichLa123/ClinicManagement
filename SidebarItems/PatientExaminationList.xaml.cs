@@ -138,7 +138,7 @@ namespace ClinicManagement.SidebarItems
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             // Tạo control cũ (PatientList)
-            PatientList previous = new PatientList();
+            PatientList previous = new PatientList(UserSession.Email);
             previous.RenderTransform = new TranslateTransform();
 
             // Lấy parent container
