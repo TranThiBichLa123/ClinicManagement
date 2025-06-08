@@ -26,7 +26,7 @@
                 <ColumnDefinition Width="140"/>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="180"/>
-                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="250"/>
             </Grid.ColumnDefinitions>
 
             <!-- ComboBox lọc -->
@@ -90,6 +90,18 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     Margin="10,0,0,0"/>
+            
+            <Button Content="Xuất hóa đơn"
+        Grid.Column="3"
+        Width="120"
+        Height="35"
+        Background="#4CAF50"
+        Foreground="White"
+        FontWeight="Bold"
+        Click="btnExport_Click"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Center"
+        Margin="0,0,10,0"/>
         </Grid>
 
         <!-- DataGrid -->

@@ -5,6 +5,17 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using Microsoft.Win32;
+using System.IO;
+
+using iTextFont = iTextSharp.text.Font;
+using iTextParagraph = iTextSharp.text.Paragraph;
+using iTextPhrase = iTextSharp.text.Phrase;
+using iTextTable = iTextSharp.text.pdf.PdfPTable;
+using iTextCell = iTextSharp.text.pdf.PdfPCell;
+
 using System.Windows.Controls;
 
 namespace ClinicManagement.SidebarItems
@@ -55,7 +66,7 @@ namespace ClinicManagement.SidebarItems
                 // Lấy danh sách hóa đơn do chính nhân viên đang đăng nhập tạo
                 originalList = service.GetDanhSachHoaDonTheoNhanVien(idNhanVien);
             }
-           
+
             billDataGrid.ItemsSource = originalList;
         }
 
@@ -145,5 +156,89 @@ namespace ClinicManagement.SidebarItems
 
             }
         }
+        private void btnExport_Click(object sender, RoutedEventArgs e)
+        {
+            if (billDataGrid.SelectedItem is HoaDon selected)
+            {
+                var chiTiet = service.GetChiTietHoaDon(selected.MaHoaDon); // gọi từ BLL
+                ExportHoaDonToPDF(selected, chiTiet);
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn hóa đơn để xuất!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void ExportHoaDonToPDF(HoaDon hoaDon, List<ChiTietHoaDon> chiTietList)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "PDF files (*.pdf)|*.pdf",
+                FileName = $"HoaDon_{hoaDon.MaHoaDon}.pdf"
+            };
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                Document doc = new Document(PageSize.A4, 30, 30, 30, 30);
+                PdfWriter.GetInstance(doc, new FileStream(saveFileDialog.FileName, FileMode.Create));
+                doc.Open();
+
+                string fontPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "arial.ttf");
+                BaseFont baseFont = BaseFont.CreateFont(fontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+                iTextFont fontTitle = new iTextFont(baseFont, 16, iTextFont.BOLD);
+                iTextFont font = new iTextFont(baseFont, 12, iTextFont.NORMAL);
+                iTextFont boldFont = new iTextFont(baseFont, 12, iTextFont.BOLD);
+
+                // Tiêu đề + thông tin
+                iTextParagraph header = new iTextParagraph("HÓA ĐƠN THANH TOÁN", fontTitle)
+                {
+                    Alignment = Element.ALIGN_CENTER,
+                    SpacingAfter = 10f
+                };
+                doc.Add(header);
+
+                doc.Add(new iTextParagraph("Phòng khám HOPE\nĐịa chỉ: 123 Nguyễn Văn Cừ, Q.5, TP.HCM\n\n", font));
+
+                doc.Add(new iTextParagraph($"Mã HĐ: {hoaDon.MaHoaDon}", font));
+                doc.Add(new iTextParagraph($"Ngày lập: {hoaDon.NgayLap:dd/MM/yyyy}", font));
+                doc.Add(new iTextParagraph($"Bệnh nhân: {hoaDon.TenBenhNhan}\n\n", font));
+
+                // Bảng chi tiết
+                iTextTable table = new iTextTable(4);
+                table.WidthPercentage = 100;
+                table.SetWidths(new float[] { 4f, 2f, 1.5f, 2f });
+
+                string[] headers = { "Dịch vụ", "Đơn giá", "SL", "Thành tiền" };
+                foreach (var headerText in headers)
+                {
+                    iTextCell cell = new iTextCell(new iTextPhrase(headerText, boldFont));
+                    cell.BackgroundColor = new BaseColor(230, 230, 250);
+                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    table.AddCell(cell);
+                }
+
+                foreach (var ct in chiTietList.Where(c => c.IsVisible))
+                {
+                    table.AddCell(new iTextPhrase(ct.MoTa, font));
+                    table.AddCell(new iTextPhrase($"{ct.DonGia:N0}", font));
+                    table.AddCell(new iTextPhrase(ct.SoLuong.ToString(), font));
+                    table.AddCell(new iTextPhrase($"{ct.ThanhTien:N0}", font));
+                }
+
+                doc.Add(table);
+
+                // Tổng tiền
+                iTextParagraph total = new iTextParagraph($"\nTổng cộng: {hoaDon.TongTien:N0} VNĐ", boldFont);
+                total.Alignment = Element.ALIGN_RIGHT;
+                total.Font.Color = BaseColor.RED;
+                doc.Add(total);
+
+                doc.Close();
+                MessageBox.Show("Xuất hóa đơn thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+
+
     }
 }

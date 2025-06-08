@@ -79,6 +79,18 @@
             Margin="10,18,0,18"
             Width="30"/>
 
+            <Button Content="Xuất phiếu"
+Grid.Column="2"
+Width="120"
+Height="36"
+Background="#4CAF50"
+Foreground="White"
+FontWeight="Bold"
+Click="btnExport_Click"
+HorizontalAlignment="Right"
+VerticalAlignment="Center"
+Margin="0,0,150,0"/>
+            
             <!-- Nút thêm phiếu -->
             <Button Content="Thêm phiếu"
             Grid.Column="2"
