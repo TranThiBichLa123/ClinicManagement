@@ -10,21 +10,25 @@ namespace DAL
 {
     public class LoginLogDAL : DatabaseAccess
     {
-        public void InsertLog(string email, string trangThai, int soLanThatBai)
+        public void InsertLog(string email, string trangThai, int soLanThatBai, string hanhDong)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 string query = @"
-    INSERT INTO LOGINLOG (Email, TrangThai, SoLanThatBai, ThoiGian) 
-    VALUES (@email, @trangThai, @failCount, GETDATE())";
+INSERT INTO LOGINLOG (Email, TrangThai, SoLanThatBai, ThoiGian, HanhDong) 
+VALUES (@email, @trangThai, @failCount, GETDATE(), @hanhDong)";
+
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@email", email);
                 cmd.Parameters.AddWithValue("@trangThai", trangThai);
                 cmd.Parameters.AddWithValue("@failCount", soLanThatBai);
+                cmd.Parameters.AddWithValue("@hanhDong", hanhDong);
+
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
+
 
 
         public int CountFailedAttempts(string email)
@@ -47,30 +51,29 @@ namespace DAL
         // Lấy toàn bộ log từ bảng LOGINLOG
         public List<LoginLogDTO> GetAllLogs()
         {
-            List<LoginLogDTO> logs = new List<LoginLogDTO>();
-
+            List<LoginLogDTO> list = new List<LoginLogDTO>();
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                conn.Open();
-                string query = "SELECT Email, ThoiGian, TrangThai, SoLanThatBai FROM LOGINLOG ORDER BY ThoiGian DESC";
+                string query = "SELECT Email, ThoiGian, TrangThai, SoLanThatBai, HanhDong FROM LOGINLOG ORDER BY ThoiGian DESC";
                 SqlCommand cmd = new SqlCommand(query, conn);
+                conn.Open();
 
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        logs.Add(new LoginLogDTO
+                        list.Add(new LoginLogDTO
                         {
                             Email = reader["Email"].ToString(),
                             ThoiGian = Convert.ToDateTime(reader["ThoiGian"]),
                             TrangThai = reader["TrangThai"].ToString(),
-                            SoLanThatBai = Convert.ToInt32(reader["SoLanThatBai"])
+                            SoLanThatBai = Convert.ToInt32(reader["SoLanThatBai"]),
+                            HanhDong = reader["HanhDong"].ToString()
                         });
                     }
                 }
             }
-
-            return logs;
+            return list;
         }
 
         // Cập nhật thất bại: tăng số lần, kiểm tra và khóa nếu vượt ngưỡng

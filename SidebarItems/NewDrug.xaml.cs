@@ -21,6 +21,7 @@ namespace ClinicManagement.SidebarItems
         private string selectedImagePath = "/img/drugDefault.jpg";
         private List<DonViTinhDTO> danhSachDVT;
         private List<CachDungDTO> danhSachCachDung;
+        private readonly LoginLogBLL loginLogBLL = new LoginLogBLL();
 
         public NewDrug()
         {
@@ -150,7 +151,7 @@ namespace ClinicManagement.SidebarItems
                 ct.ID_PhieuNhapThuoc = idPhieu;
                 bll.AddChiTietPhieuNhap(ct);
             }
-
+            loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Đã thêm một phiếu nhập");
             MessageBox.Show("Đã nhập thuốc thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
             danhSachThuocNhap.Clear();
             drugDataGrid.Items.Refresh();

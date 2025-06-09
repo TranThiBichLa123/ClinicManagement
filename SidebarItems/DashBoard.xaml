@@ -548,7 +548,7 @@
                             <Grid>
                                 <GroupBox Margin="20,20,20,20" Height="800">
                                     <GroupBox.Header>
-                                        <TextBlock Text="Biểu đồ doanh thu theo tháng"
+                                        <TextBlock Text="Biểu đồ lợi nhuận theo tháng"
                                                 FontWeight="Bold"
                                                 Foreground="White"
                                                 FontSize="16"/>
@@ -568,8 +568,8 @@
                         </Grid>
 
 
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"    Margin="20,0" Grid.RowSpan="1" Width="200">
-                            <Border Width="50" Height="50" CornerRadius="25" Margin="5 0 20 0" ClipToBounds="True">
+                        <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Right"    Margin="20,0" Grid.RowSpan="1" Width="200">
+                            --><!--<Border Width="50" Height="50" CornerRadius="25" Margin="5 0 20 0" ClipToBounds="True">
                                 <Image Source="/img/doctor.jpg"  Width="50" Height="50"  Stretch="UniformToFill">
                                     <Image.Clip>
                                         <EllipseGeometry Center="25,25" RadiusX="25" RadiusY="25"/>
@@ -587,7 +587,7 @@
                                 </StackPanel>
                                 <TextBlock Text="Bác sĩ" Foreground="#6C879A" Margin="0 3 0 0"/>
                             </StackPanel>
-                        </StackPanel>
+                        </StackPanel>-->
                         <!--Title-->
                         <TextBlock FontSize="26" HorizontalAlignment="Left" Margin="20 35 0 20" Width="350">
                     <Run Text="Xin chào, " Foreground="#FF0E0E10"/> 

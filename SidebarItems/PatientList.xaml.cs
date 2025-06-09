@@ -26,6 +26,7 @@ namespace ClinicManagement.SidebarItems
         private BenhNhanBLL benhnhanBLL;
         private string Account;
         private readonly PhanQuyenBLL phanQuyenBLL = new PhanQuyenBLL();
+        private readonly LoginLogBLL loginLogBLL = new LoginLogBLL();
         public PatientList() { }
         public PatientList(string userEmail)
         {
@@ -77,6 +78,7 @@ namespace ClinicManagement.SidebarItems
         private void btnAddPatient_Click(object sender, RoutedEventArgs e)
         {
             if (DenyIfNoPermission(12)) return;
+           
             AddPatientPopup.IsOpen = true;
         }
 
@@ -114,6 +116,7 @@ namespace ClinicManagement.SidebarItems
 
                 if (isAdded)
                 {
+                    loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Đã thêm một hồ sơ bệnh nhân");
                     MessageBox.Show("Thêm bệnh nhân thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                     ClearForm();
                 }
@@ -232,6 +235,7 @@ namespace ClinicManagement.SidebarItems
             {
                 if (result)
                 {
+                    loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Đã sửa một hồ sơ bệnh nhân");
                     MessageBox.Show("Cập nhật thông tin bệnh nhân thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                     EditPatientPopup.IsOpen = false;
                     LoadDSBenhNhan();
@@ -317,6 +321,7 @@ namespace ClinicManagement.SidebarItems
                 switch (deleteResult)
                 {
                     case 1:
+                        loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Đã xóa một hồ sơ bệnh nhân");
                         MessageBox.Show("Đã xóa bệnh nhân thành công.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                         LoadDSBenhNhan();
                         break;

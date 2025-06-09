@@ -32,7 +32,7 @@ namespace ClinicManagement.SidebarItems
         private int idPK;
         private ExaminationFormViewBLL bll = new ExaminationFormViewBLL();
         private ExaminationFormDTO examinationForm = new ExaminationFormDTO();
-        private string connectionString = "Data Source=LAPTOP-2FUIJHRN;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
+        private readonly LoginLogBLL loginLogBLL = new LoginLogBLL();
 
         public ExaminationFormView(string idBenhNhan, int idTiepNhan)
         {
@@ -129,6 +129,7 @@ namespace ClinicManagement.SidebarItems
                 bll.XoaPhieuKham(this.idPK);
                 MessageBox.Show("Đã xóa thông tin phiếu khám và toa thuốc!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 AnimateBack();
+                loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Đã xóa một phiếu khám");
             }
 
         }
@@ -150,6 +151,7 @@ namespace ClinicManagement.SidebarItems
             }
             else
             {
+                loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Đã sửa một phiếu khám");
                 ExaminationForm form = new ExaminationForm(idBN, idTN, idPK);
                 form.RenderTransform = new TranslateTransform();
 

@@ -45,11 +45,12 @@
                   Margin="0"
                   Height="400">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="150"/>
                 <DataGridTextColumn Header="Thời gian" Binding="{Binding ThoiGian}" Width="200"/>
                 <DataGridTextColumn Header="Trạng thái" Binding="{Binding TrangThai}" Width="150"/>
                 <DataGridTextColumn Header="Số lần thất bại" Binding="{Binding SoLanThatBai}" Width="120"/>
-                <DataGridTemplateColumn Header="Hành động" Width="100">
+                <DataGridTextColumn Header="Hành động" Binding="{Binding HanhDong}" Width="200"/>
+                <DataGridTemplateColumn Header="Quyết định" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Mở khóa"

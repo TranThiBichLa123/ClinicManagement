@@ -24,6 +24,7 @@ namespace ClinicManagement.SidebarItems
     {
         private BillService service = new BillService();
         private readonly PhanQuyenBLL phanQuyenBLL = new PhanQuyenBLL();
+        private readonly LoginLogBLL loginLogBLL = new LoginLogBLL();
 
         private List<HoaDon> originalList = new List<HoaDon>();
         public string Account { get; private set; }
@@ -134,6 +135,7 @@ namespace ClinicManagement.SidebarItems
                 bool success = service.XoaHoaDon(bill.MaHoaDon);
                 if (success)
                 {
+                    loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Đã xóa một hóa đơn");
                     MessageBox.Show("Đã xóa hóa đơn!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                     originalList.Remove(bill);
                     billDataGrid.ItemsSource = null;
@@ -160,6 +162,7 @@ namespace ClinicManagement.SidebarItems
         {
             if (billDataGrid.SelectedItem is HoaDon selected)
             {
+                loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Đã xuất một hóa đơn");
                 var chiTiet = service.GetChiTietHoaDon(selected.MaHoaDon); // gọi từ BLL
                 ExportHoaDonToPDF(selected, chiTiet);
             }

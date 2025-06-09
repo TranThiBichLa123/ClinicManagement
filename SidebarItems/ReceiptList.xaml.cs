@@ -18,6 +18,7 @@ using iTextParagraph = iTextSharp.text.Paragraph;
 using iTextPhrase = iTextSharp.text.Phrase;
 using iTextTable = iTextSharp.text.pdf.PdfPTable;
 using iTextCell = iTextSharp.text.pdf.PdfPCell;
+using System.Data;
 
 
 namespace ClinicManagement.SidebarItems
@@ -26,18 +27,46 @@ namespace ClinicManagement.SidebarItems
     {
         private NhapThuocBLL _nhapThuocBLL = new NhapThuocBLL();
         private List<NhapThuoc.PhieuNhapThuocDTO> _allPhieuNhap = new List<NhapThuoc.PhieuNhapThuocDTO>();
-
-        public ReceiptList()
+        private readonly LoginLogBLL loginLogBLL = new LoginLogBLL();
+        private readonly PhanQuyenBLL phanQuyenBLL = new PhanQuyenBLL();
+        public string Account { get; private set; }
+        public ReceiptList() { }
+        public ReceiptList( string userEmail)
         {
             InitializeComponent();
+            Account = userEmail;
+            // Load quyền
+            int nhomQuyen = phanQuyenBLL.LayNhomTheoEmail(Account);
+            var danhSachQuyen = phanQuyenBLL.LayDanhSachIdChucNangTheoNhom(nhomQuyen);
+
+            PhanQuyenHelper.DanhSachQuyen = danhSachQuyen;
+            UserSession.Email = Account;
+            UserSession.NhomQuyen = nhomQuyen;
+            UserSession.DanhSachChucNang = danhSachQuyen;
             Loaded += ReceiptList_Loaded;
+            
         }
 
         private void ReceiptList_Loaded(object sender, RoutedEventArgs e)
         {
+          
+            
             LoadPhieuNhap();
         }
+        private bool HasPermission(int chucNangId)
+        {
+            return UserSession.DanhSachChucNang.Contains(chucNangId);
+        }
 
+        private bool DenyIfNoPermission(int chucNangId)
+        {
+            if (!HasPermission(chucNangId))
+            {
+                MessageBox.Show("Bạn không có quyền thực hiện chức năng này!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return true;
+            }
+            return false;
+        }
         /// <summary>
         /// Tải toàn bộ danh sách phiếu nhập
         /// </summary>
@@ -86,6 +115,8 @@ namespace ClinicManagement.SidebarItems
         /// </summary>
         private void AddClick(object sender, RoutedEventArgs e)
         {
+            if (DenyIfNoPermission(14)) return;
+           
             var newDrugWindow = new NewDrug();
             newDrugWindow.ShowDialog();
 
@@ -142,6 +173,7 @@ namespace ClinicManagement.SidebarItems
                 MessageBox.Show("Phiếu nhập không có dữ liệu chi tiết!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Đã xuất một phiếu nhập");
 
             ExportPhieuNhapPDF(selectedPhieu, dsChiTiet);
         }

@@ -32,6 +32,7 @@ namespace ClinicManagement.SidebarItems
         private ExaminationListBLL bll = new ExaminationListBLL();
         private string Account;
         private readonly PhanQuyenBLL phanQuyenBLL = new PhanQuyenBLL();
+        private readonly LoginLogBLL loginLogBLL = new LoginLogBLL();
         public ExaminationList() { }
         public ExaminationList(string userEmail)
         {
@@ -157,6 +158,7 @@ namespace ClinicManagement.SidebarItems
         private void btn_addPatientToExam_Click(object sender, RoutedEventArgs e)
         {
             if (DenyIfNoPermission(13)) return;
+           
             DateTime selectedDate = (DateTime)dpNgayKham.SelectedDate;
             DateTime now = DateTime.Now;
             if (selectedDate.Date < now.Date)
@@ -179,6 +181,7 @@ namespace ClinicManagement.SidebarItems
             }
             else
             {
+                
                 thoiDiemTiepNhan = selectedDate;
                 lblNgayHienTai.Content = thoiDiemTiepNhan.ToString("dd/MM/yyyy");
                 AddPatientPopup.IsOpen = true;
@@ -215,6 +218,7 @@ namespace ClinicManagement.SidebarItems
 
                 LoadDSTiepNhan(thoiDiemTiepNhan);
                 AddPatientPopup.IsOpen = false;
+                loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Đã thêm một phiếu tiếp nhận");
             }
             else
             {
@@ -225,6 +229,7 @@ namespace ClinicManagement.SidebarItems
         private void btn_editPatientFromExam_Click(object sender, RoutedEventArgs e)
         {
             if (DenyIfNoPermission(18)) return;
+            loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Truy cập quản lý nhập hàng");
             thoiDiemTiepNhan = DateTime.Now;
             lblEditNgayHienTai.Content = thoiDiemTiepNhan.ToString("dd/MM/yyyy");
 
@@ -293,6 +298,7 @@ namespace ClinicManagement.SidebarItems
                 //LoadDSTiepNhan(thoiDiem);
 
                 EditPatientPopup.IsOpen = false;
+                loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Đã sửa một phiếu tiếp nhận");
             }
             else
             {
@@ -339,6 +345,7 @@ namespace ClinicManagement.SidebarItems
 
                     if (dpNgayKham.SelectedDate.HasValue)
                         LoadDSTiepNhan(dpNgayKham.SelectedDate.Value);
+                    loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Đã xóa một phiếu tiếp nhận");
                 }
                 else
                 {
@@ -349,6 +356,7 @@ namespace ClinicManagement.SidebarItems
 
         private void btn_createExamForm_Click(object sender, RoutedEventArgs e)
         {
+            loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Đã tạo một phiếu khám");
             var btn = sender as Button;
             if (btn?.DataContext is DataRowView row)
             {
@@ -401,6 +409,7 @@ namespace ClinicManagement.SidebarItems
 
         private void btn_viewExamForm_Click(object sender, RoutedEventArgs e)
         {
+            loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Đã xem một phiếu khám");
             var btn = sender as Button;
             if (btn?.DataContext is DataRowView row)
             {

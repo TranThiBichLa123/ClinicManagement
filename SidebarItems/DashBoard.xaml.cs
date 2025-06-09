@@ -37,12 +37,12 @@ namespace ClinicManagement.SidebarItems
             DataContext = this;
         }
 
-        private void prf_MouseEnter(object sender, MouseEventArgs e)
-        {
-            popup_uc.PlacementTarget = prf;
-            popup_uc.Placement = PlacementMode.Right;
-            popup_uc.IsOpen = true;
-        }
+        //private void prf_MouseEnter(object sender, MouseEventArgs e)
+        //{
+        //    popup_uc.PlacementTarget = prf;
+        //    popup_uc.Placement = PlacementMode.Right;
+        //    popup_uc.IsOpen = true;
+        //}
 
         private void prf_MouseLeave(object sender, MouseEventArgs e)
         {

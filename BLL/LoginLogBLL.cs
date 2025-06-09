@@ -21,9 +21,9 @@ namespace BLL
         {
             logDAL.InsertOrUpdateFailedAttempt(email);
         }
-        public void GhiLog(string email, string trangThai, int soLanThatBai)
+        public void GhiLog(string email, string trangThai, int soLanThatBai, string hanhDong)
         {
-            logDAL.InsertLog(email,trangThai,soLanThatBai);
+            logDAL.InsertLog(email, trangThai, soLanThatBai, hanhDong);
         }
 
         // Mở khóa tài khoản
@@ -41,7 +41,7 @@ namespace BLL
         {
             if (logDAL.XacThucTaiKhoan(email, password)) // kiểm tra trong DAL
             {
-                logDAL.InsertLog(email, "Đang làm việc", 0); // reset
+                logDAL.InsertLog(email, "Đang làm việc", 0, "Đăng nhập"); // reset
                 return true;
             }
             else

@@ -1,5 +1,6 @@
 ﻿using BLL;
 using ClinicManagement.SidebarItems;
+using ControlzEx.Standard;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,6 +12,7 @@ namespace ClinicManagement
     public partial class Doctor : Window
     {
         private readonly PhanQuyenBLL phanQuyenBLL = new PhanQuyenBLL();
+        private readonly LoginLogBLL loginLogBLL = new LoginLogBLL();
         public void LoadUserControl(UserControl userControl)
         {
             // Kiểm tra Border có chứa phần tử con hay không
@@ -75,6 +77,7 @@ namespace ClinicManagement
 
         private void btnHome_Click(object sender, RoutedEventArgs e)
         {
+            loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Truy cập trang tổng quan");
             LoadUserControl(new DashBoard());
 
         }
@@ -100,7 +103,7 @@ namespace ClinicManagement
 
         private void btnBilling_MouseEnter(object sender, MouseEventArgs e)
         {
-
+           
             if (Tg_Btn.IsChecked == false)
             {
                 Popup.PlacementTarget = btnBilling;
@@ -119,6 +122,7 @@ namespace ClinicManagement
 
         private void btnBilling_Click(object sender, RoutedEventArgs e)
         {
+            loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Xem danh sách hóa đơn");
             LoadUserControl(new InvoiceList(Account,this));
         }
 
@@ -141,6 +145,7 @@ namespace ClinicManagement
 
         private void btnSetting_MouseEnter(object sender, MouseEventArgs e)
         {
+            
             if (Tg_Btn.IsChecked == false)
             {
                 Popup.PlacementTarget = btnSetting;
@@ -172,6 +177,7 @@ namespace ClinicManagement
 
         private void btnStaff_MouseEnter(object sender, MouseEventArgs e)
         {
+            
             if (Tg_Btn.IsChecked == false)
             {
                 Popup.PlacementTarget = btnStaff;
@@ -183,6 +189,7 @@ namespace ClinicManagement
 
         private void btnStaff_MouseLeave(object sender, MouseEventArgs e)
         {
+
             Popup.Visibility = Visibility.Collapsed;
             Popup.IsOpen = false;
 
@@ -190,6 +197,7 @@ namespace ClinicManagement
 
         private void btnStaff_Click(object sender, RoutedEventArgs e)
         {
+            loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Truy cập quản lý nhân viên");
             LoadUserControl(new StaffAccount(this));
 
 
@@ -210,6 +218,7 @@ namespace ClinicManagement
 
             if (result == MessageBoxResult.Yes)
             {
+                loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Đăng xuất");
                 var loginWindow = new ClinicManagement.SidebarItems.Login();
                 loginWindow.Show(); 
 
@@ -228,6 +237,7 @@ namespace ClinicManagement
 
         private void Drug_MouseEnter(object sender, MouseEventArgs e)
         {
+            
             if (Tg_Btn.IsChecked == false)
             {
                 Popup.PlacementTarget = btnDrug;
@@ -245,6 +255,7 @@ namespace ClinicManagement
        
         private void btnDrug_Click(object sender, RoutedEventArgs e)
         {
+            loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Xem danh sách thuốc");
             LoadUserControl(new DrugView());
 
         }
@@ -258,6 +269,7 @@ namespace ClinicManagement
         }
         private void btnReport_MouseEnter(object sender, MouseEventArgs e)
         {
+            
 
             if (Tg_Btn.IsChecked == false)
             {
@@ -277,12 +289,13 @@ namespace ClinicManagement
 
         private void btnReport_Click(object sender, RoutedEventArgs e)
         {
+            loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Truy cập báo cáo tháng");
             LoadUserControl(new ReportView());
         }
 
         private void btnPatient_MouseEnter(object sender, MouseEventArgs e)
         {
-
+           
             if (Tg_Btn.IsChecked == false)
             {
                 Popup.PlacementTarget = btnPatient;
@@ -301,12 +314,13 @@ namespace ClinicManagement
 
         private void btnPatient_Click(object sender, RoutedEventArgs e)
         {
+            loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Xem hồ sơ bệnh nhân");
             LoadUserControl(new PatientList(Account));
         }
 
         private void btnExam_MouseEnter(object sender, MouseEventArgs e)
         {
-
+           
             if (Tg_Btn.IsChecked == false)
             {
                 Popup.PlacementTarget = btnExam;
@@ -325,10 +339,12 @@ namespace ClinicManagement
 
         private void btnExam_Click(object sender, RoutedEventArgs e)
         {
+            loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Truy cập danh sách tiếp nhận");
             LoadUserControl(new ExaminationList(Account));
         }
         private void btnRules_MouseEnter(object sender, MouseEventArgs e)
         {
+            
             if (Tg_Btn.IsChecked == false)
             {
                 Popup.PlacementTarget = btnRules;
@@ -347,12 +363,14 @@ namespace ClinicManagement
 
         private void btnRules_Click(object sender, RoutedEventArgs e)
         {
+            loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Truy cập thay đổi quy định");
             LoadUserControl(new Setting());
 
 
         }
         private void btnAccount_MouseEnter(object sender, MouseEventArgs e)
         {
+           
             if (Tg_Btn.IsChecked == false)
             {
                 Popup.PlacementTarget = btnAccount;
@@ -371,6 +389,7 @@ namespace ClinicManagement
 
         private void btnAccount_Click(object sender, RoutedEventArgs e)
         {
+            loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Truy cập phân quyền");
             LoadUserControl(new RoleManagement());
 
 
@@ -379,6 +398,7 @@ namespace ClinicManagement
       
         private void btnPay_MouseEnter(object sender, MouseEventArgs e)
         {
+           
             if (Tg_Btn.IsChecked == false)
             {
                 Popup.PlacementTarget = btnPay;
@@ -397,12 +417,14 @@ namespace ClinicManagement
 
         private void btnPay_Click(object sender, RoutedEventArgs e)
         {
+            loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Truy cập trang thanh toán");
             LoadUserControl(new CreateBill());
 
 
         }
         private void btnReceipt_MouseEnter(object sender, MouseEventArgs e)
         {
+           
             if (Tg_Btn.IsChecked == false)
             {
                 Popup.PlacementTarget = btnReceipt;
@@ -421,7 +443,8 @@ namespace ClinicManagement
 
         private void btnReceipt_Click(object sender, RoutedEventArgs e)
         {
-            LoadUserControl(new ReceiptList());
+            loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Truy cập quản lý nhập hàng");
+            LoadUserControl(new ReceiptList(Account));
 
 
         }

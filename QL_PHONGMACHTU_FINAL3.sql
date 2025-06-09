@@ -865,6 +865,8 @@ CREATE TABLE LOGINLOG (
 ALTER TABLE LOGINLOG
 ADD HanhDong NVARCHAR(100) DEFAULT N'Đăng nhập';
 SELECT * FROM LOGINLOG
+
+
 --huongdansudungphanquyen
 --1. Admin – Toàn quyền hệ thống
 --Quản lý nhân sự, phân quyền, báo cáo, quy định, tổng quan

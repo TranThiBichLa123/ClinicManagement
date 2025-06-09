@@ -186,6 +186,7 @@ namespace ClinicManagement.SidebarItems
             bll.ThemToaThuoc(idPhieuKham.Value, danhSachThuoc.ToList());
             MessageBox.Show("Lưu thành công thông tin khám bệnh và toa thuốc.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             AnimateBack();
+
         }
 
         private void AnimateBack()

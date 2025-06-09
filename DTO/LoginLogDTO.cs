@@ -12,5 +12,7 @@ namespace DTO
         public DateTime ThoiGian { get; set; }
         public string TrangThai { get; set; }
         public int SoLanThatBai { get; set; }
+
+        public string HanhDong { get; set; }
     }
 }
