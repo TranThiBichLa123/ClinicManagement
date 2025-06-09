@@ -9,6 +9,41 @@ namespace DAL
 {
     public class BillAccess : DatabaseAccess
     {
+        public void CapNhatBaoCaoSauKhiTaoHoaDon(int thang, int nam)
+        {
+            using (var conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                // Xóa báo cáo doanh thu
+                var delCT = new SqlCommand("DELETE FROM CT_BAOCAODOANHTHU WHERE ID_BCDT IN (SELECT ID_BCDT FROM BAOCAODOANHTHU WHERE Thang = @Thang AND Nam = @Nam)", conn);
+                delCT.Parameters.AddWithValue("@Thang", thang);
+                delCT.Parameters.AddWithValue("@Nam", nam);
+                delCT.ExecuteNonQuery();
+
+                var delMain = new SqlCommand("DELETE FROM BAOCAODOANHTHU WHERE Thang = @Thang AND Nam = @Nam", conn);
+                delMain.Parameters.AddWithValue("@Thang", thang);
+                delMain.Parameters.AddWithValue("@Nam", nam);
+                delMain.ExecuteNonQuery();
+
+                // Xóa báo cáo sử dụng thuốc
+                var delThuoc = new SqlCommand("DELETE FROM BAOCAOSUDUNGTHUOC WHERE Thang = @Thang AND Nam = @Nam", conn);
+                delThuoc.Parameters.AddWithValue("@Thang", thang);
+                delThuoc.Parameters.AddWithValue("@Nam", nam);
+                delThuoc.ExecuteNonQuery();
+
+                // Tạo lại
+                var exec1 = new SqlCommand("EXEC TaoBaoCaoDoanhThu @Thang, @Nam", conn);
+                exec1.Parameters.AddWithValue("@Thang", thang);
+                exec1.Parameters.AddWithValue("@Nam", nam);
+                exec1.ExecuteNonQuery();
+
+                var exec2 = new SqlCommand("EXEC TaoBaoCaoSuDungThuoc @Thang, @Nam", conn);
+                exec2.Parameters.AddWithValue("@Thang", thang);
+                exec2.Parameters.AddWithValue("@Nam", nam);
+                exec2.ExecuteNonQuery();
+            }
+        }
         public int InsertHoaDon(int idPhieuKham, int idNhanVien, DateTime ngay)
         {
             int idHoaDon = GetHoaDonIdByPhieuKham(idPhieuKham); // Kiểm tra tồn tại

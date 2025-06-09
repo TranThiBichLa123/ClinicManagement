@@ -8,8 +8,27 @@ namespace DAL
 {
     public class ReportAccess : DatabaseAccess
     {
+        
+
+
+
+        public bool KiemTraBaoCaoDaCo(int thang, int nam)
+        {
+            string query = "SELECT COUNT(*) FROM BAOCAODOANHTHU WHERE Thang = @thang AND Nam = @nam";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@thang", thang);
+                cmd.Parameters.AddWithValue("@nam", nam);
+
+                int count = (int)cmd.ExecuteScalar();
+                return count > 0;
+            }
+        }
         public List<BaoCaoSuDungThuoc> GetBaoCaoSuDungThuoc(int thang, int nam)
         {
+           
             var list = new List<BaoCaoSuDungThuoc>();
             string query = @"
                 SELECT 
@@ -48,6 +67,7 @@ namespace DAL
 
         public BaoCaoDoanhThu GetTongDoanhThu(int thang, int nam)
         {
+           
             BaoCaoDoanhThu result = null;
             string query = @"SELECT * FROM BAOCAODOANHTHU WHERE Thang = @thang AND Nam = @nam";
 
@@ -76,6 +96,7 @@ namespace DAL
 
         public List<CT_BaoCaoDoanhThu> GetChiTietDoanhThu(int thang, int nam)
         {
+            
             var list = new List<CT_BaoCaoDoanhThu>();
             string query = @"
             SELECT c.Ngay, c.SoBenhNhan, c.DoanhThu, c.TyLe
@@ -271,10 +292,11 @@ namespace DAL
                 {
                     list.Add(new DoanhThuTheoThang
                     {
-                        Thang = (int)reader["Thang"],
-                        Nam = (int)reader["Nam"],
-                        TongDoanhThu = (decimal)reader["TongDoanhThu"]
+                        Thang = reader["Thang"] != DBNull.Value ? Convert.ToInt32(reader["Thang"]) : 0,
+                        Nam = reader["Nam"] != DBNull.Value ? Convert.ToInt32(reader["Nam"]) : 0,
+                        TongDoanhThu = reader["TongDoanhThu"] != DBNull.Value ? Convert.ToDecimal(reader["TongDoanhThu"]) : 0
                     });
+
                 }
             }
 

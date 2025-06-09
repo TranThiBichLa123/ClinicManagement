@@ -13,6 +13,7 @@ namespace ClinicManagement.SidebarItems
     public partial class CreateBill : UserControl
     {
         private BillService service = new BillService();
+       
 
         public CreateBill()
         {
@@ -43,7 +44,7 @@ namespace ClinicManagement.SidebarItems
                 int idNhanVien = Convert.ToInt32(cbNhanVien.SelectedValue);
                 DateTime ngayLap = dpNgayLap.SelectedDate.Value;
 
-                
+                // Kiểm tra đã có hóa đơn chưa
                 var existingHoaDon = service.GetHoaDon(idPhieuKham);
                 if (existingHoaDon != null)
                 {
@@ -51,10 +52,16 @@ namespace ClinicManagement.SidebarItems
                     return;
                 }
 
-                
+                // Tạo hóa đơn
                 int idHoaDon = service.TaoHoaDon(idPhieuKham, idNhanVien, ngayLap);
 
+                // Cập nhật báo cáo sau khi tạo hóa đơn
+                service.CapNhatBaoCaoSauKhiTaoHoaDon(ngayLap.Month, ngayLap.Year);
+
+                // Load lại thông tin
                 FillThongTinHoaDon(idPhieuKham);
+
+                MessageBox.Show("Lập hóa đơn thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (FormatException)
             {
@@ -65,6 +72,7 @@ namespace ClinicManagement.SidebarItems
                 MessageBox.Show("Lỗi khi lập hóa đơn: " + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
 
 
         private void BtnXemHoaDon_Click(object sender, RoutedEventArgs e)

@@ -45,6 +45,10 @@ namespace BLL
         {
             return dal.GetDanhSachHoaDonTheoNhanVien(idNhanVien);
         }
+        public void CapNhatBaoCaoSauKhiTaoHoaDon(int thang, int nam)
+        {
+            dal.CapNhatBaoCaoSauKhiTaoHoaDon(thang, nam);
+        }
     }
 
 }
