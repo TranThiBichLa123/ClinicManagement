@@ -173,8 +173,7 @@ namespace ClinicManagement.SidebarItems
                     break;
 
                 case "success":
-                    // Đăng nhập thành công, reset log
-                    loginLogBLL.GhiLog(acc.Email, "Đang làm việc", 0,"Đăng nhập");
+                    
                     GlobalData.LoggedInPassword = acc.MatKhau;
 
                     Doctor dashboard = new Doctor(acc.Email);
