@@ -31,13 +31,27 @@ namespace ClinicManagement.SidebarItems
         private int? idPhieuKham = null;
         private ExaminationFormBLL bll = new ExaminationFormBLL();
         private ObservableCollection<ThuocDaChon> danhSachThuoc = new ObservableCollection<ThuocDaChon>();
-        public ExaminationForm(string idBenhNhan, int idTiepNhan)
+        private string Account;
+        private readonly PhanQuyenBLL phanQuyenBLL = new PhanQuyenBLL();
+        public ExaminationForm(string idBenhNhan, int idTiepNhan, string userEmail)
         {
             InitializeComponent();
             tblTitle.Text = "Tạo Phiếu Khám";
             this.idBenhNhan = Convert.ToInt32(idBenhNhan);
             this.idTiepNhan = idTiepNhan;
             txtMaBenhNhan.Text = idBenhNhan;
+            Account = userEmail;
+            // Lấy danh sách nhóm/quyền từ email
+            int nhomQuyen = phanQuyenBLL.LayNhomTheoEmail(Account);
+            var danhSachQuyen = phanQuyenBLL.LayDanhSachIdChucNangTheoNhom(nhomQuyen);
+            // Gán vào helper (nếu cần dùng ở nơi khác)
+            PhanQuyenHelper.DanhSachQuyen = danhSachQuyen;
+
+
+            UserSession.Email = Account;
+            UserSession.NhomQuyen = phanQuyenBLL.LayNhomTheoEmail(UserSession.Email);
+            UserSession.DanhSachChucNang = phanQuyenBLL.LayDanhSachIdChucNangTheoNhom(UserSession.NhomQuyen);
+
 
             var bn = bll.GetBenhNhanInfo(this.idBenhNhan);
             if (bn != null)
@@ -56,7 +70,7 @@ namespace ClinicManagement.SidebarItems
             dgThuocDaChon.ItemsSource = danhSachThuoc;
         }
 
-        public ExaminationForm(string idBN, int idTN, int idPK)
+        public ExaminationForm(string idBN, int idTN, int idPK, string userEmail)
         {
             InitializeComponent();
             tblTitle.Text = "Sửa Phiếu Khám";
@@ -64,6 +78,18 @@ namespace ClinicManagement.SidebarItems
             this.idTiepNhan = idTN;
             this.idPhieuKham = idPK;
             txtMaBenhNhan.Text = this.idBenhNhan.ToString();
+            Account = userEmail;
+            // Lấy danh sách nhóm/quyền từ email
+            int nhomQuyen = phanQuyenBLL.LayNhomTheoEmail(Account);
+            var danhSachQuyen = phanQuyenBLL.LayDanhSachIdChucNangTheoNhom(nhomQuyen);
+            // Gán vào helper (nếu cần dùng ở nơi khác)
+            PhanQuyenHelper.DanhSachQuyen = danhSachQuyen;
+
+
+            UserSession.Email = Account;
+            UserSession.NhomQuyen = phanQuyenBLL.LayNhomTheoEmail(UserSession.Email);
+            UserSession.DanhSachChucNang = phanQuyenBLL.LayDanhSachIdChucNangTheoNhom(UserSession.NhomQuyen);
+
 
             var bn = bll.GetBenhNhanInfo(this.idBenhNhan);
             if (bn != null)
@@ -201,7 +227,7 @@ namespace ClinicManagement.SidebarItems
             {
                 if (this.Parent is Border parent)
                 {
-                    var list = new SidebarItems.ExaminationList();
+                    var list = new SidebarItems.ExaminationList(Account);
                     list.RenderTransform = new TranslateTransform { X = -this.ActualWidth };
                     parent.Child = list;
                     var slideIn = new DoubleAnimation(-this.ActualWidth, 0, TimeSpan.FromMilliseconds(300));

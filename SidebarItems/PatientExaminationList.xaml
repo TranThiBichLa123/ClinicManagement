@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ClinicManagement.SidebarItems"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"   
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="1200"
              Loaded="UserControl_Loaded">
@@ -12,7 +13,7 @@
         <Grid.Background>
             <LinearGradientBrush StartPoint="1, 0" EndPoint="0, 1">
                 <GradientStop Color="White" Offset="0"/>
-                <GradientStop Color="Silver" Offset="1"/>
+                <GradientStop Color="white" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
 
@@ -25,8 +26,8 @@
         <Grid Grid.Row="0">
             <Grid.Background>
                 <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 1">
-                    <GradientStop Color="#29A3EC" Offset="0"/>
-                    <GradientStop Color="#B3D8A8" Offset="1"/>
+                    <GradientStop Color="white" Offset="0"/>
+                    <GradientStop Color="white" Offset="1"/>
                 </LinearGradientBrush>
             </Grid.Background>
             <StackPanel Orientation="Horizontal">
@@ -35,11 +36,11 @@
                         BorderBrush="Transparent"
                         BorderThickness="0"
                         ToolTip="Thoát">
-                    <materialDesign:PackIcon Kind="Backburger" Width="24" Height="24" Foreground="Black"/>
+                    <materialDesign:PackIcon Kind="Backburger" Width="24" Height="24" Foreground="#2196F3"/>
                 </Button>
                 <TextBlock
                       FontSize="30" FontWeight="Bold" HorizontalAlignment="Left"
-                      FontFamily="Segoe UI" Foreground="#CC000000" VerticalAlignment="Center"
+                      FontFamily="Segoe UI" Foreground="#29A3EC" VerticalAlignment="Center"
                       Margin="30,0,0,5"
                       Text="Danh sách phiếu khám"/>
             </StackPanel>
@@ -272,7 +273,7 @@
                                     </Border.BorderBrush>
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock Text="Tổng tiên thuốc:" FontSize="15" FontWeight="ExtraBold" HorizontalAlignment="Center" Foreground="#29A3EC" Margin="5,5,5,0"/>
-                                      
+
                                         <TextBlock x:Name="txtTongTienThuoc" FontSize="15" Margin="5" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#29A3EC"/>
                                     </StackPanel>
                                 </Border>
@@ -347,20 +348,19 @@
                 CellStyle="{DynamicResource DataGridCellStyle1}"
                 Style="{DynamicResource DataGridStyle1}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID Phiếu khám" Binding="{Binding ID_PhieuKham}" />
-                <DataGridTextColumn Header="Ngày tiếp nhận" Binding="{Binding NgayTN, StringFormat='dd/MM/yyyy'}"/>
-                <DataGridTextColumn Header="Ca tiếp nhận" Binding="{Binding CaTN}"/>
-                <DataGridTextColumn Header="Tiền khám" Binding="{Binding TienKham, StringFormat='N0'}"/>
-                <DataGridTextColumn Header="Tổng tiền thuốc" Binding="{Binding TongTienThuoc, StringFormat='N0'}"/>
+                <DataGridTextColumn Header="ID Phiếu khám" Binding="{Binding ID_PhieuKham}" Width="*"/>
+                <DataGridTextColumn Header="Ngày tiếp nhận" Binding="{Binding NgayTN, StringFormat='dd/MM/yyyy'}" Width="*"/>
+                <DataGridTextColumn Header="Ca tiếp nhận" Binding="{Binding CaTN}" Width="*"/>
+                <DataGridTextColumn Header="Tiền khám" Binding="{Binding TienKham, StringFormat='N0'}" Width="*"/>
+                <DataGridTextColumn Header="Tổng tiền thuốc" Binding="{Binding TongTienThuoc, StringFormat='N0'}" Width="*"/>
 
-                <DataGridTemplateColumn Header="Detail" Width="70">
-                    <DataGridTemplateColumn.CellTemplate>
+                <DataGridTemplateColumn Header="Xem phiếu khám" Width="0.7*" >
+                        <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid>
-                                <Button Width="50" Height="50" BorderBrush="Transparent"
-                                        Click="btn_ViewExamination_Click" Background="Transparent"
-                                        HorizontalAlignment="Center" VerticalAlignment="Center">
-                                 
+                                <Button x:Name="btn_viewExamForm" Click="btn_ViewExamination_Click" Width="80"
+                                    Margin="5 0 20 0" Style="{StaticResource gridRemoveButton}">
+                                    <Icon:PackIconMaterial Kind="Eye" Style="{StaticResource gridButtonIcon}"/>
                                 </Button>
                             </Grid>
                         </DataTemplate>

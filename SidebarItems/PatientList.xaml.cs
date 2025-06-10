@@ -261,7 +261,7 @@ namespace ClinicManagement.SidebarItems
             var row = dgBenhNhan.SelectedItem as DataRowView;
             string idBenhNhan = row["ID_BenhNhan"].ToString();
 
-            PatientExaminationList form = new PatientExaminationList(idBenhNhan);
+            PatientExaminationList form = new PatientExaminationList(idBenhNhan, Account);
             form.RenderTransform = new TranslateTransform();
 
             var parent = this.Parent as Border;

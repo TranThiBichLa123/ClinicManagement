@@ -16,7 +16,7 @@
         <Grid.Background>
             <LinearGradientBrush StartPoint="1, 0" EndPoint="0, 1">
                 <GradientStop Color="White" Offset="0"/>
-                <GradientStop Color="Silver" Offset="1"/>
+                <GradientStop Color="White" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
 
@@ -32,15 +32,15 @@
         <Grid VerticalAlignment="Top">
             <Grid.Background>
                 <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 1">
-                    <GradientStop Color="#29A3EC" Offset="0"/>
-                    <GradientStop Color="#B3D8A8" Offset="1"/>
+                    <GradientStop Color="White" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
                 </LinearGradientBrush>
             </Grid.Background>
 
             <TextBlock
                   FontSize="30" FontWeight="Bold" HorizontalAlignment="Left"
-                  FontFamily="Segoe UI" Foreground="#CC000000"
-                  VerticalAlignment="Bottom" Margin="30,0,0,5"
+                  FontFamily="Segoe UI" Foreground="#2196F3"
+                  VerticalAlignment="Bottom" Margin="40,20,0,5"
                   Text="Danh sách bệnh nhân"/>
         </Grid>
 
@@ -52,9 +52,9 @@
 
             <Grid Grid.Column="1">
                 <Button
-                      Width="120" HorizontalAlignment="Right" Margin="0,10,10,10" x:Name="btnAddPatient"
-                      Content="Thêm bệnh nhân
-                    " Foreground="White"
+                      Width="120" HorizontalAlignment="Right" Margin="0,10,10,10"
+                      Content="Thêm bệnh nhân" HorizontalContentAlignment="Center"
+                      Foreground="White"
                       IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                       
                       ToolTip="Resource name: MaterialDesignRaisedButton"
@@ -294,9 +294,9 @@
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Row="0" Grid.Column="0">
@@ -487,7 +487,7 @@
                 <DataGridTextColumn Header="Địa chỉ" Binding="{Binding DiaChi}" />
                 <DataGridTextColumn Header="Email" Binding="{Binding Email}" />
 
-                <DataGridTemplateColumn Header="Action" Width="70">
+                <DataGridTemplateColumn Header="Thao tác" Width="70">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid>
@@ -496,10 +496,10 @@
                                         HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <materialDesign:PackIcon Kind="DotsVertical" />
                                     <Button.ContextMenu>
-                                        <ContextMenu Opened="ContextMenu_Opened">
-                                            <MenuItem Header="Chỉnh sửa" Click="btn_editPatient_Click" />
+                                        <ContextMenu>
+                                            <MenuItem Header="Chỉnh sửa" Click="btn_editPatient_Click"/>
                                             <MenuItem Header="Xóa" Click="btn_deletePatientFromBenhNhan_Click"/>
-                                            <MenuItem x:Name="btnViewExamination" Header="Danh sách phiếu khám" Click="btn_ViewExamination_Click" />
+                                            <MenuItem x:Name="ExaminationList" Header="Lịch sử khám" Click="btn_ViewExamination_Click"/>
                                         </ContextMenu>
                                     </Button.ContextMenu>
                                 </Button>

@@ -25,14 +25,16 @@ namespace ClinicManagement.SidebarItems
 {
     public partial class PatientExaminationList : UserControl
     {
-        private string connectionString = "Data Source=KOROBE\\SQLEXPRESS;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
+        private string connectionString = "Data Source=LAPTOP-5EKP9JC6\\SQLEXPRESS01;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
         private string ID_BenhNhan;
         private ExaminationBLL examinationBLL;
-        public PatientExaminationList(string ID_BenhNhan)
+        private string Account;
+        public PatientExaminationList(string ID_BenhNhan, string userEmail)
         {
             InitializeComponent();
             this.ID_BenhNhan = ID_BenhNhan;
             DataContext = this;
+            Account = userEmail;
             examinationBLL = new ExaminationBLL();
             LoadPatientInfo(ID_BenhNhan);
             LoadPhieuKham();
@@ -66,11 +68,11 @@ namespace ClinicManagement.SidebarItems
 
                 if (patient.GioiTinh.ToLower() == "nam")
                 {
-                    iconGender.Kind = MaterialDesignThemes.Wpf.PackIconKind.PacMan;
+                    iconGender.Kind = MaterialDesignThemes.Wpf.PackIconKind.GenderMale;
                 }
                 else if (patient.GioiTinh.ToLower() == "nữ")
                 {
-                    iconGender.Kind = MaterialDesignThemes.Wpf.PackIconKind.FaceWoman;
+                    iconGender.Kind = MaterialDesignThemes.Wpf.PackIconKind.GenderFemale;
                 }
             }
             else
@@ -92,7 +94,49 @@ namespace ClinicManagement.SidebarItems
                 return;
 
             int idPhieuKham = selectedPhieu.ID_PhieuKham;
-            ShowExaminationPopup(idPhieuKham);
+
+            // Correcting the fourth argument to match the expected enum type  
+            ExaminationFormView form = new ExaminationFormView(ID_BenhNhan, idPhieuKham, false, Account, ExaminationFormView.PreviousScreen.PatientExaminationList);
+            form.RenderTransform = new TranslateTransform();
+
+            // Gán vào container  
+            var parent = this.Parent as Border;
+            if (parent == null) return;
+
+            // Tạo Storyboard để animate "this" ra trái  
+            var slideOut = new DoubleAnimation
+            {
+                From = 0,
+                To = -this.ActualWidth,
+                Duration = TimeSpan.FromMilliseconds(300),
+                EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
+            };
+
+            // Tạo animation cho UserControl mới đi vào từ bên phải  
+            var slideIn = new DoubleAnimation
+            {
+                From = this.ActualWidth,
+                To = 0,
+                Duration = TimeSpan.FromMilliseconds(300),
+                EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
+            };
+
+            // Bắt đầu animation  
+            var currentTransform = new TranslateTransform();
+            this.RenderTransform = currentTransform;
+
+            slideOut.Completed += (s, _) =>
+            {
+                // Khi slideOut xong thì thay content  
+                parent.Child = form;
+
+                // Animate slide-in  
+                var newTransform = form.RenderTransform as TranslateTransform;
+                newTransform.BeginAnimation(TranslateTransform.XProperty, slideIn);
+            };
+
+            // Animate current control ra trái  
+            currentTransform.BeginAnimation(TranslateTransform.XProperty, slideOut);
         }
 
         private void LoadDanhSachThuoc(int idPhieuKham)

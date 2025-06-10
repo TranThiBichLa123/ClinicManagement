@@ -18,6 +18,11 @@ namespace BLL
             return dal.GetPhieuKham(idTiepNhan);
         }
 
+        public DataRow GetPhieuKham(int idPK, bool _)
+        {
+            return dal.GetPhieuKham(idPK, _);
+        }
+
         public DataTable GetToaThuocTheoPhieuKham(int idPhieuKham)
         {
             return dal.GetToaThuocTheoPhieuKham(idPhieuKham);

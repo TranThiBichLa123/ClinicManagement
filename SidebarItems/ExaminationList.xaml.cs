@@ -363,7 +363,7 @@ namespace ClinicManagement.SidebarItems
                 int idTN = (int)row["ID_TiepNhan"];
                 string idBN = row["ID_BenhNhan"].ToString();
                 // → Ở đây bạn có thể truyền ID vào ExaminationForm
-                ExaminationForm form = new ExaminationForm(idBN, idTN);
+                ExaminationForm form = new ExaminationForm(idBN, idTN, Account);
                 form.RenderTransform = new TranslateTransform();
 
                 // Gán vào container
@@ -416,7 +416,7 @@ namespace ClinicManagement.SidebarItems
                 string idBenhNhan = row["ID_BenhNhan"].ToString();
                 int idTN = (int)row["ID_TiepNhan"];
                 // → Ở đây bạn có thể truyền ID vào ExaminationForm
-                ExaminationFormView form = new ExaminationFormView(idBenhNhan, idTN);
+                ExaminationFormView form = new ExaminationFormView(idBenhNhan, idTN, Account, ExaminationFormView.PreviousScreen.ExaminationList);
                 form.RenderTransform = new TranslateTransform();
 
                 // Gán vào container
