@@ -90,7 +90,6 @@ namespace DAL
                 conn.Open();
                 var cmd = new SqlCommand(@"
                     UPDATE THUOC SET
-                        SoLuongTon = SoLuongTon + @SoLuongThem,
                         DonGiaNhap = @DonGiaNhap,
                         ThanhPhan = @ThanhPhan,
                         XuatXu = @XuatXu,
@@ -98,7 +97,7 @@ namespace DAL
                         HinhAnh = @HinhAnh
                     WHERE ID_Thuoc = @ID_Thuoc", (SqlConnection)conn);
 
-                cmd.Parameters.AddWithValue("@SoLuongThem", soLuongThem);
+
                 cmd.Parameters.AddWithValue("@DonGiaNhap", thuoc.DonGiaNhap);
                 cmd.Parameters.AddWithValue("@ThanhPhan", (object)thuoc.ThanhPhan ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@XuatXu", (object)thuoc.XuatXu ?? DBNull.Value);
