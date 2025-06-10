@@ -27,6 +27,12 @@ namespace ClinicManagement.SidebarItems
     /// </summary>
     public partial class ExaminationFormView : UserControl
     {
+        public enum PreviousScreen
+        {
+            PatientExaminationList,
+            ExaminationList
+        }
+        private PreviousScreen fromScreen;
         private string idBenhNhan;
         private int idTiepNhan;
         private int idPK;
@@ -34,12 +40,13 @@ namespace ClinicManagement.SidebarItems
         private ExaminationFormDTO examinationForm = new ExaminationFormDTO();
         private string connectionString = "Data Source=LAPTOP-2FUIJHRN;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
 
-        public ExaminationFormView(string idBenhNhan, int idTiepNhan)
+        public ExaminationFormView(string idBenhNhan, int idTiepNhan, PreviousScreen fromScreen)
         {
             InitializeComponent();
             this.idBenhNhan = idBenhNhan;
             this.idTiepNhan = idTiepNhan;
             lblMaBN.Content = idBenhNhan;
+            this.fromScreen = fromScreen;
 
             var pk = bll.GetPhieuKham(this.idTiepNhan);
             if (pk != null)
@@ -62,9 +69,37 @@ namespace ClinicManagement.SidebarItems
             }
         }
 
+        public ExaminationFormView(string idBenhNhan, int idPhieuKham, bool _, PreviousScreen fromScreen)
+        {
+            InitializeComponent();
+            this.idBenhNhan = idBenhNhan;
+            lblMaBN.Content = idBenhNhan;
+
+            var pk = bll.GetPhieuKham(idPhieuKham, _);
+            if (pk != null)
+            {
+                idPK = Convert.ToInt32(pk["ID_PhieuKham"]);
+                lblMaPK.Content = idPK.ToString();
+                lblHoTenBN.Content = pk["HoTenBN"].ToString();
+                lblTrieuChung.Content = pk["TrieuChung"].ToString();
+                lblChuanDoan.Content = pk["TenLoaiBenh"].ToString();
+                lblTienKham.Content = ((decimal)pk["TienKham"]).ToString("N0");
+                lblTongTienThuoc.Content = ((decimal)pk["TongTienThuoc"]).ToString("N0");
+                lblNgayKham.Content = pk["CaKham"] + " " + ((DateTime)pk["NgayTN"]).ToString("dd/MM/yyyy");
+
+                var toa = bll.GetToaThuocTheoPhieuKham(idPK);
+                dgToaThuoc.ItemsSource = toa.DefaultView;
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy thông tin phiếu khám của bệnh nhân này!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            this.fromScreen = fromScreen;
+        }
+
         private void AnimateBack()
         {
-            // Tạo hiệu ứng slide-out sang phải cho form hiện tại
             var currentTransform = new TranslateTransform();
             this.RenderTransform = currentTransform;
 
@@ -76,32 +111,43 @@ namespace ClinicManagement.SidebarItems
                 EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
             };
 
-            // Khi slideOut xong, thay thế bằng ExaminationList
             slideOut.Completed += (s, _) =>
             {
                 var parent = this.Parent as Border;
                 if (parent != null)
                 {
-                    var list = new SidebarItems.ExaminationList();
-                    list.RenderTransform = new TranslateTransform { X = -this.ActualWidth }; // Bắt đầu từ bên trái
+                    UserControl backControl = null;
 
-                    parent.Child = list;
-
-                    var slideIn = new DoubleAnimation
+                    if (fromScreen == PreviousScreen.PatientExaminationList)
                     {
-                        From = -this.ActualWidth,
-                        To = 0,
-                        Duration = TimeSpan.FromMilliseconds(300),
-                        EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
-                    };
+                        backControl = new SidebarItems.PatientExaminationList(this.idBenhNhan); // Pass the required parameter 'ID_BenhNhan'
+                    }
+                    else 
+                    {
+                        backControl = new SidebarItems.ExaminationList();
+                    }
 
-                    (list.RenderTransform as TranslateTransform).BeginAnimation(TranslateTransform.XProperty, slideIn);
+                    if (backControl != null)
+                    {
+                        backControl.RenderTransform = new TranslateTransform { X = -this.ActualWidth };
+                        parent.Child = backControl;
+
+                        var slideIn = new DoubleAnimation
+                        {
+                            From = -this.ActualWidth,
+                            To = 0,
+                            Duration = TimeSpan.FromMilliseconds(300),
+                            EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
+                        };
+
+                        (backControl.RenderTransform as TranslateTransform).BeginAnimation(TranslateTransform.XProperty, slideIn);
+                    }
                 }
             };
 
-            // Bắt đầu animation ra ngoài
             currentTransform.BeginAnimation(TranslateTransform.XProperty, slideOut);
         }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             AnimateBack();

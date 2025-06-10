@@ -23,8 +23,11 @@ namespace DAL
                     BN.DienThoai,
                     BN.DiaChi,
                     BN.Email,
-                    BN.NgayDK
+                    BN.NgayDK,
+                    PK.ID_PhieuKham
                 FROM BENHNHAN BN
+                LEFT JOIN DANHSACHTIEPNHAN TN ON TN.ID_BenhNhan = BN.ID_BenhNhan
+                LEFT JOIN PHIEUKHAM PK ON PK.ID_TiepNhan = TN.ID_TiepNhan
                 WHERE BN.Is_Deleted = 0
                 ";
 

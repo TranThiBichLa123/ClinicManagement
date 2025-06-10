@@ -22,6 +22,17 @@ namespace DAL
             return dt.Rows.Count > 0 ? dt.Rows[0] : null;
         }
 
+        public DataRow GetPhieuKham(int idPK, bool _)
+        {
+            string query = $@"SELECT HoTenBN, PK.TrieuChung, TenLoaiBenh, ID_PhieuKham, TienKham, TongTienThuoc, CaKham, NgayTN     
+                                  FROM PHIEUKHAM PK JOIN DANHSACHTIEPNHAN TN ON PK.ID_TiepNhan = TN.ID_TiepNhan
+                                                    JOIN BENHNHAN BN ON BN.ID_BenhNhan = TN.ID_BenhNhan 
+                                                    JOIN LOAIBENH LB ON PK.ID_LoaiBenh = LB.ID_LoaiBenh
+                                  WHERE PK.ID_PhieuKham = {idPK} AND PK.Is_Deleted = 0";
+            var dt = GetData(query);
+            return dt.Rows.Count > 0 ? dt.Rows[0] : null;
+        }
+
         public DataTable GetToaThuocTheoPhieuKham(int idPK)
         {
             string query = $@"SELECT TenThuoc, TenDVT, SoLuong, MoTaCachDung, DonGiaBan_LucMua, TienThuoc

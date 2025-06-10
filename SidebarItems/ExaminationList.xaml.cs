@@ -363,15 +363,15 @@ namespace ClinicManagement.SidebarItems
             {
                 string idBenhNhan = row["ID_BenhNhan"].ToString();
                 int idTN = (int)row["ID_TiepNhan"];
-                // → Ở đây bạn có thể truyền ID vào ExaminationForm
-                ExaminationFormView form = new ExaminationFormView(idBenhNhan, idTN);
+                // Corrected the third argument to use the appropriate enum value  
+                ExaminationFormView form = new ExaminationFormView(idBenhNhan, idTN, ExaminationFormView.PreviousScreen.ExaminationList);
                 form.RenderTransform = new TranslateTransform();
 
-                // Gán vào container
+                // Gán vào container  
                 var parent = this.Parent as Border;
                 if (parent == null) return;
 
-                // Tạo Storyboard để animate "this" ra trái
+                // Tạo Storyboard để animate "this" ra trái  
                 var slideOut = new DoubleAnimation
                 {
                     From = 0,
@@ -380,7 +380,7 @@ namespace ClinicManagement.SidebarItems
                     EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
                 };
 
-                // Tạo animation cho UserControl mới đi vào từ bên phải
+                // Tạo animation cho UserControl mới đi vào từ bên phải  
                 var slideIn = new DoubleAnimation
                 {
                     From = this.ActualWidth,
@@ -389,21 +389,21 @@ namespace ClinicManagement.SidebarItems
                     EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
                 };
 
-                // Bắt đầu animation
+                // Bắt đầu animation  
                 var currentTransform = new TranslateTransform();
                 this.RenderTransform = currentTransform;
 
                 slideOut.Completed += (s, _) =>
                 {
-                    // Khi slideOut xong thì thay content
+                    // Khi slideOut xong thì thay content  
                     parent.Child = form;
 
-                    // Animate slide-in
+                    // Animate slide-in  
                     var newTransform = form.RenderTransform as TranslateTransform;
                     newTransform.BeginAnimation(TranslateTransform.XProperty, slideIn);
                 };
 
-                // Animate current control ra trái
+                // Animate current control ra trái  
                 currentTransform.BeginAnimation(TranslateTransform.XProperty, slideOut);
             }
         }

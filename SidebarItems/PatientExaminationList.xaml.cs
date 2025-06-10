@@ -25,7 +25,7 @@ namespace ClinicManagement.SidebarItems
 {
     public partial class PatientExaminationList : UserControl
     {
-        private string connectionString = "Data Source=KOROBE\\SQLEXPRESS;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
+        private string connectionString = "Data Source=LAPTOP-5EKP9JC6\\SQLEXPRESS01;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
         private string ID_BenhNhan;
         private ExaminationBLL examinationBLL;
         public PatientExaminationList(string ID_BenhNhan)
@@ -66,11 +66,11 @@ namespace ClinicManagement.SidebarItems
 
                 if (patient.GioiTinh.ToLower() == "nam")
                 {
-                    iconGender.Kind = MaterialDesignThemes.Wpf.PackIconKind.PacMan;
+                    iconGender.Kind = MaterialDesignThemes.Wpf.PackIconKind.GenderMale;
                 }
                 else if (patient.GioiTinh.ToLower() == "nữ")
                 {
-                    iconGender.Kind = MaterialDesignThemes.Wpf.PackIconKind.FaceWoman;
+                    iconGender.Kind = MaterialDesignThemes.Wpf.PackIconKind.GenderFemale;
                 }
             }
             else
@@ -92,7 +92,49 @@ namespace ClinicManagement.SidebarItems
                 return;
 
             int idPhieuKham = selectedPhieu.ID_PhieuKham;
-            ShowExaminationPopup(idPhieuKham);
+
+            // Correcting the fourth argument to match the expected enum type  
+            ExaminationFormView form = new ExaminationFormView(ID_BenhNhan, idPhieuKham, false, ExaminationFormView.PreviousScreen.PatientExaminationList);
+            form.RenderTransform = new TranslateTransform();
+
+            // Gán vào container  
+            var parent = this.Parent as Border;
+            if (parent == null) return;
+
+            // Tạo Storyboard để animate "this" ra trái  
+            var slideOut = new DoubleAnimation
+            {
+                From = 0,
+                To = -this.ActualWidth,
+                Duration = TimeSpan.FromMilliseconds(300),
+                EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
+            };
+
+            // Tạo animation cho UserControl mới đi vào từ bên phải  
+            var slideIn = new DoubleAnimation
+            {
+                From = this.ActualWidth,
+                To = 0,
+                Duration = TimeSpan.FromMilliseconds(300),
+                EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
+            };
+
+            // Bắt đầu animation  
+            var currentTransform = new TranslateTransform();
+            this.RenderTransform = currentTransform;
+
+            slideOut.Completed += (s, _) =>
+            {
+                // Khi slideOut xong thì thay content  
+                parent.Child = form;
+
+                // Animate slide-in  
+                var newTransform = form.RenderTransform as TranslateTransform;
+                newTransform.BeginAnimation(TranslateTransform.XProperty, slideIn);
+            };
+
+            // Animate current control ra trái  
+            currentTransform.BeginAnimation(TranslateTransform.XProperty, slideOut);
         }
 
         private void LoadDanhSachThuoc(int idPhieuKham)
@@ -108,31 +150,6 @@ namespace ClinicManagement.SidebarItems
             }
 
             dgDSThuoc.ItemsSource = danhSachThuoc;
-        }
-
-        private void ShowExaminationPopup(int idPhieuKham)
-        {
-            try
-            {
-                object[] objects = examinationBLL.ShowExaminationPopup(idPhieuKham);
-                if (objects[0] != null && objects[1] != null && objects[2] != null)
-                {
-                    txtIDPhieuKham.Text = idPhieuKham.ToString();
-                    txtCAKham.Text = objects[5].ToString();
-                    txtTrieuChung.Text = objects[1].ToString();
-                    txtTienKham.Text = Convert.ToDecimal(objects[3]).ToString("N0");
-                    txtTongTienThuoc.Text = Convert.ToDecimal(objects[4]).ToString("N0");
-                    txtTenLoaiBenh.Text = objects[2].ToString();
-
-                    ExaminationPopup.IsOpen = true;
-                    LoadDanhSachThuoc(idPhieuKham);
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi tải chi tiết phiếu khám: " + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)

@@ -12,7 +12,7 @@
         <Grid.Background>
             <LinearGradientBrush StartPoint="1, 0" EndPoint="0, 1">
                 <GradientStop Color="White" Offset="0"/>
-                <GradientStop Color="Silver" Offset="1"/>
+                <GradientStop Color="white" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
 
@@ -25,8 +25,8 @@
         <Grid Grid.Row="0">
             <Grid.Background>
                 <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 1">
-                    <GradientStop Color="#29A3EC" Offset="0"/>
-                    <GradientStop Color="#B3D8A8" Offset="1"/>
+                    <GradientStop Color="white" Offset="0"/>
+                    <GradientStop Color="white" Offset="1"/>
                 </LinearGradientBrush>
             </Grid.Background>
             <StackPanel Orientation="Horizontal">
@@ -35,11 +35,11 @@
                         BorderBrush="Transparent"
                         BorderThickness="0"
                         ToolTip="Thoát">
-                    <materialDesign:PackIcon Kind="Backburger" Width="24" Height="24" Foreground="Black"/>
+                    <materialDesign:PackIcon Kind="Backburger" Width="24" Height="24" Foreground="#2196F3"/>
                 </Button>
                 <TextBlock
                       FontSize="30" FontWeight="Bold" HorizontalAlignment="Left"
-                      FontFamily="Segoe UI" Foreground="#CC000000" VerticalAlignment="Center"
+                      FontFamily="Segoe UI" Foreground="#29A3EC" VerticalAlignment="Center"
                       Margin="30,0,0,5"
                       Text="Danh sách phiếu khám"/>
             </StackPanel>
@@ -358,9 +358,10 @@
                         <DataTemplate>
                             <Grid>
                                 <Button Width="50" Height="50" BorderBrush="Transparent"
-                                        Click="btn_ViewExamination_Click" Background="Transparent"
-                                        HorizontalAlignment="Center" VerticalAlignment="Center">
-                                 
+                                        Background="Transparent"
+                                        HorizontalAlignment="Center" VerticalAlignment="Center"
+                                        Click="btn_ViewExamination_Click" >
+                                    <materialDesign:PackIcon Kind="DotsVertical" />
                                 </Button>
                             </Grid>
                         </DataTemplate>
