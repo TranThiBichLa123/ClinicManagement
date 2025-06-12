@@ -14,6 +14,8 @@ namespace ClinicManagement.SidebarItems
 {
     public partial class NewDrug : Window
     {
+        private readonly QuiDinhBLL quyDinhBLL = new QuiDinhBLL();
+
         private ObservableCollection<ChiTietPhieuNhapThuocDTO> danhSachThuocNhap = new ObservableCollection<ChiTietPhieuNhapThuocDTO>();
         private NhapThuocBLL bll = new NhapThuocBLL();
 
@@ -29,7 +31,27 @@ namespace ClinicManagement.SidebarItems
             drugDataGrid.ItemsSource = danhSachThuocNhap;
             LoadTenThuoc();
             LoadDVT_CachDung();
+           
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadTyLeGiaBanMacDinh();
+        }
+
+        private void LoadTyLeGiaBanMacDinh()
+        {
+            try
+            {
+                var tyLe = quyDinhBLL.LayTyLeGiaBan(); // hoặc từ DAL
+                textBoxTyLeGiaBan.Text = tyLe.ToString("0.##"); // định dạng số gọn
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải tỷ lệ giá bán: " + ex.Message);
+            }
+        }
+
 
         private void LoadDVT_CachDung()
         {
@@ -61,7 +83,6 @@ namespace ClinicManagement.SidebarItems
                 ThanhPhancomboBox.Text = thuoc.ThanhPhan;
                 XuatXucomboBox.Text = thuoc.XuatXu;
                 textBoxDonGiaNhap.Text = thuoc.DonGiaNhap.ToString();
-                textBoxTyLeGiaBan.Text = thuoc.TyLeGiaBan.ToString();
                 selectedImagePath = !string.IsNullOrEmpty(thuoc.HinhAnh) ? thuoc.HinhAnh : "/img/drugDefault.jpg";
                 imgThuoc.Source = new BitmapImage(new Uri(selectedImagePath, UriKind.RelativeOrAbsolute));
             }
@@ -75,7 +96,6 @@ namespace ClinicManagement.SidebarItems
                 string tenThuoc = TenThuoccomboBox.Text.Trim();
                 int soLuong = int.Parse(textBoxSoLuongNhap.Text);
                 decimal donGia = decimal.Parse(textBoxDonGiaNhap.Text);
-                decimal tyLe = decimal.Parse(textBoxTyLeGiaBan.Text);
 
                 var ct = new ChiTietPhieuNhapThuocDTO
                 {
@@ -89,7 +109,6 @@ namespace ClinicManagement.SidebarItems
                     ID_CachDung = (int)(CachDungcomboBox.SelectedValue ?? thuocDangChon?.ID_CachDung ?? 0),
                     ThanhPhan = ThanhPhancomboBox.Text,
                     XuatXu = XuatXucomboBox.Text,
-                    TyLeGiaBan = tyLe
                 };
 
                 if (ct.ID_DVT == 0 || ct.ID_CachDung == 0)
@@ -127,7 +146,6 @@ namespace ClinicManagement.SidebarItems
                     thuocDB.DonGiaNhap = ct.DonGiaNhap;
                     thuocDB.ThanhPhan = ct.ThanhPhan;
                     thuocDB.XuatXu = ct.XuatXu;
-                    thuocDB.TyLeGiaBan = ct.TyLeGiaBan;
                     thuocDB.HinhAnh = ct.HinhAnh;
                     bll.UpdateThuocAndIncreaseQuantity(thuocDB, ct.SoLuongNhap);
                     ct.ID_Thuoc = thuocDB.ID_Thuoc;
@@ -142,7 +160,6 @@ namespace ClinicManagement.SidebarItems
                         ThanhPhan = ct.ThanhPhan,
                         XuatXu = ct.XuatXu,
                         DonGiaNhap = ct.DonGiaNhap,
-                        TyLeGiaBan = ct.TyLeGiaBan,
                         HinhAnh = ct.HinhAnh
                     };
                     ct.ID_Thuoc = bll.AddNewThuoc(newThuoc);
@@ -183,7 +200,6 @@ namespace ClinicManagement.SidebarItems
                 XuatXucomboBox.Text = thuocDayDu?.XuatXu ?? ct.XuatXu;
                 textBoxDonGiaNhap.Text = (thuocDayDu?.DonGiaNhap ?? ct.DonGiaNhap).ToString();
                 textBoxSoLuongNhap.Text = ct.SoLuongNhap.ToString();
-                textBoxTyLeGiaBan.Text = (thuocDayDu?.TyLeGiaBan ?? ct.TyLeGiaBan).ToString();
                 datePickerHanSuDung.SelectedDate = ct.HanSuDung;
 
                 selectedImagePath = thuocDayDu?.HinhAnh ?? ct.HinhAnh ?? "/img/drugDefault.jpg";
@@ -207,6 +223,7 @@ namespace ClinicManagement.SidebarItems
             datePickerHanSuDung.SelectedDate = null;
             selectedImagePath = "/img/drugDefault.jpg";
             imgThuoc.Source = new BitmapImage(new Uri(selectedImagePath, UriKind.RelativeOrAbsolute));
+            LoadTyLeGiaBanMacDinh();
         }
 
         private void NewDrugImg_Click(object sender, RoutedEventArgs e)

@@ -66,8 +66,8 @@ namespace DAL
             {
                 conn.Open();
                 var cmd = new SqlCommand(@"
-                    INSERT INTO THUOC (TenThuoc, ID_DVT, ID_CachDung, ThanhPhan, XuatXu, SoLuongTon, DonGiaNhap, TyLeGiaBan, HinhAnh)
-                    VALUES (@TenThuoc, @ID_DVT, @ID_CachDung, @ThanhPhan, @XuatXu, 0, @DonGiaNhap, @TyLeGiaBan, @HinhAnh);
+                    INSERT INTO THUOC (TenThuoc, ID_DVT, ID_CachDung, ThanhPhan, XuatXu, SoLuongTon, DonGiaNhap, HinhAnh)
+                    VALUES (@TenThuoc, @ID_DVT, @ID_CachDung, @ThanhPhan, @XuatXu, 0, @DonGiaNhap, @HinhAnh);
                     SELECT SCOPE_IDENTITY();", (SqlConnection)conn);
 
                 cmd.Parameters.AddWithValue("@TenThuoc", thuoc.TenThuoc);
@@ -76,7 +76,6 @@ namespace DAL
                 cmd.Parameters.AddWithValue("@ThanhPhan", (object)thuoc.ThanhPhan ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@XuatXu", (object)thuoc.XuatXu ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@DonGiaNhap", thuoc.DonGiaNhap);
-                cmd.Parameters.AddWithValue("@TyLeGiaBan", thuoc.TyLeGiaBan);
                 cmd.Parameters.AddWithValue("@HinhAnh", (object)thuoc.HinhAnh ?? DBNull.Value);
 
                 return Convert.ToInt32(cmd.ExecuteScalar());
@@ -93,7 +92,7 @@ namespace DAL
                         DonGiaNhap = @DonGiaNhap,
                         ThanhPhan = @ThanhPhan,
                         XuatXu = @XuatXu,
-                        TyLeGiaBan = @TyLeGiaBan,
+                    
                         HinhAnh = @HinhAnh
                     WHERE ID_Thuoc = @ID_Thuoc", (SqlConnection)conn);
 
@@ -101,7 +100,7 @@ namespace DAL
                 cmd.Parameters.AddWithValue("@DonGiaNhap", thuoc.DonGiaNhap);
                 cmd.Parameters.AddWithValue("@ThanhPhan", (object)thuoc.ThanhPhan ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@XuatXu", (object)thuoc.XuatXu ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@TyLeGiaBan", thuoc.TyLeGiaBan);
+                
                 cmd.Parameters.AddWithValue("@HinhAnh", (object)thuoc.HinhAnh ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@ID_Thuoc", thuoc.ID_Thuoc);
 

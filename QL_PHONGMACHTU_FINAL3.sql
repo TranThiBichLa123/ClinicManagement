@@ -950,3 +950,30 @@ SELECT * FROM LOGINLOG
 --Nếu là user thường, chỉ log những hành vi bất thường
 
 --Dùng async hoặc batch logging nếu sợ ảnh hưởng hiệu năng
+
+
+
+CREATE OR ALTER TRIGGER TRG_UpdateTyLeGiaBan_WhenRuleChanged
+ON QUI_DINH
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Chỉ khi cập nhật đúng dòng TyLeDonGiaBan
+    IF EXISTS (
+        SELECT * 
+        FROM inserted i
+        JOIN deleted d ON i.TenQuiDinh = d.TenQuiDinh
+        WHERE i.TenQuiDinh = 'TyLeDonGiaBan'
+          AND i.GiaTri != d.GiaTri
+    )
+    BEGIN
+        DECLARE @NewTyLe DECIMAL(10,2);
+        SELECT @NewTyLe = GiaTri FROM inserted WHERE TenQuiDinh = 'TyLeDonGiaBan';
+
+        -- Cập nhật toàn bộ thuốc theo tỷ lệ mới
+        UPDATE THUOC
+        SET TyLeGiaBan = @NewTyLe;
+    END
+END

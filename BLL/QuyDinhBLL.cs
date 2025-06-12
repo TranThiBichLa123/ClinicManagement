@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using DTO;
 using DAL;
+using System.Linq;
 
 namespace BLL
 {
@@ -31,6 +32,14 @@ namespace BLL
         {
             return _access.IsExists(tenQuiDinh);
         }
+
+        public double LayTyLeGiaBan()
+        {
+            var danhSach = _access.GetAllQuiDinh();
+            var tyLe = danhSach.FirstOrDefault(qd => qd.TenQuiDinh == "TyLeDonGiaBan");
+            return tyLe?.GiaTri ?? 0;
+        }
+
 
     }
 }

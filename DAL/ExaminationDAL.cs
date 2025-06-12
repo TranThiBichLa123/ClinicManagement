@@ -40,7 +40,7 @@ namespace DAL
             string query = @"SELECT ID_PhieuKham, TN.NgayTN, TN.CaTN, TienKham, TongTienThuoc 
                      FROM PHIEUKHAM PK
                      JOIN DANHSACHTIEPNHAN TN ON TN.ID_TiepNhan=PK.ID_TiepNhan
-                     WHERE TN.ID_BenhNhan = @ID_BenhNhan";
+                     WHERE TN.ID_BenhNhan = @ID_BenhNhan AND PK.Is_Deleted = 0";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {

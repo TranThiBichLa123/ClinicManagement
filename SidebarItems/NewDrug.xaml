@@ -7,6 +7,7 @@
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d" 
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        Loaded="Window_Loaded"
         Height="490" Width="1390" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
@@ -411,7 +412,9 @@ Foreground="White" FontSize="10" FontWeight="Bold"  Click="ChonThuoc_Click"
                      Foreground="Black"
                      VerticalAlignment="Center"
                      FontWeight="SemiBold"
-                     Margin="10,0,0,0"/>
+                     Margin="10,0,0,0"
+                             IsReadOnly="True"
+/>
                 </Grid>
 
                 <!-- Icon -->
