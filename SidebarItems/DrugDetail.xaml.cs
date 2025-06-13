@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
 namespace ClinicManagement.SidebarItems
 {
 
@@ -66,6 +67,18 @@ namespace ClinicManagement.SidebarItems
                 // Gán lại hạn sử dụng cho DatePicker
                 datePickerHanSuDung.SelectedDate = existingDrug.HanSuDung;
             }
+        }
+
+        private void Window_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                DragMove();
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+
         }
     }
 }

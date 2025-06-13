@@ -7,82 +7,125 @@
                 xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d" 
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
-        Height="405" Width="870" WindowStartupLocation="CenterScreen">
+      WindowStyle="None"  Height="500" Width="870" Background="Transparent"  WindowStartupLocation="CenterScreen" AllowsTransparency="True" >
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
     </Window.Resources>
-    <Grid>
+    <Border CornerRadius="15" BorderThickness="2" Background="White">
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="3,0">
+                <GradientStop Color="#29A3EC" Offset="0"/>
+                <GradientStop Color="#FF65CBEE" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+        <Grid ClipToBounds="True" >
 
-        <!-- Chia 4 cột -->
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300" />
-            <ColumnDefinition Width="270" />
-            <ColumnDefinition Width="290" />
-        </Grid.ColumnDefinitions>
+            <!-- Chia 3 cột -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="270" />
+                <ColumnDefinition Width="290" />
+            </Grid.ColumnDefinitions>
 
-        <!-- Chia 6 hàng -->
-        <Grid.RowDefinitions>
-            <RowDefinition Height="76" />
-            <RowDefinition Height="76" />
-            <RowDefinition Height="76" />
-            <RowDefinition Height="76" />
-            <RowDefinition Height="76" />
-            <RowDefinition Height="76" />
+            <!-- Chia 6 hàng -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="76" />
+                <RowDefinition Height="76" />
+                <RowDefinition Height="76" />
+                <RowDefinition Height="76" />
+                <RowDefinition Height="76" />
+                <RowDefinition Height="76" />
+                <RowDefinition Height="76" />
 
 
-        </Grid.RowDefinitions>
+            </Grid.RowDefinitions>
+  <Border Grid.Row="0" Grid.ColumnSpan="3"
+CornerRadius="15,15,0,0"
+Margin="0,0,-10,0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#29A3EC" Offset="1"/>
+                        <GradientStop Color="#FF65CBEE" Offset="0"/>
+                    </LinearGradientBrush>
+                </Border.Background>
 
-        <!-- 
+                <Grid >
+                    <TextBlock Text="Sửa thuốc"
+           Foreground="White"
+           FontWeight="Bold"
+           FontSize="36"
+           VerticalAlignment="Center"
+           HorizontalAlignment="Center"/>
+
+                    <!-- Nút đóng -->
+                    <Button x:Name="btnClose"
+        Margin="0 4 6 0"
+        VerticalAlignment="Top"
+        HorizontalAlignment="Right"
+        Cursor="Hand"
+        Style="{StaticResource IconButtonsStyle}"
+        Content="{DynamicResource close}"
+        Click="btnClose_Click"
+        Tag="IsCloseButton"/>
+                </Grid>
+            </Border>
+            <!-- 
 Ảnh hiển thị thuốc -->
-        <StackPanel Grid.Column="0" Grid.RowSpan="5"
+            <StackPanel Grid.RowSpan="5"
             VerticalAlignment="Top" HorizontalAlignment="Center"
-            Margin="0,27,0,0" Height="317" Width="290">
-            <!-- Ảnh thuốc -->
-            <Border Width="245" Height="245"
+            Margin="0,10,0,0" Height="332" Width="280" Grid.Row="1">
+                <!-- Ảnh thuốc -->
+                <Border Width="245" Height="245"
         CornerRadius="15"
         ClipToBounds="True">
-                <Image x:Name="imgThuoc"
+                    <Image x:Name="imgThuoc"
            Stretch="UniformToFill"
            Source="/img/drugDefault.jpg"/>
-            </Border>
+                </Border>
 
 
-            <!-- Nút chọn ảnh -->
-            <Button Content="Chọn ảnh thuốc"  Height="40" Background="#FF29A3EC"
+                <!-- Nút chọn ảnh -->
+                <Button Content="Chọn ảnh thuốc"  Height="40" 
             Foreground="White" FontSize="10" FontWeight="Bold" Margin="0,15,0,0"
            HorizontalAlignment="Center" Cursor="Hand" BorderThickness="0"
             Width="240" Click="NewDrugImg_Click" >
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="Button">
-                                    <Border Background="{TemplateBinding Background}" 
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF65CBEE" Offset="0"/>
+                            <GradientStop Color="#FF29A3EC" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}" 
                                     CornerRadius="4"
                                     Padding="10"
                                     BorderThickness="0">
-                                        <ContentPresenter HorizontalAlignment="Center"
+                                            <ContentPresenter HorizontalAlignment="Center"
                                                   VerticalAlignment="Center"/>
-                                    </Border>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </Button.Style>
-            </Button>
-        </StackPanel>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </StackPanel>
 
-        <Grid Grid.Row="0" Grid.Column="2" Margin="0,0,0,0">
-            <!-- Border bọc ComboBox để tạo viền bo góc -->
-            <Border CornerRadius="5"
+            <Grid Grid.Row="1" Grid.Column="2" Margin="0,0,0,0">
+                <!-- Border bọc ComboBox để tạo viền bo góc -->
+                <Border CornerRadius="5"
     BorderThickness="2"
     BorderBrush="Silver"
     Background="White"
     Width="250"
     Height="50" VerticalAlignment="Center" HorizontalAlignment="Center">
 
-                <!-- ComboBox nhập -->
-                <ComboBox x:Name="DvtcomboBox"
+                    <!-- ComboBox nhập -->
+                    <ComboBox x:Name="DvtcomboBox"
           Background="Transparent"
           BorderThickness="0"
           Height="35"
@@ -93,29 +136,29 @@
           SelectedItem="{Binding TenDVT, Mode=TwoWay}" Margin="8,7,8,4">
 
 
-                </ComboBox>
-            </Border>
+                    </ComboBox>
+                </Border>
 
-            <!-- TextBlock đóng vai trò placeholder -->
-            <TextBlock Text="Nhập đơn vị tính"
+                <!-- TextBlock đóng vai trò placeholder -->
+                <TextBlock Text="Nhập đơn vị tính"
        Foreground="Gray"
        Margin="35,0,45,0"
        VerticalAlignment="Center"
        IsHitTestVisible="False"
        Visibility="{Binding ElementName=DvtcomboBox, Path=Text.IsEmpty, Converter={StaticResource BoolToVisConverter}}"/>
-        </Grid>
+            </Grid>
 
-        <Grid Grid.Row="1" Grid.Column="1">
-            <!-- Border bọc ComboBox để tạo viền bo góc -->
-            <Border CornerRadius="5"
+            <Grid Grid.Row="2" Grid.Column="1">
+                <!-- Border bọc ComboBox để tạo viền bo góc -->
+                <Border CornerRadius="5"
     BorderThickness="2"
     BorderBrush="Silver"
     Background="White"
     Width="250"
     Height="50" VerticalAlignment="Center" HorizontalAlignment="Center">
 
-                <!-- ComboBox nhập -->
-                <ComboBox x:Name="CachDungcomboBox"
+                    <!-- ComboBox nhập -->
+                    <ComboBox x:Name="CachDungcomboBox"
           Background="Transparent"
           BorderThickness="0"
           Height="35"
@@ -127,30 +170,30 @@
           SelectedItem="{Binding MoTaCachDung, Mode=TwoWay}" Margin="8,7,8,4">
 
 
-                </ComboBox>
-            </Border>
+                    </ComboBox>
+                </Border>
 
-            <!-- TextBlock đóng vai trò placeholder -->
-            <TextBlock Text="Nhập cách dùng"
+                <!-- TextBlock đóng vai trò placeholder -->
+                <TextBlock Text="Nhập cách dùng"
        Foreground="Gray"
        Margin="25,0,45,0"
        VerticalAlignment="Center"
        IsHitTestVisible="False"
        Visibility="{Binding ElementName=CachDungcomboBox, Path=Text.IsEmpty, Converter={StaticResource BoolToVisConverter}}"/>
-        </Grid>
+            </Grid>
 
 
-        <Grid Grid.Row="1" Grid.Column="2">
-            <!-- Border bọc ComboBox để tạo viền bo góc -->
-            <Border CornerRadius="5"
+            <Grid Grid.Row="2" Grid.Column="2">
+                <!-- Border bọc ComboBox để tạo viền bo góc -->
+                <Border CornerRadius="5"
     BorderThickness="2"
     BorderBrush="Silver"
     Background="White"
     Width="250"
     Height="50" VerticalAlignment="Center" HorizontalAlignment="Center">
 
-                <!-- ComboBox nhập -->
-                <ComboBox x:Name="ThanhPhancomboBox"
+                    <!-- ComboBox nhập -->
+                    <ComboBox x:Name="ThanhPhancomboBox"
           Background="Transparent"
           BorderThickness="0"
           Height="35"
@@ -162,28 +205,28 @@
 
           SelectedItem="{Binding ThanhPhan, Mode=TwoWay}" Margin="8,7,8,4">
 
-                </ComboBox>
-            </Border>
+                    </ComboBox>
+                </Border>
 
-            <!-- TextBlock đóng vai trò placeholder -->
-            <TextBlock Text="Nhập thành phần"
+                <!-- TextBlock đóng vai trò placeholder -->
+                <TextBlock Text="Nhập thành phần"
        Foreground="Gray"
        Margin="35,0,45,0"
        VerticalAlignment="Center"
        IsHitTestVisible="False"
        Visibility="{Binding ElementName=ThanhPhancomboBox, Path=Text.IsEmpty, Converter={StaticResource BoolToVisConverter}}"/>
-        </Grid>
-        <Grid Grid.Row="2" Grid.Column="2">
-            <!-- Border bọc ComboBox để tạo viền bo góc -->
-            <Border CornerRadius="5"
+            </Grid>
+            <Grid Grid.Row="3" Grid.Column="2">
+                <!-- Border bọc ComboBox để tạo viền bo góc -->
+                <Border CornerRadius="5"
     BorderThickness="2"
     BorderBrush="Silver"
     Background="White"
     Width="250"
     Height="50" VerticalAlignment="Center" HorizontalAlignment="Center">
 
-                <!-- ComboBox nhập -->
-                <ComboBox x:Name="XuatXucomboBox"
+                    <!-- ComboBox nhập -->
+                    <ComboBox x:Name="XuatXucomboBox"
           Background="Transparent"
           BorderThickness="0"
           Height="35"
@@ -195,35 +238,35 @@
    
                           
           SelectedItem="{Binding XuatXu, Mode=TwoWay}" Margin="8,7,8,4">
-                </ComboBox>
-            </Border>
+                    </ComboBox>
+                </Border>
 
-            <!-- TextBlock đóng vai trò placeholder -->
-            <TextBlock Text="Nhập xuất xứ"
+                <!-- TextBlock đóng vai trò placeholder -->
+                <TextBlock Text="Nhập xuất xứ"
        Foreground="Gray"
        Margin="35,0,45,0"
        VerticalAlignment="Center"
        IsHitTestVisible="False"
        Visibility="{Binding ElementName=XuatXucomboBox, Path=Text.IsEmpty, Converter={StaticResource BoolToVisConverter}}"/>
-        </Grid>
+            </Grid>
 
-        <Border Grid.Row="3" Grid.Column="1"
+            <Border Grid.Row="4" Grid.Column="1"
         Height="50"
         BorderBrush="Silver"
         BorderThickness="2"
         CornerRadius="4"
         Margin="10">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <!-- Text -->
-                    <ColumnDefinition />
-                    <!-- Icon -->
-                    <ColumnDefinition Width="50"/>
-                </Grid.ColumnDefinitions>
-
-                <!-- Placeholder -->
                 <Grid>
-                    <TextBlock Text="Nhập số lượng"
+                    <Grid.ColumnDefinitions>
+                        <!-- Text -->
+                        <ColumnDefinition />
+                        <!-- Icon -->
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Placeholder -->
+                    <Grid>
+                        <TextBlock Text="Nhập số lượng"
                        Foreground="Silver"
                        FontWeight="SemiBold"
                        VerticalAlignment="Center"
@@ -232,16 +275,16 @@
                        IsHitTestVisible="False"
                        Visibility="{Binding ElementName=textBoxSoLuongNhap, Path=Text.IsEmpty, Converter={StaticResource BoolToVisConverter}}"/>
 
-                    <TextBox Name="textBoxSoLuongNhap"
+                        <TextBox Name="textBoxSoLuongNhap"
                      BorderThickness="0"
                      Foreground="Black"
                      VerticalAlignment="Center"
                      FontWeight="SemiBold"
                      Margin="10,0,0,0"/>
-                </Grid>
+                    </Grid>
 
-                <!-- Icon -->
-                <fa:IconImage 
+                    <!-- Icon -->
+                    <fa:IconImage 
             Grid.Column="1"
             Width="25"
             Height="25"
@@ -250,25 +293,25 @@ Icon="Boxes"
             Foreground="Silver"
             HorizontalAlignment="Right"
             Margin="0,0,10,0"/>
-            </Grid>
-        </Border>
-        <Border Grid.Row="2" Grid.Column="1"
+                </Grid>
+            </Border>
+            <Border Grid.Row="3" Grid.Column="1"
         Height="50"
         BorderBrush="Silver"
         BorderThickness="2"
         CornerRadius="4"
         Margin="10">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <!-- Text -->
-                    <ColumnDefinition />
-                    <!-- Icon -->
-                    <ColumnDefinition Width="50"/>
-                </Grid.ColumnDefinitions>
-
-                <!-- Placeholder -->
                 <Grid>
-                    <TextBlock Text="Nhập đơn giá nhập"
+                    <Grid.ColumnDefinitions>
+                        <!-- Text -->
+                        <ColumnDefinition />
+                        <!-- Icon -->
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Placeholder -->
+                    <Grid>
+                        <TextBlock Text="Nhập đơn giá nhập"
                        Foreground="Silver"
                        FontWeight="SemiBold"
                        VerticalAlignment="Center"
@@ -277,17 +320,17 @@ Icon="Boxes"
                        IsHitTestVisible="False"
                        Visibility="{Binding ElementName=textBoxDonGiaNhap, Path=Text.IsEmpty, Converter={StaticResource BoolToVisConverter}}"/>
 
-                    <TextBox Name="textBoxDonGiaNhap"
+                        <TextBox Name="textBoxDonGiaNhap"
                      BorderThickness="0"
                      Foreground="Black"
                      VerticalAlignment="Center"
                      FontWeight="SemiBold"
                      Margin="10,0,0,0"
                              />
-                </Grid>
+                    </Grid>
 
-                <!-- Icon -->
-                <fa:IconImage 
+                    <!-- Icon -->
+                    <fa:IconImage 
             Grid.Column="1"
             Width="25"
             Height="25"
@@ -296,47 +339,53 @@ Icon="Boxes"
             Foreground="Silver"
             HorizontalAlignment="Right"
             Margin="0,0,10,0"/>
-            </Grid>
-        </Border>
-      
-        <Button Grid.Column="2" Grid.Row="4" Content="Cập nhật thuốc"  Height="40" Background="#FF29A3EC"
+                </Grid>
+            </Border>
+
+            <Button Grid.Column="2" Grid.Row="5" Content="Cập nhật thuốc"  Height="40" 
 Foreground="White" FontSize="10" FontWeight="Bold"  Click="EditDrug_Click"
  Cursor="Hand" BorderThickness="0"  Margin="20,0,20,0" >
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}" 
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF65CBEE" Offset="0"/>
+                        <GradientStop Color="#FF29A3EC" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
                         CornerRadius="4"
                         Padding="10"
                         BorderThickness="0">
-                                    <ContentPresenter HorizontalAlignment="Center"
+                                        <ContentPresenter HorizontalAlignment="Center"
                                       VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Button.Style>
-        </Button>
-        <Border Grid.Row="3" Grid.Column="2"
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Border Grid.Row="4" Grid.Column="2"
         Height="50"
         BorderBrush="Silver"
         BorderThickness="2"
         CornerRadius="4"
         Margin="20,13,20,13">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <!-- Text -->
-                    <ColumnDefinition />
-                    <!-- Icon -->
-                    <ColumnDefinition Width="50"/>
-                </Grid.ColumnDefinitions>
-
-                <!-- Placeholder -->
                 <Grid>
-                    <TextBlock Text="Nhập tỷ lệ giá bán"
+                    <Grid.ColumnDefinitions>
+                        <!-- Text -->
+                        <ColumnDefinition />
+                        <!-- Icon -->
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Placeholder -->
+                    <Grid>
+                        <TextBlock Text="Nhập tỷ lệ giá bán"
                        Foreground="Silver"
                        FontWeight="SemiBold"
                        VerticalAlignment="Center"
@@ -345,16 +394,16 @@ Foreground="White" FontSize="10" FontWeight="Bold"  Click="EditDrug_Click"
                        IsHitTestVisible="False"
                        Visibility="{Binding ElementName=textBoxTyLeGiaBan, Path=Text.IsEmpty, Converter={StaticResource BoolToVisConverter}}"/>
 
-                    <TextBox Name="textBoxTyLeGiaBan"
+                        <TextBox Name="textBoxTyLeGiaBan"
                      BorderThickness="0"
                      Foreground="Black"
                      VerticalAlignment="Center"
                      FontWeight="SemiBold"
                      Margin="10,0,0,0"/>
-                </Grid>
+                    </Grid>
 
-                <!-- Icon -->
-                <fa:IconImage 
+                    <!-- Icon -->
+                    <fa:IconImage 
             Grid.Column="1"
             Width="25"
             Height="25"
@@ -363,20 +412,20 @@ Icon="Percent"
             Foreground="Silver"
             HorizontalAlignment="Right"
             Margin="0,0,10,0"/>
-            </Grid>
-        </Border>
+                </Grid>
+            </Border>
 
-        <Grid Grid.Row="0" Grid.Column="1">
-            <!-- Border bọc ComboBox để tạo viền bo góc -->
-            <Border CornerRadius="5"
+            <Grid Grid.Row="1" Grid.Column="1">
+                <!-- Border bọc ComboBox để tạo viền bo góc -->
+                <Border CornerRadius="5"
             BorderThickness="2"
             BorderBrush="Silver"
             Background="White"
             Width="250"
             Height="50" VerticalAlignment="Center" HorizontalAlignment="Center">
 
-                <!-- ComboBox nhập -->
-                <ComboBox x:Name="TenThuoccomboBox"
+                    <!-- ComboBox nhập -->
+                    <ComboBox x:Name="TenThuoccomboBox"
                           Background="Transparent"
                   BorderThickness="0"
                   Height="35"
@@ -388,20 +437,21 @@ Icon="Percent"
 
                   SelectedItem="{Binding TenThuoc, Mode=TwoWay}" Margin="8,7,8,4">
 
-                </ComboBox>
-            </Border>
+                    </ComboBox>
+                </Border>
 
-            <!-- TextBlock đóng vai trò placeholder -->
-            <TextBlock Text="Nhập tên thuốc"
+                <!-- TextBlock đóng vai trò placeholder -->
+                <TextBlock Text="Nhập tên thuốc"
                Foreground="Gray"
                Margin="25,0,45,0"
                VerticalAlignment="Center"
                IsHitTestVisible="False"
                Visibility="{Binding ElementName=TenThuoccomboBox, Path=Text.IsEmpty, Converter={StaticResource BoolToVisConverter}}"/>
+            </Grid>
+
+
+
         </Grid>
-
-
-
-    </Grid>
+    </Border>
 
 </Window>

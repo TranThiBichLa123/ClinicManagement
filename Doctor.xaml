@@ -102,7 +102,7 @@
                         <Button x:Name="btnSetting" Style="{DynamicResource PopupButtonStyle}" 
                             MouseEnter="btnSetting_MouseEnter" MouseLeave="btnSetting_MouseLeave" Click="Logout_Click">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" 
-                            IconWidth="16" Text="Logout" Icon="{DynamicResource logout}" VerticalAlignment="Center"/>
+                            IconWidth="16" Text="Đăng xuất" Icon="{DynamicResource logout}" VerticalAlignment="Center"/>
                         </Button>
                     </StackPanel>
 

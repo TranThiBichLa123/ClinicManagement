@@ -7,63 +7,102 @@
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d" 
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
-        Height="415" Width="890" WindowStartupLocation="CenterScreen">
+        Height="475" Width="890" WindowStartupLocation="CenterScreen"
+        WindowStyle="None" Background="Transparent" AllowsTransparency="True"
+        >
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
     </Window.Resources>
-    <Grid>
+    <Border CornerRadius="15" BorderThickness="2" Background="White">
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="3,0">
+                <GradientStop Color="#29A3EC" Offset="0"/>
+                <GradientStop Color="#FF65CBEE" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+        <Grid  ClipToBounds="True" >
 
-        <!-- Chia 4 cột -->
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300" />
-            <ColumnDefinition Width="270" />
-            <ColumnDefinition Width="290" />
-        </Grid.ColumnDefinitions>
+            <!-- Chia 3 cột -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="270" />
+                <ColumnDefinition Width="290" />
+            </Grid.ColumnDefinitions>
 
-        <!-- Chia 6 hàng -->
-        <Grid.RowDefinitions>
-            <RowDefinition Height="76" />
-            <RowDefinition Height="76" />
-            <RowDefinition Height="76" />
-            <RowDefinition Height="76" />
-            <RowDefinition Height="76" />
-            <RowDefinition Height="76" />
+            <!-- Chia 6 hàng -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="76" />
+                <RowDefinition Height="76" />
+                <RowDefinition Height="76" />
+                <RowDefinition Height="76" />
+                <RowDefinition Height="76" />
+                <RowDefinition Height="76" />
+                <RowDefinition Height="76" />
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" Grid.ColumnSpan="3"
+        CornerRadius="15,15,0,0"
+        Margin="0,0,-26,0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#29A3EC" Offset="1"/>
+                        <GradientStop Color="#FF65CBEE" Offset="0"/>
+                    </LinearGradientBrush>
+                </Border.Background>
 
+                <Grid MouseLeftButtonDown="Window_MouseLeftButtonDown">
+                    <TextBlock Text="Chi tiết thuốc"
+                   Foreground="White"
+                   FontWeight="Bold"
+                   FontSize="36"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
 
-        </Grid.RowDefinitions>
-
-        <!-- 
-Ảnh hiển thị thuốc -->
-        <StackPanel Grid.Column="0" Grid.RowSpan="5"
-            VerticalAlignment="Top" HorizontalAlignment="Center"
-            Margin="0,27,0,0" Height="317" Width="290">
-            <!-- Ảnh thuốc -->
-            <Border Width="245" Height="245"
-        CornerRadius="15"
-        ClipToBounds="True">
-                <Image x:Name="imgThuoc"
-           Stretch="UniformToFill"
-           Source="/img/drugDefault.jpg"/>
+                    <!-- Nút đóng -->
+                    <Button x:Name="btnClose"
+                Margin="0 4 6 0"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Right"
+                Cursor="Hand"
+                Style="{StaticResource IconButtonsStyle}"
+                Content="{DynamicResource close}"
+                Click="btnClose_Click"
+                Tag="IsCloseButton"/>
+                </Grid>
             </Border>
 
 
 
-        </StackPanel>
 
-        <Grid Grid.Row="0" Grid.Column="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+            <!-- Ảnh hiển thị thuốc -->
+            <StackPanel Grid.RowSpan="4"
+            VerticalAlignment="Top" HorizontalAlignment="Center" Height="266" Width="246" Grid.Row="1" Margin="0,38,0,0">
+                <!-- Ảnh thuốc -->
+                <Border Width="245" Height="245"
+        CornerRadius="15"
+        ClipToBounds="True">
+                    <Image x:Name="imgThuoc"
+           Stretch="UniformToFill"
+           Source="/img/drugDefault.jpg"/>
+                </Border>
 
-            <!-- Nhãn bên trái -->
-            <TextBlock Text="Đơn vị tính:"
+
+
+            </StackPanel>
+
+            <Grid Grid.Row="1" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Nhãn bên trái -->
+                <TextBlock Text="Đơn vị tính:"
                VerticalAlignment="Center"
                FontWeight="SemiBold"
                Margin="0,0,10,0"/>
 
-            <!-- Border + ComboBox -->
-            <Border Grid.Column="1"
+                <!-- Border + ComboBox -->
+                <Border Grid.Column="1"
             CornerRadius="5"
             BorderThickness="2"
             BorderBrush="Silver"
@@ -74,8 +113,8 @@
             VerticalAlignment="Center"
             HorizontalAlignment="Center" Margin="5,0,0,0">
 
-                <Grid Margin="-2,0,0,0" Width="212">
-                    <ComboBox x:Name="DvtcomboBox"
+                    <Grid Margin="-2,0,0,0" Width="212">
+                        <ComboBox x:Name="DvtcomboBox"
                       Background="Transparent"
                       BorderThickness="0"
                       Height="35"
@@ -86,32 +125,32 @@
                       SelectedItem="{Binding TenDVT, Mode=TwoWay}"
                       Margin="8,7,8,4"/>
 
-                    <TextBlock Text="Nhập đơn vị tính"
+                        <TextBlock Text="Nhập đơn vị tính"
                        Foreground="Gray"
                        Margin="10,0,45,0"
                        VerticalAlignment="Center"
                        IsHitTestVisible="False"
                        Visibility="{Binding ElementName=DvtcomboBox, Path=Text.IsEmpty, Converter={StaticResource BoolToVisConverter}}"/>
-                </Grid>
-            </Border>
-        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
 
 
-        <Grid Grid.Row="1" Grid.Column="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="2" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <!-- Nhãn bên trái -->
-            <TextBlock Text="Cách dùng:"
+                <!-- Nhãn bên trái -->
+                <TextBlock Text="Cách dùng:"
                VerticalAlignment="Center"
                FontWeight="SemiBold"
                Margin="0,0,10,0"
                Grid.Column="0"/>
 
-            <!-- Border + ComboBox + Placeholder -->
-            <Border
+                <!-- Border + ComboBox + Placeholder -->
+                <Border
             CornerRadius="5"
             BorderThickness="2"
             BorderBrush="Silver"
@@ -121,8 +160,8 @@
             VerticalAlignment="Center"
             HorizontalAlignment="Left" Margin="15,0,0,0" Grid.Column="1">
 
-                <Grid>
-                    <ComboBox x:Name="CachDungcomboBox"
+                    <Grid>
+                        <ComboBox x:Name="CachDungcomboBox"
                       Background="Transparent"
                       BorderThickness="0"
                       Height="35"
@@ -133,33 +172,33 @@
                       SelectedItem="{Binding MoTaCachDung, Mode=TwoWay}"
                       Margin="8,7,8,4"/>
 
-                    <!-- Placeholder bên trong ComboBox -->
-                    <TextBlock Text="Nhập cách dùng"
+                        <!-- Placeholder bên trong ComboBox -->
+                        <TextBlock Text="Nhập cách dùng"
                        Foreground="Gray"
                        Margin="10,0,45,0"
                        VerticalAlignment="Center"
                        IsHitTestVisible="False"
                        Visibility="{Binding ElementName=CachDungcomboBox, Path=Text.IsEmpty, Converter={StaticResource BoolToVisConverter}}"/>
-                </Grid>
-            </Border>
-        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
 
 
-        <Grid Grid.Row="1" Grid.Column="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="2" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <!-- Nhãn cố định bên trái -->
-            <TextBlock Text="Thành phần:"
+                <!-- Nhãn cố định bên trái -->
+                <TextBlock Text="Thành phần:"
                VerticalAlignment="Center"
                FontWeight="SemiBold"
                Margin="0,0,10,0"
                Grid.Column="0"/>
 
-            <!-- Border + ComboBox + Placeholder -->
-            <Border Grid.Column="1"
+                <!-- Border + ComboBox + Placeholder -->
+                <Border Grid.Column="1"
             CornerRadius="5"
             BorderThickness="2"
             BorderBrush="Silver"
@@ -169,8 +208,8 @@
             VerticalAlignment="Center"
             HorizontalAlignment="Center">
 
-                <Grid>
-                    <ComboBox x:Name="ThanhPhancomboBox"
+                    <Grid>
+                        <ComboBox x:Name="ThanhPhancomboBox"
                       Background="Transparent"
                       BorderThickness="0"
                       Height="35"
@@ -182,35 +221,35 @@
                       SelectedItem="{Binding ThanhPhan, Mode=TwoWay}"
                       Margin="8,7,8,4"/>
 
-                    <!-- Placeholder -->
-                    <TextBlock Text="Nhập thành phần"
+                        <!-- Placeholder -->
+                        <TextBlock Text="Nhập thành phần"
                        Foreground="Gray"
                        Margin="10,0,45,0"
                        VerticalAlignment="Center"
                        IsHitTestVisible="False"
                        Visibility="{Binding ElementName=ThanhPhancomboBox, Path=Text.IsEmpty, Converter={StaticResource BoolToVisConverter}}"/>
-                </Grid>
-            </Border>
-        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
 
-        <Grid Grid.Row="2" Grid.Column="2">
-            <Grid.ColumnDefinitions>
-                <!-- Label bên trái -->
-                <ColumnDefinition Width="Auto"/>
-                <!-- ComboBox bên phải -->
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="3" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <!-- Label bên trái -->
+                    <ColumnDefinition Width="Auto"/>
+                    <!-- ComboBox bên phải -->
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <!-- Nhãn cố định -->
-            <TextBlock Text="Xuất xứ:"
+                <!-- Nhãn cố định -->
+                <TextBlock Text="Xuất xứ:"
                VerticalAlignment="Center"
                FontWeight="SemiBold"
                Margin="0,0,10,0"
                Grid.Column="0"/>
 
-            <!-- ComboBox chứa trong Border -->
-            <Grid Grid.Column="1">
-                <Border CornerRadius="5"
+                <!-- ComboBox chứa trong Border -->
+                <Grid Grid.Column="1">
+                    <Border CornerRadius="5"
                 BorderThickness="2"
                 BorderBrush="Silver"
                 Background="White"
@@ -219,7 +258,7 @@
                 VerticalAlignment="Center"
                 HorizontalAlignment="Left" Margin="23,0,0,0">
 
-                    <ComboBox x:Name="XuatXucomboBox"
+                        <ComboBox x:Name="XuatXucomboBox"
                       Background="Transparent"
                       BorderThickness="0"
                       Height="35"
@@ -230,51 +269,51 @@
                       ItemsSource="{Binding DanhSachXuatXu}"
                       SelectedItem="{Binding XuatXu, Mode=TwoWay}"
                       Margin="8,7,8,4"/>
-                </Border>
+                    </Border>
 
-                <!-- Placeholder -->
-                <TextBlock Text="Nhập xuất xứ"
+                    <!-- Placeholder -->
+                    <TextBlock Text="Nhập xuất xứ"
                    Foreground="Gray"
                    Margin="35,0,45,0"
                    VerticalAlignment="Center"
                    IsHitTestVisible="False"
                    Visibility="{Binding ElementName=XuatXucomboBox, Path=Text.IsEmpty, Converter={StaticResource BoolToVisConverter}}"/>
+                </Grid>
             </Grid>
-        </Grid>
 
 
 
-        <Grid Grid.Row="3" Grid.Column="1">
-            <Grid.ColumnDefinitions>
-                <!-- Label -->
-                <ColumnDefinition Width="Auto"/>
-                <!-- Input Field -->
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="4" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <!-- Label -->
+                    <ColumnDefinition Width="Auto"/>
+                    <!-- Input Field -->
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <!-- Nhãn -->
-            <TextBlock Text="Số lượng tồn:"
+                <!-- Nhãn -->
+                <TextBlock Text="Số lượng tồn:"
                VerticalAlignment="Center"
                FontWeight="SemiBold"
                Margin="0,0,10,0"
                Grid.Column="0"/>
 
-            <!-- Border chứa TextBox + Icon -->
-            <Border Grid.Column="1"
+                <!-- Border chứa TextBox + Icon -->
+                <Border Grid.Column="1"
             Height="50"
             BorderBrush="Silver"
             BorderThickness="2"
             CornerRadius="4"
             Margin="0,13,10,13">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="50"/>
-                    </Grid.ColumnDefinitions>
-
-                    <!-- Placeholder + TextBox -->
                     <Grid>
-                        <TextBlock Text="Nhập số lượng tồn"
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Placeholder + TextBox -->
+                        <Grid>
+                            <TextBlock Text="Nhập số lượng tồn"
                            Foreground="Silver"
                            FontWeight="SemiBold"
                            VerticalAlignment="Center"
@@ -283,16 +322,16 @@
                            IsHitTestVisible="False"
                            Visibility="{Binding ElementName=textBoxSoLuongTon, Path=Text.IsEmpty, Converter={StaticResource BoolToVisConverter}}"/>
 
-                        <TextBox Name="textBoxSoLuongTon"
+                            <TextBox Name="textBoxSoLuongTon"
                          BorderThickness="0"
                          Foreground="Black"
                          VerticalAlignment="Center"
                          FontWeight="SemiBold"
                          Margin="10,0,0,0"/>
-                    </Grid>
+                        </Grid>
 
-                    <!-- Icon -->
-                    <fa:IconImage 
+                        <!-- Icon -->
+                        <fa:IconImage 
                 Grid.Column="1"
                 Width="25"
                 Height="25"
@@ -301,46 +340,46 @@
                 Foreground="Silver"
                 HorizontalAlignment="Right"
                 Margin="0,0,10,0"/>
-                </Grid>
-            </Border>
-        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
 
 
 
 
-        <Grid Grid.Row="2" Grid.Column="1">
-            <Grid.ColumnDefinitions>
-                <!-- Label -->
-                <ColumnDefinition Width="86"/>
-                <!-- Input -->
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="3" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <!-- Label -->
+                    <ColumnDefinition Width="86"/>
+                    <!-- Input -->
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <!-- Nhãn cố định -->
-            <TextBlock Text="Đơn giá nhập:"
+                <!-- Nhãn cố định -->
+                <TextBlock Text="Đơn giá nhập:"
                VerticalAlignment="Center"
                FontWeight="SemiBold"
                Margin="0,0,10,0"
                Grid.Column="0"/>
 
-            <!-- Border chứa TextBox và Icon -->
-            <Border Grid.Column="1"
+                <!-- Border chứa TextBox và Icon -->
+                <Border Grid.Column="1"
             Height="50"
             BorderBrush="Silver"
             BorderThickness="2"
             CornerRadius="4"
             Margin="0,13,10,13">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <!-- TextBox -->
-                        <ColumnDefinition />
-                        <!-- Icon -->
-                        <ColumnDefinition Width="38"/>
-                    </Grid.ColumnDefinitions>
-
-                    <!-- Stack chứa placeholder và TextBox -->
                     <Grid>
-                        <TextBlock Text="Nhập đơn giá nhập"
+                        <Grid.ColumnDefinitions>
+                            <!-- TextBox -->
+                            <ColumnDefinition />
+                            <!-- Icon -->
+                            <ColumnDefinition Width="38"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Stack chứa placeholder và TextBox -->
+                        <Grid>
+                            <TextBlock Text="Nhập đơn giá nhập"
                            Foreground="Silver"
                            FontWeight="SemiBold"
                            VerticalAlignment="Center"
@@ -349,16 +388,16 @@
                            IsHitTestVisible="False"
                            Visibility="{Binding ElementName=textBoxDonGiaNhap, Path=Text.IsEmpty, Converter={StaticResource BoolToVisConverter}}"/>
 
-                        <TextBox Name="textBoxDonGiaNhap"
+                            <TextBox Name="textBoxDonGiaNhap"
                          BorderThickness="0"
                          Foreground="Black"
                          VerticalAlignment="Center"
                          FontWeight="SemiBold"
                          Margin="10,0,0,0"/>
-                    </Grid>
+                        </Grid>
 
-                    <!-- Icon ở cột phải -->
-                    <fa:IconImage 
+                        <!-- Icon ở cột phải -->
+                        <fa:IconImage 
                 Grid.Column="1"
                 Width="26"
                 Height="NaN"
@@ -367,11 +406,11 @@
                 Foreground="Silver"
                 HorizontalAlignment="Center"
                 Margin="0,10,0,10"/>
-                </Grid>
-            </Border>
-        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
 
-        <!--
+            <!--
         <Border Grid.Row="3" Grid.Column="2"
         Height="50"
         BorderBrush="Silver"
@@ -399,24 +438,24 @@
         </Border>
     -->
 
-        <Grid Grid.Row="4" Grid.Column="2">
-            <Grid.ColumnDefinitions>
-                <!-- Cột nhãn -->
-                <ColumnDefinition Width="78"/>
-                <!-- Cột chứa DatePicker -->
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="5" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <!-- Cột nhãn -->
+                    <ColumnDefinition Width="78"/>
+                    <!-- Cột chứa DatePicker -->
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <!-- Label -->
-            <TextBlock Text="Hạn sử dụng:"
+                <!-- Label -->
+                <TextBlock Text="Hạn sử dụng:"
                VerticalAlignment="Center"
                FontWeight="SemiBold"
                Margin="0,0,5,0"
                Grid.Column="0"/>
 
-            <!-- Khung DatePicker -->
-            <Grid Grid.Column="1">
-                <Border CornerRadius="5"
+                <!-- Khung DatePicker -->
+                <Grid Grid.Column="1">
+                    <Border CornerRadius="5"
                 BorderThickness="2"
                 BorderBrush="Silver"
                 Background="White"
@@ -424,7 +463,7 @@
                 Height="50"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center">
-                    <DatePicker Name="datePickerHanSuDung"
+                        <DatePicker Name="datePickerHanSuDung"
                         BorderThickness="0"
                         Foreground="Black"
                         FontWeight="SemiBold"
@@ -432,41 +471,41 @@
                         SelectedDate="{Binding HanSuDung, Mode=TwoWay}"
                         Margin="10,0,0,0"
                         Background="Transparent"/>
-                </Border>
+                    </Border>
+                </Grid>
             </Grid>
-        </Grid>
 
 
-        <Grid Grid.Row="3" Grid.Column="2">
-            <Grid.ColumnDefinitions>
+            <Grid Grid.Row="4" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <!-- Label -->
+                    <ColumnDefinition Width="78"/>
+                    <!-- Input field with icon -->
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
                 <!-- Label -->
-                <ColumnDefinition Width="78"/>
-                <!-- Input field with icon -->
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <!-- Label -->
-            <TextBlock Text="Tỷ lệ giá bán:"
+                <TextBlock Text="Tỷ lệ giá bán:"
                VerticalAlignment="Center"
                FontWeight="SemiBold"
                Margin="0,0,4,0"
                Grid.Column="0"/>
 
-            <!-- Input Field -->
-            <Border Grid.Column="1"
+                <!-- Input Field -->
+                <Border Grid.Column="1"
             Height="50"
             BorderBrush="Silver"
             BorderThickness="2"
             CornerRadius="4" Width="212">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="50"/>
-                    </Grid.ColumnDefinitions>
-
-                    <!-- Placeholder & TextBox -->
                     <Grid>
-                        <TextBlock Text="Nhập tỷ lệ giá bán"
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Placeholder & TextBox -->
+                        <Grid>
+                            <TextBlock Text="Nhập tỷ lệ giá bán"
                            Foreground="Silver"
                            FontWeight="SemiBold"
                            VerticalAlignment="Center"
@@ -475,16 +514,16 @@
                            IsHitTestVisible="False"
                            Visibility="{Binding ElementName=textBoxTyLeGiaBan, Path=Text.IsEmpty, Converter={StaticResource BoolToVisConverter}}"/>
 
-                        <TextBox Name="textBoxTyLeGiaBan"
+                            <TextBox Name="textBoxTyLeGiaBan"
                          BorderThickness="0"
                          Foreground="Black"
                          VerticalAlignment="Center"
                          FontWeight="SemiBold"
                          Margin="10,0,0,0"/>
-                    </Grid>
+                        </Grid>
 
-                    <!-- Icon -->
-                    <fa:IconImage 
+                        <!-- Icon -->
+                        <fa:IconImage 
                 Grid.Column="1"
                 Width="25"
                 Height="25"
@@ -493,27 +532,27 @@
                 Foreground="Silver"
                 HorizontalAlignment="Right"
                 Margin="0,0,10,0"/>
-                </Grid>
-            </Border>
-        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
 
-        <Grid Grid.Row="0" Grid.Column="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <!-- Cho TextBlock -->
-                <ColumnDefinition Width="*"/>
-                <!-- Cho ComboBox -->
-            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <!-- Cho TextBlock -->
+                    <ColumnDefinition Width="*"/>
+                    <!-- Cho ComboBox -->
+                </Grid.ColumnDefinitions>
 
-            <!-- TextBlock hiển thị nhãn -->
-            <TextBlock Text="Tên thuốc:"
+                <!-- TextBlock hiển thị nhãn -->
+                <TextBlock Text="Tên thuốc:"
                VerticalAlignment="Center"
                FontWeight="SemiBold"
                Margin="0,0,10,0" 
                        />
 
-            <!-- Phần ComboBox trong Border -->
-            <Border
+                <!-- Phần ComboBox trong Border -->
+                <Border
             CornerRadius="5"
             BorderThickness="2"
             BorderBrush="Silver"
@@ -523,8 +562,8 @@
             VerticalAlignment="Center"
             HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Column="1">
 
-                <Grid>
-                    <ComboBox x:Name="TenThuoccomboBox"
+                    <Grid>
+                        <ComboBox x:Name="TenThuoccomboBox"
                       Background="Transparent"
                       BorderThickness="0"
                       Height="35"
@@ -536,39 +575,39 @@
                       SelectedItem="{Binding TenThuoc, Mode=TwoWay}"
                       Margin="8,7,8,4"/>
 
-                    <!-- Placeholder -->
-                    <TextBlock Text="Nhập tên thuốc"
+                        <!-- Placeholder -->
+                        <TextBlock Text="Nhập tên thuốc"
                        Foreground="Gray"
                        Margin="10,0,45,0"
                        VerticalAlignment="Center"
                        IsHitTestVisible="False"
                        Visibility="{Binding ElementName=TenThuoccomboBox, Path=Text.IsEmpty, Converter={StaticResource BoolToVisConverter}}"/>
-                </Grid>
-            </Border>
-        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
 
-        <Grid Grid.Row="4" Grid.Column="1">
-            <Grid.ColumnDefinitions>
-                <!-- Cột nhãn -->
-                <ColumnDefinition Width="Auto"/>
-                <!-- Cột chứa ComboBox -->
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="5" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <!-- Cột nhãn -->
+                    <ColumnDefinition Width="Auto"/>
+                    <!-- Cột chứa ComboBox -->
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <!-- Label -->
-            <TextBlock Text="Ngày nhập:"
+                <!-- Label -->
+                <TextBlock Text="Ngày nhập:"
                VerticalAlignment="Center"
                FontWeight="SemiBold"
                Margin="0,0,10,0"
                Grid.Column="0"/>
 
-            <!-- ComboBox với border và placeholder -->
-            <Grid Grid.Column="1" Width="178" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Border CornerRadius="5"
+                <!-- ComboBox với border và placeholder -->
+                <Grid Grid.Column="1" Width="178" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Border CornerRadius="5"
                 BorderThickness="2"
                 BorderBrush="Silver"
                 Background="White">
-                    <ComboBox x:Name="NgayNhapLoThuocCombobox"
+                        <ComboBox x:Name="NgayNhapLoThuocCombobox"
                       Background="Transparent"
                       BorderThickness="0"
                       Height="35"
@@ -580,21 +619,26 @@
                       SelectedItem="{Binding NgayNhap, Mode=TwoWay}"
                       SelectionChanged="NgayNhapLoThuocCombobox_SelectionChanged"
                       Margin="8,7,8,4" />
-                </Border>
+                    </Border>
 
-                <!-- Placeholder -->
-                <TextBlock Text="Chọn ngày nhập"
+                    <!-- Placeholder -->
+                    <TextBlock Text="Chọn ngày nhập"
                    Foreground="Gray"
                    Margin="18,0,0,0"
                    VerticalAlignment="Center"
                    IsHitTestVisible="False"
                    Panel.ZIndex="1"
                    Visibility="{Binding ElementName=NgayNhapLoThuocCombobox, Path=Text.IsEmpty, Converter={StaticResource BoolToVisConverter}}" />
+                </Grid>
             </Grid>
+
+
+
+
+
+
+
+
         </Grid>
-
-
-
-    </Grid>
-
+    </Border>
 </Window>

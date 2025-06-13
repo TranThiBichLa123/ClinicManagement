@@ -13,7 +13,7 @@ namespace DAL
     public class DatabaseAccess
     {
 
-        protected readonly string connectionString = @"Data Source=DESKTOP-VTBENSB\MSSQLK2023;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
+        protected readonly string connectionString = @"Data Source=LAPTOP-MSDUJDE8\MSSQLSERVER01;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
 
 
         protected IDbConnection CreateConnection()

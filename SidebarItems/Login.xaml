@@ -61,15 +61,7 @@
 Grid.Column="1"
 Margin="50,79,50,50">
                 <!--Sign up-->
-                <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,20" Text="Login" FontWeight="Bold" FontSize="40" Foreground="Black"/>
-
-                <TextBlock Foreground="Black">
-    Need an account? 
-    <TextBlock Foreground="#29A3EC" TextDecorations="Underline" 
-               MouseLeftButtonDown="SignUp_Click" Cursor="Hand" >
-        Sign Up
-    </TextBlock>
-</TextBlock>
+                <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,20" Text="Đăng nhập" FontWeight="Bold" FontSize="40" Foreground="Black"/>
 
                 <!--Email & Password Text Box -->
                 <Border
@@ -89,7 +81,7 @@ Margin="50,79,50,50">
                         <!-- Email Textbox -->
                         <Grid>
                             <!-- TextBlock hiển thị gợi ý "Email" khi TextBox trống -->
-                            <TextBlock Text="Enter your email"
+                            <TextBlock Text="Nhập Email"
                Foreground="Silver"
                FontWeight="SemiBold"
                VerticalAlignment="Center"
@@ -139,7 +131,7 @@ Margin="50,79,50,50">
                         <Grid>
                             <!-- Gợi ý nhập mật khẩu -->
                             <TextBlock x:Name="textBlockHint"
-                       Text="Enter your password"
+                       Text="Nhập mật khẩu"
                        Foreground="Silver"
                        FontWeight="SemiBold"
                        VerticalAlignment="Center"
@@ -180,7 +172,7 @@ Margin="50,79,50,50">
                 </Border>
 
                 <!-- CheckBox để bật/tắt hiển thị mật khẩu -->
-                <CheckBox Content="Show password"
+                <CheckBox Content="Hiện mật khẩu"
           HorizontalAlignment="Right"
           Checked="ShowPassword_Checked"
           Unchecked="HidePassword_Checked"/>
@@ -188,9 +180,15 @@ Margin="50,79,50,50">
 
 
                 <!-- Login Button -->
-                <Button Content="Login In" Width="auto" Height="50" Background="#29A3EC"
+                <Button Content="Đăng nhập" Width="auto" Height="50" 
         Foreground="White" FontWeight="Bold" BorderThickness="0" HorizontalAlignment="Stretch"
         Cursor="Hand" Margin="0,25" Click="LoginButton_Click">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF65CBEE" Offset="0"/>
+                            <GradientStop Color="#FF29A3EC" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Template">
@@ -220,7 +218,7 @@ Margin="50,79,50,50">
            Height="16"
            Width="150"
            Foreground="#29A3EC"
-           Text="     Forgot your password?"
+           Text="          Quên mật khẩu ?"
            MouseLeftButtonDown="Password_Checked"
            Cursor="Hand"/>
 

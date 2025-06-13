@@ -151,7 +151,7 @@ namespace ClinicManagement
                 Popup.PlacementTarget = btnSetting;
                 Popup.Placement = PlacementMode.Right;
                 Popup.IsOpen = true;
-                Header.PopupText.Text = "Logout";
+                Header.PopupText.Text = "Đăng xuất";
             }
 
         }
