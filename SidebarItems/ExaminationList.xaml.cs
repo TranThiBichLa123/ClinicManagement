@@ -189,8 +189,6 @@ namespace ClinicManagement.SidebarItems
                 tbMaBN.Text = "";
                 tbMaNV.Text = "";
                 tbCaTN.Text = "";
-                AddPatientPopup.HorizontalOffset = 500;
-                AddPatientPopup.VerticalOffset = 300;
             }
         }
         private void btnHuy_Click(object sender, RoutedEventArgs e)
@@ -228,7 +226,7 @@ namespace ClinicManagement.SidebarItems
 
         private void btn_editPatientFromExam_Click(object sender, RoutedEventArgs e)
         {
-            if (DenyIfNoPermission(18)) return;
+            if (DenyIfNoPermission(17)) return;
             loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Truy cập quản lý nhập hàng");
             thoiDiemTiepNhan = DateTime.Now;
             lblEditNgayHienTai.Content = thoiDiemTiepNhan.ToString("dd/MM/yyyy");
@@ -262,9 +260,6 @@ namespace ClinicManagement.SidebarItems
                 tbEditMaBN.Text = editIdBenhNhan;
                 tbEditMaNV.Text = editIdNhanVien;
                 tbEditCaTN.Text = editCaTN;
-
-                EditPatientPopup.HorizontalOffset = 500;
-                EditPatientPopup.VerticalOffset = 300;
             }
         }
 
@@ -312,7 +307,7 @@ namespace ClinicManagement.SidebarItems
         }
         private void btn_deletePatientFromExam_Click(object sender, RoutedEventArgs e)
         {
-            if (DenyIfNoPermission(22)) return;
+            if (DenyIfNoPermission(21)) return;
             // Lấy dòng đang chọn trong DataGrid
             var selectedRow = dgTiepNhan.SelectedItem as DataRowView;
 

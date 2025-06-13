@@ -61,7 +61,9 @@
                         ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
                         Content="Thêm hồ sơ tiếp nhận">
                         </Button>
-                        <Popup x:Name="AddPatientPopup" Placement="Absolute" StaysOpen="False" IsOpen="False" AllowsTransparency="True" PopupAnimation="Fade">
+                        <Popup x:Name="AddPatientPopup" Placement="Center" StaysOpen="False" IsOpen="False" AllowsTransparency="True" 
+                               PlacementTarget="{Binding ElementName=dgTiepNhan}"  PopupAnimation="Fade"
+                               VerticalOffset="-20">
                             <Border Background="White" BorderThickness="2" Width="400" Height="300" CornerRadius="15">
                                 <Border.BorderBrush>
                                     <LinearGradientBrush>
@@ -129,7 +131,8 @@
                         <!--Style="{StaticResource MaterialDesignRaisedDarkButton}"-->
 
 
-                        <Popup x:Name="EditPatientPopup" Placement="Absolute" StaysOpen="False" IsOpen="False" AllowsTransparency="True" PopupAnimation="Fade">
+                        <Popup x:Name="EditPatientPopup" Placement="Center" StaysOpen="False" IsOpen="False" AllowsTransparency="True" 
+                               PlacementTarget="{Binding ElementName=dgTiepNhan}" VerticalOffset="-20" PopupAnimation="Fade">
                             <Border Background="White" BorderThickness="2" Width="400" Height="300"
                                     CornerRadius="15">
                                 <Border.BorderBrush>
