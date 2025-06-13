@@ -51,7 +51,7 @@
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="1">
-                <Button
+                <Button x:Name="btnAddPatient"
                       Width="120" HorizontalAlignment="Right" Margin="0,10,10,10"
                       Content="Thêm bệnh nhân" HorizontalContentAlignment="Center"
                       Foreground="White"
@@ -491,15 +491,15 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid>
-                                <Button Width="50" Height="50" BorderBrush="Transparent"
+                                <Button x:Name="btnActionMenu" Width="50" Height="50" BorderBrush="Transparent"
                                         Click="ActionMenu_Click" Background="Transparent"
                                         HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <materialDesign:PackIcon Kind="DotsVertical" />
                                     <Button.ContextMenu>
                                         <ContextMenu>
-                                            <MenuItem Header="Chỉnh sửa" Click="btn_editPatient_Click"/>
-                                            <MenuItem Header="Xóa" Click="btn_deletePatientFromBenhNhan_Click"/>
-                                            <MenuItem x:Name="ExaminationList" Header="Lịch sử khám" Click="btn_ViewExamination_Click"/>
+                                            <MenuItem x:Name="itEdit" Header="Chỉnh sửa" Click="btn_editPatient_Click"/>
+                                            <MenuItem x:Name="itDelete" Header="Xóa" Click="btn_deletePatientFromBenhNhan_Click"/>
+                                            <MenuItem x:Name="itViewExaminationList" Header="Lịch sử khám" Click="btn_ViewExamination_Click"/>
                                         </ContextMenu>
                                     </Button.ContextMenu>
                                 </Button>
