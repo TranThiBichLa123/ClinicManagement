@@ -67,7 +67,7 @@ namespace ClinicManagement.SidebarItems
         private void LoadDSTiepNhan(DateTime ThoiDiemDangXet)
         {
             int idNhanVien = new PhanQuyenBLL().LayIDNhanVienTheoEmail(UserSession.Email);
-            bool coQuyen24 = UserSession.DanhSachChucNang.Contains(24);
+            bool coQuyen24 = UserSession.DanhSachChucNang.Contains(28);
 
             DataTable dt;
 
@@ -156,7 +156,7 @@ namespace ClinicManagement.SidebarItems
 
         private void btn_addPatientToExam_Click(object sender, RoutedEventArgs e)
         {
-            if (DenyIfNoPermission(13)) return;
+            if (DenyIfNoPermission(14)) return;
            
             DateTime selectedDate = (DateTime)dpNgayKham.SelectedDate;
             DateTime now = DateTime.Now;
@@ -225,7 +225,7 @@ namespace ClinicManagement.SidebarItems
 
         private void btn_editPatientFromExam_Click(object sender, RoutedEventArgs e)
         {
-            if (DenyIfNoPermission(17)) return;
+            if (DenyIfNoPermission(19)) return;
             loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Truy cập quản lý nhập hàng");
             thoiDiemTiepNhan = DateTime.Now;
             lblEditNgayHienTai.Content = thoiDiemTiepNhan.ToString("dd/MM/yyyy");
@@ -306,7 +306,7 @@ namespace ClinicManagement.SidebarItems
         }
         private void btn_deletePatientFromExam_Click(object sender, RoutedEventArgs e)
         {
-            if (DenyIfNoPermission(21)) return;
+            if (DenyIfNoPermission(24)) return;
             // Lấy dòng đang chọn trong DataGrid
             var selectedRow = dgTiepNhan.SelectedItem as DataRowView;
 
@@ -350,7 +350,7 @@ namespace ClinicManagement.SidebarItems
 
         private void btn_createExamForm_Click(object sender, RoutedEventArgs e)
         {
-            if (DenyIfNoPermission(26)) return;
+            if (DenyIfNoPermission(15)) return;
             loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Đã tạo một phiếu khám");
             var btn = sender as Button;
             if (btn?.DataContext is DataRowView row)
@@ -404,7 +404,7 @@ namespace ClinicManagement.SidebarItems
 
         private void btn_viewExamForm_Click(object sender, RoutedEventArgs e)
         {
-            if (DenyIfNoPermission(25)) return;
+            if (DenyIfNoPermission(4)) return;
             loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Đã xem một phiếu khám");
             var btn = sender as Button;
             if (btn?.DataContext is DataRowView row)

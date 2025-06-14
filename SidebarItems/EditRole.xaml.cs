@@ -58,8 +58,8 @@ namespace ClinicManagement.SidebarItems
             switch (index + 1)
             {
                 case 1: return "1.  UI-Level (Ẩn giao diện)";
-                case 12: return "2.  Logic-Level (Chặn thao tác)";
-                case 24: return "3. Data-Level (Giới hạn dữ liệu)";
+                case 13: return "2.  Logic-Level (Chặn thao tác)";
+                case 28: return "3. Data-Level (Giới hạn dữ liệu)";
              
                 default: return $"";
             }

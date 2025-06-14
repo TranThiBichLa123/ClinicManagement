@@ -202,7 +202,7 @@ namespace ClinicManagement.SidebarItems
 
         private void btnXoaPK_Click(object sender, RoutedEventArgs e)
         {
-            if (DenyIfNoPermission(28)) return;
+            if (DenyIfNoPermission(25)) return;
           
             var result = MessageBox.Show("Bạn có chắc chắn muốn xóa phiếu khám này?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result != MessageBoxResult.Yes)
@@ -226,7 +226,7 @@ namespace ClinicManagement.SidebarItems
 
         private void btnSuaPK_Click(object sender, RoutedEventArgs e)
         {
-            if (DenyIfNoPermission(27)) return;
+            if (DenyIfNoPermission(20)) return;
            
             int idPK = this.idPK;
             string idBN = this.idBenhNhan;

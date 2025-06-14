@@ -52,14 +52,15 @@ namespace ClinicManagement
         { 1, () => new DashBoard() },
         { 2, () => new PatientList(Account) },
         { 3, () => new ExaminationList(Account) },
-        { 4, () => new DrugView() },
-        { 5, () => new ReceiptList(Account) },
-        { 6, () => new CreateBill() },
-        { 7, () => new InvoiceList(Account, this) },
-        { 8, () => new ReportView() },
-        { 9, () => new StaffAccount(this) },
-        { 10, () => new Setting() },
-        { 11, () => new RoleManagement() },
+       
+        { 5, () => new DrugView() },
+        { 6, () => new ReceiptList(Account) },
+        { 7, () => new CreateBill(Account) },
+        { 8, () => new InvoiceList(Account, this) },
+        { 9, () => new ReportView() },
+        { 10, () => new StaffAccount(this) },
+        { 11, () => new Setting() },
+        { 12, () => new RoleManagement() },
       
         
     };
@@ -442,7 +443,7 @@ namespace ClinicManagement
         private void btnPay_Click(object sender, RoutedEventArgs e)
         {
             loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Truy cập trang thanh toán");
-            LoadUserControl(new CreateBill());
+            LoadUserControl(new CreateBill(Account));
 
 
         }

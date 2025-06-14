@@ -77,7 +77,7 @@ namespace ClinicManagement.SidebarItems
 
         private void btnAddPatient_Click(object sender, RoutedEventArgs e)
         {
-            if (DenyIfNoPermission(12)) return;
+            if (DenyIfNoPermission(13)) return;
            
             AddPatientPopup.IsOpen = true;
         }
@@ -151,7 +151,7 @@ namespace ClinicManagement.SidebarItems
         private DataRowView selectedPatient;
         private void btn_editPatient_Click(object sender, RoutedEventArgs e)
         {
-            if (DenyIfNoPermission(16)) return;
+            if (DenyIfNoPermission(18)) return;
             selectedPatient = dgBenhNhan.SelectedItem as DataRowView;
 
             if (selectedPatient == null)
@@ -299,7 +299,7 @@ namespace ClinicManagement.SidebarItems
 
         private void btn_deletePatientFromBenhNhan_Click(object sender, RoutedEventArgs e)
         {
-            if (DenyIfNoPermission(20)) return;
+            if (DenyIfNoPermission(23)) return;
             var selectedRow = dgBenhNhan.SelectedItem as DataRowView;
 
             if (selectedRow == null)

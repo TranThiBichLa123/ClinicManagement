@@ -818,11 +818,20 @@ SELECT * FROM BAOCAOSUDUNGTHUOC
 SELECT * FROM QUI_DINH
 
 
----them tu day
+---Chay lai phanquyen
+-- 1. Xoá dữ liệu
+DELETE FROM PHANQUYEN;
+DELETE FROM CHUCNANG;
+
+-- 2. Reset IDENTITY về 1
+DBCC CHECKIDENT ('CHUCNANG', RESEED, 0);
+
+-- 3. Chèn lại toàn bộ dữ liệu
 INSERT INTO CHUCNANG (TenChucNang, TenManHinhDuocLoad) VALUES 
 (N'Trang tổng quan', 'DashBoard'),
 (N'Quản lý bệnh nhân', 'PatientList'),
 (N'Danh sách tiếp nhận', 'ExaminationLis'),
+(N'Quản lý phiếu khám', 'btn_viewExamForm_Click'),
 (N'Quản lý kho thuốc', 'DrugView'),
 (N'Quản lý nhập hàng', 'ReceiptList'),
 (N'Trang thanh toán', 'CreateBill'),
@@ -835,31 +844,31 @@ INSERT INTO CHUCNANG (TenChucNang, TenManHinhDuocLoad) VALUES
 -- Logic-level
 (N'Thêm bệnh nhân', 'btnAddPatient_Click'),
 (N'Thêm phiếu tiếp nhận', 'btn_addPatientToExam_Click'),
+(N'Thêm phiếu khám', 'btn_createExamForm_Click'),
 (N'Thêm phiếu nhập thuốc', 'AddClick'),
 (N'Thêm hóa đơn', 'CreateBill'),
 (N'Sửa phiếu bệnh nhân', 'btn_editPatient_Click'),
 (N'Sửa phiếu tiếp nhận', 'btn_editPatientFromExam_Click'),
+(N'Sửa phiếu khám', 'btnSuaPK_Click'),
 (N'Sửa phiếu nhập thuốc', 'EditButton_Click'),
 (N'Sửa hóa đơn', 'EditButton_Click'),
--- Xóa
 
+-- Xóa
 (N'Xóa phiếu bệnh nhân', 'btn_deletePatientFromBenhNhan_Click'),
 (N'Xóa phiếu tiếp nhận', 'btn_deletePatientFromExam_Click'),
+(N'Xóa phiếu khám', 'btnXoaPK_Click'),
 (N'Xóa phiếu nhập thuốc', 'btnEdit_Click'),
 (N'Xóa hóa đơn', 'DeleteBill_Click'),
+
 -- Data-level
 (N'Giới hạn theo dữ liệu', 'data');
-INSERT INTO CHUCNANG (TenChucNang, TenManHinhDuocLoad) VALUES 
-(N'Quản lý phiếu khám', 'btn_viewExamForm_Click'),
-(N'Thêm phiếu khám', 'btn_createExamForm_Click'),
-(N'Sửa phiếu khám', 'btnSuaPK_Click'),
-(N'Xóa phiếu khám', 'btnXoaPK_Click');
+
 
 INSERT INTO PHANQUYEN (ID_Nhom, ID_ChucNang) VALUES (2, 4); -- Thu ngân được quản lý kho thuốc
-INSERT INTO PHANQUYEN (ID_Nhom, ID_ChucNang) VALUES (2, 5); -- Thu ngân được nhập hàng
-INSERT INTO PHANQUYEN (ID_Nhom, ID_ChucNang) VALUES (1,11);
-DELETE FROM PHANQUYEN WHERE ID_Nhom IN (1, 3);
+INSERT INTO PHANQUYEN (ID_Nhom, ID_ChucNang) VALUES (3, 5); -- Thu ngân được nhập hàng
+INSERT INTO PHANQUYEN (ID_Nhom, ID_ChucNang) VALUES (1,12);
 
+---chay toi day thoi
 CREATE TABLE LOGINLOG (
     ID_Log INT IDENTITY(1,1) PRIMARY KEY,
     Email NVARCHAR(255) NOT NULL,

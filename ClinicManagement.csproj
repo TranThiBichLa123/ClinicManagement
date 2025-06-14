@@ -411,9 +411,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Image1.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="img\avatar.jpg" />
     <Content Include="img\drugDefault.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

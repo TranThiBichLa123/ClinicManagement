@@ -115,7 +115,7 @@ namespace ClinicManagement.SidebarItems
         /// </summary>
         private void AddClick(object sender, RoutedEventArgs e)
         {
-            if (DenyIfNoPermission(14)) return;
+            if (DenyIfNoPermission(16)) return;
            
             var newDrugWindow = new NewDrug();
             newDrugWindow.ShowDialog();

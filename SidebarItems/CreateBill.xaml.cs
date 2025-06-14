@@ -13,13 +13,44 @@ namespace ClinicManagement.SidebarItems
     public partial class CreateBill : UserControl
     {
         private BillService service = new BillService();
-       
+        private readonly PhanQuyenBLL phanQuyenBLL = new PhanQuyenBLL();
+        private readonly LoginLogBLL loginLogBLL = new LoginLogBLL();
 
+
+        public string Account { get; private set; }
         public CreateBill()
         {
+           
+        }
+        public CreateBill(string userEmail)
+        {
             InitializeComponent();
+            Account = userEmail;
+          
+
+            // Load quyền
+            int nhomQuyen = phanQuyenBLL.LayNhomTheoEmail(Account);
+            var danhSachQuyen = phanQuyenBLL.LayDanhSachIdChucNangTheoNhom(nhomQuyen);
+
+            PhanQuyenHelper.DanhSachQuyen = danhSachQuyen;
+            UserSession.Email = Account;
+            UserSession.NhomQuyen = nhomQuyen;
+            UserSession.DanhSachChucNang = danhSachQuyen;
+        }
+        private bool HasPermission(int chucNangId)
+        {
+            return UserSession.DanhSachChucNang.Contains(chucNangId);
         }
 
+        private bool DenyIfNoPermission(int chucNangId)
+        {
+            if (!HasPermission(chucNangId))
+            {
+                MessageBox.Show("Bạn không có quyền thực hiện chức năng này!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return true;
+            }
+            return false;
+        }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             var danhSachThuNgan = service.GetNhanVienThuNgan();
@@ -30,6 +61,7 @@ namespace ClinicManagement.SidebarItems
 
         private void BtnLapHoaDon_Click(object sender, RoutedEventArgs e)
         {
+            if (DenyIfNoPermission(17)) return;
             if (string.IsNullOrWhiteSpace(txtMaPhieuKham.Text) ||
                 cbNhanVien.SelectedValue == null ||
                 dpNgayLap.SelectedDate == null)

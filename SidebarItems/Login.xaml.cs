@@ -181,7 +181,7 @@ namespace ClinicManagement.SidebarItems
                     int nhomQuyen = phanQuyenBLL.LayNhomTheoEmail(acc.Email);
                     var danhSachQuyen = phanQuyenBLL.LayDanhSachIdChucNangTheoNhom(nhomQuyen);
 
-                    int[] priority = { 1, 2, 3, 4 }; 
+                    int[] priority = { 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12 }; 
                     int idChucNangToLoad = priority.FirstOrDefault(id => danhSachQuyen.Contains(id));
                     if (idChucNangToLoad == 0)
                     {

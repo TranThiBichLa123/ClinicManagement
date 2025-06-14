@@ -53,7 +53,7 @@ namespace ClinicManagement.SidebarItems
         private void InvoiceList_Loaded(object sender, RoutedEventArgs e)
         {
             int idNhanVien = new PhanQuyenBLL().LayIDNhanVienTheoEmail(UserSession.Email);
-            bool coQuyen24 = UserSession.DanhSachChucNang.Contains(24);
+            bool coQuyen24 = UserSession.DanhSachChucNang.Contains(28);
 
             
 
@@ -125,7 +125,7 @@ namespace ClinicManagement.SidebarItems
 
         private void DeleteBill_Click(object sender, RoutedEventArgs e)
         {
-            if (DenyIfNoPermission(23)) return;
+            if (DenyIfNoPermission(27)) return;
 
             var bill = (sender as FrameworkElement)?.DataContext as HoaDon;
             if (bill == null) return;
@@ -150,7 +150,7 @@ namespace ClinicManagement.SidebarItems
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            if (DenyIfNoPermission(19)) return;
+            if (DenyIfNoPermission(22)) return;
 
             if (billDataGrid.SelectedItem is HoaDon selected)
             {
