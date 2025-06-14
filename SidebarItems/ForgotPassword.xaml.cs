@@ -17,7 +17,7 @@ namespace ClinicManagement.SidebarItems
 
         private void SendEmail_Click(object sender, RoutedEventArgs e)
         {
-            string from = "23520827@gm.uit.edu.vn";
+            string from = "23520980@gm.uit.edu.vn";
             string pass = "velc ulct yoxj cxxb"; // App Password từ Gmail (không phải mật khẩu Gmail thật)
             string to = textBoxEmail.Text; // Email người nhận nhập vào
 

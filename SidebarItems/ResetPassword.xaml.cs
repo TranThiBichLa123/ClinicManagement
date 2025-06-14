@@ -96,7 +96,7 @@ namespace ClinicManagement.SidebarItems
         {
             if (textBoxPassword1.Text == textBoxPassword2.Text)
             {
-                SqlConnection con = new SqlConnection("Data Source=LAPTOP-MSDUJDE8\\MSSQLSERVER01;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;TrustServerCertificate=True");
+                SqlConnection con = new SqlConnection("Data Source=LAPTOP-5EKP9JC6\\SQLEXPRESS01;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;TrustServerCertificate=True");
                 /*SqlCommand cmd = new SqlCommand(@"UPDATE TAIKHOAN 
 SET 
     Email = @Email, 
