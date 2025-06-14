@@ -55,7 +55,7 @@ namespace ClinicManagement.SidebarItems
             int idNhanVien = new PhanQuyenBLL().LayIDNhanVienTheoEmail(UserSession.Email);
             bool coQuyen24 = UserSession.DanhSachChucNang.Contains(24);
 
-            DataTable dt;
+            
 
             if (coQuyen24)
             {

@@ -7,7 +7,7 @@ namespace ClinicManagement.SidebarItems
 {
     public partial class ForgotPassword : Window
     {
-        string randomCode;
+        
         public static string to;
         public ForgotPassword()
         {

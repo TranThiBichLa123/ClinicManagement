@@ -14,7 +14,7 @@ namespace ClinicManagement.SidebarItems
 
     public partial class DrugDetail : Window
     {
-        private string imagePath;
+       
         private readonly NewDrugBLL newdrugBLL = new NewDrugBLL();
         private DTO.Drug currentDrug;
         private readonly NewDrugBLL newDrugBLL;

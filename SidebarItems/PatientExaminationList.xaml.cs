@@ -18,14 +18,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static ClinicManagement.SidebarItems.PatientList;
-using DTO;
 using BLL;
 
 namespace ClinicManagement.SidebarItems
 {
     public partial class PatientExaminationList : UserControl
     {
-        private string connectionString = "Data Source=LAPTOP-5EKP9JC6\\SQLEXPRESS01;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
         private string ID_BenhNhan;
         private ExaminationBLL examinationBLL;
         private string Account;

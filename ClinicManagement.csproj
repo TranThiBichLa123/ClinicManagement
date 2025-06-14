@@ -106,9 +106,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Cashier.xaml.cs">
-      <DependentUpon>Cashier.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ChucNangPhanQuyenVM.cs" />
     <Compile Include="Converters\AddOneConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
@@ -116,9 +113,6 @@
     <Compile Include="Converters\RowIndexConverter.cs" />
     <Compile Include="Converters\SearchHintVisibilityConverter.cs" />
     <Compile Include="PhanQuyenHelper.cs" />
-    <Compile Include="Receptionist.xaml.cs">
-      <DependentUpon>Receptionist.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SidebarItems\AddStaff.xaml.cs">
       <DependentUpon>AddStaff.xaml</DependentUpon>
     </Compile>
@@ -252,10 +246,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Cashier.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\MenuItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -265,10 +255,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Doctor.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Receptionist.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

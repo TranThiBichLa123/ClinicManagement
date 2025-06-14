@@ -69,7 +69,7 @@
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource email}" IconWidth="16" Text="Danh sách tiếp nhận" VerticalAlignment="Center"/>
                         </Button>
                         <Button x:Name="btnDrug" Tag="4"  Style="{DynamicResource PopupButtonStyle}"  MouseEnter="Drug_MouseEnter" MouseLeave="Drug_MouseLeave" Click="btnDrug_Click">
-                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource supplier}" IconWidth="16" Text="Quản lý kho thuốc" VerticalAlignment="Center" />
+                            <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource pillIcon}" IconWidth="16" Text="Quản lý kho thuốc" VerticalAlignment="Center" />
                         </Button>
                         <Button x:Name="btnReceipt" Tag="5" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnReceipt_MouseEnter" MouseLeave="btnReceipt_MouseLeave" Click="btnReceipt_Click">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" Icon="{DynamicResource supplier}" IconWidth="16" Text="Quản lý nhập hàng" VerticalAlignment="Center" />

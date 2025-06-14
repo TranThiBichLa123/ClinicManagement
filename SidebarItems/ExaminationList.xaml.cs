@@ -28,7 +28,6 @@ namespace ClinicManagement.SidebarItems
     {
         private DateTime thoiDiem; // Thời điểm hiện tại, dùng khi mới mở usercontrol ExaminationList
         private DateTime thoiDiemTiepNhan;  //Thời điểm khi tiếp nhận 1 bệnh nhân nào đó
-        private DateTime thoiDiemKham;  //Thời điểm khi khám bệnh cho 1 bệnh nhân nào đó
         private ExaminationListBLL bll = new ExaminationListBLL();
         private string Account;
         private readonly PhanQuyenBLL phanQuyenBLL = new PhanQuyenBLL();
