@@ -849,11 +849,15 @@ INSERT INTO CHUCNANG (TenChucNang, TenManHinhDuocLoad) VALUES
 (N'Xóa hóa đơn', 'DeleteBill_Click'),
 -- Data-level
 (N'Giới hạn theo dữ liệu', 'data');
+INSERT INTO CHUCNANG (TenChucNang, TenManHinhDuocLoad) VALUES 
+(N'Quản lý phiếu khám', 'btn_viewExamForm_Click'),
+(N'Thêm phiếu khám', 'btn_createExamForm_Click'),
+(N'Sửa phiếu khám', 'btnSuaPK_Click'),
+(N'Xóa phiếu khám', 'btnXoaPK_Click');
 
 INSERT INTO PHANQUYEN (ID_Nhom, ID_ChucNang) VALUES (2, 4); -- Thu ngân được quản lý kho thuốc
 INSERT INTO PHANQUYEN (ID_Nhom, ID_ChucNang) VALUES (2, 5); -- Thu ngân được nhập hàng
-INSERT INTO PHANQUYEN (ID_Nhom, ID_ChucNang) VALUES (1, 3);
-
+INSERT INTO PHANQUYEN (ID_Nhom, ID_ChucNang) VALUES (1,11);
 DELETE FROM PHANQUYEN WHERE ID_Nhom IN (1, 3);
 
 CREATE TABLE LOGINLOG (
@@ -865,93 +869,6 @@ CREATE TABLE LOGINLOG (
 ALTER TABLE LOGINLOG
 ADD HanhDong NVARCHAR(100) DEFAULT N'Đăng nhập';
 SELECT * FROM LOGINLOG
-
-
---huongdansudungphanquyen
---1. Admin – Toàn quyền hệ thống
---Quản lý nhân sự, phân quyền, báo cáo, quy định, tổng quan
-
---STT	Tên chức năng
-	--Trang tổng quan (DashBoard)
-	--Trang báo cáo (ReportView)
-	--Quản lý nhân viên (quan_ly_nhan_vien)
-	--Cài đặt phân quyền (RoleManagement)
-	--Thay đổi quy định (Setting)
-	--Quản lý hóa đơn (StaffAccount)
-
--- Logic-level:
-
--- Sửa, xóa toàn bộ
-
--- Thêm toàn bộ
-
--- 2. Bác sĩ – Xử lý khám bệnh, tiếp nhận bệnh nhân
---STT	Tên chức năng
---	Quản lý bệnh nhân (PatientList)
---	Danh sách tiếp nhận (ExaminationLis)
--- Logic-level:
-
--- Thêm/Sửa phiếu bệnh nhân
--- Thêm/Sửa phiếu tiếp nhận
-
--- Không có quyền xóa, xuất thuốc, tạo hóa đơn
-
--- 3. Thu ngân – Quản lý thanh toán, hóa đơn
---STT	Tên chức năng
---	Trang thanh toán (CreateBill)
---	Quản lý hóa đơn (StaffAccount)
-
--- Logic-level:
-
--- Thêm/Sửa/Xóa hóa đơn
-
--- Không sửa dữ liệu khám, kho thuốc
-
--- 4. Kiểm kho – Nhập thuốc, kiểm kê
---STT	Tên chức năng
---	Quản lý kho thuốc (DrugView)
---	Quản lý nhập hàng (ReceiptList)
-
--- Logic-level:
-
--- Thêm/Sửa/Xóa phiếu nhập thuốc
-
--- 5. Tiếp tân – Tiếp nhận bệnh nhân, hỗ trợ bác sĩ
---STT	Tên chức năng
---	Trang tổng quan (DashBoard)
---	Danh sách tiếp nhận (ExaminationLis)
-
--- Logic-level:
-
--- Thêm phiếu tiếp nhận
-
- --Không sửa/xóa hay phân quyền
-
--- Không tạo hóa đơn hay nhập kho
-
--- Bổ sung: Chức năng Giới hạn theo dữ liệu (data)
---Gán cho Bác sĩ, Thu ngân, Kiểm kho, Tiếp tân
-
--- Admin không cần, vì có toàn quyền
---Chỉ log các sự kiện quan trọng, ví dụ:
-
---Truy cập các trang quản trị
-
---Truy cập chi tiết hồ sơ bệnh nhân
-
---Truy cập báo cáo tài chính
-
---Không log các trang trung gian hoặc lặp đi lặp lại (ví dụ: chuyển tab UI không quan trọng)
-
---Tùy biến theo phân quyền:
-
---Nếu là admin, log chi tiết
-
---Nếu là user thường, chỉ log những hành vi bất thường
-
---Dùng async hoặc batch logging nếu sợ ảnh hưởng hiệu năng
-
-
 
 CREATE OR ALTER TRIGGER TRG_UpdateTyLeGiaBan_WhenRuleChanged
 ON QUI_DINH

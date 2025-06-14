@@ -351,6 +351,7 @@ namespace ClinicManagement.SidebarItems
 
         private void btn_createExamForm_Click(object sender, RoutedEventArgs e)
         {
+            if (DenyIfNoPermission(26)) return;
             loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Đã tạo một phiếu khám");
             var btn = sender as Button;
             if (btn?.DataContext is DataRowView row)
@@ -404,6 +405,7 @@ namespace ClinicManagement.SidebarItems
 
         private void btn_viewExamForm_Click(object sender, RoutedEventArgs e)
         {
+            if (DenyIfNoPermission(25)) return;
             loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Đã xem một phiếu khám");
             var btn = sender as Button;
             if (btn?.DataContext is DataRowView row)

@@ -83,7 +83,20 @@ namespace ClinicManagement.SidebarItems
 
             this.fromScreen = fromScreen;
         }
+        private bool HasPermission(int chucNangId)
+        {
+            return UserSession.DanhSachChucNang.Contains(chucNangId);
+        }
 
+        private bool DenyIfNoPermission(int chucNangId)
+        {
+            if (!HasPermission(chucNangId))
+            {
+                MessageBox.Show("Bạn không có quyền thực hiện chức năng này!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return true;
+            }
+            return false;
+        }
         public ExaminationFormView(string idBenhNhan, int idPhieuKham, bool _, string userEmail, PreviousScreen fromScreen)
         {
             InitializeComponent();
@@ -189,6 +202,8 @@ namespace ClinicManagement.SidebarItems
 
         private void btnXoaPK_Click(object sender, RoutedEventArgs e)
         {
+            if (DenyIfNoPermission(28)) return;
+          
             var result = MessageBox.Show("Bạn có chắc chắn muốn xóa phiếu khám này?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result != MessageBoxResult.Yes)
                 return;
@@ -211,6 +226,8 @@ namespace ClinicManagement.SidebarItems
 
         private void btnSuaPK_Click(object sender, RoutedEventArgs e)
         {
+            if (DenyIfNoPermission(27)) return;
+           
             int idPK = this.idPK;
             string idBN = this.idBenhNhan;
             int idTN = this.idTiepNhan;

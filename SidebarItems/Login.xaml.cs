@@ -3,6 +3,7 @@ using DTO;
 using System.Windows;
 using System.Windows.Input;
 using System.Data.SqlClient;
+using System.Linq;
 namespace ClinicManagement.SidebarItems
 {
     public static class GlobalData
@@ -176,10 +177,21 @@ namespace ClinicManagement.SidebarItems
                     
                     GlobalData.LoggedInPassword = acc.MatKhau;
 
-                    Doctor dashboard = new Doctor(acc.Email);
+                    PhanQuyenBLL phanQuyenBLL = new PhanQuyenBLL();
+                    int nhomQuyen = phanQuyenBLL.LayNhomTheoEmail(acc.Email);
+                    var danhSachQuyen = phanQuyenBLL.LayDanhSachIdChucNangTheoNhom(nhomQuyen);
+
+                    int[] priority = { 1, 2, 3, 4 }; 
+                    int idChucNangToLoad = priority.FirstOrDefault(id => danhSachQuyen.Contains(id));
+                    if (idChucNangToLoad == 0)
+                    {
+                        idChucNangToLoad = danhSachQuyen.FirstOrDefault(); 
+                    }
+
+                    Doctor dashboard = new Doctor(acc.Email, idChucNangToLoad);
                     dashboard.Show();
                     this.Close();
-                    break;
+                    return;
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿using BLL;
 using ClinicManagement.SidebarItems;
 using ControlzEx.Standard;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -31,24 +32,47 @@ namespace ClinicManagement
       
 
         public Doctor() { } //  constructor mặc định
-        public Doctor(string userEmail)
+        public Doctor(string userEmail, int idChucNangToLoad)
         {
             InitializeComponent();
-            
-            
             Account = userEmail;
-            // Lấy danh sách nhóm/quyền từ email
+
             int nhomQuyen = phanQuyenBLL.LayNhomTheoEmail(Account);
             var danhSachQuyen = phanQuyenBLL.LayDanhSachIdChucNangTheoNhom(nhomQuyen);
-            // Gán vào helper (nếu cần dùng ở nơi khác)
+
             PhanQuyenHelper.DanhSachQuyen = danhSachQuyen;
-            KiemTraPhanQuyen(danhSachQuyen);
-            LoadUserControl(new DashBoard());
-
             UserSession.Email = Account;
-            UserSession.NhomQuyen = phanQuyenBLL.LayNhomTheoEmail(UserSession.Email);
-            UserSession.DanhSachChucNang = phanQuyenBLL.LayDanhSachIdChucNangTheoNhom(UserSession.NhomQuyen);
+            UserSession.NhomQuyen = nhomQuyen;
+            UserSession.DanhSachChucNang = danhSachQuyen;
 
+            KiemTraPhanQuyen(danhSachQuyen);
+
+            var userControlMapping = new Dictionary<int, Func<UserControl>>
+    {
+        { 1, () => new DashBoard() },
+        { 2, () => new PatientList(Account) },
+        { 3, () => new ExaminationList(Account) },
+        { 4, () => new DrugView() },
+        { 5, () => new ReceiptList(Account) },
+        { 6, () => new CreateBill() },
+        { 7, () => new InvoiceList(Account, this) },
+        { 8, () => new ReportView() },
+        { 9, () => new StaffAccount(this) },
+        { 10, () => new Setting() },
+        { 11, () => new RoleManagement() },
+      
+        
+    };
+
+            // Mở đúng chức năng đầu tiên được phép
+            if (userControlMapping.ContainsKey(idChucNangToLoad))
+            {
+                LoadUserControl(userControlMapping[idChucNangToLoad]());
+            }
+            else
+            {
+                LoadUserControl(new DashBoard()); // fallback
+            }
         }
 
         private void KiemTraPhanQuyen(List<int> danhSachQuyen)
