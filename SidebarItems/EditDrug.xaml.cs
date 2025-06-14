@@ -33,7 +33,7 @@ namespace ClinicManagement.SidebarItems
             if (!string.IsNullOrEmpty(selectedDrug.HinhAnh))
             {
 
-                imgThuoc.Source = new BitmapImage(new Uri(selectedDrug.HinhAnh, UriKind.RelativeOrAbsolute));
+                LoadDrugImage(selectedDrug.HinhAnh); //  Gọi hàm riêng xử lý
             }
 
             currentDrug = selectedDrug; // Store for saving changes
@@ -65,24 +65,64 @@ namespace ClinicManagement.SidebarItems
     }
 
         }
-
-        private void NewDrugImg_Click(object sender, RoutedEventArgs e)
+        private void LoadDrugImage(string relativePath)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp|All Files|*.*"
-            };
-            if (openFileDialog.ShowDialog() == true)
+            string fullPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
+            if (File.Exists(fullPath))
             {
                 BitmapImage bitmap = new BitmapImage();
                 bitmap.BeginInit();
-                bitmap.UriSource = new Uri(openFileDialog.FileName);
+                bitmap.UriSource = new Uri(fullPath, UriKind.Absolute);
                 bitmap.CacheOption = BitmapCacheOption.OnLoad;
                 bitmap.EndInit();
 
                 imgThuoc.Source = bitmap;
+            }
+        }
 
-                imagePath = openFileDialog.FileName;
+        private void NewDrugImg_Click(object sender, RoutedEventArgs e)
+        {
+
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp|All Files|*.*"
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    // Lấy tên file từ đường dẫn chọn
+                    string fileName = System.IO.Path.GetFileName(openFileDialog.FileName);
+
+                    // Đường dẫn tương đối để lưu vào DB
+                    string relativePath = System.IO.Path.Combine("img", "THUOC", fileName);
+
+                    // Đường dẫn tuyệt đối đến thư mục đích trong project (bin/Debug/ hoặc bin/Release/)
+                    string fullDestination = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
+
+                    // Tạo thư mục nếu chưa có
+                    Directory.CreateDirectory(System.IO.Path.GetDirectoryName(fullDestination));
+
+                    // Sao chép file ảnh đã chọn vào thư mục của project
+                    File.Copy(openFileDialog.FileName, fullDestination, true); // true = ghi đè nếu trùng tên
+
+                    // Hiển thị ảnh trong Image control
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri(fullDestination, UriKind.Absolute);
+                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmap.EndInit();
+
+                    imgThuoc.Source = bitmap;
+
+                    // Gán lại đường dẫn tương đối để lưu vào DB
+                    imagePath = relativePath;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi chọn ảnh: " + ex.Message);
+                }
             }
 
         }

@@ -25,7 +25,8 @@ namespace ClinicManagement.SidebarItems
         {
 
             InitializeComponent();
-            this.DataContext = this; 
+            this.DataContext = this;
+            image_show(null, null); // hoặc bạn gán chính xác event
 
             newDrugBLL = new NewDrugBLL();
             DanhSachNgayNhap = newDrugBLL.LayDsNgayNhap(); 
@@ -79,6 +80,30 @@ namespace ClinicManagement.SidebarItems
         {
             Close();
 
+        }
+
+        private void image_show(object sender, RoutedEventArgs e)
+        {
+
+            if (currentDrug == null || string.IsNullOrEmpty(currentDrug.HinhAnh))
+                return;
+
+            string fullPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, currentDrug.HinhAnh);
+
+            if (File.Exists(fullPath))
+            {
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(fullPath, UriKind.Absolute);
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                bitmap.EndInit();
+
+                imgThuoc.Source = bitmap;
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy hình ảnh thuốc tại:\n" + fullPath, "Lỗi hình ảnh", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }
