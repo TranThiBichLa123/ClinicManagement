@@ -233,7 +233,7 @@ namespace ClinicManagement.SidebarItems
             if (dialog.ShowDialog() == true)
             {
                 selectedImagePath = dialog.FileName;
-                imgThuoc.Source = new BitmapImage(new Uri(selectedImagePath, UriKind.Absolute));
+                imgThuoc.Source = new BitmapImage(new Uri(selectedImagePath, UriKind.RelativeOrAbsolute));
             }
         }
 

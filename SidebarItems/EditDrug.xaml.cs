@@ -33,7 +33,7 @@ namespace ClinicManagement.SidebarItems
             if (!string.IsNullOrEmpty(selectedDrug.HinhAnh))
             {
 
-                imgThuoc.Source = new BitmapImage(new Uri(selectedDrug.HinhAnh, UriKind.Absolute));
+                imgThuoc.Source = new BitmapImage(new Uri(selectedDrug.HinhAnh, UriKind.RelativeOrAbsolute));
             }
 
             currentDrug = selectedDrug; // Store for saving changes

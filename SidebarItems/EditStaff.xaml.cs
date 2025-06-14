@@ -60,7 +60,7 @@ namespace ClinicManagement.SidebarItems
             if (!string.IsNullOrEmpty(staff.HinhAnh))
             {
                 selectedImagePath = staff.HinhAnh;
-                avatarBrush.ImageSource = new BitmapImage(new Uri(selectedImagePath, UriKind.Absolute));
+                avatarBrush.ImageSource = new BitmapImage(new Uri(selectedImagePath, UriKind.RelativeOrAbsolute));
             }
         }
 
