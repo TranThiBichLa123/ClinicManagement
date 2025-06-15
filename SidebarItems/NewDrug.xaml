@@ -84,7 +84,10 @@ CornerRadius="15,15,0,0">
   ClipToBounds="True">
                     <Image x:Name="imgThuoc"
      Stretch="UniformToFill"
-     Source="/img/drugDefault.jpg"/>
+     Source="/img/drugDefault.jpg" 
+                           Loaded="image_show"
+                           
+                           />
                 </Border>
 
 

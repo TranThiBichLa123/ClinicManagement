@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,6 +16,7 @@ namespace ClinicManagement.SidebarItems
     public partial class NewDrug : Window
     {
         private readonly QuiDinhBLL quyDinhBLL = new QuiDinhBLL();
+        private DTO.Drug currentDrug;
 
         private ObservableCollection<ChiTietPhieuNhapThuocDTO> danhSachThuocNhap = new ObservableCollection<ChiTietPhieuNhapThuocDTO>();
         private NhapThuocBLL bll = new NhapThuocBLL();
@@ -28,11 +30,13 @@ namespace ClinicManagement.SidebarItems
         public NewDrug()
         {
             InitializeComponent();
+            image_show(null, null); // hoặc bạn gán chính xác event
             drugDataGrid.ItemsSource = danhSachThuocNhap;
             LoadTenThuoc();
             LoadDVT_CachDung();
            
         }
+
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -74,6 +78,7 @@ namespace ClinicManagement.SidebarItems
         {
             string tenThuoc = TenThuoccomboBox.Text.Trim();
             if (string.IsNullOrEmpty(tenThuoc)) return;
+
             var thuoc = bll.GetThuocByTen(tenThuoc);
             if (thuoc != null)
             {
@@ -83,10 +88,39 @@ namespace ClinicManagement.SidebarItems
                 ThanhPhancomboBox.Text = thuoc.ThanhPhan;
                 XuatXucomboBox.Text = thuoc.XuatXu;
                 textBoxDonGiaNhap.Text = thuoc.DonGiaNhap.ToString();
-                selectedImagePath = !string.IsNullOrEmpty(thuoc.HinhAnh) ? thuoc.HinhAnh : "/img/drugDefault.jpg";
-                imgThuoc.Source = new BitmapImage(new Uri(selectedImagePath, UriKind.RelativeOrAbsolute));
+
+                // Xử lý ảnh thuốc
+                string relativePath = string.IsNullOrEmpty(thuoc.HinhAnh) ? "img/drugDefault.jpg" : thuoc.HinhAnh;
+                string fullPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
+
+                try
+                {
+                    if (File.Exists(fullPath))
+                    {
+                        BitmapImage bitmap = new BitmapImage();
+                        bitmap.BeginInit();
+                        bitmap.UriSource = new Uri(fullPath, UriKind.Absolute);
+                        bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                        bitmap.EndInit();
+                        imgThuoc.Source = bitmap;
+                    }
+                    else
+                    {
+                        // Fallback nếu không tìm thấy ảnh
+                        imgThuoc.Source = new BitmapImage(new Uri("pack://application:,,,/img/drugDefault.jpg"));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi tải ảnh thuốc: " + ex.Message);
+                    imgThuoc.Source = new BitmapImage(new Uri("pack://application:,,,/img/drugDefault.jpg"));
+                }
             }
-            else thuocDangChon = null;
+            else
+            {
+                thuocDangChon = null;
+                imgThuoc.Source = new BitmapImage(new Uri("pack://application:,,,/img/drugDefault.jpg"));
+            }
         }
 
         private void ChonThuoc_Click(object sender, RoutedEventArgs e)
@@ -338,6 +372,30 @@ namespace ClinicManagement.SidebarItems
         {
             WindowState = WindowState.Minimized;
 
+        }
+
+        private void image_show(object sender, RoutedEventArgs e)
+        {
+
+            if (currentDrug == null || string.IsNullOrEmpty(currentDrug.HinhAnh))
+                return;
+
+            string fullPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, currentDrug.HinhAnh);
+
+            if (File.Exists(fullPath))
+            {
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(fullPath, UriKind.Absolute);
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                bitmap.EndInit();
+
+                imgThuoc.Source = bitmap;
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy hình ảnh thuốc tại:\n" + fullPath, "Lỗi hình ảnh", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }
