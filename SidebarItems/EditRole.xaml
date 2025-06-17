@@ -37,7 +37,7 @@
                 <DataGridTextColumn Header="Chức năng" Binding="{Binding TenChucNang}" Width="3*" IsReadOnly="True"/>
 
                 <!-- Cột checkbox phân quyền -->
-                <DataGridTemplateColumn Header="Tích" Width="Auto">
+                <DataGridTemplateColumn Header="Cho phép" Width="1*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <CheckBox IsChecked="{Binding DuocCapQuyen, 
