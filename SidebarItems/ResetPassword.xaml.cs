@@ -94,44 +94,47 @@ namespace ClinicManagement.SidebarItems
        // string username = sendCode.to;
         private void NewPassword_Click(object sender, RoutedEventArgs e)
         {
-            if (textBoxPassword1.Text == textBoxPassword2.Text)
-            {
-                SqlConnection con = new SqlConnection("Data Source=LAPTOP-MSDUJDE8\\MSSQLSERVER01;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;TrustServerCertificate=True");
-                /*SqlCommand cmd = new SqlCommand(@"UPDATE TAIKHOAN 
-SET 
-    Email = @Email, 
-    MatKhau = @Password, 
-    ID_VaiTro = @RoleId, 
-    TrangThai = @Status 
-WHERE Email = @Email", con);
+            string newPassword = passwordBox1.Visibility == Visibility.Visible
+    ? passwordBox1.Password
+    : textBoxPassword1.Text;
 
-cmd.Parameters.AddWithValue("@Email", email);
-cmd.Parameters.AddWithValue("@Password", textBoxPassword1.Text);
-cmd.Parameters.AddWithValue("@RoleId", 2); // hoặc bạn lấy từ combobox/dropdown
-cmd.Parameters.AddWithValue("@Status", true); // hoặc false tùy trạng thái
-*/
+            string confirmPassword = passwordBox2.Visibility == Visibility.Visible
+                ? passwordBox2.Password
+                : textBoxPassword2.Text;
+
+            if (string.IsNullOrWhiteSpace(newPassword) || string.IsNullOrWhiteSpace(confirmPassword))
+            {
+                MessageBox.Show("Vui lòng nhập mật khẩu.");
+                return;
+            }
+
+            if (newPassword != confirmPassword)
+            {
+                MessageBox.Show("Mật khẩu nhập lại không khớp.");
+                return;
+            }
+
+            using (SqlConnection con = new SqlConnection(
+                "Data Source=KOROBE\\SQLEXPRESS;Initial Catalog=QL_PHONGMACHTU;Integrated Security=True;TrustServerCertificate=True"))
+            {
                 SqlCommand cmd = new SqlCommand(@"UPDATE NHANVIEN 
-SET 
-    Email = @Email, 
-    MatKhau = @Password  
-WHERE Email = @Email", con);
+        SET MatKhau = @Password 
+        WHERE Email = @Email", con);
 
                 cmd.Parameters.AddWithValue("@Email", email);
-                cmd.Parameters.AddWithValue("@Password", textBoxPassword1.Text);
-            /*    cmd.Parameters.AddWithValue("@RoleId", 2); // hoặc bạn lấy từ combobox/dropdown
-                cmd.Parameters.AddWithValue("@Status", true); // hoặc false tùy trạng thái */
-
+                cmd.Parameters.AddWithValue("@Password", newPassword);
 
                 con.Open();
-                cmd.ExecuteNonQuery();
+                int rows = cmd.ExecuteNonQuery();
                 con.Close();
 
-                MessageBox.Show("Reset successfully!");
+                if (rows > 0)
+                    MessageBox.Show("Đặt lại mật khẩu thành công!");
+                else
+                    MessageBox.Show("Không tìm thấy tài khoản cần cập nhật.");
             }
-            else
-            {
-                MessageBox.Show("The new passwords do not match. Please enter the same password.");
-            }
+
+
         }
     }
 }
