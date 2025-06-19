@@ -161,12 +161,15 @@ namespace DAL
             using (var conn = CreateConnection())
             {
                 conn.Open();
-                var cmd = new SqlCommand(@"SELECT c.ID_Thuoc, t.TenThuoc, c.HanSuDung, c.SoLuongNhap, c.DonGiaNhap, c.ThanhTien
-                                           FROM CHITIETPHIEUNHAPTHUOC c
-                                           JOIN THUOC t ON c.ID_Thuoc = t.ID_Thuoc
-                                           WHERE c.ID_PhieuNhapThuoc = @ID", (SqlConnection)conn);
+                var cmd = new SqlCommand(@"
+            SELECT c.ID_Thuoc, t.TenThuoc, c.HanSuDung, c.SoLuongNhap, c.DonGiaNhap, c.ThanhTien, t.HinhAnh
+            FROM CHITIETPHIEUNHAPTHUOC c
+            JOIN THUOC t ON c.ID_Thuoc = t.ID_Thuoc
+            WHERE c.ID_PhieuNhapThuoc = @ID", (SqlConnection)conn);
+
                 cmd.Parameters.AddWithValue("@ID", idPhieu);
                 var reader = cmd.ExecuteReader();
+
                 while (reader.Read())
                 {
                     list.Add(new ChiTietPhieuNhapThuocDTO
@@ -176,12 +179,14 @@ namespace DAL
                         HanSuDung = reader["HanSuDung"] as DateTime?,
                         SoLuongNhap = Convert.ToInt32(reader["SoLuongNhap"]),
                         DonGiaNhap = Convert.ToDecimal(reader["DonGiaNhap"]),
-                        ThanhTien = Convert.ToDecimal(reader["ThanhTien"])
+                        ThanhTien = Convert.ToDecimal(reader["ThanhTien"]),
+                        HinhAnh = reader["HinhAnh"] == DBNull.Value ? null : reader["HinhAnh"].ToString()
                     });
                 }
             }
             return list;
         }
+
 
         public List<DonViTinhDTO> GetAllDVT()
         {

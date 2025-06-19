@@ -42,12 +42,24 @@ namespace ClinicManagement.SidebarItems
                 cbNam_Thuoc.Items.Add(year);
             }
         }
+        private bool KiemTraThangChuaKetThuc(int thang, int nam)
+        {
+            DateTime now = DateTime.Now;
+            return (thang == now.Month && nam == now.Year && now.Day < DateTime.DaysInMonth(nam, thang));
+        }
         private void btnXemBaoCaoDoanhThu_Click(object sender, RoutedEventArgs e)
         {
             if (cbThang_DoanhThu.SelectedItem != null && cbNam_DoanhThu.SelectedItem != null)
             {
                 int thang = int.Parse(cbThang_DoanhThu.SelectedItem.ToString());
                 int nam = int.Parse(cbNam_DoanhThu.SelectedItem.ToString());
+
+                if (KiemTraThangChuaKetThuc(thang, nam))
+                {
+                    MessageBox.Show($"Tháng {thang}/{nam} chưa kết thúc. Vui lòng xem lại sau khi kết thúc tháng.",
+                                    "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
 
                 // Binding chi tiết vào DataGrid
                 var chiTiet = reportBLL.GetChiTietDoanhThu(thang, nam);
@@ -71,6 +83,13 @@ namespace ClinicManagement.SidebarItems
             {
                 int thang = int.Parse(cbThang_Thuoc.SelectedItem.ToString());
                 int nam = int.Parse(cbNam_Thuoc.SelectedItem.ToString());
+
+                if (KiemTraThangChuaKetThuc(thang, nam))
+                {
+                    MessageBox.Show($"Tháng {thang}/{nam} chưa kết thúc. Vui lòng xem lại sau khi kết thúc tháng.",
+                                    "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
 
                 var dsBaoCao = reportBLL.GetBaoCaoSuDungThuoc(thang, nam);
                 dgThuoc.ItemsSource = dsBaoCao;

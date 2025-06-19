@@ -94,8 +94,18 @@ namespace ClinicManagement.SidebarItems
             try
             {
                 string tenThuoc = TenThuoccomboBox.Text.Trim();
-                int soLuong = int.Parse(textBoxSoLuongNhap.Text);
-                decimal donGia = decimal.Parse(textBoxDonGiaNhap.Text);
+                if (!int.TryParse(textBoxSoLuongNhap.Text, out int soLuong) || soLuong <= 0)
+                {
+                    MessageBox.Show("Số lượng nhập phải là số nguyên dương!", "Lỗi nhập liệu", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                if (!decimal.TryParse(textBoxDonGiaNhap.Text, out decimal donGia) || donGia <= 0)
+                {
+                    MessageBox.Show("Đơn giá nhập phải là số lớn hơn 0!", "Lỗi nhập liệu", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
 
                 var ct = new ChiTietPhieuNhapThuocDTO
                 {

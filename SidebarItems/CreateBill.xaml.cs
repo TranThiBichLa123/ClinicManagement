@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Linq;
-
+using System.Data.SqlClient;
 
 namespace ClinicManagement.SidebarItems
 {
@@ -16,19 +16,15 @@ namespace ClinicManagement.SidebarItems
         private readonly PhanQuyenBLL phanQuyenBLL = new PhanQuyenBLL();
         private readonly LoginLogBLL loginLogBLL = new LoginLogBLL();
 
-
         public string Account { get; private set; }
-        public CreateBill()
-        {
-           
-        }
+
+        public CreateBill() { }
+
         public CreateBill(string userEmail)
         {
             InitializeComponent();
             Account = userEmail;
-          
 
-            // Load quyền
             int nhomQuyen = phanQuyenBLL.LayNhomTheoEmail(Account);
             var danhSachQuyen = phanQuyenBLL.LayDanhSachIdChucNangTheoNhom(nhomQuyen);
 
@@ -37,6 +33,7 @@ namespace ClinicManagement.SidebarItems
             UserSession.NhomQuyen = nhomQuyen;
             UserSession.DanhSachChucNang = danhSachQuyen;
         }
+
         private bool HasPermission(int chucNangId)
         {
             return UserSession.DanhSachChucNang.Contains(chucNangId);
@@ -51,6 +48,7 @@ namespace ClinicManagement.SidebarItems
             }
             return false;
         }
+
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             var danhSachThuNgan = service.GetNhanVienThuNgan();
@@ -62,6 +60,7 @@ namespace ClinicManagement.SidebarItems
         private void BtnLapHoaDon_Click(object sender, RoutedEventArgs e)
         {
             if (DenyIfNoPermission(17)) return;
+
             if (string.IsNullOrWhiteSpace(txtMaPhieuKham.Text) ||
                 cbNhanVien.SelectedValue == null ||
                 dpNgayLap.SelectedDate == null)
@@ -76,7 +75,6 @@ namespace ClinicManagement.SidebarItems
                 int idNhanVien = Convert.ToInt32(cbNhanVien.SelectedValue);
                 DateTime ngayLap = dpNgayLap.SelectedDate.Value;
 
-                // Kiểm tra đã có hóa đơn chưa
                 var existingHoaDon = service.GetHoaDon(idPhieuKham);
                 if (existingHoaDon != null)
                 {
@@ -84,28 +82,34 @@ namespace ClinicManagement.SidebarItems
                     return;
                 }
 
-                // Tạo hóa đơn
                 int idHoaDon = service.TaoHoaDon(idPhieuKham, idNhanVien, ngayLap);
 
-                // Cập nhật báo cáo sau khi tạo hóa đơn
                 service.CapNhatBaoCaoSauKhiTaoHoaDon(ngayLap.Month, ngayLap.Year);
 
-                // Load lại thông tin
                 FillThongTinHoaDon(idPhieuKham);
 
                 MessageBox.Show("Lập hóa đơn thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (FormatException)
             {
-                MessageBox.Show("Mã phiếu khám hoặc mã nhân viên không hợp lệ!", "Lỗi định dạng", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Mã phiếu khám hoặc mã nhân viên không hợp lệ!", "Lỗi định dạng", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                MessageBox.Show("Lỗi khi lập hóa đơn: " + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (ex.Message.Contains("FOREIGN KEY") && ex.Message.Contains("FK_HOADON_ID_Phieu"))
+                {
+                    MessageBox.Show("Phiếu khám không tồn tại!", "Lỗi lập hóa đơn", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else
+                {
+                    MessageBox.Show("Đã xảy ra lỗi khi lập hóa đơn. Vui lòng kiểm tra lại!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Phiếu khám không tồn tại!", "Lỗi lập hóa đơn", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
-
-
 
         private void BtnXemHoaDon_Click(object sender, RoutedEventArgs e)
         {
@@ -120,9 +124,9 @@ namespace ClinicManagement.SidebarItems
                 int idPhieuKham = int.Parse(txtMaPhieuKham.Text);
                 FillThongTinHoaDon(idPhieuKham);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Không thể lấy thông tin hóa đơn. Vui lòng kiểm tra lại!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -143,10 +147,8 @@ namespace ClinicManagement.SidebarItems
             txtTongTien.Text = thongTin.TongTien.ToString("N0");
 
             cbNhanVien.SelectedValue = thongTin.MaNhanVien;
-
             dgChiTiet.ItemsSource = chiTiet;
             dpNgayLap.SelectedDate = thongTin.NgayLap;
-
         }
 
         private void BtnCapNhatHoaDon_Click(object sender, RoutedEventArgs e)
@@ -175,9 +177,9 @@ namespace ClinicManagement.SidebarItems
                     MessageBox.Show("Không thể cập nhật hóa đơn!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Đã xảy ra lỗi. Vui lòng thử lại!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -188,13 +190,11 @@ namespace ClinicManagement.SidebarItems
                 try
                 {
                     int idPhieuKham = int.Parse(txtMaPhieuKham.Text);
-
                     bool success = service.XoaHoaDon(idPhieuKham);
 
                     if (success)
                     {
                         MessageBox.Show("Xóa hóa đơn thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-                        // Xóa dữ liệu trên giao diện
                         txtMaHoaDon.Text = "";
                         txtNgayLap.Text = "";
                         txtBenhNhan.Text = "";
@@ -206,12 +206,13 @@ namespace ClinicManagement.SidebarItems
                         MessageBox.Show("Không thể xóa hóa đơn!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Đã xảy ra lỗi khi xóa hóa đơn!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
+
         private void dgChiTiet_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (dgChiTiet.SelectedItem is ChiTietHoaDon selected && selected.MoTa == "Tiền thuốc")
@@ -223,13 +224,11 @@ namespace ClinicManagement.SidebarItems
                 foreach (var item in items)
                 {
                     if (item.IsDrugDetail)
-                        item.IsVisible = !anyVisible; // toggle
+                        item.IsVisible = !anyVisible;
                 }
 
                 dgChiTiet.Items.Refresh();
             }
         }
-
-
     }
 }

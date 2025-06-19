@@ -127,7 +127,7 @@ namespace ClinicManagement.SidebarItems
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Lỗi: Người dùng này đã tồn tại", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -230,9 +230,10 @@ namespace ClinicManagement.SidebarItems
                 DiaChi = newAddress,
                 Email = newEmail
             };
-            bool result = benhnhanBLL.UpdatePatient(patient);
+
             try
             {
+                bool result = benhnhanBLL.UpdatePatient(patient);
                 if (result)
                 {
                     loginLogBLL.GhiLog(UserSession.Email, "Đang làm việc", 0, "Đã sửa một hồ sơ bệnh nhân");
@@ -247,7 +248,7 @@ namespace ClinicManagement.SidebarItems
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi cập nhật:\n" + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Lỗi: Người dùng này đã tồn tại", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -326,7 +327,7 @@ namespace ClinicManagement.SidebarItems
                         LoadDSBenhNhan();
                         break;
                     case 2:
-                        MessageBox.Show("Không thể xóa vì bệnh nhân đã có phiếu khám.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("Không thể xóa vì bệnh nhân đã được tiếp nhận.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                         break;
                     case 0:
                     default:

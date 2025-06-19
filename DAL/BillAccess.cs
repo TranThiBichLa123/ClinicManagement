@@ -46,32 +46,46 @@ namespace DAL
         }
         public int InsertHoaDon(int idPhieuKham, int idNhanVien, DateTime ngay)
         {
-            int idHoaDon = GetHoaDonIdByPhieuKham(idPhieuKham); // Kiểm tra tồn tại
+            int idHoaDon = GetHoaDonIdByPhieuKham(idPhieuKham);
             if (idHoaDon != 0)
-                return idHoaDon; // Nếu đã có thì không tạo mới
-            
+                return idHoaDon;
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand(@"
-            INSERT INTO HOADON (ID_PhieuKham, ID_NhanVien, NgayHoaDon)
-            VALUES (@idPK, @idNV, @ngay);
-            SELECT SCOPE_IDENTITY();", conn);
 
-                cmd.Parameters.AddWithValue("@idPK", idPhieuKham);
-                cmd.Parameters.AddWithValue("@idNV", idNhanVien);
-                cmd.Parameters.AddWithValue("@ngay", ngay);
-
-                object result = cmd.ExecuteScalar();
-                if (result != null && int.TryParse(result.ToString(), out int id))
+                try
                 {
-                    idHoaDon = id;
+                    SqlCommand cmd = new SqlCommand(@"
+                INSERT INTO HOADON (ID_PhieuKham, ID_NhanVien, NgayHoaDon)
+                VALUES (@idPK, @idNV, @ngay);
+                SELECT SCOPE_IDENTITY();", conn);
+
+                    cmd.Parameters.AddWithValue("@idPK", idPhieuKham);
+                    cmd.Parameters.AddWithValue("@idNV", idNhanVien);
+                    cmd.Parameters.AddWithValue("@ngay", ngay);
+
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && int.TryParse(result.ToString(), out int id))
+                    {
+                        idHoaDon = id;
+                    }
+                }
+                catch (SqlException ex) when (ex.Message.Contains("FOREIGN KEY constraint") && ex.Message.Contains("FK_HOADON_ID_Phieu"))
+                {
+                    // Ném lỗi nghiệp vụ rõ ràng, không bị coi là lỗi hệ thống
+                    throw new ApplicationException("Mã phiếu khám không tồn tại trong hệ thống. Không thể lập hóa đơn.");
+                }
+                catch (Exception ex)
+                {
+                    // Ném lỗi chung khác
+                    throw new Exception("Đã xảy ra lỗi khi tạo hóa đơn: " + ex.Message);
                 }
             }
 
             return idHoaDon;
         }
+
 
         private int GetHoaDonIdByPhieuKham(int idPhieuKham)
         {

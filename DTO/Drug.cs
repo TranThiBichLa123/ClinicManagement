@@ -11,7 +11,11 @@ namespace DTO
         public int ID_Thuoc { get; set; }
         public string TenThuoc { get; set; }
         public string TenDVT { get; set; }
+        public int ID_TenDVT { get; set; }
+
         public string CachDung { get; set; }
+        public int ID_CachDung { get; set; }
+
         public string ThanhPhan { get; set; }
         public string XuatXu { get; set; }
         public int SoLuongTon { get; set; }

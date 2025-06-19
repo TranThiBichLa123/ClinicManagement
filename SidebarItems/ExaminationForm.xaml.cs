@@ -288,7 +288,10 @@ namespace ClinicManagement.SidebarItems
 
         private void btnSuaThuoc_Click(object sender, RoutedEventArgs e)
         {
+
             var selectedRow = dgThuocDaChon.SelectedItem as ThuocDaChon;
+            var selectedThuoc = cboThuoc.SelectedItem as DataRowView;
+            int ton = Convert.ToInt32(selectedThuoc["SoLuongTon"]);
 
             if (selectedRow == null)
             {
@@ -309,6 +312,11 @@ namespace ClinicManagement.SidebarItems
             if (!int.TryParse(txtSoLuong.Text.Trim(), out int soLuong) || soLuong <= 0)
             {
                 MessageBox.Show("Vui lòng nhập số lượng hợp lệ (> 0).");
+                return;
+            }
+            if (soLuong > ton)
+            {
+                MessageBox.Show($"Số lượng vượt quá tồn kho ({ton}).", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             else selectedRow.SoLuong = Convert.ToInt32(soLuongEdited);

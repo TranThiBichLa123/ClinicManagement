@@ -294,16 +294,16 @@
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="0"/>
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Row="0" Grid.Column="0">
                 <TextBlock
                     FontSize="12" FontWeight="Bold" HorizontalAlignment="Left"
                     Foreground="#CC000000"
-                    VerticalAlignment="Center" Margin="15,0,0,0"
+                    VerticalAlignment="Center" Margin="100,0,0,0"
                     Text="Tên bệnh nhân"/>
             </Grid>
 
@@ -311,15 +311,15 @@
                 <TextBlock 
                     FontSize="12" FontWeight="Bold" HorizontalAlignment="Left"
                     Foreground="#CC000000"
-                    VerticalAlignment="Center" Margin="15,0,0,0"
+                    VerticalAlignment="Center" Margin="100,0,0,0"
                     Text="ID bệnh nhân"/>
             </Grid>
 
-            <Grid Grid.Row="0" Grid.Column="2">
+            <Grid Grid.Row="0" Grid.Column="2" Visibility="Hidden">
                 <TextBlock 
                     FontSize="12" FontWeight="Bold" HorizontalAlignment="Left"
                     Foreground="#CC000000"
-                    VerticalAlignment="Center" Margin="15,0,0,0"
+                    VerticalAlignment="Center" Margin="100,0,0,0"
                     Text="Ngày đăng ký"/>
             </Grid>
 
@@ -327,7 +327,7 @@
                 <TextBlock
                     FontSize="12" FontWeight="Bold" HorizontalAlignment="Left"
                     Foreground="#CC000000"
-                    VerticalAlignment="Center" Margin="15,0,0,0"
+                    VerticalAlignment="Center" Margin="100,0,0,0"
                     Text="Loại bệnh"/>
             </Grid>
 
@@ -335,13 +335,13 @@
                 <TextBlock
                     FontSize="12" FontWeight="Bold" HorizontalAlignment="Left"
                     Foreground="#CC000000"
-                    VerticalAlignment="Center" Margin="15,0,0,0"
+                    VerticalAlignment="Center" Margin="100,0,0,0"
                     Text="Triệu chứng"/>
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="0">
                 <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" 
-                        Padding="5,5" Width="370" Height="30" Margin="15,0,0,5" 
+                        Padding="5,5" Width="370" Height="30" Margin="100,0,0,5" 
                         HorizontalAlignment="Left">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -367,7 +367,7 @@
 
             <Grid Grid.Row="1" Grid.Column="1">
                 <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" 
-                        Padding="5,5" Width="370" Height="30" Margin="15,0,0,5" 
+                        Padding="5,5" Width="370" Height="30" Margin="100,0,0,5" 
                         HorizontalAlignment="Left">
                     <Grid>
                         <TextBox x:Name="txtSearchByID" TextChanged="SearchBox_TextChanged"
@@ -388,9 +388,9 @@
                 </Border>
             </Grid>
 
-            <Grid Grid.Row="1" Grid.Column="2">
+            <Grid Grid.Row="1" Grid.Column="2" Visibility="Hidden">
                 <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" 
-                        Padding="5,5" Width="370" Height="30" Margin="15,0,0,5" 
+                        Padding="5,5" Width="370" Height="30" Margin="100,0,0,5" 
                         HorizontalAlignment="Left">
                     <Grid>
                         <TextBox x:Name="txtSearchNgayKham" TextChanged="SearchBox_TextChanged"
@@ -423,7 +423,7 @@
 
             <Grid Grid.Row="4" Grid.Column="0">
                 <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" 
-                        Padding="5,5" Width="370" Height="30" Margin="15,0,0,5" 
+                        Padding="5,5" Width="370" Height="30" Margin="100,0,0,5" 
                         HorizontalAlignment="Left">
                     <Grid>
                         <TextBox x:Name="txtSearchLoaiBenh" TextChanged="SearchBox_TextChanged"
@@ -446,7 +446,7 @@
 
             <Grid Grid.Row="4" Grid.Column="1">
                 <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" 
-                        Padding="5,5" Width="370" Height="30" Margin="15,0,0,5" 
+                        Padding="5,5" Width="370" Height="30" Margin="100,0,0,5" 
                         HorizontalAlignment="Left">
                     <Grid>
                         <TextBox x:Name="txtSearchTrieuChung" TextChanged="SearchBox_TextChanged"

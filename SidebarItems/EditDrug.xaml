@@ -396,6 +396,8 @@ Foreground="White" FontSize="10" FontWeight="Bold"  Click="EditDrug_Click"
 
                         <TextBox Name="textBoxTyLeGiaBan"
                      BorderThickness="0"
+                                                                     IsReadOnly="True"
+
                      Foreground="Black"
                      VerticalAlignment="Center"
                      FontWeight="SemiBold"

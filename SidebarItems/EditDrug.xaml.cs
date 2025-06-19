@@ -45,6 +45,7 @@ namespace ClinicManagement.SidebarItems
             currentDrug.TenThuoc = TenThuoccomboBox.Text;
             currentDrug.TenDVT = DvtcomboBox.Text;
             currentDrug.CachDung = CachDungcomboBox.Text;
+            currentDrug.SoLuongTon = int.Parse(textBoxSoLuongNhap.Text);
 
             currentDrug.ThanhPhan = ThanhPhancomboBox.Text;
             currentDrug.XuatXu = XuatXucomboBox.Text;
@@ -52,7 +53,16 @@ namespace ClinicManagement.SidebarItems
             currentDrug.TyLeGiaBan = decimal.Parse(textBoxTyLeGiaBan.Text);
             currentDrug.HinhAnh = imagePath ?? currentDrug.HinhAnh;
 
-            bool result = new DrugBLL().UpdateDrug(currentDrug); 
+            bool result = new DrugBLL().UpdateDrug(currentDrug);
+
+            if (result)
+
+                currentDrug.ThanhPhan = ThanhPhancomboBox.Text;
+            currentDrug.XuatXu = XuatXucomboBox.Text;
+            currentDrug.DonGiaNhap = double.Parse(textBoxDonGiaNhap.Text);
+            currentDrug.TyLeGiaBan = decimal.Parse(textBoxTyLeGiaBan.Text);
+            currentDrug.HinhAnh = imagePath ?? currentDrug.HinhAnh;
+
 
     if (result)
     {

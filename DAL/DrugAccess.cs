@@ -387,7 +387,8 @@ SET
     XuatXu = @XuatXu,
     DonGiaNhap = @DonGiaNhap,
     TyLeGiaBan = @TyLeGiaBan,
-    HinhAnh = @HinhAnh
+    HinhAnh = @HinhAnh,
+    SoLuongTon = @SoLuongTon
 WHERE ID_Thuoc = @ID_Thuoc
 ";
 
@@ -401,10 +402,12 @@ WHERE ID_Thuoc = @ID_Thuoc
                 cmd.Parameters.AddWithValue("@HinhAnh", drug.HinhAnh ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@ID_DVT", GetID_DVTByTen(drug.TenDVT));
                 cmd.Parameters.AddWithValue("@ID_CachDung", GetID_CachDungByMoTa(drug.CachDung));
+                cmd.Parameters.AddWithValue("@SoLuongTon", drug.SoLuongTon);
 
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
+
         /*
                 public List<string> GetAllDonViTinh()
                 {

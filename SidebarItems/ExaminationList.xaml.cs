@@ -174,7 +174,7 @@ namespace ClinicManagement.SidebarItems
             int td = bll.GetSLBNMax();
             int ht = bll.GetSLBNTrongNgay(selectedDate.Date);
 
-            if (ht == td)
+            if (ht >= td)
             {
                 MessageBox.Show("Đã đủ số lượng bệnh nhân tiếp nhận tối đa trong ngày, không thể tiếp nhận thêm!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }

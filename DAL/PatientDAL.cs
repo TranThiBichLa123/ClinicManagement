@@ -113,7 +113,8 @@ namespace DAL
                 cmd.Parameters.AddWithValue("@ID_BenhNhan", bn.ID_BenhNhan);
 
                 conn.Open();
-                return cmd.ExecuteNonQuery() > 0;
+                int result = cmd.ExecuteNonQuery();
+                return result > 0;
             }
         }
 
@@ -129,7 +130,6 @@ namespace DAL
                                     AND NOT EXISTS (
                                         SELECT 1
                                         FROM DANHSACHTIEPNHAN TN
-                                        JOIN PHIEUKHAM PK ON PK.ID_TiepNhan = TN.ID_TiepNhan
                                         WHERE TN.ID_BenhNhan = @ID
                                     )";
 
