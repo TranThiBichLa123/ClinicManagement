@@ -13,10 +13,10 @@
         <Border CornerRadius="20" Background="White" Padding="20">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="70*"/>
                 </Grid.RowDefinitions>
 
                 <!-- Show window name -->
@@ -160,12 +160,12 @@
                                         <Label x:Name="lblEditNgayHienTai"/>
                                     </StackPanel>
 
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20 0 0">
                                         <TextBlock Text="Ca Tiếp nhận:" FontSize="16" FontWeight="DemiBold" FontFamily="Calibri"/>
                                         <TextBox x:Name="tbEditCaTN" Text="" Width="150" Margin="10 0 0 0"/>
                                     </StackPanel>
 
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0" Visibility="Hidden">
                                         <TextBlock Text="Mã Bệnh Nhân:" FontSize="16" FontWeight="DemiBold" FontFamily="Calibri"/>
                                         <TextBox x:Name="tbEditMaBN" Width="150" Margin="10 0 0 0"/>
                                     </StackPanel>
@@ -192,7 +192,7 @@
                     ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
                     CellStyle="{DynamicResource DataGridCellStyle1}"
                     Style="{DynamicResource DataGridStyle1}"
-                    Margin="10" Height="420">
+                    Margin="10" MinHeight="420">
                     <!-- Thêm margin để không dính sát -->
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="STT" IsReadOnly="True" CanUserResize="False" Width="0.5" Binding="{Binding STT}"/>

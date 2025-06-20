@@ -99,7 +99,7 @@
 
                     </StackPanel>
                     <StackPanel Grid.Row="3" VerticalAlignment="Bottom">
-                        <Button x:Name="btnSetting" Style="{DynamicResource PopupButtonStyle}" 
+                        <Button x:Name="btnLogOut" Style="{DynamicResource PopupButtonStyle}" 
                             MouseEnter="btnSetting_MouseEnter" MouseLeave="btnSetting_MouseLeave" Click="Logout_Click">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="#29A3EC" 
                             IconWidth="16" Text="Đăng xuất" Icon="{DynamicResource logout}" VerticalAlignment="Center"/>

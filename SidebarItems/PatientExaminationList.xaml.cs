@@ -59,7 +59,7 @@ namespace ClinicManagement.SidebarItems
 
             if (patient != null)
             {
-                txtIDPatienr.Text = patient.ID_BenhNhan.ToString();
+                txtIDPatient.Text = patient.ID_BenhNhan.ToString();
                 txtPatientName.Text = patient.HoTenBN;
                 txtPatientSex.Text = patient.GioiTinh;
                 txtPatientDate.Text = patient.NgaySinh.ToString("dd/MM/yyyy");

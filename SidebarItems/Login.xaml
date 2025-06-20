@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClinicManagement.SidebarItems"
         mc:Ignorable="d"
-               xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
-                Title="Login" WindowStartupLocation="CenterScreen" Height="600" Width="1000"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        Title="Login" WindowStartupLocation="CenterScreen" Height="600" Width="1000"
         WindowStyle="None"  
   FontFamily="Poppins">
 
@@ -172,7 +172,7 @@ Margin="50,79,50,50">
                 </Border>
 
                 <!-- CheckBox để bật/tắt hiển thị mật khẩu -->
-                <CheckBox Content="Hiện mật khẩu"
+                <CheckBox x:Name="ckb_show" Content="Hiện mật khẩu"
           HorizontalAlignment="Right"
           Checked="ShowPassword_Checked"
           Unchecked="HidePassword_Checked"/>
@@ -180,7 +180,7 @@ Margin="50,79,50,50">
 
 
                 <!-- Login Button -->
-                <Button Content="Đăng nhập" Width="auto" Height="50" 
+                <Button x:Name="btn_Login" Content="Đăng nhập" Width="auto" Height="50" 
         Foreground="White" FontWeight="Bold" BorderThickness="0" HorizontalAlignment="Stretch"
         Cursor="Hand" Margin="0,25" Click="LoginButton_Click">
                     <Button.Background>
@@ -211,7 +211,7 @@ Margin="50,79,50,50">
 
             </StackPanel>
             <!--Forgot your password hyperlink-->
-            <TextBlock Grid.Column="1"
+            <TextBlock x:Name="tb_Forgot" Grid.Column="1"
            HorizontalAlignment="Center"
            VerticalAlignment="Bottom"
            Margin="15"

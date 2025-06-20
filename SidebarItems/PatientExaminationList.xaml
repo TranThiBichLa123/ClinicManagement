@@ -31,7 +31,7 @@
                 </LinearGradientBrush>
             </Grid.Background>
             <StackPanel Orientation="Horizontal">
-                <Button Width="60" Height="60" Click="btnExit_Click"
+                <Button x:Name="btn_Back" Width="60" Height="60" Click="btnExit_Click"
                         Background="Transparent"
                         BorderBrush="Transparent"
                         BorderThickness="0"
@@ -80,7 +80,7 @@
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Text="ID:" FontSize="16" FontWeight="Bold" Grid.Column="0" VerticalAlignment="Center"/>
                                         <Border BorderThickness="2" BorderBrush="#29A3EC" Grid.Column="1">
-                                            <TextBlock x:Name="txtIDPatienr" FontSize="16" Margin="5"/>
+                                            <TextBlock x:Name="txtIDPatient" FontSize="16" Margin="5"/>
                                         </Border>
                                     </Grid>
 
@@ -126,6 +126,7 @@
 
                         </StackPanel>
                     </Grid>
+                    
                     <Grid Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <materialDesign:PackIcon x:Name="iconGender"
                              Width="60" Height="60"
