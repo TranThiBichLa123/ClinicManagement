@@ -249,18 +249,20 @@ namespace ClinicManagement.SidebarItems
                 txtTenThuoc.Text = selectedThuoc["TenThuoc"].ToString() + ":     ";
                 txtSoLuongTon.Text = selectedThuoc["SoLuongTon"].ToString();
                 duongDanAnh = selectedThuoc["HinhAnh"].ToString();
-                try
+                string absolutePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, duongDanAnh);
+                if (System.IO.File.Exists(absolutePath))
                 {
-                    var imageUri = new Uri(duongDanAnh, UriKind.RelativeOrAbsolute);
+                    var imageUri = new Uri(absolutePath, UriKind.Absolute);
                     var imageBrush = new ImageBrush(new BitmapImage(imageUri));
                     imageBrush.Stretch = Stretch.UniformToFill;
                     thuocImageBorder.Background = imageBrush;
                 }
-                catch
+                else
                 {
-                    // Nếu lỗi thì đặt nền mặc định
-                    thuocImageBorder.Background = Brushes.LightBlue;
+                    thuocImageBorder.Background = Brushes.LightBlue; // fallback
                 }
+
+           
 
                 txtSoLuong.Focus();
                 txtSoLuong.SelectAll();

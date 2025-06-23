@@ -9,6 +9,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
+using ClinicManagement.Utils;
 namespace ClinicManagement.SidebarItems
 {
 
@@ -43,7 +44,7 @@ namespace ClinicManagement.SidebarItems
 
             if (!string.IsNullOrEmpty(selectedDrug.HinhAnh))
             {
-                imgThuoc.Source = new BitmapImage(new Uri(selectedDrug.HinhAnh, UriKind.Absolute));
+                imgThuoc.Source = ImageHelper.LoadImage(selectedDrug.HinhAnh);
             }
 
             currentDrug = selectedDrug;

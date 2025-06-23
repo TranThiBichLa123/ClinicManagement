@@ -85,9 +85,27 @@ namespace ClinicManagement.SidebarItems
             var dialog = new OpenFileDialog { Filter = "Image Files|*.jpg;*.png;*.jpeg" };
             if (dialog.ShowDialog() == true)
             {
-                selectedImagePath = dialog.FileName;
-                avatarBrushAdd.ImageSource = new BitmapImage(new Uri(selectedImagePath));
+                string sourcePath = dialog.FileName;
+                string fileName = System.IO.Path.GetFileName(sourcePath);
+                string relativePath = $"img/Nhanvien/{fileName}";
+                string destPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
+
+                try
+                {
+                    // Copy file nếu chưa tồn tại
+                    if (!System.IO.File.Exists(destPath))
+                        System.IO.File.Copy(sourcePath, destPath);
+
+                    // Cập nhật cho UI và dữ liệu
+                    selectedImagePath = relativePath; // <- chỉ lưu đường dẫn tương đối
+                    avatarBrushAdd.ImageSource = new BitmapImage(new Uri(destPath, UriKind.Absolute));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi khi chọn ảnh: {ex.Message}");
+                }
             }
         }
+
     }
 }

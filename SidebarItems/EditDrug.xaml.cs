@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using ClinicManagement.Utils;
 
 namespace ClinicManagement.SidebarItems
 {
@@ -33,7 +34,7 @@ namespace ClinicManagement.SidebarItems
             if (!string.IsNullOrEmpty(selectedDrug.HinhAnh))
             {
 
-                imgThuoc.Source = new BitmapImage(new Uri(selectedDrug.HinhAnh, UriKind.Absolute));
+                imgThuoc.Source = ImageHelper.LoadImage(selectedDrug.HinhAnh);
             }
 
             currentDrug = selectedDrug; // Store for saving changes
@@ -41,40 +42,31 @@ namespace ClinicManagement.SidebarItems
 
         private void EditDrug_Click(object sender, RoutedEventArgs e)
         {
-            currentDrug.TenThuoc = 
             currentDrug.TenThuoc = TenThuoccomboBox.Text;
             currentDrug.TenDVT = DvtcomboBox.Text;
             currentDrug.CachDung = CachDungcomboBox.Text;
             currentDrug.SoLuongTon = int.Parse(textBoxSoLuongNhap.Text);
-
             currentDrug.ThanhPhan = ThanhPhancomboBox.Text;
             currentDrug.XuatXu = XuatXucomboBox.Text;
             currentDrug.DonGiaNhap = double.Parse(textBoxDonGiaNhap.Text);
             currentDrug.TyLeGiaBan = decimal.Parse(textBoxTyLeGiaBan.Text);
-            currentDrug.HinhAnh = imagePath ?? currentDrug.HinhAnh;
+
+            if (!string.IsNullOrEmpty(imagePath))
+                currentDrug.HinhAnh = PathHelper.GetRelativePath(imagePath);
 
             bool result = new DrugBLL().UpdateDrug(currentDrug);
 
             if (result)
-
-                currentDrug.ThanhPhan = ThanhPhancomboBox.Text;
-            currentDrug.XuatXu = XuatXucomboBox.Text;
-            currentDrug.DonGiaNhap = double.Parse(textBoxDonGiaNhap.Text);
-            currentDrug.TyLeGiaBan = decimal.Parse(textBoxTyLeGiaBan.Text);
-            currentDrug.HinhAnh = imagePath ?? currentDrug.HinhAnh;
-
-
-    if (result)
-    {
-        MessageBox.Show("Cập nhật thành công!");
-        this.Close();
-    }
-    else
-    {
-        MessageBox.Show("Cập nhật thất bại!");
-    }
-
+            {
+                MessageBox.Show("Cập nhật thành công!");
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Cập nhật thất bại!");
+            }
         }
+
 
         private void NewDrugImg_Click(object sender, RoutedEventArgs e)
         {

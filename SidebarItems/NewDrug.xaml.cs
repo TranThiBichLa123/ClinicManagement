@@ -6,9 +6,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using BLL;
+using ClinicManagement.Utils;
 using DTO;
 using Microsoft.Win32;
 using static DTO.NhapThuoc;
+using ClinicManagement.Utils;
 
 namespace ClinicManagement.SidebarItems
 {
@@ -83,8 +85,10 @@ namespace ClinicManagement.SidebarItems
                 ThanhPhancomboBox.Text = thuoc.ThanhPhan;
                 XuatXucomboBox.Text = thuoc.XuatXu;
                 textBoxDonGiaNhap.Text = thuoc.DonGiaNhap.ToString();
-                selectedImagePath = !string.IsNullOrEmpty(thuoc.HinhAnh) ? thuoc.HinhAnh : "/img/drugDefault.jpg";
-                imgThuoc.Source = new BitmapImage(new Uri(selectedImagePath, UriKind.RelativeOrAbsolute));
+                selectedImagePath = !string.IsNullOrEmpty(thuoc.HinhAnh) ? thuoc.HinhAnh : "img/drugDefault.jpg";
+                string absoluteImagePath = PathHelper.GetAbsolutePath(selectedImagePath);
+                imgThuoc.Source = new BitmapImage(new Uri(absoluteImagePath, UriKind.Absolute));
+
             }
             else thuocDangChon = null;
         }
@@ -114,7 +118,7 @@ namespace ClinicManagement.SidebarItems
                     SoLuongNhap = soLuong,
                     DonGiaNhap = donGia,
                     HanSuDung = datePickerHanSuDung.SelectedDate,
-                    HinhAnh = selectedImagePath.Contains(":\\") ? selectedImagePath : null,
+                    HinhAnh =  selectedImagePath,
                     ID_DVT = (int)(DvtcomboBox.SelectedValue ?? thuocDangChon?.ID_DVT ?? 0),
                     ID_CachDung = (int)(CachDungcomboBox.SelectedValue ?? thuocDangChon?.ID_CachDung ?? 0),
                     ThanhPhan = ThanhPhancomboBox.Text,
@@ -212,8 +216,8 @@ namespace ClinicManagement.SidebarItems
                 textBoxSoLuongNhap.Text = ct.SoLuongNhap.ToString();
                 datePickerHanSuDung.SelectedDate = ct.HanSuDung;
 
-                selectedImagePath = thuocDayDu?.HinhAnh ?? ct.HinhAnh ?? "/img/drugDefault.jpg";
-                imgThuoc.Source = new BitmapImage(new Uri(selectedImagePath, UriKind.RelativeOrAbsolute));
+                selectedImagePath = thuocDayDu?.HinhAnh ?? ct.HinhAnh ?? "img/drugDefault.jpg";
+                imgThuoc.Source = new BitmapImage(new Uri(PathHelper.GetAbsolutePath(selectedImagePath), UriKind.Absolute));
 
                 danhSachThuocNhap.Remove(ct);
                 drugDataGrid.Items.Refresh();
@@ -231,8 +235,9 @@ namespace ClinicManagement.SidebarItems
             textBoxDonGiaNhap.Text = "";
             textBoxTyLeGiaBan.Text = "";
             datePickerHanSuDung.SelectedDate = null;
-            selectedImagePath = "/img/drugDefault.jpg";
-            imgThuoc.Source = new BitmapImage(new Uri(selectedImagePath, UriKind.RelativeOrAbsolute));
+            selectedImagePath = "img/drugDefault.jpg";
+            imgThuoc.Source = new BitmapImage(new Uri(PathHelper.GetAbsolutePath(selectedImagePath), UriKind.Absolute));
+
             LoadTyLeGiaBanMacDinh();
         }
 
@@ -242,9 +247,12 @@ namespace ClinicManagement.SidebarItems
             dialog.Filter = "Image files (*.png;*.jpg)|*.png;*.jpg";
             if (dialog.ShowDialog() == true)
             {
-                selectedImagePath = dialog.FileName;
-                imgThuoc.Source = new BitmapImage(new Uri(selectedImagePath, UriKind.Absolute));
+                string absPath = dialog.FileName;
+                string relPath = PathHelper.GetRelativePath(absPath);
+                selectedImagePath = relPath;
+                imgThuoc.Source = new BitmapImage(new Uri(absPath, UriKind.Absolute));
             }
+
         }
 
         private readonly bool isReadOnlyMode = false;
@@ -324,7 +332,8 @@ namespace ClinicManagement.SidebarItems
 
                     if (!string.IsNullOrEmpty(thuoc.HinhAnh))
                     {
-                        imgThuoc.Source = new BitmapImage(new Uri(thuoc.HinhAnh, UriKind.RelativeOrAbsolute));
+                        selectedImagePath = thuoc.HinhAnh;
+                        imgThuoc.Source = new BitmapImage(new Uri(PathHelper.GetAbsolutePath(selectedImagePath), UriKind.Absolute));
                     }
                 }
             }

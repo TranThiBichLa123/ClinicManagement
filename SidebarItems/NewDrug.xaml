@@ -9,9 +9,11 @@
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         Loaded="Window_Loaded" Background="Transparent"
      WindowStyle="None" AllowsTransparency="True"
-        Height="585" Width="1390" WindowStartupLocation="CenterScreen">
+        Height="585" Width="1390" WindowStartupLocation="CenterScreen"
+          xmlns:utils="clr-namespace:ClinicManagement.Utils">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
+        <utils:ImagePathToBitmapConverter  x:Key="ImagePathToBitmapConverter"/>
     </Window.Resources>
     <Border CornerRadius="15" BorderThickness="2" Background="White">
         <Border.BorderBrush>
@@ -576,7 +578,9 @@ Icon="Percent"
                                         <StackPanel Orientation="Horizontal">
                                             <Ellipse Width="35" Height="35" Margin="0 0 10 0">
                                                 <Ellipse.Fill>
-                                                    <ImageBrush ImageSource="{Binding HinhAnh}" Stretch="UniformToFill"/>
+                               
+                                                    <ImageBrush ImageSource="{Binding HinhAnh, Converter={StaticResource ImagePathToBitmapConverter}}" Stretch="UniformToFill"/>
+
                                                 </Ellipse.Fill>
                                             </Ellipse>
                                             <TextBlock Text="{Binding TenThuoc}" VerticalAlignment="Center"/>

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DTO;
 using DAL;
+using DTO.Utils;
 namespace BLL
 {
     public class NewDrugBLL
@@ -37,6 +38,10 @@ namespace BLL
         public bool AddNewDrug(NewDrug newDrug)
         {
             ValidateDrug(newDrug);
+
+            // Chuyển ảnh về đường dẫn tương đối
+            newDrug.HinhAnh = ImageHelper.ConvertToRelativePath(newDrug.HinhAnh);
+
             return newDrugAccess.InsertDanhSachThuoc(new List<NewDrug> { newDrug });
         }
 
@@ -80,5 +85,7 @@ namespace BLL
 
             return newDrugAccess.InsertDanhSachThuoc(danhSachThuoc); // đúng
         }
+      
+       
     }
 }

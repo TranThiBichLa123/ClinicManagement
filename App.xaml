@@ -7,6 +7,7 @@
              xmlns:local1="clr-namespace:ClinicManagement.Converters"
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:utils="clr-namespace:ClinicManagement.Utils"
              StartupUri="/SidebarItems/Login.xaml">
     <!--/SidebarItems/Patient-->
     <Application.Resources>
@@ -15,6 +16,7 @@
 
                 <ResourceDictionary>
                     <local1:RowIndexConverter x:Key="RowIndexConverter"/>
+                    
                 </ResourceDictionary>
                 
                 <ResourceDictionary Source="Assets/Icons.xaml"/>
@@ -26,6 +28,7 @@
 
 
             </ResourceDictionary.MergedDictionaries>
+          
             <!-- Start: Pop-up Button Style -->
             <Style x:Key="PopupButtonStyle" TargetType="{x:Type Button}">
                 <Setter Property="Background" Value="Transparent"/>

@@ -67,6 +67,7 @@
     <Compile Include="TienNhapTheoThang.cs" />
     <Compile Include="TinhThanhThongKe.cs" />
     <Compile Include="TopThuoc.cs" />
+    <Compile Include="Utils\ImageHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

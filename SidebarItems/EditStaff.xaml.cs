@@ -6,6 +6,7 @@ using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using DTO;
 using BLL;
+using ClinicManagement.Utils;
 
 namespace ClinicManagement.SidebarItems
 {
@@ -60,7 +61,15 @@ namespace ClinicManagement.SidebarItems
             if (!string.IsNullOrEmpty(staff.HinhAnh))
             {
                 selectedImagePath = staff.HinhAnh;
-                avatarBrush.ImageSource = new BitmapImage(new Uri(selectedImagePath, UriKind.Absolute));
+                string absolutePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, staff.HinhAnh);
+                if (System.IO.File.Exists(absolutePath))
+                {
+                    avatarBrush.ImageSource = new BitmapImage(new Uri(absolutePath, UriKind.Absolute));
+                }
+                else
+                {
+                    avatarBrush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/img/staffDefault.png")); // fallback nếu cần
+                }
             }
         }
 
@@ -75,7 +84,9 @@ namespace ClinicManagement.SidebarItems
             UpdatedStaff.GioiTinh = ((ComboBoxItem)cbGioiTinh.SelectedItem)?.Content.ToString();
             UpdatedStaff.TrangThai = ((ComboBoxItem)cbTrangThai.SelectedItem)?.Content.ToString();
             UpdatedStaff.ID_VaiTro = (int?)cbVaiTro.SelectedValue ?? 0;
-            UpdatedStaff.HinhAnh = selectedImagePath;
+            UpdatedStaff.HinhAnh = string.IsNullOrEmpty(selectedImagePath)
+     ? UpdatedStaff.HinhAnh
+     : PathHelper.GetRelativePath(selectedImagePath);
 
             try
             {
@@ -112,9 +123,30 @@ namespace ClinicManagement.SidebarItems
             var dialog = new OpenFileDialog { Filter = "Image Files|*.jpg;*.png;*.jpeg" };
             if (dialog.ShowDialog() == true)
             {
-                selectedImagePath = dialog.FileName;
-                avatarBrush.ImageSource = new BitmapImage(new Uri(selectedImagePath));
+                string sourcePath = dialog.FileName;
+                string fileName = System.IO.Path.GetFileName(sourcePath);
+                string relativePath = $"img/Nhanvien/{fileName}";
+                string destPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
+
+                try
+                {
+                    if (!System.IO.File.Exists(destPath))
+                    {
+                        System.IO.File.Copy(sourcePath, destPath);
+                    }
+
+                    // Gán đường dẫn tương đối vào selectedImagePath để lưu xuống DB
+                    selectedImagePath = relativePath;
+
+                    // Gán ảnh cho UI
+                    avatarBrush.ImageSource = new BitmapImage(new Uri(destPath, UriKind.Absolute));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi chọn ảnh: " + ex.Message);
+                }
             }
         }
+
     }
 }
