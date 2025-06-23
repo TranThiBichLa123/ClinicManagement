@@ -1,0 +1,312 @@
+[33mcommit 0a1d396cd3d203bcfa52ac47f5889b5112855fd3[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mrefactor[m[33m)[m
+Author: korobe <156888883+korobe0906@users.noreply.github.com>
+Date:   Mon Jun 23 12:57:41 2025 +0700
+
+    fix: UI + ảnh
+
+[33mcommit 53f3ed3201ef2327b9e19ed3bf9ac08a9d542289[m[33m ([m[1;31morigin/refactor[m[33m)[m
+Author: HongHanh-atUIT <23520442@gm.uit.edu.vn>
+Date:   Fri Jun 20 15:55:00 2025 +0700
+
+    Hanh them ten cho element, them hieu ung in dam header cua datagrid
+
+[33mcommit bdf23d720fb0bdc41e56258c23d4672f0cc9f621[m
+Author: korobe <156888883+korobe0906@users.noreply.github.com>
+Date:   Thu Jun 19 14:14:53 2025 +0700
+
+    ban update baocao
+
+[33mcommit 46c0d5ea0e5836be312da0785b553ce80170b263[m
+Author: korobe <156888883+korobe0906@users.noreply.github.com>
+Date:   Tue Jun 17 12:39:18 2025 +0700
+
+    fix:quen mat khau
+
+[33mcommit 2e35d3230fd53a8e0e00fa1ecfc0f012cc23d3bf[m
+Author: korobe <156888883+korobe0906@users.noreply.github.com>
+Date:   Tue Jun 17 10:10:56 2025 +0700
+
+    fix:ui
+
+[33mcommit aee61da151a4174a93052aefb6ef6b26adddb100[m
+Author: korobe <156888883+korobe0906@users.noreply.github.com>
+Date:   Sat Jun 14 14:39:02 2025 +0700
+
+    refactor all phanquyen
+
+[33mcommit 0ed1b1fe4dd2187af7d76767fe8c8b09ee1166b3[m
+Author: korobe <156888883+korobe0906@users.noreply.github.com>
+Date:   Sat Jun 14 12:28:48 2025 +0700
+
+    clean code
+
+[33mcommit 23d556a053213ee67cc7ab875e2f8208e66a735a[m
+Author: korobe <156888883+korobe0906@users.noreply.github.com>
+Date:   Sat Jun 14 12:17:24 2025 +0700
+
+    bỏ nút hủy
+
+[33mcommit a09e2e2ae602fa78e9ea58058c86ea749be97f14[m
+Author: korobe <156888883+korobe0906@users.noreply.github.com>
+Date:   Sat Jun 14 12:11:48 2025 +0700
+
+    fix+feature: phanquyen
+
+[33mcommit fbc3c026333fe98564b7c068afb2cf745b1098fb[m
+Author: TranThiBichLa123 <23520827@gm.uit.edu.vn>
+Date:   Fri Jun 13 21:50:20 2025 +0700
+
+    Update giao diện
+
+[33mcommit 02757c596e18c4756c7ad997cc26beb20111d202[m
+Author: HongHanh-atUIT <23520442@gm.uit.edu.vn>
+Date:   Fri Jun 13 08:25:17 2025 +0700
+
+    Hanh them ten cho doi tuong de de lam bao cao
+
+[33mcommit a1e4ec228ea42629db27a77017fc290bf0c0be82[m
+Author: HongHanh-atUIT <23520442@gm.uit.edu.vn>
+Date:   Fri Jun 13 07:30:35 2025 +0700
+
+    Hanh fix edit Tiep nhan
+
+[33mcommit 42d6920964596a9216e6f120108c11b066fd87d5[m
+Author: Nguyen Truong Ngoc Han <23520434@gm.uit.edu.vn>
+Date:   Thu Jun 12 09:10:56 2025 +0700
+
+    fix: Them thuoc + Update ty le don gia ban
+
+[33mcommit ace287d0165c416f29d779f1aa0c83725f5aa3de[m
+Author: NguyenPhuongNam <23520980@gm.uit.edu.vn>
+Date:   Tue Jun 10 19:20:41 2025 +0700
+
+    Nam fix UI
+
+[33mcommit eed5bec3aafacbdce50dca17c571410b7fda8cbd[m
+Author: Nguyen Truong Ngoc Han <23520434@gm.uit.edu.vn>
+Date:   Tue Jun 10 17:20:37 2025 +0700
+
+    fix bill + add drugs
+
+[33mcommit 5c20e03064a9635ad1d46a7cfdfc22d2258a4c27[m
+Author: korobe <156888883+korobe0906@users.noreply.github.com>
+Date:   Mon Jun 9 13:22:02 2025 +0700
+
+    sure xong ghilog
+
+[33mcommit 1d56bd128dee1bafe4582bfedc0d36adff03f7f3[m
+Author: korobe <156888883+korobe0906@users.noreply.github.com>
+Date:   Mon Jun 9 12:47:06 2025 +0700
+
+    fix xong: baocaothang
+
+[33mcommit 813f20b84b06f5b0c111cff9c106b00d764e0e72[m
+Author: korobe <156888883+korobe0906@users.noreply.github.com>
+Date:   Mon Jun 9 10:48:41 2025 +0700
+
+    done phân quyền+ghilog
+
+[33mcommit 2044810bf64efe1515c1b9b98e921e76eb70285b[m
+Author: Nguyen Truong Ngoc Han <23520434@gm.uit.edu.vn>
+Date:   Sun Jun 8 17:43:18 2025 +0700
+
+    xuat hoadon, phieunhapthuoc
+
+[33mcommit 9a719cbddf4ae5b4f25403351c1ec2215fd89aa1[m
+Author: Nguyen Truong Ngoc Han <23520434@gm.uit.edu.vn>
+Date:   Sun Jun 8 16:21:52 2025 +0700
+
+    Add drug management logic and ignore build files
+
+[33mcommit 0b277e5cd264a8c1e3f4648c513ed4d10c22a435[m
+Author: korobe <156888883+korobe0906@users.noreply.github.com>
+Date:   Sun Jun 8 15:27:07 2025 +0700
+
+    done phanquyen,ghilog
+
+[33mcommit e71b3c875cd6c0173aca9246338c763e6b93cf4a[m
+Author: korobe <156888883+korobe0906@users.noreply.github.com>
+Date:   Fri Jun 6 00:04:59 2025 +0700
+
+    fix xong báo cáo+tổng quan
+
+[33mcommit bd218a2547a6365d94ac32869db247602d3b8535[m
+Author: korobe <156888883+korobe0906@users.noreply.github.com>
+Date:   Thu Jun 5 23:12:04 2025 +0700
+
+    done phanquyen,nhanvien,quydinh
+
+[33mcommit 483478cc6baa941cf46341bf82689d9a6bb9b72a[m
+Author: korobe <156888883+korobe0906@users.noreply.github.com>
+Date:   Thu Jun 5 21:48:42 2025 +0700
+
+    Clean up untracked build files and add .gitignore
+
+[33mcommit 44e14ba6cc1236bbbc6749b587fff972674f3cfa[m
+Author: HongHanh-atUIT <23520442@gm.uit.edu.vn>
+Date:   Thu Jun 5 18:55:03 2025 +0700
+
+    hanh sua loi UI
+
+[33mcommit 3202e18129c2989a9fc2a85414647bb24a7c28cd[m
+Author: korobe <156888883+korobe0906@users.noreply.github.com>
+Date:   Thu Jun 5 14:47:31 2025 +0700
+
+    fix:receiptlist, report, profit
+
+[33mcommit a5bc38d14dc32c31a5707a3de641abb71a4a4557[m
+Author: korobe <156888883+korobe0906@users.noreply.github.com>
+Date:   Thu Jun 5 14:39:09 2025 +0700
+
+    còn list thuốc là xong
+
+[33mcommit 3f834b615ff711adcd2674f007936072f3101734[m
+Author: korobe <156888883+korobe0906@users.noreply.github.com>
+Date:   Wed Jun 4 15:10:27 2025 +0700
+
+    chua xong thuoc
+
+[33mcommit 93b04c86765fa416082622ea8113c4d9bfb1aaee[m
+Author: korobe <156888883+korobe0906@users.noreply.github.com>
+Date:   Wed Jun 4 02:37:15 2025 +0700
+
+    Nam merge xong
+
+[33mcommit c72a42eb51ec1148f1d8c1f6186e10e14e95ce80[m
+Author: korobe <156888883+korobe0906@users.noreply.github.com>
+Date:   Wed Jun 4 01:14:54 2025 +0700
+
+    merge Hanh ok
+
+[33mcommit 0b8968466d0088f7db77c2a9318e6048a3834b3f[m
+Author: korobe <156888883+korobe0906@users.noreply.github.com>
+Date:   Tue Jun 3 23:50:38 2025 +0700
+
+    feat:examination
+
+[33mcommit 32d7ef0c0a9523d3f26e83530c94f80387cf96b0[m
+Author: korobe <156888883+korobe0906@users.noreply.github.com>
+Date:   Tue Jun 3 23:24:12 2025 +0700
+
+    fix:doctor again
+
+[33mcommit 3b3bb5efe3c157ff0fc3d7896c152876331bd7cd[m
+Author: korobe <156888883+korobe0906@users.noreply.github.com>
+Date:   Tue Jun 3 23:13:21 2025 +0700
+
+    fix:doctor
+
+[33mcommit e28adb7058553e9ea771a070aa70352cd7bc0ebe[m
+Author: korobe <156888883+korobe0906@users.noreply.github.com>
+Date:   Mon Jun 2 14:08:03 2025 +0700
+
+    done merge bichla
+
+[33mcommit 24d1719e5ab74edb052e586da6224e98ec9b456b[m
+Merge: 1092a5f b49ccb2
+Author: korobe <156888883+korobe0906@users.noreply.github.com>
+Date:   Mon Jun 2 13:32:59 2025 +0700
+
+    Merge branch 'hantruong2' into bichla
+
+[33mcommit b49ccb27c3e4ecfed76cc57295011f0e9e9c30b6[m[33m ([m[1;31morigin/hantruong2[m[33m, [m[1;32mhantruong2[m[33m)[m
+Author: korobe <156888883+korobe0906@users.noreply.github.com>
+Date:   Mon Jun 2 11:18:27 2025 +0700
+
+    fix:sidebaritem
+
+[33mcommit 0b79113167e912c948a1877b24fc66da36110460[m
+Author: korobe <156888883+korobe0906@users.noreply.github.com>
+Date:   Thu May 29 19:18:47 2025 +0700
+
+    Loại bỏ các file tạm thời khỏi Git
+
+[33mcommit 4016d28296291af9051ef3d22f7d361951f19977[m
+Author: korobe <156888883+korobe0906@users.noreply.github.com>
+Date:   Thu May 29 19:10:57 2025 +0700
+
+    feat:done baocaodoanhthu, baocao...overview
+
+[33mcommit 1092a5ff6e0430f56b3bdd646ca558a1d64204fb[m
+Author: TranThiBichLa123 <23520827@gm.uit.edu.vn>
+Date:   Tue May 13 13:42:01 2025 +0700
+
+    drugs,patien,..
+
+[33mcommit b9853ce81197a40dcc70ae3a59ca08e31ee398fd[m
+Author: Nguyen Truong Ngoc Han <23520434@gm.uit.edu.vn>
+Date:   Mon May 12 11:22:08 2025 +0700
+
+    Done: CreateBill + BillingManager
+
+[33mcommit 6c2a9bf89a7a9e9099f2ae8d8e4838598140fb1d[m
+Author: TranThiBichLa123 <23520827@gm.uit.edu.vn>
+Date:   Wed May 7 08:16:21 2025 +0700
+
+    Fix: Remove .vs folder from tracking
+
+[33mcommit 7dd40e5afc1df326b078836eb1672283feac567e[m
+Author: Nguyen Truong Ngoc Han <23520434@gm.uit.edu.vn>
+Date:   Mon May 5 22:37:33 2025 +0700
+
+    Done ehehee
+
+[33mcommit 49b9574fa31cd16fb2eab93de0b1c2bb7a561859[m
+Author: Nguyen Truong Ngoc Han <23520434@gm.uit.edu.vn>
+Date:   Mon May 5 22:20:19 2025 +0700
+
+    feat:InvoiceList -> admin
+
+[33mcommit f8fef292df6a417827fa73b3130b091a0ca64756[m
+Author: Nguyen Truong Ngoc Han <23520434@gm.uit.edu.vn>
+Date:   Mon May 5 17:30:06 2025 +0700
+
+    feat:createbill
+
+[33mcommit 697fda8a1b7ba36434ca197d4875629e1f2d0cb9[m
+Author: HongHanh-atUIT <23520442@gm.uit.edu.vn>
+Date:   Wed Apr 16 16:55:40 2025 +0700
+
+    Hanh sua loi va chinh giao dien 1 chut xiu
+
+[33mcommit 7796a0b85f6266d3a51aed813224f77d2f8e3271[m
+Author: HongHanh-atUIT <23520442@gm.uit.edu.vn>
+Date:   Sat Apr 12 11:07:47 2025 +0700
+
+    Hanh sua lai UI
+
+[33mcommit 7c4f3c39f0ce379067657d7f7b589a16be2fa46d[m
+Author: HongHanh-atUIT <23520442@gm.uit.edu.vn>
+Date:   Thu Apr 10 22:07:18 2025 +0700
+
+    Hanh hoan tat cac chuc nang lap danh sach tiep nhan, them va xem phieu kham, note se them sau
+
+[33mcommit 0851a62243801785142099ab1fcb6d0ead5049fc[m
+Author: HongHanh-atUIT <23520442@gm.uit.edu.vn>
+Date:   Wed Apr 9 13:19:40 2025 +0700
+
+    Hanh them chuc nang them, xoa, sua cho viec lap danh sach tiep nhan, them cot Is_Deleted vao table DANHSACHTIEPNHAN
+
+[33mcommit 764c8865e5dc13a25373a8f5db6ece4066f05f26[m
+Author: HongHanh-atUIT <23520442@gm.uit.edu.vn>
+Date:   Mon Apr 7 22:11:05 2025 +0700
+
+    Hanh tao user control Tiep Nhan Benh Nhan, moi xong viec hien thi data, chua thuc hien cac chuc nang them xoa sua
+
+[33mcommit 68f50b21a3302fc046c90598c43d168d559ce61a[m
+Author: HongHanh-atUIT <23520442@gm.uit.edu.vn>
+Date:   Mon Apr 7 22:09:01 2025 +0700
+
+    Hanh chinh sua button de hien thi danh sach tiep nhan duoi quyen cua tiep tan
+
+[33mcommit abc5d5a8472e6d64c6d9366777a545a2d2daf300[m
+Author: HongHanh-atUIT <23520442@gm.uit.edu.vn>
+Date:   Sat Apr 5 20:14:53 2025 +0700
+
+    Hanh add material Design vao file App.xaml
+
+[33mcommit 1198363e6481793ac539bb78ecf4185b7a138fb9[m
+Author: TranThiBichLa123 <23520827@gm.uit.edu.vn>
+Date:   Sat Apr 5 18:20:10 2025 +0700
+
+    Initial commit for ClinicManagement project

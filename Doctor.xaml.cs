@@ -173,7 +173,7 @@ namespace ClinicManagement
             
             if (Tg_Btn.IsChecked == false)
             {
-                Popup.PlacementTarget = btnSetting;
+                //Popup.PlacementTarget = btnSetting;
                 Popup.Placement = PlacementMode.Right;
                 Popup.IsOpen = true;
                 Header.PopupText.Text = "Đăng xuất";
